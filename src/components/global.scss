@@ -1,0 +1,114 @@
+@import "variables";
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  font-family: $font-family;
+  color: $black;
+  scroll-behavior: smooth;
+  font-size: 14px;
+}
+
+ul, 
+li {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  color: #333;
+}
+
+a:hover {
+  text-decoration: none;
+  color: $primary;
+}
+
+em {
+  font-weight: 400;
+}
+
+@each $type in text, email, search, password {
+  input[type="#{$type}"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+}
+
+input[type=number] {
+  appearance: textfield;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+$padding-set: (t, top), (b, bottom), (l, left), (r, right);
+
+@each $name, $type in $padding-set {
+  @for $i from 1 through 6 {
+    $t: $i * 4;
+    $total: #{$t}px;
+
+    .p#{$name}-#{$t} {
+      padding-#{$type}: $total;
+    }
+
+    .m#{$name}-#{$t} {
+      margin-#{$type}: $total;
+    }
+  }
+}
+
+@for $i from 1 through 6 {
+  $t: $i * 4;
+  $total: #{$t}px;
+
+  .ptb-#{$t} {
+    padding-top: $total;
+    padding-bottom: $total;
+  }
+
+  .plr-#{$t} {
+    padding-left: $total;
+    padding-right: $total;
+  }
+
+  .mtb-#{$t} {
+    margin-top: $total;
+    margin-bottom: $total;
+  }
+
+  .mlr-#{$t} {
+    margin-left: $total;
+    margin-right: $total;
+  }
+}
+
+
+
+// grids
+.pure-g {
+  display: flex;
+  flex-flow: row wrap;
+  align-content: flex-start;
+
+  [class*=pure-u] {
+    display: inline-block;
+  }
+}
+
+.hidden {
+  display: none;
+}

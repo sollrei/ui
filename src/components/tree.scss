@@ -1,0 +1,57 @@
+@import "variables";
+
+.ui-tree {
+  .tree-node,
+  .tree-group {
+    padding-left: 24px;
+  }
+
+  &[data-checkable] {
+    padding-left: 24px;
+    
+    .node-trigger:before {
+      position: absolute;
+      left: -24px;
+    }
+  }
+
+  .node-label {
+    display: flex;
+    align-items: flex-start;
+    height: 32px;
+    line-height: 32px;
+  }
+
+  .node-trigger {
+    cursor: pointer;
+    position: relative;
+
+    &:before {
+      content: '\eb36';
+      color: $gray;
+      @include iconfont;
+      display: inline-block;
+      height: 32px;
+      line-height: 32px;
+      width: 16px;
+      margin-right: 8px;
+    }
+
+    ~ .tree-node,
+    ~ .tree-group {
+      display: none;
+    }
+  }
+
+  .expend {
+    &:before {
+      transform: rotate(90deg);
+      transform-origin: center;
+    }
+
+    ~ .tree-node,
+    ~ .tree-group {
+      display: block;
+    }
+  }
+}

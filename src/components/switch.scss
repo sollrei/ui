@@ -1,0 +1,73 @@
+@import "variables";
+
+// switch
+.ui-switch {
+  display: inline-block;
+
+  input {
+    display: none;
+  }
+
+  .switch {
+    position: relative;
+    height: 20px;
+    width: 32px;
+    box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px;
+    border-radius: 10px;
+    background: $light;
+    cursor: pointer;
+    transition: background $transition-duration;
+  }
+
+  .open {
+    display: none;
+  }
+
+  .switch:before {
+    content: '';
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 8px;
+    background: $color-white;
+    transition: left $transition-duration;
+  }
+
+  input:checked + .switch {
+    background: $primary;
+  }
+
+  input:checked + .switch:before {
+    left: 14px;
+  }
+
+  input:checked ~ .open {
+    display: inline;
+  }
+
+  input:checked ~ .close {
+    display: none;
+  }
+
+  input:disabled + .switch {
+    cursor: default;
+    background: $color-border;
+  }
+
+  input:disabled + .switch:before {
+    background: $light;
+  }
+
+  input:disabled:checked + .switch {
+    background-color: rgba($primary, .5);
+  }
+
+  input:disabled:checked + .switch:before {
+    background: #fff;
+  }
+}

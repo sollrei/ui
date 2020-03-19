@@ -1,0 +1,253 @@
+@import "variables";
+
+$w: 448px;
+$padding: 30px;
+$h-icon: 50px;
+$svg-timing: .9s;
+
+.ui-modal {
+  visibility: hidden;
+  opacity: 0;
+  position: fixed;
+  content: "";
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  text-align: center;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  transition: .3s;
+
+  &.modal-visible {
+    z-index: 19000;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  > * {
+    display: inline-block;
+    white-space: normal;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  &:before {
+    display: inline-block;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    content: "";
+  }
+
+  .modal-head {
+    height: 80px;
+    padding: 24px;
+    line-height: 32px;
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  .modal-box {
+    // min-width: 440px;
+    min-height: 200px;
+  }
+
+  .resize-trigger {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    height: 0;
+    width: 0;
+    border: 4px solid transparent;
+    border-right-color: $color-bg;
+    border-bottom-color: $color-bg;
+    cursor: se-resize;
+  }
+
+  .modal-foot {
+    padding: 24px;
+    height: 80px;
+    border-top: 1px solid $color-border;
+
+    .ui-button {
+      float: right;
+      margin-left: 16px;
+    }
+  }
+}
+
+.modal-box {
+  position: relative;
+  max-width: 95%;
+  max-height: 98%;
+  border-radius: 8px;
+  background: $color-white;
+  opacity: 0;
+  visibility: hidden;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  //overflow-y: auto;
+
+  .modal-close {
+    position: absolute;
+    z-index: 2;
+    right: 24px;
+    top: 22px;
+    width: 32px;
+    height: 32px;
+    line-height: 1;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    color: $gray;
+  }
+
+  .modal-main {
+    padding: 16px 24px;
+    max-height: 88vh;
+    overflow: auto;
+  }
+}
+
+.modal-visible {
+  .modal-box {
+    z-index: 100;
+    opacity: 1;
+    visibility: visible;
+  }
+}
+
+.ui-modal-confirm {
+  visibility: hidden;
+  opacity: 0;
+
+  .ui-confirm {
+    position: fixed;
+    width: 480px;
+    padding: 16px {
+      left: 40px;
+    };
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    box-shadow: $shadow;
+    border: solid 1px #ebebeb;
+    background-color: #fff;
+
+    &:before {
+      @include iconfont;
+      content: '\eb1d';
+      position: absolute;
+      top: 20px;
+      left: 16px;
+      color: $yellow;
+    }
+  }
+
+  &.modal-visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .modal-foot {
+    padding: 16px 0 0;
+
+    .ui-button {
+      margin-right: 16px;
+    }
+  }
+
+  .modal-content {
+    line-height: 1.72;
+  }
+
+  .desc {
+    color: $gray;
+  }
+}
+
+.ui-alert {
+  position: fixed;
+  top: 56px + 32px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  padding: 8px 12px 8px 36px;
+  line-height: 24px;
+  border-radius: 8px;
+  box-shadow: $shadow;
+  border: solid 1px #ebebeb;
+  background-color: #fff;
+  font-size: 12px;
+  z-index: 19000;
+  animation-name: alertFadeInDown;
+  animation-duration: .4s;
+  animation-fill-mode: both;
+  transition: top .3s;
+
+  .alert-content:before {
+    content: '';
+    @include iconfont;
+    position: absolute;
+    left: 12px;
+    top: 12px;
+  }
+
+  .alert-success {
+    &:before {
+      color: $green;
+      content: '\eb09';
+      line-height: 1;
+    }
+  }
+
+  .alert-warn {
+    &:before {
+      color: $yellow;
+      content: '\eb1d';
+      line-height: 1;
+    }
+  }
+}
+
+.fadeInDown {
+  animation-name: fadeInDown;
+}
+
+.ui-confirm {
+  &.fadeInDown {
+    animation-name: alertFadeInDown;
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(0, -50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes alertFadeInDown {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, -70%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0);
+  }
+}
+
+

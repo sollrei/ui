@@ -1,0 +1,298 @@
+@import "variables";
+
+$h: 34px;
+
+// select
+
+
+.ui-select {
+  height: $h;
+  // display: inline-block;
+  position: relative;
+  appearance: none;
+  background: #fff;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &:before {
+    content: "\eb3f";
+    font-family: "iconfont";
+    position: absolute;
+    right: 10px;
+    top: 0;
+    line-height: $h - 2px;
+    font-size: 18px;
+    transition: .2s;
+    color: $gray;
+  }
+
+  &.multiple {
+    white-space: normal;
+    height: auto;
+    padding-top: 5px;
+    padding-bottom: 1px;
+    min-height: 34px;
+    line-height: 22px;
+    display: flex;
+    flex-wrap: wrap;
+
+    &:before {
+      display: none;
+    }
+
+    .ft-gray {
+      line-height: 24px;
+    }
+
+    .ui-tag {
+      margin-right: 6px;
+      margin-bottom: 4px;
+    }
+  }
+}
+
+select.ui-select {
+  optgroup,
+  option {
+    display: none;
+  }
+}
+
+.ui-select-active {
+  border-color: $primary;
+  box-shadow: 0 0 3px 0 rgba($primary, .1);
+
+  &:before {
+    transform: rotate(180deg);
+  }
+}
+
+.ui-select-dropdown {
+  display: inline-block;
+  width: 160px;
+  white-space: nowrap;
+  left: 0;
+  margin-top: 4px;
+  font-size: $ft-14;
+  transition: transform $transition-duration, opacity $transition-duration, visibility $transition-duration;
+
+  // status
+  &.hide {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+  }
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    border-radius: 8px;
+    border: solid 1px #ebebeb;
+    background: #fff;
+    box-shadow: $shadow;
+  }
+
+  // dropdown content
+  .select-main {
+    overflow-y: auto;
+    overflow-x: hidden;
+    max-height: 276px;
+  }
+
+  // search input
+  .select-search {
+    padding-left: 8px;
+    padding-right: 8px;
+    margin-bottom: 8px;
+
+    .ui-form-control {
+      width: 100%;
+    }
+  }
+
+  .li-empty {
+    height: 32px + 136px;
+    line-height: 32px;
+    color: $gray;
+    text-align: center;
+  }
+
+  // ul list
+  .select-ul {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+
+  // multiple select
+  &.multiple:not(.checkable) {
+    .selected {
+      position: relative;
+    }
+
+    .selected:after {
+      content: '\eb31';
+      position: absolute;
+      @include iconfont;
+      right: 12px;
+      top: 8px;
+      color: $primary;
+    }
+
+    .ui-tag {
+      max-width: 260px;
+    }
+  }
+
+  // tree structure
+  &.group {
+    .select-main > .menu-item {
+      padding-left: 36px;
+    }
+  }
+
+  .group-label {
+    padding-left: 16px;
+    height: 32px;
+    line-height: 32px;
+    cursor: pointer;
+
+    .iconfont {
+      float: left;
+      width: 20px;
+      height: 32px;
+      text-align: center;
+      transition: .2s;
+    }
+
+    &:hover {
+      background-color: rgba($primary, .06);
+    }
+  }
+
+  .group-ul {
+    display: none;
+
+    .menu-item {
+      padding-left: 36px;
+    }
+  }
+
+  .expend {
+    .icon-arrow-right {
+      transform: rotate(90deg);
+    }
+
+    + .group-ul {
+      display: block;
+    }
+  }
+
+  // checkbox
+  .label-item {
+    padding-right: 0;
+
+
+
+    label {
+      display: block;
+    }
+  }
+
+  .group-ul .label-item { // scss-lint:disable MergeableSelector
+    padding-left: 63px;
+  }
+
+  // cascader wrap
+  &.menu-group {
+    width: auto !important;
+    border-radius: $radius;
+    border: 1px solid $color-border;
+    background: #fff;
+    display: flex;
+
+    ul {
+      padding-top: 8px;
+      padding-bottom: 8px;
+      width: 160px;
+      border: 0 none;
+      border-radius: 0;
+      border-right: 1px solid $color-border;
+    }
+
+    ul:first-child {
+      border-left: 0;
+      border-top-left-radius: 8px;
+      border-bottom-left-radius: 8px;
+    }
+
+    ul:last-child {
+      border-right-color: #fff;
+      border-top-right-radius: 8px;
+      border-bottom-right-radius: 8px;
+    }
+
+    .menu-item {
+      position: relative;
+    }
+
+    .menu-item:after {
+      content: '\eb3d';
+      @include iconfont;
+      position: absolute;
+      right: 12px;
+      top: 8px;
+      color: $gray;
+    }
+  }
+
+  &.normal-group {
+    width: auto;
+    line-height: 1;
+    display: block;
+
+    ul {
+      width: 160px;
+      margin-right: 10px;
+      height: 172px;
+      max-height: 172px;
+      display: inline-block;
+      vertical-align: top;
+    }
+  }
+}
+
+.ui-linkage {
+  .ui-control-wrap {
+    display: inline-block;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+}
+
+.ui-select-group {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  
+  .ui-control-wrap + .ui-control-wrap {
+    border-left: 1px solid #ccc;
+  }
+
+  .ui-form-control,
+  .ui-select {
+    border: 0 none;
+  }
+}
+
+.select-main::-webkit-scrollbar {
+  width: 6px;
+}
+
+.select-main::-webkit-scrollbar-thumb {
+  background: $color-border;
+  border-radius: 30px;
+}

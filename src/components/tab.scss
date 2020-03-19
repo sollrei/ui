@@ -1,0 +1,62 @@
+@import "variables";
+
+.ui-mod {
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid $color-border;
+}
+
+.ui-tab {
+  font-size: 18px;
+
+  .tab-list {
+    display: flex;
+  }
+
+  .tab-itm {
+    margin-right: 24px;
+  }
+
+  .active {
+    font-weight: 600;
+
+    a {
+      color: $primary;
+    }
+  }
+
+  &.small {
+    font-size: 14px;  
+
+    .tab-list {
+      display: inline-flex;
+    }
+
+    .tab-itm {
+      padding-left: 16px;
+      padding-right: 16px;
+      margin-right: -1px;
+      height: 34px;
+      line-height: 32px;
+      border: 1px solid $light;
+    }
+
+    .tab-itm:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .tab-itm:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+
+    .active {
+      position: relative;
+      z-index: 1;
+      font-weight: 400;
+      border-color: $primary;
+    }
+  }
+}
+
+
+

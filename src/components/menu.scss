@@ -1,0 +1,59 @@
+@import "variables";
+
+.ui-menu,
+.ui-select-dropdown {
+  .menu-item {
+    display: flex;
+    height: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    line-height: 32px;
+    cursor: pointer;
+    white-space: nowrap;
+    user-select: none;
+    align-items: center;
+  
+    &:hover {
+      color: #333;
+      background-color: rgba($primary, .06);
+    }
+  
+    &.selected {
+      background: #f5f5f5;
+    }
+  }
+
+  label {
+    user-select: none;
+  }
+
+  &.no-add .menu-item:not(.selected) {
+    cursor: not-allowed;
+
+    &:hover {
+      background: #fff;
+    }
+  }
+}
+
+.ui-menu {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: $shadow;
+  border: 1px solid $color-border;
+
+  .menu-item.selected {
+    position: relative;
+  }
+
+  .menu-item.selected:after {
+    content: '\eb31';
+    position: absolute;
+    @include iconfont;
+    right: 12px;
+    top: 8px;
+    color: $primary;
+  }
+}

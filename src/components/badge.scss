@@ -1,0 +1,68 @@
+@import "variables";
+
+.ui-badge {
+  position: relative;
+  margin-left: 8px;
+  margin-right: 8px;
+  display: inline-block;
+  vertical-align: middle;
+  line-height: 1;
+
+  .count {
+    position: absolute;
+    top: -8px;
+    left: 12px;
+    height: 20px;
+    padding-left: 6px;
+    padding-right: 6px;
+    border-radius: 10px;
+    min-width: 20px;
+    text-align: center;
+    line-height: 20px;
+    color: $color-white;
+    font-size: $ft-12;
+    font-family: arial, sans-serif;
+    font-style: normal;
+    background: $red;
+  }
+
+  .text {
+    &:before {
+      content: '';
+      display: inline-block;
+      height: 6px;
+      width: 6px;
+      border-radius: 50%;
+      margin-right: 8px;
+      vertical-align: middle;
+      background-color: $green;
+    }
+  }
+
+  &.stop {
+    .text {
+      color: $gray;
+    }
+
+    .text:before {
+      background: $light;
+    }
+  }
+
+  &.tip {
+    .text {
+      font-weight: 600;
+    }
+  }
+
+  &.over {
+    .text:before {
+      background: $light;
+    }
+  }
+
+  .icon-bell {
+    font-size: 24px;
+    color: $gray;
+  }
+}

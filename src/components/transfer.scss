@@ -1,0 +1,75 @@
+@import "variables";
+
+.ui-transfer {
+  display: flex;
+  justify-content: space-between;
+  width: 640px + 24px;
+
+  .transfer-list {
+    width: 320px;
+  }
+
+  .transfer-title {
+    height: 40px;
+    padding-left: 16px;
+    line-height: 40px;
+    background: $color-bg;
+    border-radius: 4px;
+  }
+
+  .ui-tree {
+    padding-left: 0;
+
+    > .tree-group {
+      padding-left: 16px;
+    }
+
+    .transfer-title {
+      margin-left: -16px;
+    }
+
+    .tree-node,
+    .node-label {
+      height: 40px;
+      line-height: 40px;
+    }
+
+    .node-trigger:before {
+      height: 40px;
+      line-height: 40px;
+    }
+  }
+
+  .transfer-item {
+    height: 40px;
+    padding-right: 16px;
+    line-height: 40px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    transition: .3s;
+
+    .icon-times {
+      margin-left: auto;
+      color: $gray;
+    }
+
+    &:before {
+      content: '\eb15';
+      padding-left: 16px;
+      width: 38px;
+      @include iconfont;
+      color: $gray;
+      opacity: 0;
+    }
+
+    &:hover {
+      background: #f4f8fc;
+    }
+
+    &:hover:before {
+      opacity: 1;
+    }
+  }
+}
+

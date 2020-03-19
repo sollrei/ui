@@ -1,0 +1,166 @@
+@import "variables";
+
+
+$padding-h: 24px;
+$padding-h-s: 8px;
+
+$h: 34px;
+$h-s: 26px;
+
+// button
+.ui-button {
+  display: inline-block;
+  height: $h;
+  padding-left: $padding-h;
+  padding-right: $padding-h;
+  line-height: $h - 2px;
+  font-size: $ft-14;
+  color: $black;
+  vertical-align: middle;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid $light;
+  transition: .3s;
+  box-sizing: border-box;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus,
+  &:hover {
+    color: #333;
+    border: solid 1px rgba(204, 204, 204, 0.6);
+    background-color: rgba(240, 240, 240, 0.3);
+  }
+
+  &.disabled {
+    cursor: not-allowed;
+    color: rgba(51, 51, 51, 0.3);
+    border: solid 1px rgba(204, 204, 204, 0.6);
+    background-color: #ebebeb;
+
+    &:hover,
+    &:active {
+      color: rgba(51, 51, 51, 0.3);
+      border: solid 1px rgba(204, 204, 204, 0.6);
+      background-color: #ebebeb;
+    }
+  }
+
+  &.small {
+    height: $h-s;
+    padding-left: $padding-h-s;
+    padding-right: $padding-h-s;
+    line-height: $h-s - 2px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+
+  &.primary {
+    color: $color-white;
+    background: $primary;
+    border: 1px solid #0067bc;
+
+    &:focus,
+    &:hover {
+      color: #fff;
+      border-color: rgba(0, 103, 188, 0.8);
+      background-color: rgba(0, 122, 223, 0.8);
+    }
+
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:active {
+      color: #fff;
+      border-color: rgba(0, 103, 188, 0.5);
+      background-color: rgba(0, 122, 223, 0.5);
+    }
+  }
+
+  &.warn {
+    color: $red;
+    border: solid 1px #f55959;
+    background-color: rgba(245, 89, 89, 0.06);
+
+    &:focus,
+    &:hover {
+      color: #fff;
+      background: $red;
+      border-color: $red;
+    }
+
+    &.disabled,
+    &.disabled:hover,
+    &.disabled:active {
+      color: rgba(245, 89, 89, 0.5);
+      border: solid 1px rgba(245, 89, 89, 0.5);
+      background-color: rgba(245, 89, 89, 0.06);
+    }
+  }
+
+  &.active {
+    color: $primary;
+
+    .icon-filter-normal:before { // scss-lint:disable MergeableSelector
+      content: '\eb24';
+    }
+  }
+
+  &.line {
+    width: 320px;
+    padding-left: 0;
+    padding-right: 0;
+    border: 1px dashed $light;
+    background: $color-white;
+    color: $gray;
+
+    &:focus,
+    &:hover {
+      color: $primary;
+      border-color: $primary;
+    }
+  }
+
+  &.btn-icon {
+    .iconfont {
+      margin-left: 4px;
+    }
+  }
+
+  &.loading {
+    position: relative;
+    color: transparent;
+
+    &:after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -11px;
+      margin-top: -11px;
+      box-sizing: border-box;
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      border: 2px solid rgba($color-white, .4) {
+        top-color: $color-white;
+      };
+
+      animation: rotate .5s linear infinite;
+    }
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+

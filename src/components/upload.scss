@@ -1,0 +1,185 @@
+@import "variables";
+
+.ui-upload-img {
+  height: 126px;
+  width: 126px;
+  position: relative;
+  border-radius: $radius;
+  border: 1px dashed $light;
+  display: inline-block;
+  vertical-align: middle;
+
+  &:hover {
+    border-color: $primary;
+
+    .trigger {
+      color: $primary;
+    }
+  }
+
+  img {
+    max-width: 100%;
+    max-height: 100%;
+  }
+
+  .image {
+    height: 100%;
+    width: 100%;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .image:hover {
+    .option {
+      opacity: 1;
+      visibility: visible;
+      bottom: 0;
+    }
+  }
+
+  .option {
+    position: absolute;
+    left: 0;
+    bottom: -12px;
+    right: 0;
+    height: 32px;
+    line-height: 32px;
+    background: rgba(#fff, .5);
+    text-align: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: .2s;
+
+    a {
+      color: $primary;
+      margin-right: 8px;
+      margin-left: 8px;
+    }
+  }
+
+  .trigger {
+    display: flex;
+    position: relative;
+    height: 100%;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: $radius-small;
+    cursor: pointer;
+    color: $gray;
+  }
+
+  .icon-plus {
+    font-size: 20px;
+  }
+
+  input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+.ui-upload-multiple {
+  width: 642px;
+  position: relative;
+  border-radius: $radius;
+  border: 1px dashed $light;
+  text-align: center;
+  color: $gray;
+
+  &.highlight,
+  &:hover {
+    color: $primary;
+    border-color: $primary;
+  }
+  
+
+  .trigger {
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    cursor: pointer;
+  }
+
+  .icon-upload {
+    font-size: 40px;
+    line-height: 1;
+  }
+
+  input[type="file"] {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+  }
+
+  .hidden {
+    display: none;
+  }
+}
+
+.ui-file-list {
+
+  .file-item {
+    position: relative;
+    padding-top: 8px;
+    padding-bottom: 24px;
+  }
+
+  .cancel {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    color: $gray;
+
+    &:hover {
+      color: $primary;
+    }
+  }
+
+  .file-name {
+    .icon-paperclip {
+      margin-right: 8px;
+      color: $gray;
+    }
+  }
+
+  .progress {
+    height: 4px;
+    margin-top: 8px;
+    position: relative;
+    border-radius: 2px;
+    background: #ebebeb;
+  }
+
+  .bar {
+    position: absolute;
+    background: $green;
+    border-radius: 2px;
+    height: 4px;
+    left: 0;
+    transition: .3s;
+  }
+
+  .warn {
+    background: $red;
+  }
+}

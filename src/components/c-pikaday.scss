@@ -1,0 +1,179 @@
+@import "variables";
+
+.pika-single {
+  border-color: $color-border !important;
+  box-shadow: $shadow !important;
+  border-radius: 8px;
+
+  .pika-table abbr {
+    border-bottom: 0 none;
+    cursor: default;
+    text-decoration: none;
+  }
+
+  .pika-table th {
+    line-height: 32px;
+    font-size: 14px;
+  }
+
+  .pika-button {
+    background: #fff;
+    text-align: center;
+    font-size: 14px;
+    padding: 0;
+    height: 32px;
+  }
+
+  .is-startrange .pika-button,
+  .is-endrange .pika-button,
+  .pika-button:hover,
+  .pika-row.pick-whole-week:hover .pika-button {
+    color: $color-white;
+    background: $primary;
+  }
+
+  .is-today .pika-button {
+    color: $primary;
+  }
+
+  .is-today .pika-button:hover {
+    color: #fff;
+  }
+
+  .is-today.is-selected .pika-button,
+  .is-selected .pika-button,
+  .has-event .pika-button {
+    // color: $color-white;
+    // background: $primary;
+    color: $primary;
+    background: #fff;
+    box-shadow: none;
+    padding: 4px;
+    border: 1px solid $primary;
+  }
+
+  .pika-title {
+    margin: 0 -16px 8px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-bottom: $border;
+  }
+
+  .is-selected.is-startrange .pika-button {
+    color: $primary;
+  }
+
+  .pika-lendar {
+    margin: 8px 16px;
+  }
+}
+
+.ui-pika {
+  width: 272px;
+  padding-bottom: 8px;
+  border: 1px solid $color-border;
+  box-shadow: $shadow;
+  border-radius: 8px;
+  position: absolute;
+  background: #fff;
+  z-index: 10;
+  opacity: 0;
+  visibility: hidden;
+  transition: .3s;
+
+  &.show {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .pika-single {
+    box-shadow: none !important;
+    border: 0 none;
+  }
+
+  .option-row {
+    height: 40px;
+    line-height: 40px;
+
+    &.menu-item.selected {
+      position: relative;
+      background: $color-bg;
+    }
+
+    &.menu-item.selected:after {
+      content: '\eb31';
+      position: absolute;
+      @include iconfont;
+      right: 12px;
+      top: 12px;
+      color: $primary;
+    }
+  }
+
+  .option-select {
+    border-top: 1px solid $color-border;
+    border-bottom: 1px solid $color-border;
+  }
+
+  .select-label {
+    position: relative;
+
+    &:after {
+      content: '\eb3d';
+      @include iconfont;
+      position: absolute;
+      right: 12px;
+      top: 12px;
+      color: $gray;
+    }
+  }
+
+  .ui-checkbox,
+  .option-empty,
+  .select-label {
+    padding-left: 13px;
+    cursor: pointer;
+  }
+
+  .option-empty:hover {
+    background: rgba($primary, .06);
+  }
+
+  .option-select:hover,
+  .option-select.show {
+    .select-label {
+      background: rgba($primary, .06);
+    }
+
+    .select-dropdown {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
+
+  .select-dropdown {
+    opacity: 0;
+    visibility: hidden;
+    position: absolute;
+    left: 100%;
+    // bottom: -50px;
+    width: 240px;
+    padding-left: 2px;
+  }
+}
+
+.ui-icon-input .active + .icon-arrow-down {
+  transform: rotate(180deg);
+}
+
+.ui-pika-range {
+  display: inline-flex;
+  border: 1px solid $color-border;
+  box-shadow: $shadow;
+  border-radius: 8px;
+
+  .pika-single {
+    box-shadow: none !important;
+    border: 0 none;
+  }
+}

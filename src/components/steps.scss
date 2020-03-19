@@ -1,0 +1,89 @@
+@import "variables";
+
+.ui-steps {
+  text-align: center;
+
+  .steps {
+    display: flex;
+    justify-content: center;
+    counter-reset: step;
+  }
+
+  .step {
+    position: relative;
+    padding-left: 28px;
+    padding-right: 80px;
+    margin-right: 8px;
+    color: $gray;
+    counter-increment: step 1;
+
+    span {
+      padding-right: 8px;
+      white-space: nowrap;
+    }
+  }
+
+  .step:after {
+    content: '';
+    height: 1px;
+    width: 80px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    background: $light;
+  }
+
+  .step:last-child {
+    padding-right: 0;
+
+    &:after {
+      display: none;
+    }
+  }
+
+  .step:before {
+    content: counter(step);
+    position: absolute;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid $light;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+  }
+
+  .active {
+    color: #333;
+
+    &:before {
+      color: #fff;
+      border-color: $green;
+      background: $green;
+    }
+  }
+
+  .step:first-child.active {
+    &:after {
+      background: $green;
+    }
+  }
+
+  .pass {
+    &:before {
+      content: '\eb1f';
+      border: 0 none;
+      color: $green;
+      font-family: iconfont;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    &:after {
+      background: $green;
+    }
+  }
+}

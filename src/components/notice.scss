@@ -1,0 +1,78 @@
+@import "variables";
+
+.ui-notice {
+  padding: 8px 184px 8px 36px;
+  position: relative;
+  border-radius: 8px;
+  border: 1px solid #c9e2f6;
+  background: #f2f9ff;
+  line-height: 24px;
+  font-size: 12px;
+
+  &:before {
+    content: '\eb1d';
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    font-family: iconfont;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: 16px;
+    line-height: 1;
+    color: $primary;
+  }
+
+  &.small {
+    display: inline-block;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-right: 16px;
+    line-height: 16px;
+
+    &:before {
+      top: 8px;
+    }
+  }
+
+  &.line {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    line-height: 16px;
+    padding-right: 16px;
+    border-radius: 0;
+    border: 0 none;
+
+    &:before {
+      top: 8px;
+    }
+  }
+
+  &.warn {
+    border-color: #ffd9ac;
+    background: #fff7ed;
+
+    &:before {
+      color: $yellow;
+    }
+  }
+
+  &.error {
+    border: solid 1px #ffcfcf;
+    background-color: #ffeded;
+
+    &:before {
+      content: '\eb07';
+      color: $red;
+    }
+  }
+
+  .icon-times {
+    position: absolute;
+    right: 12px;
+    top: 12px;
+    font-size: 18px;
+    line-height: 1;
+    color: $gray;
+    cursor: pointer;
+  }
+}

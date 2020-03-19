@@ -1,0 +1,74 @@
+@import "variables";
+
+body.layer-open {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.ui-layer {
+  position: fixed;
+  visibility: hidden;
+  opacity: 0;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transition: .3s;
+
+  &.layer-visible {
+    z-index: 1900;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .layer-box {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 640px;
+    background: #fff;
+    bottom: 0;
+  }
+
+  .layer-close {
+    position: absolute;
+    z-index: 2;
+    right: 24px;
+    top: 22px;
+    width: 32px;
+    height: 32px;
+    line-height: 1;
+    font-size: 30px;
+    cursor: pointer;
+    text-align: center;
+    color: $gray;
+  }
+
+  .layer-title {
+    height: 80px;
+    line-height: 80px;
+    padding-left: 24px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+
+  .layer-main {
+    position: absolute;
+    left: 0;
+    top: 80px;
+    width: 100%;
+    bottom: 80px;
+    overflow-y: auto;
+  }
+
+  .layer-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    padding: 24px 26px 0 130px;
+    border-top: 1px solid #ebebeb;
+  }
+}

@@ -1,0 +1,9 @@
+@import "variables";
+
+.ui-rate {
+  color: #f5a623;
+
+  .disable {
+    color: $color-bg;
+  }
+}

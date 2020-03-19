@@ -1,0 +1,313 @@
+@import "variables";
+
+// table
+$h: 40px;
+
+.ui-table {
+  width: 100%;
+  border: 0;
+  font-size: $ft-13;
+  line-height: 1.43;
+
+  a:hover {
+    color: $primary;
+  }
+
+  .icon-checkbox {
+    font-size: 16px !important;
+  }
+
+  // tr:hover {
+  //   td {
+  //     background-color: $color-bg;
+  //   }
+
+  //   a {
+  //     color: $primary;
+  //   }
+
+  //   .handle {
+  //     display: block;
+  //   }
+  // }
+
+  th {
+    padding-left: 16px;
+    height: $h;
+    font-size: $ft-12;
+    background: #f5f5f5;
+    font-weight: 600;
+
+    &:first-child {
+      border-radius: 4px 0 0 4px;
+    }
+
+    &:last-child {
+      border-radius: 0 4px 4px 0;
+    }
+  }
+
+  td {
+    padding: 14px 0 14px 16px;
+    position: relative;
+    border-bottom: 1px solid #ebebeb;
+
+    .handle {
+      display: none;
+      width: 5px;
+      height: 32px;
+      background: url("//img-i.gcimg.net/2018/1018/5oa2v0gymxvbis4t085749.png") no-repeat center center;
+      position: absolute;
+      left: 4px;
+      top: 50%;
+      margin-top: -16px;
+    }
+  }
+
+  &.small td {
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+    .opt-del {
+      min-height: 30px;
+    }
+  }
+
+  &.mini {
+    font-size: 12px;
+
+    th {
+      height: 32px;
+      font-size: $ft-12;
+      color: #999;
+    }
+
+    td {
+      padding: 6px 8px;
+    }
+
+    .tit-img {
+      width: 24px;
+      height: 24px;
+      margin-right: 12px;
+      border-radius: 2px;
+      vertical-align: middle;
+    }
+  }
+
+  .td-img {
+    display: inline-block;
+    background: #f1f4f7 url(//img-i.gcimg.net/2018/0724/78ahkoxec74h6sh3015615.png) repeat 0 0;
+    border-radius: 3px;
+    vertical-align: middle;
+  }
+
+  .br-box {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  .ui-checkbox-like {
+    padding-right: 0;
+  }
+
+  // operation
+  .opt {
+    position: relative;
+    padding: 0 0 0 8px;
+  }
+
+  .opt-ico {
+    color: #858c99;
+    line-height: 1;
+
+    .iconfont {
+      cursor: pointer;
+      color: #858c99;
+      display: inline-block;
+      height: 32px;
+      width: 32px;
+      line-height: 32px;
+      text-align: center;
+    }
+
+    .iconfont:hover {
+      color: $primary;
+      background-color: #e8edf2;
+      border-radius: 50%;
+    }
+
+    .icon-delete:hover {
+      color: $red;
+    }
+  }
+
+  .opt-del {
+    position: absolute;
+    z-index: 2;
+    visibility: hidden;
+    opacity: 0;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transform: scale(0, 1);
+    transform-origin: 100%;
+    transition: all .3s;
+    min-height: 70px;
+
+    .cancel,
+    .ok {
+      cursor: pointer;
+      width: 50%;
+      float: left;
+      height: 100%;
+      text-indent: 2px;
+    }
+
+    .cancel:after,
+    .ok:after {
+      content: "";
+      display: inline-block;
+      height: 100%;
+      vertical-align: middle;
+    }
+
+    .cancel {
+      background: $color-bg;
+    }
+
+    .ok {
+      color: $color-white;
+      background: $red;
+    }
+  }
+
+  .tr-operate {
+    background: $color-bg;
+
+    td {
+      border-color: $color-bg;
+    }
+
+    .opt-del {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1, 1);
+    }
+  }
+
+  .ui-checkbox-like {
+    .iconfont {
+      margin-right: 0;
+    }
+  }
+
+  // check
+  .tr-checked {
+    background: #e8f3ff;
+
+    td {
+      border-color: $color-bg;
+    }
+  }
+
+  .tr-checked:hover td {
+    background: #e8f3ff;
+  }
+
+  .td-input {
+    width: 100%;
+    padding: 3px 6px;
+    border: 1px solid $color-bg;
+    border-radius: 3px;
+  }
+
+  .dragged {
+    position: absolute;
+    z-index: 2000;
+    background-color: #fff !important;
+    box-shadow: 0 6px 12px -9px rgba(0, 0, 0, 0.5);
+    border: solid 1px rgba(224, 230, 237, 0.8);
+
+    &:hover td {
+      background-color: #fff !important;
+    }
+  }
+}
+
+/* table的更多操作 */
+.ui-table-under-ctrl {
+  height: 40px;
+  line-height: 40px;
+  float: left;
+
+  .ui-checkbox-like {
+    height: 40px;
+    line-height: 40px;
+    padding: 0 8px 0 17px;
+    font-size: 16px;
+    vertical-align: 0;
+  }
+}
+
+.ui-table-under-ctrl + .ui-pagination {
+  margin-top: 20px;
+}
+
+// ti调整table底部操作的间距
+.page-wrap.active {
+  transition: all 0.2s;
+  
+  .ui-table-under-ctrl {
+    transition: all 0.2s;
+    width: 100%;
+    background-color: #f1f4f7;
+  }
+}
+
+.f-upside-table-ctrl {
+  position: relative;
+
+  .m-table-ctrl{
+    height: 100%;
+    padding-left: 8px;
+    position: absolute;
+    top: 0;
+    z-index: 10;
+  }
+}
+
+.m-table-ctrl {
+  display: none;
+
+  .f-table-check-ctrl {
+    margin-left: 8px;
+
+    a {
+      padding: 0 12px;
+      color: #2769dc;
+      position: relative;
+    }
+
+    a:after {
+      content: '';
+      width: 1px;
+      height: 15px;
+      background-color: #e0e6ed;
+      position: absolute;
+      top: 1px;
+      right: 0;
+    }
+
+    a:last-child::after {
+      width: 0;
+    }
+  
+    .f-bd-record.disabled {
+      color: #999;
+      cursor: default;
+    }
+  }
+}

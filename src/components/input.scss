@@ -1,0 +1,62 @@
+@import "variables";
+$h: 34px;
+
+// icon input
+.ui-icon-input {
+  position: relative;
+  width: 320px;
+  display: inline-block;
+  vertical-align: middle;
+
+  .ui-form-control {
+    padding-right: 40px;
+    width: 100%;
+  }
+
+  .iconfont {
+    position: absolute;
+    height: $h - 2px;
+    width: $h - 2px;
+    right: 1px;
+    top: 1px;
+    border: 0 none;
+    text-align: center;
+    line-height: $h - 2px;
+    background: transparent;
+    color: $gray;
+  }
+
+  .icon-trigger {
+    cursor: pointer;
+  }
+
+  .text {
+    position: absolute;
+    right: 12px;
+    top: 4px;
+  }
+}
+
+.ui-select-input {
+  .ui-select {
+    position: absolute;
+    width: 97px;
+    padding: 0 10px;
+    font-size: $ft-13;
+    border: 0 none;
+    height: $h - 2px;
+    left: 1px;
+    top: 1px;
+    line-height: $h - 2px;
+    background: none;
+  }
+
+  .ui-select-active {
+    box-shadow: none;
+  }
+
+  .text-input {
+    padding-left: 97px;
+    width: 100%;
+  }
+}

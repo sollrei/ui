@@ -1,0 +1,27 @@
+@import "variables";
+
+// progress
+.ui-progress {
+  color: $gray;
+
+  .bar {
+    display: inline-block;
+    position: relative;
+    height: 6px;
+    width: 300px;
+    margin-right: 5px;
+    vertical-align: middle;
+    border-radius: 3px;
+    background: $color-bg;
+  }
+
+  .progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 6px;
+    border-radius: 3px;
+    background: $primary;
+    transition: width $transition-duration;
+  }
+}

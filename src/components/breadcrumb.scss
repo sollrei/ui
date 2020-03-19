@@ -1,0 +1,18 @@
+@import "variables";
+
+.ui-path {
+  font-size: 12px;
+
+  a {
+    color: $primary;
+  }
+
+  span {
+    color: $gray;
+  }
+
+  .line {
+    padding-left: 4px;
+    padding-right: 4px;
+  }
+}
