@@ -1,21 +1,27 @@
 import u from '../base/util.es6';
+import Position from './Position.es6';
 
 const doc = document;
 
-class Tooltip {
+class Tooltip extends Position {
   constructor(selector, options) {
     const defaultSetting = {
       className: 'ui-tooltip',
       position: 'left bottom',
       // x: left center right  y: top bottom
+      width: '',
+      maxWidth: '',
 
       gap: 4,
       
       showEvent: 'mouseover',
-      hideEvent: 'mouseout'
+      hideEvent: 'mouseout',
+      template: null
     };
 
-    this.settings = Object.assign({}, defaultSetting, options);
+    const settings = Object.assign({}, defaultSetting, options);
+
+    super(settings);
 
     this.init(selector);
   }
@@ -25,13 +31,15 @@ class Tooltip {
     const { showEvent, hideEvent } = this.settings;
 
 
-    u.on(doc, showEvent, selector, function () {
-      this.timer = setTimeout(() => {
-        self.showTooltip(this);
-      }, 200);
+    u.on(doc, showEvent, selector, function (e) {
+      if (e.target.matches(selector)) {
+        this.timer = setTimeout(() => {
+          self.showTooltip(this);
+        }, 200);
+      }
     });
 
-    u.on(doc, hideEvent, selector, function () {
+    u.on(doc, hideEvent, selector, function (e) {
       if (this.timer) {
         clearTimeout(this.timer);
       }
@@ -40,7 +48,9 @@ class Tooltip {
   }
 
   showTooltip(element) {
+    const self = this;
     const ele = element;
+    const { width, maxWidth } = this.settings;
     if (ele.noTooltip) return;
 
     const title = ele.getAttribute('data-title');
@@ -56,91 +66,42 @@ class Tooltip {
     const position = data || this.settings.position;
     const tooltip = this.createTooltipElement(ele, position);
     const style = tooltip.style;
-    const elePos = element.getBoundingClientRect();
-    const gap = this.settings.gap;
 
     style.display = 'block';
+
+    if (width) {
+      style.width = width + 'px';
+      style.maxWidth = 'none';
+    }
+
+    if (maxWidth) {
+      style.maxWidth = maxWidth + 'px';
+    }
+
+    style.left = 0;
+    style.bottom = 0;
 
     ele.tooltip = tooltip;
 
     setTimeout(() => {
-      const [x, y] = position.split(' ');
-      const pos = {
-        eleH: ele.offsetHeight,
-        eleW: ele.offsetWidth,
-        eleL: elePos.left + window.scrollX,
-        eleT: elePos.top + window.scrollY,
-        tipH: tooltip.offsetHeight,
-        tipW: tooltip.offsetWidth
-      };
+      style.left = 'auto';
+      style.bottom = 'auto';
 
-      if (y === 'middle') {
-        Tooltip.setPositionMiddle(x, pos, style, gap);
-      } else {
-        Tooltip.setPositionVertical(y, pos, style, gap);
-        Tooltip.setPositionHorizontal(x, pos, style, gap);
-      }
+      self.setPosition(tooltip, element);
     }, 2);
   }
 
-  static setPositionVertical(y, pos, style, gap) {
-    const sty = style;
-    const h = (pos.eleT + pos.eleH + gap) + 'px';
-    let t = (pos.eleT - pos.tipH - gap) + 'px';
-
-    if (pos.eleT < pos.tipH) {
-      t = h;
-    }
-
-    if (y === 'bottom') {
-      sty.top = h;
-    }
-    if (y === 'top') {
-      sty.top = t;
-    }
-  }
-
-  static setPositionHorizontal(x, pos, style) {
-    const sty = style;
-
-    switch (x) {
-      case 'right':
-        sty.left = pos.eleL + 'px';
-        break;
-      case 'left':
-        sty.left = ((pos.eleL + pos.eleW) - pos.tipW) + 'px';
-        break;
-      case 'center':
-        sty.left = pos.eleL + (pos.eleW / 2) + 'px';
-        break;
-      default:
-        break;
-    }
-  }
-
-  static setPositionMiddle(x, pos, style, gap) {
-    const sty = style;
-
-    sty.top = ((pos.eleT + (pos.eleH / 2)) - (pos.tipH / 2)) + 'px';
-
-    if (x === 'left') {
-      sty.left = (pos.eleL - gap) - pos.tipW + 'px';
-    }
-
-    if (x === 'right') {
-      sty.left = pos.eleL + pos.eleW + gap + 'px';
-    }
-  }
-
-  static destroyTooltip(tooltipElement) {
+  static destroyTooltip(tooltipElement, ele) {
     const tip = tooltipElement;
 
     if (tip) {
       tip.parentNode.removeChild(tip);
+      ele.tooltip = null;
     }
   }
 
   createTooltipElement(element, position) {
+    const { template } = this.settings;
     let text = element.getAttribute('data-text');
     const title = element.getAttribute('data-title');
     const dataTip = element.querySelector('.data-tip') ? element.querySelector('.data-tip').innerHTML : '';
@@ -148,6 +109,11 @@ class Tooltip {
     text = (dataTip || text || title);
     
     const { className } = this.settings;
+
+    if (typeof template === 'function') {
+      text = template(text);
+    }
+
     const dom = u.createElement('div', { className: `${className} ${position}` }, text);
     return document.body.appendChild(dom);
   }

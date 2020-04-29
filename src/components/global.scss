@@ -26,10 +26,17 @@ li {
 
 a {
   color: #333;
+
+  &.disabled {
+    cursor: default;
+  }
 }
 
 a:hover {
   text-decoration: none;
+}
+
+a:not(.disabled):hover {
   color: $primary;
 }
 
@@ -57,7 +64,7 @@ input[type=number]::-webkit-outer-spin-button {
 $padding-set: (t, top), (b, bottom), (l, left), (r, right);
 
 @each $name, $type in $padding-set {
-  @for $i from 1 through 6 {
+  @for $i from 1 through 7 {
     $t: $i * 4;
     $total: #{$t}px;
 
@@ -71,7 +78,7 @@ $padding-set: (t, top), (b, bottom), (l, left), (r, right);
   }
 }
 
-@for $i from 1 through 6 {
+@for $i from 1 through 7 {
   $t: $i * 4;
   $total: #{$t}px;
 
@@ -93,19 +100,6 @@ $padding-set: (t, top), (b, bottom), (l, left), (r, right);
   .mlr-#{$t} {
     margin-left: $total;
     margin-right: $total;
-  }
-}
-
-
-
-// grids
-.pure-g {
-  display: flex;
-  flex-flow: row wrap;
-  align-content: flex-start;
-
-  [class*=pure-u] {
-    display: inline-block;
   }
 }
 

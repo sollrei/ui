@@ -1,62 +1,62 @@
 @import "variables";
-$h: 34px;
 
-// icon input
 .ui-icon-input {
   position: relative;
-  width: 320px;
-  display: inline-block;
+  width: $form-control-width;
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid $light;
+  border-radius: $form-control-radius;
   vertical-align: middle;
+  transition: border $transition-duration, box-shadow $transition-duration;
 
+  &:hover {
+    border-color: $primary;
+  }
+
+  &:focus-within,
+  &.active {
+    outline: none;
+    border-color: $primary;
+    box-shadow: $form-control-active-shadow;
+  }
+  
   .ui-form-control {
-    padding-right: 40px;
-    width: 100%;
+    flex: 1;
+    border: 0 none;
+    min-height: $form-control-height - 2px;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .prefix {
+    line-height: 1;
+    padding-left: $form-control-padding-h;
+  }
+
+  .suffix {
+    line-height: 1;
+    padding-right: $form-control-padding-h;
   }
 
   .iconfont {
-    position: absolute;
-    height: $h - 2px;
-    width: $h - 2px;
-    right: 1px;
-    top: 1px;
-    border: 0 none;
-    text-align: center;
-    line-height: $h - 2px;
-    background: transparent;
     color: $gray;
-  }
-
-  .icon-trigger {
-    cursor: pointer;
-  }
-
-  .text {
-    position: absolute;
-    right: 12px;
-    top: 4px;
   }
 }
 
-.ui-select-input {
-  .ui-select {
-    position: absolute;
-    width: 97px;
-    padding: 0 10px;
-    font-size: $ft-13;
-    border: 0 none;
-    height: $h - 2px;
-    left: 1px;
-    top: 1px;
-    line-height: $h - 2px;
-    background: none;
-  }
+.error .ui-icon-input {
+  border-color: $form-control-error-color;
+  box-shadow: $form-control-error-shadow;
 
-  .ui-select-active {
+  .ui-form-control {
     box-shadow: none;
   }
 
-  .text-input {
-    padding-left: 97px;
-    width: 100%;
+  &:focus-within,
+  &.active {
+    border-color: $primary;
+    box-shadow: $form-control-active-shadow;
   }
 }

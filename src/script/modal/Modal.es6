@@ -43,7 +43,7 @@ class Modal {
       btnType: '' // '' 'center'
     };
 
-    if (settings.type === 'confirm') {
+    if (settings && settings.type === 'confirm') {
       defaultSettings.btnOkClass = 'ui-button small primary';
       defaultSettings.btnCancelClass = 'ui-button small';
     }
@@ -69,7 +69,7 @@ class Modal {
 
     switch (type) {
       case 'confirm':
-        str = this.getConfirmTypeHtml(closeIcon);
+        str = this.getConfirmTypeHtml();
         className = 'ui-modal-confirm';
         break;
       default:
@@ -83,7 +83,7 @@ class Modal {
   }
 
   createModalFooter() {
-    const { cancelBtn, footer, confirmBtn, btnOkClass, btnCancelClass } = this.settings;
+    const { cancelBtn, footer, confirmBtn, btnOkClass, btnCancelClass, onCancel } = this.settings;
 
     let confirmButton = '';
     let cancelButton = '';
@@ -98,11 +98,15 @@ class Modal {
     }
 
     if (cancelBtn) {
-      cancelButton = `<button class="${btnCancelClass} modal-cancel" data-modal-close>${cancelBtn}</button>`;
+      if (onCancel) {
+        cancelButton = `<button class="${btnCancelClass} modal-cancel">${cancelBtn}</button>`;
+      } else {
+        cancelButton = `<button class="${btnCancelClass} modal-cancel" data-modal-close>${cancelBtn}</button>`;
+      }
     }
 
     if (confirmBtn || cancelBtn) {
-      foot = `<div class="modal-foot">${confirmButton}${cancelButton}</div>`;
+      foot = `<div class="modal-footer">${confirmButton}${cancelButton}</div>`;
     }
 
     return foot;
@@ -119,11 +123,10 @@ class Modal {
             + `${foot}${resizeTrigger}</div>`;
   }
 
-  getConfirmTypeHtml(closeIcon) {
+  getConfirmTypeHtml() {
     const foot = this.createModalFooter();
 
-    return closeIcon
-      + '<div class="ui-confirm modal-box">'
+    return '<div class="ui-confirm modal-box">'
       + '<div class="modal-content"></div>'
       + foot
       + '</div>';
@@ -200,6 +203,7 @@ class Modal {
     this.setTitle(title);
 
     this.toggleShowHide('show');
+    Util.addClass(document.querySelector('html'), 'modal-open');
   }
 
   confirm(option, getData = null) {
@@ -220,6 +224,8 @@ class Modal {
     if (this.modalTitle) {
       this.modalTitle.innerHTML = '';
     }
+
+    Util.removeClass(document.querySelector('html'), 'modal-open');
   }
 
   /**

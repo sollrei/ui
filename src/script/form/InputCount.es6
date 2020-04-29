@@ -4,58 +4,42 @@ import Util from '../base/util.es6';
 class InputCount {
   constructor(selector, options) {
     const defaultSetting = {
-      countElementClass: 'count',
+      countElementClass: '.count',
       inputElementSelector: '.ui-form-control'
     };
+
     const settings = Object.assign({}, defaultSetting, options);
-    const elements = document.querySelectorAll(selector);
-    if (!elements.length) {
-      return;
-    }
+    
     this.settings = settings;
 
-    this.init(elements);
+    this.init(selector);
   }
 
-  init(elements) {
+  init(selector) {
     const { countElementClass, inputElementSelector } = this.settings;
 
-    [].slice.call(elements).forEach(item => {
-      const element = item.querySelector(inputElementSelector);
-      const max = element.getAttribute('maxlength');
-      let countElement = item.querySelector('.' + countElementClass);
+    Util.on(document, 'input', selector + ' ' + inputElementSelector, function () {
+      const input = this;
+      const wrap = input.closest(selector);
+      const max = input.getAttribute('maxlength');
+      let countElement = wrap.querySelector(countElementClass);
 
-      if (!countElement) {
-        countElement = item.appendChild(this.createCountElement(`0/${max}`));
-      }
-      element.count = countElement;
-      element.timer = null;
+      let timer = this.timer;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        const value = this.value.trim();
+        const length = value.length;
 
-      element.count.innerHTML = element.value.length + '/' + max;
-
-      InputCount.bindEvents(element);
+        countElement.innerHTML = length > max
+          ? `<em class="ft-error">${length}</em>/${max}`
+          : `${length}/${max}`;
+      }, 500);
     });
   }
 
   createCountElement(inner) {
     const { countElementClass } = this.settings;
     return Util.createElement('span', { className: countElementClass }, inner);
-  }
-
-  static bindEvents(element) {
-    element.addEventListener('input', function () {
-      let timer = this.timer;
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        const value = this.value.trim();
-        const length = value.length;
-        const max = this.getAttribute('maxlength');
-
-        this.count.innerHTML = length > max
-          ? `<em class="ft-error">${length}</em>/${max}`
-          : `${length}/${max}`;
-      }, 500);
-    });
   }
 }
 

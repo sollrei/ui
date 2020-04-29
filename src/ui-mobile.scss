@@ -1,5 +1,5 @@
 @import "components/variables";
-// @import "components/normalize";
+
 @import 'components/reset';
 @import "components/global";
 @import "components/typography";
@@ -8,11 +8,8 @@
 @import "components/breadcrumb";
 @import "components/dropdown";
 @import "components/modal";
-@import "components/layer";
 @import "components/notice";
-@import "components/pagination";
 @import "components/popup";
-@import "components/progress";
 @import "components/rate";
 @import "components/switch";
 @import "components/tab";
@@ -25,16 +22,14 @@
 @import "components/tag";
 @import "components/menu";
 @import "components/tree";
-@import "components/transfer";
 @import "components/c-pikaday";
 @import "components/grid";
-@import "components/list";
-@import "components/timeline";
-    
+@import "components/toast";
+
 .w240 {
   width: 240px;
 }
- 
+
 .w320 {
   width: 320px;
 }

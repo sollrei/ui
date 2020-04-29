@@ -13,7 +13,10 @@ class SelectBase {
       selectShowClass: 'ui-select-active',
       selectClass: 'ui-select ui-form-control',
 
-      optionClass: 'ui-select-dropdown hide'
+      optionClass: 'ui-select-dropdown hide',
+
+      bottomMargin: 0
+
     };
 
     this.settings = Object.assign({}, defaultSettings, options);
@@ -24,14 +27,43 @@ class SelectBase {
    * @param {Boolean} selected  - selected status
    * @param {String} value - option value
    * @param {String} label - option text
-   * @param {Number} level - linkage level
    * @returns {String}  new option html
    * */
-  createOptionItem(selected, value, label, level = 1, mark = '') {
+  createOptionItem({ selected, value, label, disabled }, option) {
     const { selectedClass } = this.settings;
-    const className = selected ? selectedClass : '';
+    let className = selected ? selectedClass : '';
+    let opt = option || {};
+    let last;
+    let level = '';
+    let str = label;
+    let addClassName = '';
+    if (opt.level) {
+      last = level === this.max ? 'data-last' : '';
+      level = opt.level;
+    }
 
-    return `<li class="menu-item ${className}" data-value="${value}" data-level="${level}">${label}${mark}</li>`;
+    if (opt.tpl) {
+      str = opt.tpl;
+    }
+
+    if (opt.className) {
+      addClassName = opt.className;
+    }
+
+    if (value === '') {
+      return '';
+    }
+
+    if (disabled) {
+      className += ' disabled';
+    }
+
+    const { value: v } = this;
+    if (v && (v.indexOf(value + '') > -1 || v.indexOf(value) > -1)) {
+      className = selectedClass;
+    }
+
+    return `<li class="menu-item ${className} ${addClassName}" data-value="${value}" data-level="${level}" ${last}>${str}</li>`;
   }
 
   /**
@@ -78,6 +110,11 @@ class SelectBase {
         return;
       }
 
+      if (self.clearable && u.hasClass(target, 'icon-clean')) {
+        self.clearSelect();
+        return;
+      }
+
       if (this.show) {
         self.hideOption(select);
       } else {
@@ -112,19 +149,22 @@ class SelectBase {
    * @param {Object} select
    * */
   showOption(select) {
+    const { selectShowClass, showClass, bottomMargin } = this.settings;
     const element = select;
     const option = select.option;
+    
+    option.style.zIndex = '100';
+
+    u.addClass(option, showClass);
+    u.addClass(select, selectShowClass);
+
     const rect = select.getBoundingClientRect();
     const { height, top } = rect;
-    const { selectShowClass, showClass } = this.settings;
-    const optionHeight = option.clientHeight;
-
-    // option.style.top = `${height + 3}px`;
-    option.style.zIndex = '100';
+    const optionHeight = option.children[0].clientHeight;
 
     if (top
       && (top > optionHeight)
-      && (top > doc.documentElement.clientHeight - optionHeight - height)
+      && (top > doc.documentElement.clientHeight - optionHeight - height - bottomMargin)
     ) {
       option.style.top = 'auto';
       option.style.bottom = height + 3 + 'px';
@@ -140,10 +180,7 @@ class SelectBase {
         search.trigger('input');
       }
     }
-
-    u.addClass(option, showClass);
-    u.addClass(select, selectShowClass);
-
+    
     element.show = true;
   }
 
@@ -175,6 +212,11 @@ class SelectBase {
     const element = select;
 
     element.innerHTML = label;
+
+    if (this.clearable && value) {
+      element.innerHTML = label + '<i class="iconfont icon-clean"></i>';
+    }
+
     element.originElement.value = value;
     element.originElement.trigger(type);
 
@@ -182,7 +224,22 @@ class SelectBase {
       this.hideOption(select);
     }
   }
+
+  clearSelect() {
+    const { select } = this;
+    
+    select.innerHTML = this.settings.emptyLabel;
+    select.originElement.value = '';
+    select.originElement.trigger('change');
+
+    this.value = [];
+
+    u.forEach(select.option.querySelectorAll('.selected'), item => {
+      u.removeClass(item, 'selected');
+    });
+  }
 }
+
 
 doc.addEventListener('click', () => {
   const elements = doc.querySelectorAll('.ui-select-active');

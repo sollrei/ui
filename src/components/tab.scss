@@ -8,6 +8,7 @@
 
 .ui-tab {
   font-size: 18px;
+  line-height: 24px;
 
   .tab-list {
     display: flex;
@@ -33,12 +34,16 @@
     }
 
     .tab-itm {
-      padding-left: 16px;
-      padding-right: 16px;
       margin-right: -1px;
       height: 34px;
       line-height: 32px;
       border: 1px solid $light;
+    }
+
+    .itm {
+      display: block;
+      padding-left: 16px;
+      padding-right: 16px;
     }
 
     .tab-itm:first-child {

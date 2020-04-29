@@ -1,45 +1,56 @@
 import Util from '../base/util.es6';
+import Position from './Position.es6';
 
-class Popper {
+let poppers = [];
+
+class Popper extends Position {
   constructor(element, options) {
     const defaultSettings = {
       className: 'ui-popper',
-      position: 'bottom',
+      position: 'center bottom',
       content: '',
-      close: null
+      gap: 4,
+      zIndex: null
     };
 
-    this.settings = Object.assign({}, defaultSettings, options);
+    const settings = Object.assign({}, defaultSettings, options);
+
+    super(settings);
 
     this.init(element);
   }
 
   init(element) {
-    let { position } = this.settings;
+    if (!element) return;
+
+    const { zIndex } = this.settings;
+
     let data = element.getAttribute('data-position');
+    
     if (data) {
-      position = data;
+      this.settings.position = data;
     }
 
-    const pos = element.getBoundingClientRect();
+    Popper.hideOthers();
+    
     const dom = this.createPopper();
-    this.tip = dom;
 
-    const posEle = {
-      width: dom.offsetWidth,
-      height: dom.offsetHeight
-    };
+    this.setPosition(dom, element);
 
-    if (position === 'bottom') {
-      dom.style.left = (pos.left + window.scrollX) - (posEle.width - pos.width) + 'px';
-      dom.style.top = pos.top + window.scrollY + pos.height + 'px';
+    if (zIndex) {
+      dom.style.zIndex = zIndex;
     }
-
-    this.events();
+    
+    this.popper = dom;
+    poppers.push(this);
   }
 
-  hide() {
-    this.destroy();
+  static hideOthers() {
+    poppers.forEach(item => {
+      item.destroy();
+    });
+
+    poppers = [];
   }
 
   createPopper() {
@@ -49,19 +60,30 @@ class Popper {
   }
 
   destroy() {
-    this.tip.remove();
-  }
-
-  events() {
-    const { close } = this.settings;
-
-    Util.on(this.tip, 'click', '[data-popper-close]', () => {
-      if (close) {
-        close();
-      }  
-      this.destroy();
-    });
+    if (!this.popper) return;
+    this.popper.parentNode.removeChild(this.popper);
+    this.popper = null;
   }
 }
+
+document.addEventListener('click', (e) => {
+  if (e.target.closest('.ui-popper')) return;
+
+  poppers.forEach(item => {
+    item.destroy();
+  });
+
+  poppers = [];
+}, false);
+
+window.addEventListener('resize', function () {
+  if (poppers.length) {
+    poppers.forEach(item => {
+      item.destroy();
+    });
+  
+    poppers = [];
+  }
+}, false);
 
 export default Popper;

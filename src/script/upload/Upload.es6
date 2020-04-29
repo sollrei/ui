@@ -63,7 +63,10 @@ class Upload {
       input = input[0];
     }
 
-    let name = (input && input.name) || fileName;
+    let name = (input && input.name);
+    if (fileName) {
+      name = fileName;
+    }
     let _files = files || input.files;
 
     this.fileName = name;

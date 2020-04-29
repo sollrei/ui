@@ -2,9 +2,14 @@
 
 .ui-path {
   font-size: 12px;
+  line-height: 16px;
 
   a {
     color: $primary;
+
+    &:hover {
+      color: rgba($primary, .8);
+    }
   }
 
   span {

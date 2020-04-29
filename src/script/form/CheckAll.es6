@@ -114,7 +114,7 @@ class CheckAll {
         if (checked) {
           checkbox.indeterminate = false;
         }
-        if (checkbox.checked !== checked) {
+        if (checkbox.checked !== checked && !checkbox.disabled) {
           checkbox.checked = checked;
           this.dealCheckChild(_item);
         }
@@ -152,7 +152,6 @@ class CheckAll {
 
       checkbox.indeterminate = newIndeterminate;
       checkbox.checked = newCheck;
-
       
       if (originChecked !== newCheck || originIndeterminate !== newIndeterminate) {
         this.dealCheckParent(_item);
@@ -180,11 +179,12 @@ class CheckAll {
 
     let ele = element;
 
-    if (!u.hasClass(ele, 'ui-tree')) {
-      ele = this.element.querySelector('.ui-tree');
-    }
+    // if (!u.hasClass(ele, 'ui-tree')) {
+    //   ele = this.element.querySelector('.ui-tree');
+    // }
 
     this.data = this.getDataFromDom(ele.children);
+    
     this.createDataCache(this.data);
 
     const self = this;

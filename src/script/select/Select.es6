@@ -4,7 +4,6 @@ import SelectBase from './SelectBase.es6';
 class Select extends SelectBase {
   constructor(elementSelector, options) {
     const defaultSettings = {
-      // selectElement: 'div',
       selectedClass: 'selected',
 
       showClass: 'show',
@@ -15,7 +14,17 @@ class Select extends SelectBase {
       valueName: 'value',
       labelName: 'label',
 
-      emptyLabel: '<span class="ft-gray">请选择</span>',
+      placeholder: '',
+      emptyLabel: '<span class="ft-light select-empty">请选择</span>',
+
+      group: false,
+      clearable: false,
+      multiple: false,
+      enterable: false,
+      max: null,
+      checkable: false,
+      search: false,
+
 
       data: null,
       selectFn: null,
@@ -25,6 +34,10 @@ class Select extends SelectBase {
 
     const settings = Object.assign({}, defaultSettings, options);
 
+    if (settings.placeholder) {
+      settings.emptyLabel = '<span class="ft-light select-empty">' + settings.placeholder + '</span>';
+    }
+
     super(settings);
 
     this.init(elementSelector);
@@ -33,19 +46,32 @@ class Select extends SelectBase {
   /**
    * @method
    * @param {NodeList} element
+   * 
+   * 
+   * this.data  [{label, value, selected[boolean]}]
+   * this.cache {id: {label, value}}
    * */
-  init(element) {
+  init(ele) {
+    let element = ele;
     if (!element) return;
 
-    const nodeName = element.nodeName.toLowerCase();
+    let nodeName = element.nodeName.toLowerCase();
+    if ((nodeName !== 'select') && (nodeName !== 'input')) return;
 
     this.value = [];
     this.cache = {};
-    this.data = this.settings.data;
-
-    if ((nodeName !== 'select') && (nodeName !== 'input')) return;
-
     this.nodeType = nodeName;
+
+    const { data, group, max, search, checkable, clearable, enterable, multiple } = this.settings;
+
+    this.data = data;
+    this.multiple = multiple;
+    this.max = max;
+    this.group = group;
+    this.search = search;
+    this.checkable = checkable;
+    this.clearable = clearable;
+    this.enterable = enterable;
 
     if (element.multiple || element.hasAttribute('data-multiple')) {
       this.multiple = true;
@@ -67,6 +93,21 @@ class Select extends SelectBase {
       this.checkable = true;
     }
 
+    if (element.hasAttribute('data-clearable')) {
+      this.clearable = true;
+    }
+
+    if (element.hasAttribute('data-enterable')) {
+      this.enterable = true;
+    }
+
+    if (element.hasAttribute('data-placeholder')) {
+      this.settings.placeholder = element.getAttribute('data-placeholder');
+      this.settings.emptyLabel = '<span class="ft-light select-empty">' 
+        + this.settings.placeholder
+        + '</span>';
+    }
+
     if (!this.data) {
       this.data = this.getDataFromSelect(element);
     } else {
@@ -82,32 +123,29 @@ class Select extends SelectBase {
     return [].slice.call(elements).map(item => {
       const nodeName = item.nodeName.toLowerCase();
       if (nodeName === 'option') {
-        const { label, value, selected } = item;
+        const { label, value, selected, disabled } = item;
+        const _data = { label, value, disabled }; // 去掉了selected
+
         if (selected) {
           this.value.push(item.value);
         }
-
-        const _data = {
-          label, value
-        };
 
         if (parentId) {
           _data.parent = parentId;
         }
 
         this.cache[value] = _data;
-
         return _data;
       } if (nodeName === 'optgroup') {
-        const id = Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36);
+        const id = u.createId();
         const child = [].slice.call(item.children).map(itm => itm.value);
         this.cache[id] = child;
 
         return {
           id,
-          child,
+          child, // children id array
           label: item.label,
-          value: this.getDataFromSelect(item, id),
+          options: this.getDataFromSelect(item, id),
           type: 'optgroup'
         };
       }
@@ -116,18 +154,48 @@ class Select extends SelectBase {
   }
 
   createCacheFromData(data) {
-    data.forEach(({ label, value, type, selected }) => {
-      if (type === 'optgroup') {
-        return;
-      }
+    const { labelName, valueName } = this.settings;
+
+    this.data = data.map(item => {
+      const label = item[labelName];
+      const value = item[valueName];
+      const { selected } = item;
+
       if (selected) {
         this.value.push(value);
       }
+
+      return Object.assign({}, item, {
+        label, value, selected: false
+      });
+    });
+
+    data.forEach(item => {
+      const { type, child, options } = item;
+      const label = item[labelName];
+      const value = item[valueName];
       
-      this.cache[value] = {
+      if (type === 'optgroup' || child || options) {
+        const id = value || item.id;
+        let _child = item.child;
+
+        if (!_child && options) {
+          _child = options.map(itm => itm.value);
+          this.createCacheFromData(options);
+        }
+
+        this.cache[id] = _child;
+        return;
+      }
+      // if (selected) {
+      //   this.value.push(value);
+      // }
+      
+      this.cache[value] = Object.assign({}, item, {
         label,
-        value
-      };
+        value,
+        selected: false
+      });
     });
   }
 
@@ -146,11 +214,14 @@ class Select extends SelectBase {
     this.select = select;
 
     select.option = this.createOptionWrap(element);
-    select.option.innerHTML = this.createDropdown();
+    // select.option.innerHTML = this.createDropdown();
+    this.createDropdown();
     select.options = select.option.querySelectorAll('.menu-item');
-    select.option.style.width = Math.max(select.clientWidth, select.option.clientWidth) + 'px';
-    select.originElement = element;
 
+    const width = Math.max(select.clientWidth, select.option.clientWidth);
+    
+    select.option.style.width = width === 0 ? '100%' : width + 'px';
+    select.originElement = element;
 
     // set default value
     // won't trigger 'change' event
@@ -161,7 +232,7 @@ class Select extends SelectBase {
     }
     
     // bind event
-    this.bindEvent(select);
+    this.bindEvent();
 
     return select;
   }
@@ -174,9 +245,12 @@ class Select extends SelectBase {
    * */
   createSelectDom(element) {
     const { selectClass, emptyLabel } = this.settings;
-    let className = element.getAttribute('data-class')
-      ? selectClass + ' ' + element.getAttribute('data-class')
-      : selectClass;
+    const dataClass = element.getAttribute('data-class') || '';
+    let className = selectClass;
+    
+    if (dataClass) {
+      className += ' ' + dataClass;
+    }
 
     if (this.multiple) {
       className += ' multiple';
@@ -186,14 +260,24 @@ class Select extends SelectBase {
       className += ' group';
     }
 
+    if (this.clearable) {
+      className += ' clearable';
+    }
+
+    if (this.enterable) {
+      className += ' enterable';
+    }
+
     const selectUI = u.createElement('div', { className });
 
     const value = this.value[0];
     
     let label = value ? this.cache[value].label : emptyLabel;
 
+    const wrap = element.parentNode;
+
     return {
-      select: element.parentNode.appendChild(selectUI),
+      select: wrap.appendChild(selectUI),
       value,
       label
     };
@@ -219,7 +303,10 @@ class Select extends SelectBase {
     }
 
     const optionUI = u.createElement('div', { className: optionClass });
-    return element.parentNode.appendChild(optionUI);
+
+    const wrap = element.parentNode;
+
+    return wrap.appendChild(optionUI);
   }
 
   /**
@@ -237,7 +324,8 @@ class Select extends SelectBase {
 
     domString += '<ul class="select-main">' + this.createOptionContent(this.data, match);
 
-    return domString + '</ul></div>';
+    // return domString + '</ul></div>';
+    this.select.option.innerHTML = domString + '</ul></div>';
   }
 
   /**
@@ -245,33 +333,31 @@ class Select extends SelectBase {
    * @param element {HTMLElement} origin select
    * @param match {string|any} search content
    */ 
-  createOptionContent(data, match) {
+  createOptionContent(data, match, option) {
     return data.reduce((str, item) => {
       if (item.type && item.type === 'optgroup') {
         return str + this.createOptionGroup(item, match);
       }
-      return str + this.createOptionSingle(item, match);
+      return str + this.createOptionSingle(item, match, option);
     }, '');
   }
 
   createOptionGroup(optgroup, match) {
-    let { value: options, label: groupLabel, id } = optgroup;
-    const hasSelect = options.filter(({ selected, label }) => 
-      selected || (match && label.indexOf(match) > -1)).length;
+    let { options, label, id } = optgroup;
     const str = this.createOptionContent(options, match);
 
     if (!str) return '';
     
-    const className = hasSelect ? ' expend' : '';
+    const className = ' expend';
 
     if (this.checkable) {
-      groupLabel = `<label class="ui-checkbox"><input type="checkbox" class="check-group" value="${id}"><i class="iconfont"></i>${groupLabel}</label>`;
+      label = `<label class="ui-checkbox"><input type="checkbox" class="check-group" value="${id}"><i class="iconfont"></i>${label}</label>`;
     }
     
     return `<li class="option-group">
               <div class="group-label${className}">
-                <i class="iconfont icon-arrow-right"></i>
-                ${groupLabel}</div>
+                <i class="iconfont icon-caret-right"></i>
+                ${label}</div>
               <ul class="group-ul">
               ${str}
               </ul>
@@ -279,20 +365,26 @@ class Select extends SelectBase {
   }
 
   createOptionSingle(item, match) {
-    const { value, label, selected } = item;
     const { optionTemplate } = this.settings;
 
-    if (match && label.indexOf(match) === -1) return '';
+    if (match && item.label.indexOf(match) === -1) return '';
 
     if (this.checkable) {
-      return Select.createOptionWithCheckbox(selected, value, label);
+      return Select.createOptionWithCheckbox(item);
     }
     
     if (optionTemplate) {
-      return optionTemplate(selected, value, label);
+      const str = optionTemplate(item);
+      let tpl = str;
+      let className = '';
+      if (typeof str === 'object') {
+        tpl = str.tpl || '';
+        className = str.className || '';
+      }
+      return this.createOptionItem(item, { tpl, className });
     }
     
-    return this.createOptionItem(selected, value, label);
+    return this.createOptionItem(item);
   }
 
   static createSearch() {
@@ -302,9 +394,10 @@ class Select extends SelectBase {
     return searchDom;
   }
 
-  static createOptionWithCheckbox(selected, value, label) {
+  static createOptionWithCheckbox({ selected, value, label, disabled }) {
     const checked = selected ? 'checked' : '';
-    return `<li class="menu-item label-item" title="${label}" data-value="${value}">
+    let className = disabled ? 'disabled' : '';
+    return `<li class="menu-item label-item ${className}" title="${label}" data-value="${value}">
       <label class="ui-checkbox"><input type="checkbox" ${checked} value="${value}"/><i class="iconfont"></i>${label}</label>
     </li>`;
   }
@@ -362,7 +455,7 @@ class Select extends SelectBase {
 
   changeCacheValue(value, add) {
     if (!this.multiple) {
-      this.value = add ? [value] : [];
+      this.value = [value];
     } else if (Array.isArray(value)) {
       value.forEach(item => {
         this.dealMultiValue(item, add);
@@ -372,9 +465,22 @@ class Select extends SelectBase {
     }
   }
 
+  resetValue(value) {
+    if (Array.isArray(value)) {
+      this.value = value;
+
+      if (this.multiple) {
+        this.changeMultiSelectValue(false, 'change');
+      } else {
+        // 单选的重置值
+      }
+    }
+  }
+
   dealMultiValue(value, add) {
     const { select, max } = this;
     const index = this.value.indexOf(value);
+    
     if (add) {
       if (index === -1) {
         this.value.push(value);
@@ -396,9 +502,8 @@ class Select extends SelectBase {
     const { select, value } = this;
     const { selectedClass } = this.settings;
 
-    u.forEach(select.options, item => {
+    u.forEach(select.option.querySelectorAll('.menu-item'), item => {
       const _value = item.getAttribute('data-value');
-
       if (value.indexOf(_value) > -1) {
         u.addClass(item, selectedClass);
       } else {
@@ -440,52 +545,164 @@ class Select extends SelectBase {
       this.hideOption(select);
     }
     
+    this.changeMultiSelectLabel(type);
+    this.changeMultiSelectedClass();
+  }
+
+  changeMultiSelectLabel(type) {
+    const { select } = this;
     select.innerHTML = this.createMultiTag() || this.settings.emptyLabel;
 
-    this.changeMultiSelectedClass();
+    if (this.enterable && type === 'change') {
+      select.querySelector('.select-input').focus();
+      this.createDropdown();
+    }
+  }
+
+  createEnterInput() {
+    const { value, enterable } = this;
+    const { placeholder } = this.settings;
+
+    if (!enterable) {
+      return '';
+    }
+
+    if (!value.length) {
+      return `<input class="select-input" placeholder="${placeholder}" autocomplete="off">`;
+    }
+
+    return '<input class="select-input" autocomplete="off" >';
   }
 
   createMultiTag() {
     const values = this.value;
     const { tagClass } = this.settings;
+    let input = this.createEnterInput();
 
     if (!values.length) {
-      return this.settings.emptyLabel;
+      return input || this.settings.emptyLabel;
     }
 
     const str = values.reduce((result, item) => {
-      const { label, value } = this.cache[item];
+      const data = this.cache[item];
       let tagClassName = 'gray';
+      let label;
+      let value;
+
+      if (this.enterable && !data) {
+        label = item;
+        value = item;
+      } 
+      
+      if (data) {
+        label = data.label;
+        value = data.value;
+      }
+      
       if (tagClass) {
         if (typeof tagClass === 'string') {
           tagClassName = tagClass;
         }
         if (typeof tagClass === 'function') {
-          tagClassName = tagClass(label, value);
+          tagClassName = tagClass(data);
         }
       }
+
       return result + `<span class="ui-tag ${tagClassName} closeable" data-tooltip data-position="center top" data-title="${label}">${label} <i data-value="${value}" class="iconfont icon-times js-del-selected"></i></span>`;
     }, '');
-    return str;
+
+    return str + input;
+  }
+
+  checkLabels(val) {
+    const { cache } = this;
+    
+    let _v;
+
+    Object.keys(cache).forEach(key => {
+      const { value, label } = cache[key];
+      if (label === val) {
+        _v = value;
+      }
+    });
+
+    if (typeof _v === 'undefined') {
+      const id = 'cus-' + u.createId();
+      this.cache[id] = {
+        label: val,
+        value: id
+      };
+
+      this.changeCacheValue(id, true);
+    } else {
+      let bool = !(this.value.indexOf(_v) > -1);
+      this.changeCacheValue(_v, bool);
+    }
+    
+    this.changeMultiSelectLabel('change');
+  }
+
+  dealSelectEnter(e, input) {
+    const self = this;
+
+    clearTimeout(self.inputTimer);
+
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      
+      const value = input.value;
+
+      if (value.trim().length) {
+        self.checkLabels(value);
+      }
+    }
   }
 
   /**
    * @method
    * @param {Object} select
    * */
-  bindEvent(select) {
+  bindEvent() {
+    const select = this.select;
     const option = select.option;
     const self = this;
     const selectFn = this.settings.selectFn;
 
-    this.selectClickEvent(select);
+    this.selectClickEvent(select, function () {
+      if (self.enterable) {
+        // select.option.innerHTML = self.createDropdown();
+        self.createDropdown();
+      }
+    });
+
+    u.on(select, 'keydown', '.select-input', function (e) {
+      e.stopPropagation();
+      
+      self.dealSelectEnter(e, this);
+    });
+
+    u.on(select, 'click', '.select-input', function (e) {
+      e.stopPropagation();
+      self.showOption(select);
+    });
 
     u.on(option, 'click', '.menu-item', function (e) {
       e.stopPropagation();
       
+      // group label
       if (u.hasClass(this, 'label-item')) return;
 
+      // disabled item
+      if (u.hasClass(this, 'disabled')) return;
+
+      // max limit
       if (self.max && self.value.length >= self.max && !u.hasClass(this, 'selected')) {
+        return;
+      }
+
+      // single select [selected]
+      if (!self.multiple && u.hasClass(this, 'selected')) {
+        self.hideOption(select);
         return;
       }
 
@@ -499,7 +716,7 @@ class Select extends SelectBase {
       self.toggleItemSelected(value);
 
       if (self.multiple) {
-        self.changeMultiSelectValue();
+        self.changeMultiSelectValue(true);
       } else {
         self.changeSelectValue(select, value, label);
         self.changeMultiSelectedClass();
@@ -520,12 +737,12 @@ class Select extends SelectBase {
       e.stopPropagation();
     });
 
-    let timer = null;
+    this.inputTimer = null;
 
-    u.on(option, 'input', '.ui-form-control', function () {
-      clearTimeout(timer);
+    u.on(select, 'input', '.select-input', function () {
+      clearTimeout(self.inputTimer);
 
-      timer = setTimeout(() => {
+      self.inputTimer = setTimeout(() => {
         const val = this.value;
         const main = self.createOptionContent(self.data, val);
         let con = main || '<li class="li-empty">暂无搜索结果</li>';

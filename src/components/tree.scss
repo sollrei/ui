@@ -1,17 +1,47 @@
 @import "variables";
 
 .ui-tree {
-  .tree-node,
+  .node-label,
   .tree-group {
-    padding-left: 24px;
+    // padding-left: 24px;
   }
 
-  &[data-checkable] {
-    padding-left: 24px;
+  .tree-node:not(.active) .node-label:hover {
+    background: rgba($primary, .06);
+    color: $primary;
+  }
+
+  .active,
+  .active:hover {
+    color: $primary;
+    background: $color-bg;
+
+    .node-label {
+      color: #333;
+    }
+  }
+
+  &.checkable {
+    // padding-left: 24px;
     
     .node-trigger:before {
-      position: absolute;
-      left: -24px;
+      // position: absolute;
+      // left: 0;
+    }
+
+    .node-label:not(.transfer-title):hover {
+      background: rgba($primary, .06);
+      color: $primary;
+    }
+
+    .active,
+    .active:hover {
+      color: $primary;
+      background: $color-bg;
+
+      .node-label {
+        color: #333;
+      }
     }
   }
 
@@ -20,11 +50,21 @@
     align-items: flex-start;
     height: 32px;
     line-height: 32px;
+    overflow: hidden;
+
+    // label {
+    //   flex: 1;
+    // }
   }
 
   .node-trigger {
     cursor: pointer;
     position: relative;
+    // margin-left: -24px;
+
+    label {
+      flex: 0 0 auto;
+    }
 
     &:before {
       content: '\eb36';
@@ -55,3 +95,4 @@
     }
   }
 }
+

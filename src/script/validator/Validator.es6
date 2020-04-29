@@ -9,7 +9,7 @@ const defaultSettings = {
   date: '日期格式不正确',
   email: '邮箱格式不正确',
   english: '请填写字母',
-  IDcard: '身份证号格式不正确',
+  idCard: '身份证号格式不正确',
   mobile: '手机号格式不正确',
   number: '请填写数字',
   phone: '手机号格式不正确',
@@ -25,7 +25,6 @@ const defaultSettings = {
 const regs = {
   rule: /^(.+?)\((.+)\)$/,
   chinese: /^[\u0391-\uFFE5]+$/,
-  // date: /^[0-9]{4}((0[1-9])|(10|11|12))((0[1-9])|(2[0-9])|(30|31))$/,
   date: /^([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})(((0[13578]|1[02])(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))$/,
   /**
    * @description 邮箱规则
@@ -37,8 +36,8 @@ const regs = {
    */
   email: /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/,
   english: /^[A-Za-z]+$/,
-  IDcard: /^\d{6}(19|2\d)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)?$/,
-  int: /^[1-9][0-9]*/,
+  idCard: /^\d{6}(19|2\d)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)?$/,
+  int: /^[1-9][0-9]*$/,
   /**
    * @description phone 简化版
    * */
@@ -50,6 +49,7 @@ const regs = {
   tel: /^(?:(?:0\d{2,3}[- ]?[1-9]\d{6,7})|(?:[48]00[- ]?[1-9]\d{6}))$/,
   time: /^([01]\d|2[0-3])(:[0-5]\d){1,2}$/,
   price: /^-?(([1-9]+\d*)|([1-9]\d*.\d{0,2})|(0.\d{0,2})|(0))$/,
+  password: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
   /**
    *@description
    * 130、131、132、133、134、135、136、137、138、139
@@ -60,8 +60,10 @@ const regs = {
    * 180、181、182、183、184、185、186、187、188、189
    * 198 199 191 
    * 国际码 如：中国(+86)
+   * 防止跟不上运营商开新数字，可以考虑使用mobile验证
    */
-  phone: /^((\+?[0-9]{1,4})|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[67]|17[0135678]|18[0-9]|19[189])\d{8}$/
+  phone: /^((\+?[0-9]{1,4})|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[67]|17[0135678]|18[0-9]|19[189])\d{8}$/,
+  passport: /^((E|K)[0-9]{8})|(((SE)|(DE)|(PE)|(MA))[0-9]{7})$/
 };
 
 const testReg = {
@@ -81,11 +83,14 @@ const testReg = {
     return value ? regs.number.test(value) : true;
   },
 
-  is_IDcard(value) {
-    return value ? regs.IDcard.test(value) : true;
+  is_idCard(value) {
+    return value ? regs.idCard.test(value) : true;
   },
 
-  is_int(value) {
+  is_int(value, rule, key, field) {
+    if (field.element.validity && field.element.validity.badInput) {
+      return false;
+    }
     return value ? regs.int.test(value) : true;
   },
 
@@ -113,6 +118,10 @@ const testReg = {
     return value ? regs.time.test(value) : true;
   },
 
+  is_passport(value) {
+    return value ? regs.passport.test(value) : true;
+  },
+
   is_url(value) {
     return value ? regs.url.test(value) : true;
   },
@@ -124,6 +133,10 @@ const testReg = {
   is_reg(value, rule) {
     const reg = new RegExp(rule.value);
     return value ? reg.test(value) : true;
+  },
+
+  is_password(value) {
+    return value ? regs.password.test(value) : true;
   },
 
   is_not(value, rule) {
@@ -142,7 +155,7 @@ const testReg = {
     return cl;
   },
 
-  is_maxlength(value, rule, name, field) {
+  is_max(value, rule, name, field) {
     const { type, element } = field;
     const max = rule.value;
 
@@ -159,7 +172,7 @@ const testReg = {
     return true;
   },
 
-  is_minlength(value, rule, name, field) {
+  is_min(value, rule, name, field) {
     const { type, element } = field;
 
     if (type === 'checkbox') {
@@ -168,20 +181,44 @@ const testReg = {
       return l >= rule.value;
     }
 
-    return value ? (value.length >= rule.value) : false;
+    return value ? (value.length >= rule.value) : true;
   },
 
   is_phone(value) {
     return value ? regs.phone.test(value) : true;
   },
 
-  is_remote(value, rule, name, field) {
-    const url = rule.value;
+  is_remote(value, rule, name, field, form) {
+    let url = rule.value;
+    let urlArr = url.split(',');
+    let data = {};
+
+    if (urlArr.length > 1) {
+      url = urlArr.shift();
+      let hasValue = true;
+      urlArr.forEach(item => {
+        const [itm, itemName, inputName] = item.replace(' ', '').match(/^(\S*)\[(\S*)\]$/);
+        const _value = form.querySelector(`[name="${inputName}"]`).value;
+        data[itemName] = _value;
+        if (!_value.length) {
+          hasValue = false;
+        }
+      });
+
+      if (!hasValue) {
+        return false;
+      }
+    }
+    
+    const last = url.charAt(url.length - 1);
 
     if (value) {
-      return Util.fetchData(url, {
+      if (last === '=') {
+        return Util.fetchData(url + value, data);
+      }
+      return Util.fetchData(url, Object.assign({}, data, {
         [field.element.name]: value
-      });
+      }));
     }
     return false;
   },
@@ -192,45 +229,76 @@ const testReg = {
     return value === eleValue;
   },
 
+  is_diff(value, rule, key, field, form) {
+    const ele = form.querySelector(`[name="${rule.value}"]`);
+    const eleValue = ele.value.trim();
+    return value !== eleValue;
+  },
+
   is_gt(value, rule) {
     const ele = doc.querySelector(`[name="${rule.value}"]`);
     return Number(value) > Number(ele.value);
   },
 
-  is_gtnum(value, rule) {
-    return Number(value) > Number(rule.value);
-  },
-
   is_gte(value, rule) {
     const ele = doc.querySelector(`[name="${rule.value}"]`);
     return Number(value) >= Number(ele.value);
+  },
+
+  is_gtnum(value, rule) { // great than number
+    if (value !== '') {
+      return Number(value) > Number(rule.value);
+    }
+    return true;
+  },
+
+  is_gtenum(value, rule) { // great than or equal
+    if (value !== '') {
+      return Number(value) >= Number(rule.value);
+    }
+    return true;
+  },
+
+  is_ltnum(value, rule) { // less than number
+    if (value !== '') {
+      return Number(value) < Number(rule.value);
+    }
+    return true;
+  },
+
+  is_ltenum(value, rule) { // less than or equal
+    if (value !== '') {
+      return Number(value) <= Number(rule.value);
+    }
+    return true;
   }
 };
 
 class Validator {
-  constructor(_selector, _fields, _settings, _callback) {
+  constructor(_selector, _fields, _settings, _callback, _errorCallback) {
     let selector = _selector;
     let fields = _fields;
     let settings = _settings;
     let callback = _callback;
+    let errorCallback = _errorCallback;
 
-    if (arguments.length === 2 && typeof _fields === 'function') {
+    if (typeof _fields === 'function') { // (selector, callback, ..)
       callback = _fields;
+      errorCallback = _settings;
       fields = null;
       settings = null;
-    }
-
-    if (arguments.length === 3 && typeof _settings === 'function') {
+    } else if (typeof _settings === 'function') { // (selector, setting, callback, ..)
       callback = _settings;
+      errorCallback = _callback;
       fields = null;
       settings = _fields;
     }
 
-    if (typeof selector !== 'string') {
-      return;
-    }
+    let form = selector;
 
-    const form = doc.querySelector(selector);
+    if (typeof selector === 'string') {
+      form = doc.querySelector(selector);
+    }
 
     if (!form) {
       return;
@@ -242,6 +310,7 @@ class Validator {
       validClass: '.v-item',
 
       errorClass: 'error',
+      successClass: 'success',
       loadClass: 'loading',
 
       tipElement: 'span',
@@ -249,12 +318,15 @@ class Validator {
 
       showClass: 'show',
 
+      realTime: true,
+
       shouldFresh: false,
 
-      scrollToError: true
+      scrollToError: false
     };
 
     this.settings = Object.assign({}, options, settings);
+
     this.fields = {};
 
     this.form = form;
@@ -263,49 +335,137 @@ class Validator {
       this.addFields(fields);
     }
 
-    this.delegateBlur();
+    if (this.settings.realTime) {
+      this.delegateBlur();
+    }
+    
     this.delegateFocus();
 
     this.form.addEventListener('submit', e => {
       e.preventDefault();
-      const {
-        validClass, tipClass, showClass, shouldFresh 
-      } = this.settings;
 
-      const items = this.form.querySelectorAll(validClass);
-      if (items) {
-        if (shouldFresh) {
-          this.fields = {};
-        }
+      this.validAllFiles(callback, errorCallback);
+      // const {
+      //   validClass, tipClass, showClass, shouldFresh 
+      // } = this.settings;
 
-        this.addItems(items);
-      }
+      // const items = this.form.querySelectorAll(validClass);
+      // if (items) {
+      //   if (shouldFresh) {
+      //     this.fields = {};
+      //   }
 
-      this.validForm();
+      //   this.addItems(items);
+      // }
 
-      let valid = true;
+      // this.validForm();
 
-      Object.keys(this.fields).every(key => {
-        let item = this.fields[key];
-        if (!item.valid) {
-          valid = false;
-        }
-        return item.valid;
-      });
-      // this.fields.forEach((item) => {
+      // let valid = true;
+      // let arr = [];
+
+      // Object.keys(this.fields).every(key => {
+      //   arr.push(key);
+      //   let item = this.fields[key];
       //   if (!item.valid) {
       //     valid = false;
       //   }
       //   return item.valid;
       // });
 
+      // const { fields: __fields, form: __form, settings: __settings } = this;
+
+      // function cb() {
+      //   if (valid) {
+      //     if (typeof callback === 'function') {
+      //       callback(__form, __fields);
+      //     }
+      //   } else {
+      //     if (__settings.scrollToError) {
+      //       const tipElement = doc.querySelector('.' + tipClass + '.' + showClass);
+  
+      //       if (tipElement) {
+      //         const top = (tipElement.getBoundingClientRect().top - 80)
+      //           + (docEle.scrollTop + body.scrollTop);
+      //         const left = docEle.scrollLeft + body.scrollLeft;
+  
+      //         // scroll to error tip position
+      //         window.scrollTo(left, top);
+      //       }
+      //     }
+  
+      //     if (typeof errorCallback === 'function') {
+      //       errorCallback(__form, __fields);
+      //     }
+      //   }
+      // }
+      
+      // function checkValid(index) {
+      //   if (index >= arr.length) {
+      //     valid = true;
+      //     cb();
+      //     return;
+      //   }
+      //   const item = __fields[arr[index]];
+      //   if (item.remote) {
+      //     item.remote.then(res => {
+      //       if (res.code === 200) {
+      //         checkValid(index + 1);
+      //       } else {
+      //         valid = false;
+      //         cb();
+      //       }
+      //     });
+      //   } else if (!item.valid) {
+      //     valid = false;
+      //     cb();
+      //   } else {
+      //     checkValid(index + 1);
+      //   }
+      // }
+      
+      // checkValid(0);
+
+      return false;
+    });
+  }
+
+  validAllFiles(callback, errorCallback) {
+    const {
+      validClass, tipClass, showClass, shouldFresh 
+    } = this.settings;
+
+    const items = this.form.querySelectorAll(validClass);
+    if (items) {
+      if (shouldFresh) {
+        this.fields = {};
+      }
+
+      this.addItems(items);
+    }
+
+    this.validForm();
+
+    let valid = true;
+    let arr = [];
+
+    Object.keys(this.fields).every(key => {
+      arr.push(key);
+      let item = this.fields[key];
+      if (!item.valid) {
+        valid = false;
+      }
+      return item.valid;
+    });
+
+    const { fields: __fields, form: __form, settings: __settings } = this;
+
+    function cb() {
       if (valid) {
         if (typeof callback === 'function') {
-          callback();
-          return false;
+          callback(__form, __fields);
         }
       } else {
-        if (this.settings.scrollToError) {
+        if (__settings.scrollToError) {
           const tipElement = doc.querySelector('.' + tipClass + '.' + showClass);
 
           if (tipElement) {
@@ -318,10 +478,37 @@ class Validator {
           }
         }
 
-        return false;
+        if (typeof errorCallback === 'function') {
+          errorCallback(__form, __fields);
+        }
       }
-      return false;
-    });
+    }
+    
+    function checkValid(index) {
+      if (index >= arr.length) {
+        valid = true;
+        cb();
+        return;
+      }
+      const item = __fields[arr[index]];
+      if (item.remote) {
+        item.remote.then(res => {
+          if (res.code === 200) {
+            checkValid(index + 1);
+          } else {
+            valid = false;
+            cb();
+          }
+        });
+      } else if (!item.valid) {
+        valid = false;
+        cb();
+      } else {
+        checkValid(index + 1);
+      }
+    }
+    
+    checkValid(0);
   }
 
   static getAttrChecked(element, attr) {
@@ -351,7 +538,7 @@ class Validator {
    * }]
    * */
   addFields(fields) {
-    const { validClass } = this.settings;
+    const { validClass, realTime } = this.settings;
     for (let i = 0, l = fields.length; i < l; i += 1) {
       const field = fields[i];
       const name = field.name;
@@ -373,8 +560,10 @@ class Validator {
       this.fields[name] = fieldItem;
 
       if (!Util.hasClass(element, validClass.replace('.', ''))) {
-        this.addBlurEvent(fieldItem);
-        this.addFocusEvent(fieldItem);
+        if (realTime) {
+          this.addBlurEvent(fieldItem);
+          this.addFocusEvent(fieldItem);
+        }
       }
     }
   }
@@ -542,20 +731,55 @@ class Validator {
    * @param {HTMLElement} tip - error tip element
    * */
   removeErrorClass(target, tip) {
-    const { showClass, errorClass } = this.settings;
+    const { showClass, errorClass, wrapClass, successClass } = this.settings;
     const tipEle = tip;
 
     Util.removeClass(target, errorClass);
     Util.removeClass(tip, showClass);
     tipEle.innerText = '';
+
+    if (target.closest && target.closest(wrapClass)) {
+      Util.removeClass(target.closest(wrapClass), errorClass);
+      Util.removeClass(target.closest(wrapClass), successClass);
+    }
+  }
+
+  /**
+   * @method
+   * add loading class for remote item
+   * @param {HTMLElement} target - form element
+   * */
+  addLoadClass(target) {
+    const { loadClass, wrapClass } = this.settings;
+
+    Util.addClass(target, loadClass);
+
+    if (target.closest && target.closest(wrapClass)) {
+      Util.addClass(target.closest(wrapClass), loadClass);
+    }
+  }
+
+  /**
+   * @method
+   * remove loading class for remote item
+   * @param {HTMLElement} target - form element
+   * */
+  removeLoadClass(target) {
+    const { loadClass, wrapClass } = this.settings;
+
+    Util.removeClass(target, loadClass);
+
+    if (target.closest && target.closest(wrapClass)) {
+      Util.removeClass(target.closest(wrapClass), loadClass);
+    }
   }
 
   // delegate focusout event
   delegateBlur() {
     Util.on(this.form, 'focusout', this.settings.validClass, (e) => {
+      if (this.fields === null) return;
       const target = e.target;
       const name = target.name;
-      // if (!_.has(this.fields, name)) {
       if (!(name in this.fields)) {
         const item = this.addItem(target);
         this.addFields([item]);
@@ -568,15 +792,14 @@ class Validator {
   }
 
   validForm() {
+    const arr = [];
     for (let i in this.fields) {
       if (Object.hasOwnProperty.call(this.fields, i)) {
+        arr.push(i);
         const field = this.fields[i];
         this.validField(field, 'final');
       }
     }
-    // this.fields.forEach((field) => {
-    //   this.validField(field, 'final');
-    // });
   }
 
   /**
@@ -591,13 +814,14 @@ class Validator {
         rules,
         tip,
         value,
-        checked
+        checked,
+        remote,
+        remoteOk
       }
    * */
   validField(fieldItem, type = '') {
     const field = fieldItem;
     const { element, rules, tip } = field;
-    const loadClass = this.settings.loadClass;
 
     // for 'checkbox' and 'radio'
     field.checked = Validator.getAttrChecked(element, 'checked');
@@ -607,11 +831,11 @@ class Validator {
       const rule = rules[key];
       const value = field.value.trim ? field.value.trim() : field.value;
 
-      if ((key === 'remote') && (type === 'final')) {
+      if ((key === 'remote') && (type === 'final') && (field.remote && field.remoteOk)) {
         return false;
       }
 
-      const validResult = testReg[`is_${key}`](value, rule, key, field);
+      const validResult = testReg[`is_${key}`](value, rule, key, field, this.form);
 
       if (typeof validResult === 'boolean') {
         if (!validResult) {
@@ -620,61 +844,32 @@ class Validator {
           return false;
         }
       } else if (key === 'remote') {
-        Util.addClass(element, loadClass);
+        // self.addLoadClass(element);
 
-        field.valid = false;
+        field.valid = true;
+        field.remote = validResult;
+        field.remoteOk = false;
 
         validResult.then(res => {
-          Util.removeClass(element, loadClass);
-          if (res.status) {
+          // self.removeLoadClass(element);
+
+          if (res.code === 200) {
             field.valid = true;
+            this.showSuccessTip(element);
           } else {
-            this.showErrorTip(element, tip, rule.msg || res.msg);
+            field.valid = false;
+            this.showErrorTip(element, tip, res.msg || rule.msg);
           }
+          
+          field.remoteOk = true;
         });
 
-        return false;
+        return true;
       }
 
       field.valid = true;
       return true;
     });
-
-    // _.forEach(rules, (rule, key) => {
-    //   const value = field.value.trim ? field.value.trim() : field.value;
-
-    //   if ((key === 'remote') && (type === 'final')) {
-    //     return false;
-    //   }
-
-    //   const validResult = testReg[`is_${key}`](value, rule, key, field);
-
-    //   if (typeof validResult === 'boolean') {
-    //     if (!validResult) {
-    //       this.showErrorTip(element, tip, rule.msg);
-    //       field.valid = false;
-    //       return false;
-    //     }
-    //   } else if (key === 'remote') {
-    //     Util.addClass(element, loadClass);
-
-    //     field.valid = false;
-
-    //     validResult.then(res => {
-    //       Util.removeClass(element, loadClass);
-    //       if (res.status) {
-    //         field.valid = true;
-    //       } else {
-    //         this.showErrorTip(element, tip, rule.msg || res.msg);
-    //       }
-    //     });
-
-    //     return false;
-    //   }
-
-    //   field.valid = true;
-    //   return true;
-    // });
 
     if (field.fn && (typeof field.fn === 'function')) {
       field.fn(this, field);
@@ -689,10 +884,27 @@ class Validator {
    * @param {String} message - error message
    * */
   showErrorTip(element, tip, message) {
+    const { errorClass, wrapClass } = this.settings;
     const tipElement = tip;
     tipElement.innerHTML = message;
     Util.addClass(tipElement, 'show');
-    Util.addClass(element, this.settings.errorClass);
+    Util.addClass(element, errorClass);
+
+    if (element.closest && element.closest(wrapClass)) {
+      Util.addClass(element.closest(wrapClass), errorClass);
+    }
+  }
+
+  showSuccessTip(element) {
+    const { successClass, wrapClass } = this.settings;
+    if (element.closest && element.closest(wrapClass)) {
+      Util.addClass(element.closest(wrapClass), successClass);
+    }
+  }
+
+  destroy() {
+    this.form = null;
+    this.fields = null;
   }
 }
 

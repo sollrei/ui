@@ -1,8 +1,16 @@
 @import "variables";
 
-body.layer-open {
+html.layer-open {
   height: 100vh;
   overflow-y: hidden;
+}
+
+.layer-visible {
+  background: rgba(0, 0, 0, 0.5);
+
+  ~ .layer-visible {
+    background: none;
+  }
 }
 
 .ui-layer {
@@ -13,33 +21,38 @@ body.layer-open {
   right: 0;
   left: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.2);
-  transition: .3s;
+  transition: opacity .3s;
 
   &.layer-visible {
     z-index: 1900;
     opacity: 1;
     visibility: visible;
+
+    .layer-box {
+      transform: translate(0, 0);
+    }
   }
 
   .layer-box {
     position: absolute;
     right: 0;
     top: 0;
-    width: 640px;
+    min-width: 640px;
     background: #fff;
     bottom: 0;
+    transform: translate(100%, 0);
+    transition: .3s;
   }
 
   .layer-close {
     position: absolute;
     z-index: 2;
     right: 24px;
-    top: 22px;
-    width: 32px;
-    height: 32px;
+    top: 28px;
+    width: 24px;
+    height: 24px;
     line-height: 1;
-    font-size: 30px;
+    font-size: 24px;
     cursor: pointer;
     text-align: center;
     color: $gray;
@@ -53,20 +66,22 @@ body.layer-open {
     font-weight: 600;
   }
 
-  .layer-main {
+  .layer-content {
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    left: 0;
     top: 80px;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    bottom: 80px;
+  }
+
+  .layer-main {
+    flex: 1;
     overflow-y: auto;
   }
 
   .layer-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
     height: 80px;
     padding: 24px 26px 0 130px;
     border-top: 1px solid #ebebeb;

@@ -19,13 +19,14 @@ $color-popup-border: #c4e4fd;
   text-align: left;
   color: $black;
   animation: fade-in-down $transition-duration both;
-
-  &.center {
-    transform: translateX(-50%);
+  
+  &.normal {
+    font-size: 14px;
+    line-height: 24px;
   }
 
-  // &.middle {
-  //   transform: translateY(-50%);
+  // &.center {
+  //   transform: translateX(-50%);
   // }
 
   @keyframes fade-in-down {
@@ -41,11 +42,17 @@ $color-popup-border: #c4e4fd;
 
 .ui-popper {
   position: absolute;
+  left: 0;
+  top: 0;
   padding: 16px;
   background: #fff;
   border: 1px solid #ebebeb;
   border-radius: 8px;
   box-shadow: $shadow;
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .ui-popper-wp {

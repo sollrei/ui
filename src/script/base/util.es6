@@ -1,91 +1,3 @@
-// element.closest polyfill
-// https://developer.mozilla.org/zh-CN/docs/Web/API/Element/closest
-if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector
-    || Element.prototype.webkitMatchesSelector
-    || Element.prototype.mozMatchesSelector;
-}
-
-if (!Element.prototype.closest) {
-  Element.prototype.closest = function (s) {
-    let el = this;
-    if (!document.documentElement.contains(el)) return null;
-    if (!Element.prototype.matches) {
-      return el.parentNode;
-    }
-    do {
-      if (el.matches(s)) return el;
-      el = el.parentElement;
-    } while (el !== null);
-    return null;
-  };
-}
-
-if (typeof Object.assign !== 'function') {
-  // Must be writable: true, enumerable: false, configurable: true
-  Object.defineProperty(Object, 'assign', {
-    /* eslint-disable-next-line */ 
-    value: function assign(target, varArgs) { // .length of function is 2 
-      if (target == null) { // TypeError if undefined or null
-        throw new TypeError('Cannot convert undefined or null to object');
-      }
-      let to = Object(target);
-      for (let index = 1; index < arguments.length; index += 1) {
-        let nextSource = arguments[index];
-        if (nextSource != null) { // Skip over if undefined or null
-          for (let nextKey in nextSource) {
-            // Avoid bugs when hasOwnProperty is shadowed
-            if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
-              to[nextKey] = nextSource[nextKey];
-            }
-          }
-        }
-      }
-      return to;
-    },
-    writable: true,
-    configurable: true
-  });
-}
-
-// trigger
-HTMLElement.prototype.trigger = function (type, data) {
-  const event = document.createEvent('HTMLEvents');
-  event.initEvent(type, true, true);
-  event.data = data || {};
-  event.eventName = type;
-  this.dispatchEvent(event);
-  return this;
-};
-
-// requestAnimFrame
-window.requestAnimFrame = (function () {
-  return (
-    window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||
-    window.mozRequestAnimationFrame ||
-    window.oRequestAnimationFrame ||
-    window.msRequestAnimationFrame ||
-    function (callback) {
-      window.setTimeout(callback, 1000 / 60);
-    }
-  );
-}());
-
-// cancelAnimFrame
-window.cancelAnimFrame = (function () {
-  return (
-    window.cancelAnimationFrame ||
-    window.webkitCancelAnimationFrame ||
-    window.mozCancelAnimationFrame ||
-    window.oCancelAnimationFrame ||
-    window.msCancelAnimationFrame ||
-    function (id) {
-      window.clearTimeout(id);
-    }
-  );
-}());
-
 const util = {
   IEVersion() {
     const agent = window.navigator.userAgent;
@@ -108,34 +20,43 @@ const util = {
   },
 
   hasClass(element, className) {
-    if (element.className) {
-      return !!element.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
-    }
-    return false;
+    if (!element) return false;
+
+    if (!element.className) return false;
+    
+    return className.match(/(\w|-)+/g).every(function (item) {
+      return element.classList.contains(item);
+    });
   },
 
+  // addClass removeClass toggleClass ie10+
   addClass(element, className) {
-    const ele = element;
-    if (!ele) return;
-    if (!this.hasClass(ele, className)) {
-      ele.className = ele.className ? ele.className.trim() + ' ' + className : className;
+    if (!element || !className) return;
+
+    if (element.classList) {
+      className.match(/(\w|-)+/g).forEach(item => {
+        element.classList.add(item);
+      });
     }
   },
 
   removeClass(element, className) {
-    const ele = element;
-    if (!ele) return;
-    if (this.hasClass(element, className)) {
-      ele.className = ele.className.replace(new RegExp(`(\\s|^)${className}(\\s|$)`), ' ');
+    if (!element || !className) return;
+
+    if (element.classList) {
+      className.match(/(\w|-)+/g).forEach(item => {
+        element.classList.remove(item);
+      });
     }
   },
 
   toggleClass(element, className) { 
-    if (!element) return;
-    if (this.hasClass(element, className)) {
-      this.removeClass(element, className);
-    } else {
-      this.addClass(element, className);
+    if (!element || !className) return;
+
+    if (element.classList) {
+      className.match(/(\w|-)+/g).forEach(item => {
+        element.classList.toggle(item);
+      });
     }
   },
 
@@ -146,24 +67,12 @@ const util = {
     }
   },
 
-  /*
-   reference: http://bdadam.com/blog/plain-javascript-event-delegation.html
-   */
   on(element, eventName, selector, handler) {
     this.addMultiEvent(element, eventName, event => {
-      const possibleTargets = element.querySelectorAll(selector);
-      const target = event.target;
-
-      for (let i = 0, l = possibleTargets.length; i < l; i += 1) {
-        let el = target;
-        let p = possibleTargets[i];
-
-        while (el && el !== element) {
-          if (el === p) {
-            handler.call(p, event);
-            break;
-          }
-          el = el.parentNode;
+      for (let target = event.target; target && target !== element; target = target.parentNode) {
+        if (target.matches(selector)) {
+          handler.call(target, event);
+          break;
         }
       }
     });
@@ -192,6 +101,38 @@ const util = {
 
   createId() {
     return Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36);
+  },
+
+  supportPseudo(pseudoClass) {
+    // from https://gomakethings.com/testing-for-css-pseudo-class-support-with-vanilla-javascript/
+    // Get the document stylesheet
+    let _pseudoClass = pseudoClass;
+    let ss = document.styleSheets[0];
+
+    // Create a stylesheet if one doesn't exist
+    if (!ss) {
+      let el = document.createElement('style');
+      document.head.appendChild(el);
+      ss = document.styleSheets[0];
+      document.head.removeChild(el);
+    }
+
+    // Test the pseudo-class by trying to style with it
+    let testPseudo = function () {
+      try {
+        if (!(/^:/).test(pseudoClass)) {
+          _pseudoClass = ':' + pseudoClass;
+        }
+        ss.insertRule('html' + _pseudoClass + '{}', 0);
+        ss.deleteRule(0);
+        return true;
+      } catch (e) {
+        return false;
+      }
+    };
+
+    // Run the test
+    return testPseudo();
   },
 
   /**
@@ -227,7 +168,11 @@ const util = {
       });
     }
 
-    let getUrl = url.indexOf('?') > 0 ? `${url}&${dataStr}` : `${url}?${dataStr}`;
+    let getUrl = url;
+
+    if (dataStr) {
+      getUrl = url.indexOf('?') > 0 ? `${url}&${dataStr}` : `${url}?${dataStr}`;
+    }
 
     return fetch(getUrl, {
       // credentials: 'include'

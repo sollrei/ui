@@ -1,13 +1,7 @@
 @import "variables";
 
-$h: 34px;
-
-// select
-
-
 .ui-select {
-  height: $h;
-  // display: inline-block;
+  height: $form-control-height;
   position: relative;
   appearance: none;
   background: #fff;
@@ -16,23 +10,46 @@ $h: 34px;
   overflow: hidden;
   text-overflow: ellipsis;
 
+  select {
+    display: none;
+  }
+
   &:before {
     content: "\eb3f";
     font-family: "iconfont";
     position: absolute;
     right: 10px;
     top: 0;
-    line-height: $h - 2px;
-    font-size: 18px;
+    line-height: $form-control-height - 2px;
+    font-size: 16px;
     transition: .2s;
     color: $gray;
+  }
+
+  &.clearable {
+    .icon-clean {
+      display: none;
+    }
+  }
+
+  &.clearable:hover {
+    .icon-clean {
+      position: absolute;
+      right: 10px;
+      color: $light;
+      line-height: 1;
+      font-size: 18px;
+      top: 50%;
+      background: #fff;
+      transform: translateY(-50%);
+      display: block;
+    }
   }
 
   &.multiple {
     white-space: normal;
     height: auto;
-    padding-top: 5px;
-    padding-bottom: 1px;
+    padding: 5px 6px 1px;
     min-height: 34px;
     line-height: 22px;
     display: flex;
@@ -50,10 +67,50 @@ $h: 34px;
       margin-right: 6px;
       margin-bottom: 4px;
     }
+
+    .select-empty {
+      padding-left: 6px;
+    }
+  }
+
+  &.enterable {
+    display: flex;
+
+    .select-input {
+      flex: 1 1;
+      min-width: 50px;
+      height: 22px;
+      padding-left: 6px;
+      margin-bottom: 4px;
+      border: 0 none;
+      font-size: 14px;
+    }
+
+    .select-input:focus {
+      outline: none;
+    }
   }
 }
 
 select.ui-select {
+  color: $light;
+  background-image: url(https://img-i.gcimg.net/2020/0409/lzims0ak34t1rchd011816.png);
+  background-size: 16px;
+  background-position: right 10px center;
+  background-repeat: no-repeat;
+
+  &::-ms-expand { 
+    display: none; 
+  }
+
+  &[multiple] {
+    background-image: none;
+
+    &:before {
+      display: none;
+    }
+  }
+
   optgroup,
   option {
     display: none;
@@ -62,7 +119,7 @@ select.ui-select {
 
 .ui-select-active {
   border-color: $primary;
-  box-shadow: 0 0 3px 0 rgba($primary, .1);
+  box-shadow: 0 0 0 3px rgba($primary, .1);
 
   &:before {
     transform: rotate(180deg);
@@ -71,12 +128,16 @@ select.ui-select {
 
 .ui-select-dropdown {
   display: inline-block;
-  width: 160px;
+  // width: 160px;
   white-space: nowrap;
   left: 0;
   margin-top: 4px;
-  font-size: $ft-14;
+  font-size: 14px;
+  border-radius: 4px;
+  transform-origin: center top;
   transition: transform $transition-duration, opacity $transition-duration, visibility $transition-duration;
+  border: solid 1px #ebebeb;
+  background: #fff;
 
   // status
   &.hide {
@@ -84,15 +145,15 @@ select.ui-select {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
+    height: 0;
+    overflow: hidden;
   }
 
   &.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
-    border-radius: 8px;
-    border: solid 1px #ebebeb;
-    background: #fff;
+    height: auto;
     box-shadow: $shadow;
   }
 
@@ -155,7 +216,7 @@ select.ui-select {
   }
 
   .group-label {
-    padding-left: 16px;
+    padding-left: 12px;
     height: 32px;
     line-height: 32px;
     cursor: pointer;
@@ -181,8 +242,13 @@ select.ui-select {
     }
   }
 
+  .icon-caret-right {
+    margin-right: 4px;
+    color: $gray;
+  }
+
   .expend {
-    .icon-arrow-right {
+    .icon-caret-right {
       transform: rotate(90deg);
     }
 
@@ -195,15 +261,13 @@ select.ui-select {
   .label-item {
     padding-right: 0;
 
-
-
     label {
       display: block;
     }
   }
 
   .group-ul .label-item { // scss-lint:disable MergeableSelector
-    padding-left: 63px;
+    padding-left: 59px;
   }
 
   // cascader wrap
@@ -247,6 +311,10 @@ select.ui-select {
       top: 8px;
       color: $gray;
     }
+
+    .menu-item[data-last]:after {
+      display: none;
+    }
   }
 
   &.normal-group {
@@ -265,26 +333,38 @@ select.ui-select {
   }
 }
 
-.ui-linkage {
-  .ui-control-wrap {
-    display: inline-block;
-    margin-right: 5px;
-    vertical-align: middle;
-  }
-}
-
-.ui-select-group {
+.ui-control-group {
   display: inline-flex;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  
-  .ui-control-wrap + .ui-control-wrap {
-    border-left: 1px solid #ccc;
-  }
 
   .ui-form-control,
   .ui-select {
-    border: 0 none;
+    border-radius: 0;
+  }
+
+  .ui-control-wrap:hover {
+    z-index: 1;
+  }
+
+  .ui-control-wrap:first-child {
+    .ui-form-control {
+      border-top-left-radius: $radius;
+      border-bottom-left-radius: $radius;
+    }
+  }
+
+  .ui-control-wrap:last-child {
+    .ui-form-control {
+      border-top-right-radius: $radius;
+      border-bottom-right-radius: $radius;
+    }
+  }
+
+  .ui-control-wrap + .ui-control-wrap {
+    margin-left: -1px;
+  }
+
+  .ui-select-active {
+    z-index: 1;
   }
 }
 

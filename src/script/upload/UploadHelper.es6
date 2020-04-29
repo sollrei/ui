@@ -53,29 +53,14 @@ class UploadHelper {
     const { wrap } = this;
     const trigger = wrap.querySelector('.trigger');
     const image = wrap.querySelector('.image');
-    
+    const self = this;
+
     u.on(wrap, 'click', '.js-clean', function () {
       u.removeClass(trigger, 'hidden');
       u.addClass(image, 'hidden');
       image.innerHTML = '';
+      self.input.value = '';
     });
-
-    u.on(wrap, 'click', '.js-change', function () {
-      trigger.trigger('click');
-    });
-
-    this.settings.success = function (data) {
-      // var url = data.data;
-      let url = 'https://picsum.photos/id/237/300/300';
-
-      image.innerHTML = `<input type="hidden" name="file" value="${url}"><img src="${url}" alt="">
-        <div class="option">
-          <a href="javascript:;" class="js-change">替换</a><a href="javascript:;" class="js-clean">清除</a>
-        </div>`;
-
-      u.removeClass(image, 'hidden');
-      u.addClass(trigger, 'hidden');
-    };
   }
 
   inputEvent() {

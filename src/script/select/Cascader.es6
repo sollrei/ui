@@ -14,14 +14,14 @@ class Cascader extends SelectBase {
       selectShowClass: 'ui-select-active',
       selectClass: 'ui-select ui-form-control',
 
-      optionGroupClass: 'ui-select-dropdown normal-group',
+      optionGroupClass: 'ui-select-dropdown menu-group hide',
 
       ajaxUrl: [],
 
       valueName: 'value',
       labelName: 'label',
 
-      dataName: 'catid',
+      dataName: 'id',
       data: {},
 
       selectFn: null,
@@ -30,7 +30,11 @@ class Cascader extends SelectBase {
 
     super(defaultSettings);
 
-    const element = doc.querySelector(elementSelector);
+    let element = elementSelector;
+    
+    if (typeof elementSelector === 'string') {
+      element = doc.querySelector(elementSelector);
+    }
 
     if (!element) return;
 
@@ -61,9 +65,8 @@ class Cascader extends SelectBase {
 
     if (valueArray) {
       this.defaultValue = valueArray.split(',');
-      this.max = this.defaultValue.length;
     }
-
+    
     if (!ajaxUrl.length && !select.getAttribute('data-ajax')) {
       return;
     }
@@ -72,6 +75,8 @@ class Cascader extends SelectBase {
     this.urlArray = ajaxUrl.length
       ? ajaxUrl
       : select.getAttribute('data-ajax').split(',');
+    
+    this.max = this.urlArray.length;
 
     // whether should select to the final level or not
     this.level = Number(select.getAttribute('data-level')) || 0;
@@ -79,16 +84,21 @@ class Cascader extends SelectBase {
     this.initInput();
     this.initDropdownWrap();
 
-    this.createAjaxOption(select, 1);
+    this.createAjaxOption(1);
 
     this.selectClickEvent(select, () => {
       if (!this.complete && this.defaultValue) {
         this.initStatus(select);
-        this.createAjaxOption(select, 1);
+        this.createAjaxOption(1);
       }
     });
 
-    this.optionClickEvent(select);
+    this.optionClickEvent();
+  }
+
+  resetValue(value) {
+    this.defaultValue = value;
+    this.createAjaxOption(1);
   }
 
   initStatus(select) {
@@ -134,14 +144,15 @@ class Cascader extends SelectBase {
    * @param {Object} [d = {}]
    * @param {*} type
    * */
-  createAjaxOption(select, level, d = {}, type = false) {
+  createAjaxOption(level, d = {}, type = false) {
+    const select = this.select;
     const url = this.urlArray[level - 1];
     const data = this.settings.data;
 
     if (url) {
       Util.fetchData(url, Object.assign({}, data, d))
         .then(res => {
-          if (res.status) {
+          if (res.code === 200) {
             if (Util.isEmpty(res.data)) {
               this.selectFinalLevelEvent();
               this.removeNextSiblingOptions(level - 1);
@@ -178,12 +189,15 @@ class Cascader extends SelectBase {
     // array data to create options
     data.forEach(item => {
       let selected = false;
-      let specHtml = '';
       if (trigger && !type) {
-        selected = item[valueName] === this.defaultValue[level - 1];
+        selected = item[valueName] == this.defaultValue[level - 1]; // eslint-disable-line
       }
-
-      domString += this.createOptionItem(selected, item[valueName], item[labelName], level, specHtml);
+ 
+      domString += this.createOptionItem({
+        selected, 
+        value: item[valueName], 
+        label: item[labelName]
+      }, { level });
     });
 
     const optionUI = select.option.appendChild(Util.createElement('ul', { className: 'select-main' }, domString));
@@ -216,8 +230,9 @@ class Cascader extends SelectBase {
    * @method
    * @param {Object} select
    * */
-  optionClickEvent(select) {
+  optionClickEvent() {
     const self = this;
+    const select = this.select;
 
     Util.on(select.option, 'click', '.menu-item', function (e) {
       e.preventDefault();
@@ -252,21 +267,21 @@ class Cascader extends SelectBase {
     if (this.level) {
       if (level < this.level) {
         this.complete = false;
-        this.createAjaxOption(select, level + 1, {
+        this.createAjaxOption(level + 1, {
           [dataName]: value
         }, type);
       }
 
       if (level === this.level) {
         this.complete = true;
-        this.setValue(select, show);
+        this.setValue(show);
         this.defaultValue = this.values.map(item => item.value);
         this.selectFinalLevelEvent();
       }
     } else {
       this.complete = true;
-      this.setValue(select);
-      this.createAjaxOption(select, level + 1, {
+      this.setValue();
+      this.createAjaxOption(level + 1, {
         [dataName]: value
       }, type);
     }
@@ -278,7 +293,8 @@ class Cascader extends SelectBase {
    * @param {Object} select
    * @param {Boolean} show
    * */
-  setValue(select, show) {
+  setValue(show) {
+    const select = this.select;
     let valueAll = [];
     let labelAll = [];
 
@@ -286,7 +302,7 @@ class Cascader extends SelectBase {
       valueAll.push(item.value);
       labelAll.push(item.label);
     });
-    this.changeSelectValue(select, valueAll.join(','), labelAll.join(' > '), show);
+    this.changeSelectValue(select, valueAll.join(','), labelAll.join(' / '), show);
   }
 
   /**

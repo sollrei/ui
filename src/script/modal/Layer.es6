@@ -12,12 +12,7 @@ class Layer {
       close: '[data-layer-close]',
 
       showClass: 'layer-visible',
-      // animateClass: 'fadeInDown',
-
-      // resize: false,
-
-      // clickOutside: true,
-      // closeKey: 27,
+      width: 640,
 
       onOpen: null,
       onClose: null
@@ -33,7 +28,7 @@ class Layer {
     let layer = this.settings.layer;
 
     if (!layer) {
-      layer = Layer.createLayer();
+      layer = this.createLayer();
     }
 
     this.layer = layer;
@@ -41,9 +36,10 @@ class Layer {
     this.layerContent = layer.querySelector('.layer-content');
   }
 
-  static createLayer() {
-    const closeIcon = '<span class="layer-close" data-layer-close>&times;</span>';
-    let htmlString = `<div class="layer-box">${closeIcon} 
+  createLayer() {
+    const { width } = this.settings;
+    const closeIcon = '<span class="layer-close iconfont icon-times" data-layer-close></span>';
+    let htmlString = `<div class="layer-box" style="width: ${width}px">${closeIcon} 
       <div class="layer-head"></div>
       <div class="layer-content"></div>
     </div>`;
@@ -66,27 +62,29 @@ class Layer {
     const { content, title } = option;
     this.setContent(content);
     this.setTitle(title);
-    Util.addClass(document.body, 'layer-open');
+    Util.addClass(document.querySelector('html'), 'layer-open');
     Util.addClass(layer, showClass);
     if (onOpen) {
       onOpen(this);
     }
   }
 
-  close() {
+  hide() {
     const { onClose, showClass } = this.settings;
 
     if (onClose) {
       onClose(this);
     }
-
-    Util.removeClass(document.body, 'layer-open');
+    
     Util.removeClass(this.layer, showClass);
+    if (!document.querySelector('.' + showClass)) {
+      Util.removeClass(document.querySelector('html'), 'layer-open');
+    }
   }
 
   events() {
     Util.on(this.layer, 'click', '[data-layer-close]', () => {
-      this.close();
+      this.hide();
     });
   }
 }

@@ -11,10 +11,11 @@ import Select from './script/select/Select.es6';
 import Cascader from './script/select/Cascader.es6';
 
 import Modal from './script/modal/Modal.es6';
-import Message from './script/modal/Message.es6';
+import Toast from './script/modal/Toast.es6';
 import Tooltip from './script/modal/Tooltip.es6';
 import Popper from './script/modal/Popper.es6';
 import Layer from './script/modal/Layer.es6';
+import Position from './script/modal/Position.es6';
 
 import Tag from './script/tag/Tag.es6';
 
@@ -29,7 +30,7 @@ window.ui = {
   Cascader,
   CheckAll,
   Modal,
-  Message,
+  Toast,
   Tooltip,
   InputCount,
   Tag,
@@ -39,7 +40,8 @@ window.ui = {
   Layer,
   PikaEx,
   UploadHelper,
-  Transfer
+  Transfer,
+  Position
 };
 
 util.on(document, 'click', '[data-closeable]', function (e) {
@@ -53,3 +55,12 @@ util.on(document, 'click', '.node-trigger', function () {
   util.toggleClass(this, 'expend');
 });
 
+if (!util.supportPseudo(':focus-within')) {
+  util.on(document, 'focusin', '.ui-icon-input input', function () {
+    util.addClass(this.closest('.ui-icon-input'), 'active');
+  });
+ 
+  util.on(document, 'focusout', '.ui-icon-input input', function () {
+    util.removeClass(this.closest('.ui-icon-input'), 'active');
+  });
+}

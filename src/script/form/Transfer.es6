@@ -109,6 +109,13 @@ class Transfer {
     value.splice(newIndex, 0, value.splice(oldIndex, 1)[0]);
   }
 
+  destroy() {
+    this.element = null;
+    this.targetList = null;
+    this.treeList = null;
+    this.tree = null;
+  }
+
   events() {
     const self = this;
     const { tree, element, targetList } = this;

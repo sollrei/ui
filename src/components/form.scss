@@ -2,22 +2,23 @@
 
 // form
 $padding: 4px 12px;
-$h: 34px;
 $gap: 24px;
-$w: 320px;
 
 .ui-form {
-  font-size: $ft-14;
+  font-size: 14px;
 
   .form-group {
     margin-bottom: $gap - 2px;
+    display: flex;
+    flex-flow: row wrap;
+    align-content: flex-start;
   }
 
-  .pure-u-label {
-    width: 114px;
+  .form-label {
+    width: 114px - 8px;
     margin-right: 8px;
     text-align: right;
-    line-height: $h;
+    line-height: $form-control-height;
     color: $gray;
 
     em {
@@ -35,17 +36,15 @@ $w: 320px;
     }
   }
 
-  .pure-u-con {
-    // width: 850px;
-
+  .form-con {
     .ui-radio,
     .ui-checkbox {
-      line-height: $h;
+      line-height: $form-control-height;
     }
   }
 
   .con-text {
-    line-height: $h;
+    line-height: $form-control-height;
   }
 
   .select-wrap {
@@ -57,32 +56,35 @@ $w: 320px;
 
 // form control
 .ui-form-control {
-  padding: $padding;
-  width: $w + 2px;
+  padding: $form-control-padding-v $form-control-padding-h;
+  width: $form-control-width;
   box-sizing: border-box;
-  font-size: $ft-14;
+  font-size: 14px;
   line-height: 24px;
-  min-height: 34px;
+  min-height: $form-control-height;
   border: 1px solid $light;
-  border-radius: $radius;
+  border-radius: $form-control-radius;
   vertical-align: middle;
-  transition: $transition-duration;
+  transition: border $transition-duration, box-shadow $transition-duration;
+  max-width: 100%;
 
+  // scss-lint:disable all
   &::-webkit-input-placeholder {
-    color: #ccc;
+    color: $form-placeholder-color;
   }
 
   &:-moz-placeholder {
-    color: #ccc;
+    color: $form-placeholder-color;
   }
 
   &::-moz-placeholder{
-   color: #ccc;
+   color: $form-placeholder-color;
   }
 
   &:-ms-input-placeholder {
-    color: #ccc;
+    color: $form-placeholder-color;
   }
+  // scss-lint:enable all
 
   &:hover {
     border-color: $primary;
@@ -96,7 +98,7 @@ $w: 320px;
   &:focus:not(:read-only) {
     outline: none;
     border-color: $primary;
-    box-shadow: 0 0 3px 0 rgba(0, 122, 223, 0.1);
+    box-shadow: $form-control-active-shadow;
   }
 
   &:disabled,
@@ -111,9 +113,19 @@ $w: 320px;
   }
 
   &.error {
-    border-color: $red;
-    box-shadow: 0 0 3px 0 rgba($red, .1);
+    border-color: $form-control-error-color;
+    box-shadow: $form-control-error-shadow;
   }
+}
+
+textarea.ui-form-control {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.error + .ui-select:not(.ui-select-active) {
+  border-color: $form-control-error-color;
+  box-shadow: $form-control-error-shadow;
 }
 
 // enter count
@@ -129,9 +141,9 @@ $w: 320px;
     position: absolute;
     right: 10px;
     bottom: 0;
-    line-height: $h;
-    color: $color-disabled;
-    font-size: $ft-12;
+    line-height: $form-control-height;
+    color: $light;
+    font-size: 12px;
   }
 }
 
@@ -140,7 +152,8 @@ $w: 320px;
 .ui-checkbox {
   cursor: pointer;
   vertical-align: middle;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 
   input {
     display: none;
@@ -153,13 +166,17 @@ $w: 320px;
   input:disabled,
   input.disabled {
     + .iconfont {
-      cursor: default;
+      cursor: not-allowed;
       color: $color-border;
     }
 
     ~ span {
-      cursor: default;
+      cursor: not-allowed;
     }
+  }
+
+  &.disabled {
+    cursor: not-allowed;
   }
 
   input:disabled:checked,
@@ -170,9 +187,9 @@ $w: 320px;
   }
 
   .iconfont {
-    vertical-align: middle;
-    padding-right: 6px;
+    padding-right: 8px;
     color: $light;
+    line-height: 24px;
   }
 
   span {
@@ -185,12 +202,12 @@ $w: 320px;
   }
 }
 
-.form-group {
-  .ui-radio,
-  .ui-checkbox {
-    margin-right: 20px;
-  }
-}
+// .form-group {
+//   .ui-radio,
+//   .ui-checkbox {
+//     margin-right: 20px;
+//   }
+// }
 
 .ui-checkbox {
   .iconfont:before {
@@ -268,6 +285,25 @@ input[type="radio"] {
 // validate
 .ui-control-wrap {
   position: relative;
+
+  &.loading {
+    &:after {
+      content: "";
+      position: absolute;
+      right: 7px;
+      top: 50%;
+      margin-top: -7px;
+      box-sizing: border-box;
+      height: 14px;
+      width: 14px;
+      border-radius: 50%;
+      background: radial-gradient(#fff, #fff 63%, transparent 64%),
+        linear-gradient(to top, rgba($primary, .3), #fff) 50px 0 no-repeat,
+        linear-gradient(to top, rgba($primary, .3), $primary) 0 0;
+
+      animation: rotate .5s linear infinite;
+    }
+  }
 }
 
 .v-error-tip {
@@ -277,10 +313,10 @@ input[type="radio"] {
   height: 22px;
   color: $red;
   line-height: 22px;
-  font-size: $ft-14;
+  font-size: 12px;
   visibility: hidden;
   opacity: 0;
-  transition: .3s;
+  transition: opacity .3s;
   white-space: nowrap;
 
   &.show {

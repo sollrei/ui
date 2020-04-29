@@ -6,7 +6,7 @@
 
   .drop-label {
     height: 24px;
-    position: relative;
+    // position: relative;
     padding-right: 20px;
     line-height: 24px;
     cursor: pointer;
@@ -14,24 +14,36 @@
     &:after {
       position: absolute;
       right: 0;
-      font-family: "iconfont" !important;
-      font-size: 16px;
-      font-style: normal;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
+      top: 4px;
+      @include iconfont;
       content: '\eb3f';
-      transition: .3s;
+      transition: .2s;
+      color: $gray;
+    }
+
+    &.no-arrow {
+      padding-right: 0;
+    }
+
+    &.no-arrow:after {
+      display: none;
     }
   }
 
   &:hover {
+    position: relative;
+    z-index: 10;
+
     .drop-wrap {
       visibility: visible;
       opacity: 1;
-      // transform: translate(0, 0);
     }
 
     .drop-label:after {
+      transform: rotate(180deg);
+    }
+
+    .icon-arrow-down {
       transform: rotate(180deg);
     }
   }
@@ -39,19 +51,21 @@
   .drop-wrap {
     padding-top: 4px;
     position: absolute;
+    z-index: 11;
     visibility: hidden;
     opacity: 0;
-    transition: .3s .1s;
-    // transform: translate(0, -5px);
+    transition: opacity .3s .1s;
 
     &.center {
       left: 50%;
       transform: translate(-50%, 0);
     }
-  }
 
-  .drop {
-    // width: 240px;
+    &.left {
+      right: 0;
+      left: auto;
+      transform: translate(0, 0);
+    }
   }
 }
 

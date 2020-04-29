@@ -113,10 +113,8 @@ class PikaEx {
   }
 
   hide(element) {
-    if (u.hasClass(this, 'show')) {
-      u.removeClass(this, 'show');
-      u.removeClass(element, 'active');
-    }
+    u.removeClass(this, 'show');
+    u.removeClass(element, 'active');
   }
 
   show() {

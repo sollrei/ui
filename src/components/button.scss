@@ -1,60 +1,52 @@
 @import "variables";
 
-
-$padding-h: 24px;
-$padding-h-s: 8px;
-
-$h: 34px;
-$h-s: 26px;
-
 // button
 .ui-button {
   display: inline-block;
-  height: $h;
-  padding-left: $padding-h;
-  padding-right: $padding-h;
-  line-height: $h - 2px;
-  font-size: $ft-14;
+  height: $button-height;
+  padding-left: $button-padding;
+  padding-right: $button-padding;
+  line-height: $button-height - ($button-border-width * 2);
+  font-size: 14px;
   color: $black;
   vertical-align: middle;
-  border-radius: 4px;
+  border-radius: $button-radius;
+  border: $button-border-width $button-border-type $light;
   background-color: #f0f0f0;
   cursor: pointer;
   text-align: center;
-  border: 1px solid $light;
-  transition: .3s;
+  transition: background $transition-duration;
   box-sizing: border-box;
 
   &:focus {
     outline: none;
   }
 
-  &:focus,
   &:hover {
     color: #333;
-    border: solid 1px rgba(204, 204, 204, 0.6);
-    background-color: rgba(240, 240, 240, 0.3);
+    border-color: rgba($light, 0.6);
+    // background-color: rgba(240, 240, 240, 0.3);
+    background-color: #fafafa;
   }
 
   &.disabled {
     cursor: not-allowed;
     color: rgba(51, 51, 51, 0.3);
-    border: solid 1px rgba(204, 204, 204, 0.6);
+    border-color: rgba($light, 0.6);
     background-color: #ebebeb;
 
-    &:hover,
-    &:active {
+    &:hover {
       color: rgba(51, 51, 51, 0.3);
-      border: solid 1px rgba(204, 204, 204, 0.6);
+      border-color: rgba($light, 0.6);
       background-color: #ebebeb;
     }
   }
 
   &.small {
-    height: $h-s;
-    padding-left: $padding-h-s;
-    padding-right: $padding-h-s;
-    line-height: $h-s - 2px;
+    height: $button-small-height;
+    padding-left: $button-small-padding;
+    padding-right: $button-small-padding;
+    line-height: $button-small-height - 2px;
     border-radius: 4px;
     font-size: 12px;
   }
@@ -62,30 +54,28 @@ $h-s: 26px;
   &.primary {
     color: $color-white;
     background: $primary;
-    border: 1px solid #0067bc;
+    border-color: #0067bc;
 
-    &:focus,
     &:hover {
       color: #fff;
-      border-color: rgba(0, 103, 188, 0.8);
-      background-color: rgba(0, 122, 223, 0.8);
+      border-color: rgba(0, 103, 188, 0.9);
+      background-color: rgba(0, 122, 223, 0.9);
     }
 
     &.disabled,
     &.disabled:hover,
     &.disabled:active {
       color: #fff;
-      border-color: rgba(0, 103, 188, 0.5);
+      border-color: rgba(0, 103, 188, 0.2);
       background-color: rgba(0, 122, 223, 0.5);
     }
   }
 
   &.warn {
     color: $red;
-    border: solid 1px #f55959;
+    border-color: #f55959;
     background-color: rgba(245, 89, 89, 0.06);
 
-    &:focus,
     &:hover {
       color: #fff;
       background: $red;
@@ -96,7 +86,7 @@ $h-s: 26px;
     &.disabled:hover,
     &.disabled:active {
       color: rgba(245, 89, 89, 0.5);
-      border: solid 1px rgba(245, 89, 89, 0.5);
+      border-color: rgba(245, 89, 89, 0.5);
       background-color: rgba(245, 89, 89, 0.06);
     }
   }
@@ -110,21 +100,23 @@ $h-s: 26px;
   }
 
   &.line {
-    width: 320px;
+    width: 322px;
     padding-left: 0;
     padding-right: 0;
     border: 1px dashed $light;
     background: $color-white;
     color: $gray;
 
-    &:focus,
     &:hover {
       color: $primary;
       border-color: $primary;
     }
   }
 
-  &.btn-icon {
+  &.icon {
+    display: inline-flex;
+    align-items: center;
+    
     .iconfont {
       margin-left: 4px;
     }
@@ -139,11 +131,11 @@ $h-s: 26px;
       position: absolute;
       left: 50%;
       top: 50%;
-      margin-left: -11px;
-      margin-top: -11px;
+      margin-left: -10px;
+      margin-top: -10px;
       box-sizing: border-box;
-      height: 22px;
-      width: 22px;
+      height: 20px;
+      width: 20px;
       border-radius: 50%;
       border: 2px solid rgba($color-white, .4) {
         top-color: $color-white;

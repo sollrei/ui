@@ -5,31 +5,22 @@ $h: 34px;
 $h-small: 26px;
 
 .ui-pagination {
+  display: flex;
   line-height: $h;
-  font-size: $ft-12;
 
   .iconfont {
+    line-height: 1;
     font-size: 16px;
   }
 
   .page,
-  .ellipsis,
   .text,
   .total,
   form {
     display: inline-block;
     vertical-align: middle;
   }
-
-  .page,
-  .ellipsis {
-    height: $h;
-    width: $h;
-    margin-right: 8px;
-    color: #333;
-    text-align: center;
-  }
-
+ 
   .text {
     padding-left: 8px;
     padding-right: 8px;
@@ -41,9 +32,22 @@ $h-small: 26px;
   }
 
   .page {
+    height: $h;
+    width: $h;
+    margin-right: 12px;
+    color: #333;
     border-radius: 4px;
     border: 1px solid $light;
-  }
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+
+    &.disabled,
+    &.disabled:hover {
+      border-color: rgba($light, .5);
+      color: $gray;
+    }
+  } 
 
   .page:hover,
   .active {
@@ -63,6 +67,11 @@ $h-small: 26px;
     display: inline-block;
     width: 94px;
     vertical-align: middle;
+    margin-right: 8px;
+
+    select {
+      display: block;
+    }
   }
 
   .ui-select {
@@ -77,10 +86,11 @@ $h-small: 26px;
     width: 32px;
     height: $h;
     vertical-align: middle;
-    padding-left: 13px;
-    padding-right: 13px;
-    font-size: $ft-12;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 12px;
     box-sizing: border-box;
+    text-align: center;
   }
 
   .page-label {
@@ -96,53 +106,52 @@ $h-small: 26px;
   }
 
   &.small {
-    .page,
-    .ellipsis {
+    font-size: 12px;
+
+    .page {
       height: $h-small;
       width: $h-small;
-      line-height: $h-small - 2px;
       border: 1px solid transparent;
+      margin-right: 0;
+      color: $primary;
+    }
+
+    .iconfont {
+      color: $gray;
+    }
+    
+    .active {
+      border: 1px solid $primary;
     }
 
     .page:hover,
     .active {
-      border: 1px solid $primary;
+      color: rgba($primary, .8);
+    }
+
+    .disabled,
+    .disabled:hover {
+      border: 0 none;
+      color: $light;
+    }
+
+    .disabled .iconfont {
+      color: $light;
     }
 
     input {
       width: 42px;
       height: $h-small;
+      min-height: $h-small;
     }
 
     .ui-button {
       padding: 0 8px;
       line-height: $h-small;
     }
-  }
 
-  &.mini {
-    line-height: $h-small;
-
-    .page,
-    .ellipsis {
-      height: $h-small;
-      border: 0;
-      margin-right: 0;
-    }
-
-    .page:hover {
-      color: $primary;
-      background-color: $color-white;
-    }
-
-    .active:hover {
-      color: $color-white;
-      background-color: $primary;
-    }
-
-    input {
-      width: 49px;
-      height: $h-small;
+    .text {
+      line-height: $h-small;
     }
   }
 }

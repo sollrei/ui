@@ -1,0 +1,48 @@
+
+.ui-timeline {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+
+  &:before {
+    content: '';
+    width: 2px;
+    left: 153px;
+    background-color: #ebebeb;
+    position: absolute;
+    top: 16px;
+    bottom: 18px;
+  }
+
+  .time-row {
+    display: flex;
+    padding-bottom: 8px;
+  }
+
+  .date {
+    width: 132px;
+  }
+
+  .time {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    text-align: right;
+  }
+
+  .con {
+    padding: 4px 0 4px 44px;
+    position: relative;
+    
+    &:before {
+      position: absolute;
+      content: '';
+      height: 12px;
+      width: 12px;
+      left: 16px;
+      top: 10px;
+      border-radius: 50%;
+      border: 2px solid #ebebeb;
+      background-color: #fff;
+    }
+  }
+}

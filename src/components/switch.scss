@@ -2,7 +2,8 @@
 
 // switch
 .ui-switch {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
 
   input {
     display: none;
@@ -23,7 +24,12 @@
   }
 
   .open {
+    padding-left: 8px;
     display: none;
+  }
+
+  .close {
+    padding-left: 8px;
   }
 
   .switch:before {
