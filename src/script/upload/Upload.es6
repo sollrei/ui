@@ -27,8 +27,8 @@ class Upload {
       dataType: 'json',
 
       maxUploads: 1000, // 假定系统能支持的上传数量
-
       
+      beforeInit: null,
       init: null,
       start() { return true; },
       beforeUploadStart: null,
@@ -50,7 +50,15 @@ class Upload {
     this.activeUploads = 0;
     this.ajaxUrl = url;
 
-    this.create(input);
+    if (this.settings.beforeInit) {
+      this.settings.beforeInit((next) => {
+        if (next) {
+          this.create(input);
+        }
+      });
+    } else {
+      this.create(input);
+    }
   }
 
   create(element) {
@@ -116,7 +124,7 @@ class Upload {
   }
 
   static createId() {
-    return Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36);
+    return 'id' + (Number(Math.random().toString().substr(3, 3) + Date.now()).toString(36));
   }
 
   initUploadContext(fileNum, files, input) {

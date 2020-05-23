@@ -16,6 +16,7 @@ class Select extends SelectBase {
 
       placeholder: '',
       emptyLabel: '<span class="ft-light select-empty">请选择</span>',
+      emptyLi: '暂无选项',
 
       group: false,
       clearable: false,
@@ -24,7 +25,6 @@ class Select extends SelectBase {
       max: null,
       checkable: false,
       search: false,
-
 
       data: null,
       selectFn: null,
@@ -317,14 +317,14 @@ class Select extends SelectBase {
    * */
   createDropdown(match) {
     let domString = '<div class="select-ul">';
+    const { emptyLi } = this.settings;
 
     if (this.search) {
       domString += Select.createSearch() + '<ul class="select-main">';
     }
 
-    domString += '<ul class="select-main">' + this.createOptionContent(this.data, match);
+    domString += '<ul class="select-main">' + (this.createOptionContent(this.data, match) || `<li class="li-empty">${emptyLi}</li>`);
 
-    // return domString + '</ul></div>';
     this.select.option.innerHTML = domString + '</ul></div>';
   }
 
@@ -466,13 +466,18 @@ class Select extends SelectBase {
   }
 
   resetValue(value) {
+    const self = this;
+
     if (Array.isArray(value)) {
       this.value = value;
 
       if (this.multiple) {
         this.changeMultiSelectValue(false, 'change');
       } else {
-        // 单选的重置值
+        const select = self.select;
+        const label = self.cache[value].label;
+        self.changeSelectValue(select, value, label);
+        self.changeMultiSelectedClass();
       }
     }
   }

@@ -9,6 +9,10 @@
   &.center {
     justify-content: center;
   }
+
+  &.right {
+    justify-content: flex-end;
+  }
   
   .col-3 {
     width: calc((100% - 32px) / 3);

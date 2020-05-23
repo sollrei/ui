@@ -140,7 +140,7 @@ class Modal {
   static createConfirmHtml(option) {
     const { content, desc } = option;
     const titHtml = content ? `<div class="warn">${content}</div>` : '';
-    const descHtml = desc ? `<p class="desc">${desc}</p>` : '';
+    const descHtml = desc ? `<div class="desc">${desc}</div>` : '';
 
     return `${titHtml}${descHtml}`;
   }

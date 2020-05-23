@@ -34,7 +34,7 @@ const regs = {
    * 4.右则部分可分为两部分，第一部分为邮件提供商域名地址，第二部分为域名后缀，现已知的最短为2位。最长的为6为。
    * 5.邮件提供商域可以包含特殊字符-、_、.
    */
-  email: /^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/,
+  email: /^[a-zA-Z0-9]+([._\\-]*[a-zA-Z0-9])*@([a-zA-Z0-9]+[-a-zA-Z0-9]*[a-zA-Z0-9]+.){1,63}[a-zA-Z0-9]+$/,
   english: /^[A-Za-z]+$/,
   idCard: /^\d{6}(19|2\d)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)?$/,
   int: /^[1-9][0-9]*$/,
@@ -345,85 +345,6 @@ class Validator {
       e.preventDefault();
 
       this.validAllFiles(callback, errorCallback);
-      // const {
-      //   validClass, tipClass, showClass, shouldFresh 
-      // } = this.settings;
-
-      // const items = this.form.querySelectorAll(validClass);
-      // if (items) {
-      //   if (shouldFresh) {
-      //     this.fields = {};
-      //   }
-
-      //   this.addItems(items);
-      // }
-
-      // this.validForm();
-
-      // let valid = true;
-      // let arr = [];
-
-      // Object.keys(this.fields).every(key => {
-      //   arr.push(key);
-      //   let item = this.fields[key];
-      //   if (!item.valid) {
-      //     valid = false;
-      //   }
-      //   return item.valid;
-      // });
-
-      // const { fields: __fields, form: __form, settings: __settings } = this;
-
-      // function cb() {
-      //   if (valid) {
-      //     if (typeof callback === 'function') {
-      //       callback(__form, __fields);
-      //     }
-      //   } else {
-      //     if (__settings.scrollToError) {
-      //       const tipElement = doc.querySelector('.' + tipClass + '.' + showClass);
-  
-      //       if (tipElement) {
-      //         const top = (tipElement.getBoundingClientRect().top - 80)
-      //           + (docEle.scrollTop + body.scrollTop);
-      //         const left = docEle.scrollLeft + body.scrollLeft;
-  
-      //         // scroll to error tip position
-      //         window.scrollTo(left, top);
-      //       }
-      //     }
-  
-      //     if (typeof errorCallback === 'function') {
-      //       errorCallback(__form, __fields);
-      //     }
-      //   }
-      // }
-      
-      // function checkValid(index) {
-      //   if (index >= arr.length) {
-      //     valid = true;
-      //     cb();
-      //     return;
-      //   }
-      //   const item = __fields[arr[index]];
-      //   if (item.remote) {
-      //     item.remote.then(res => {
-      //       if (res.code === 200) {
-      //         checkValid(index + 1);
-      //       } else {
-      //         valid = false;
-      //         cb();
-      //       }
-      //     });
-      //   } else if (!item.valid) {
-      //     valid = false;
-      //     cb();
-      //   } else {
-      //     checkValid(index + 1);
-      //   }
-      // }
-      
-      // checkValid(0);
 
       return false;
     });

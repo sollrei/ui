@@ -264,6 +264,7 @@ input[type="radio"] {
     border: 1px solid #ccc;
     margin-right: -1px;
     cursor: pointer;
+    user-select: none;
 
     &:first-of-type {
       border-radius: 4px 0 0 4px;

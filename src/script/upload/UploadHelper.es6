@@ -47,6 +47,8 @@ class UploadHelper {
     const { url } = this.settings;
 
     new Upload(url, input, this.settings);
+
+    // input.value = ''; // eslint-disable-line
   }
 
   singleUpload() {
