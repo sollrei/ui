@@ -1,5 +1,5 @@
-import '../../../../lib/promise-polyfill/8.0.0/src/promise-polyfill.js';
-import '../../../../lib/fetch-polyfill/2.0.4/src/fetch-polyfill.js';
+import './polyfill/promise-polyfill.js';
+import './polyfill/fetch-polyfill.js';
 
 import './script/base/polyfill.es6';
 import util from './script/base/util.es6';
