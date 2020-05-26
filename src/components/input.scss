@@ -5,7 +5,7 @@
   width: $form-control-width;
   display: inline-flex;
   align-items: center;
-  border: 1px solid $light;
+  border: 1px solid $form-control-border-color;
   border-radius: $form-control-radius;
   vertical-align: middle;
   transition: border $transition-duration, box-shadow $transition-duration;

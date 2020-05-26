@@ -1,5 +1,17 @@
 {
   "devDependencies": {
+    "autoprefixer": "^9.8.0",
     "sass": "^1.26.5"
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {
+        "overrideBrowserslist": [
+          "> 1%",
+          "last 2 versions",
+          "ie >= 10"
+        ]
+      }
+    }
   }
 }

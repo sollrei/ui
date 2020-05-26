@@ -12,7 +12,7 @@
   vertical-align: middle;
   border-radius: $button-radius;
   border: $button-border-width $button-border-type $light;
-  background-color: #f0f0f0;
+  background-color: $color-bg-normal;
   cursor: pointer;
   text-align: center;
   transition: background $transition-duration;

@@ -1,12 +1,9 @@
 @import "variables";
 
 // pagination
-$h: 34px;
-$h-small: 26px;
-
 .ui-pagination {
   display: flex;
-  line-height: $h;
+  line-height: $page-height;
 
   .iconfont {
     line-height: 1;
@@ -24,7 +21,7 @@ $h-small: 26px;
   .text {
     padding-left: 8px;
     padding-right: 8px;
-    line-height: $h;
+    line-height: $page-height;
   }
 
   span {
@@ -32,12 +29,12 @@ $h-small: 26px;
   }
 
   .page {
-    height: $h;
-    width: $h;
+    height: $page-height;
+    width: $page-height;
     margin-right: 12px;
     color: #333;
     border-radius: 4px;
-    border: 1px solid $light;
+    border: 1px solid $color-border;
     display: inline-flex;
     justify-content: center;
     align-items: center;
@@ -84,7 +81,7 @@ $h-small: 26px;
 
   input.ui-form-control {
     width: 32px;
-    height: $h;
+    height: $page-height;
     vertical-align: middle;
     padding-left: 5px;
     padding-right: 5px;
@@ -109,8 +106,8 @@ $h-small: 26px;
     font-size: 12px;
 
     .page {
-      height: $h-small;
-      width: $h-small;
+      height: $page-height-small;
+      width: $page-height-small;
       border: 1px solid transparent;
       margin-right: 0;
       color: $primary;
@@ -141,17 +138,17 @@ $h-small: 26px;
 
     input {
       width: 42px;
-      height: $h-small;
-      min-height: $h-small;
+      height: $page-height-small;
+      min-height: $page-height-small;
     }
 
     .ui-button {
       padding: 0 8px;
-      line-height: $h-small;
+      line-height: $page-height-small;
     }
 
     .text {
-      line-height: $h-small;
+      line-height: $page-height-small;
     }
   }
 }

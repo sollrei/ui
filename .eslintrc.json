@@ -1,0 +1,29 @@
+{
+  "extends": "airbnb/legacy",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "rules": {
+    "jsx-a11y/href-no-hash": "off",
+    "no-trailing-spaces": 0,
+    "no-restricted-syntax": 0,
+    "linebreak-style": 0,
+    "no-underscore-dangle": "off",
+    "no-new": "off",
+    "func-names": [
+      "error",
+      "never"
+    ]
+  },
+  "parserOptions": {
+    "ecmaVersion": 7,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true
+    },
+    "sourceType": "module"
+  },
+  "globals": {
+    "__inline": true
+  }
+}

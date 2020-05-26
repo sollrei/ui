@@ -60,9 +60,9 @@ $gap: 24px;
   width: $form-control-width;
   box-sizing: border-box;
   font-size: 14px;
-  line-height: 24px;
+  line-height: $form-control-height - $form-control-padding-v * 2 - 2;
   min-height: $form-control-height;
-  border: 1px solid $light;
+  border: 1px solid $form-control-border-color;
   border-radius: $form-control-radius;
   vertical-align: middle;
   transition: border $transition-duration, box-shadow $transition-duration;
@@ -107,7 +107,7 @@ $gap: 24px;
   &.disabled,
   &.disabled:hover,
   &.disabled:focus {
-    background-color: #ebebeb;
+    background-color: $form-control-disable-bg;
     cursor: default;
     border: solid 1px rgba(204, 204, 204, 0.6);
   }

@@ -2,6 +2,14 @@
 
 .ft-primary {
   color: $primary;
+
+  &.disabled {
+    color: rgba($primary, .5);
+  }
+}
+
+.bg-primary {
+  background: $primary;
 }
 
 a.ft-primary,
@@ -11,25 +19,61 @@ a.ft-primary,
   }
 }
 
-.ft-primary.disabled {
-  color: rgba($primary, .5);
-}
-
 .ft-link.ft-primary:hover .iconfont.ft-gray {
   color: $primary;
 }
 
-.ft-warn {
+.ft-warn,
+.ft-yellow {
   color: $yellow;
 }
 
-.ft-error {
+.bg-yellow {
+  background: $yellow;
+}
+
+.ft-error,
+.ft-red {
   color: $red;
 }
 
-.ft-success {
+.bg-red {
+  background: $red;
+}
+
+.ft-success,
+.ft-green {
   color: $green;
 }
+
+.bg-green {
+  background: $green;
+}
+
+.ft-black {
+  color: $black;
+}
+
+.bg-black {
+  background: $black;
+}
+
+.ft-gray {
+  color: $gray;
+}
+
+.bg-gray {
+  background: $gray;
+}
+
+.ft-light {
+  color: $light;
+}
+
+.bg-light {
+  background: $light;
+}
+
 
 .ft-center {
   text-align: center;
@@ -55,21 +99,7 @@ a.ft-primary,
   font-family: arial, sans-serif;
 }
 
-.ft-black {
-  color: $black;
-}
 
-.ft-gray {
-  color: $gray;
-}
-
-.ft-light {
-  color: $light;
-}
-
-.ft-green {
-  color: $green;
-}
 
 .ft-12 {
   font-size: 12px; 
@@ -98,6 +128,10 @@ a.ft-primary,
   font-size: 12px;
   line-height: 1.3;
   font-weight: 600;
+}
+
+.line[class*=ft-h] {
+  border-bottom: 1px solid $color-border;
 }
 
 .ui-empty {
