@@ -4,18 +4,1115 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
+  <link rel="stylesheet" href="./iconfont/iconfont.css">
   <link rel="stylesheet" href="./src/ui.scss">
-</head>
-<body>
-  <div class="ui-button primary">button</div>
+  <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
+  <style>
+    .layout {
+      width: 80%;
+      margin: 40px auto;
+    }
 
-  <div class="form-control-wrap">
-    <select name="select" class="ui-select ui-form-control">
-      <option value="">请选择</option>
-      <option value="1">选项1</option>
-    </select>
+    nav {
+      width: 200px;
+      line-height: 2;
+    }
+
+    nav ul {
+      position: fixed;
+    }
+
+    pre {
+      background: #f2f3f4;
+    }
+
+    .md-code {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body class="layout">
+
+  <div class="ui-row">
+    <nav>
+      <ul>
+        <li>
+          <div class="ft-h2 mtb-20">Nav</div>
+        </li>
+        <li><a class="ft-link" href="#Typography">Typography</a></li>
+        <li><a class="ft-link" href="#Menu">Menu</a></li>
+        <li><a class="ft-link" href="#Button">Button</a></li>
+        <li><a class="ft-link" href="#Input">Input</a></li>
+        <li><a class="ft-link" href="#Select">Select</a></li>
+        <li><a class="ft-link" href="#Table">Table</a></li>
+        <li><a class="ft-link" href=""></a></li>
+        <li><a class="ft-link" href=""></a></li>
+        <li><a class="ft-link" href=""></a></li>
+        <li><a class="ft-link" href=""></a></li>
+        <li><a class="ft-link" href=""></a></li>
+      </ul>
+    </nav>
+    <main class="stretch">
+
+      <div id="Typography">
+        <div class="ft-h1 line mtb-20">Typography</div>
+
+        <div class="ft-h1">Heading 1</div>
+        <div class="ft-h2">Heading 2</div>
+        <div class="ft-h3">Heading 3</div>
+        <div class="ft-h4">Heading 4</div>
+
+        <div class="ft-warn">文字颜色</div>
+        <div class="ft-error">文字颜色</div>
+        <div class="ft-primary">文字颜色</div>
+        <div class="ft-success">文字颜色</div>
+        <div class="ft-black">文字颜色</div>
+        <div class="ft-gray">文字颜色</div>
+        <div class="ft-light">文字颜色</div>
+
+        <div class="ui-row mt-20" style="height: 80px;">
+          <div class="bg-yellow flex1"></div>
+          <div class="bg-red flex1"></div>
+          <div class="bg-primary flex1"></div>
+          <div class="bg-green flex1"></div>
+          <div class="bg-black flex1"></div>
+          <div class="bg-gray flex1"></div>
+          <div class="bg-light flex1"></div>
+        </div>
+
+        <div class="md-code">
+          <pre><code class="language-css">
+            .ft-h1/h2/h3/h4 {}
+            .ft-warn/error/primary/success/black/gray/light {}
+          </code></pre>
+        </div>
+      </div>
+
+      <div id="Tag">
+        <div class="ft-h1 line mtb-20">Tag</div>
+
+        <span class="ui-tag violet">创始人</span>
+        <span class="ui-tag blue">管理员</span>
+        <span class="ui-tag green">运营员工</span>
+        <span class="ui-tag yellow">财务人员</span>
+        <span class="ui-tag">自定义角色</span>
+        <span class="ui-tag gray">标签</span>
+        <span class="ui-tag cus">手动标签</span>
+        <span class="ui-tag sys">系统标签</span>
+        <span class="ui-tag gray">标签</span>
+        <span class="ui-tag cus">手动标签</span>
+        <span class="ui-tag sys" data-closeable>系统标签系统标签系统标签系统标签系统标签系统标签系统标签系统标签系统标签系统标签 <i class="iconfont icon-times"></i></span>
+      </div>
+
+      <div id="Menu">
+        <div class="ft-h1 line mtb-20">Menu</div>
+
+        <ul class="ui-menu w320 mb-20">
+          <li><a href="#" class="menu-item">菜单</a></li>
+          <li><a href="#" class="menu-item">菜单</a></li>
+          <li><a href="#" class="menu-item">菜单</a></li>
+        </ul>
+
+        <div class="ui-drop">
+          <div class="drop-label">文字</div>
+          <div class="drop-wrap">
+            <ul class="drop ui-menu">
+              <li><a href="#" class="menu-item">下拉菜单</a></li>
+              <li><a href="#" class="menu-item">下拉菜单</a></li>
+              <li><a href="#" class="menu-item">下拉菜单</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ui-path mt-20">
+          <a class="link" href="#">一级页面</a><span class="line">/</span><a class="link" href="#">二级页面</a><span class="line">/</span><a class="link" href="#">三级页面</a><span class="line">/</span><span>四级页面</span>
+        </div>
+      </div>
+
+      <div id="Button">
+        <div class="ft-h1 line mtb-20">Button</div>
+        <div class="ui-row mb-20">
+          <button class="ui-button mr-20 primary">主要按钮</button>
+          <button class="ui-button mr-20 primary disabled">主要按钮</button>
+          <button class="ui-button mr-20 primary small">主要按钮</button>
+        </div>
+        <div class="ui-row mb-20">
+          <button class="ui-button mr-20">次要按钮</button>
+          <button class="ui-button mr-20 disabled">次要按钮</button>
+          <button class="ui-button mr-20 small">次要按钮</button>
+        </div>
+        <div class="ui-row mb-20">
+          <button class="ui-button mr-20 warn">主要按钮</button>
+          <button class="ui-button mr-20 warn disabled">主要按钮</button>
+          <button class="ui-button mr-20 warn small">主要按钮</button>
+        </div>
+        <div class="ui-row mb-20">
+          <button class="ui-button mr-20 icon">次要按钮<i class="iconfont icon-filter-normal"></i></button>
+          <button class="ui-button mr-20 icon active">次要按钮<i class="iconfont icon-filter-normal"></i></button>
+        </div>
+        <div class="ui-row mb-20">
+          <button class="ui-button mr-20 line"><i class="iconfont icon-plus"></i></button>
+        </div>
+        <div class="pb-20">
+          <button class="ui-button mr-20 primary loading">立即发布</button>
+        </div>
+      </div>
+
+      <div id="Check">
+
+        <div class="line mb-20 ft-h1">Radio/Check/Switch</div>
+
+        <label class="ui-checkbox">
+          <input type="checkbox" name="d" value="1"><i class="iconfont"></i><span>选项</span>
+        </label>
+
+        <label class="ui-checkbox">
+          <input type="checkbox" name="d" value="2" disabled><i class="iconfont"></i><span>禁用</span>
+        </label>
+
+        <label class="ui-checkbox">
+          <input type="checkbox" name="d" value="3" checked><i class="iconfont"></i><span>选中</span>
+        </label>
+
+        <label class="ui-checkbox">
+          <input type="checkbox" name="d" value="4" checked disabled><i class="iconfont"></i><span>选中禁用</span>
+        </label>
+
+        <div class="mb-20"></div>
+
+
+        <label class="ui-radio">
+          <input type="radio" name="d2" value="1"><i class="iconfont"></i><span>选项</span>
+        </label>
+
+        <label class="ui-radio">
+          <input type="radio" name="d2" value="3" checked><i class="iconfont"></i><span>选中</span>
+        </label>
+
+        <label class="ui-radio">
+          <input type="radio" name="d3" value="2" disabled><i class="iconfont"></i><span>禁用</span>
+        </label>
+
+        <label class="ui-radio">
+          <input type="radio" name="d3" value="4" checked disabled><i class="iconfont"></i><span>选中禁用</span>
+        </label>
+
+        <div class="mb-20"></div>
+
+        <label class="ui-switch">
+          <input type="checkbox" name="name" value="1" role="switch">
+          <span class="switch"></span>
+          <span class="open">开</span>
+          <span class="close">关</span>
+        </label>
+
+        <label class="ui-switch">
+          <input type="checkbox" name="name" value="2" role="switch" disabled>
+          <span class="switch"></span>
+          <span class="open">开</span>
+          <span class="close">禁用</span>
+        </label>
+
+        <label class="ui-switch">
+          <input type="checkbox" name="name" value="3" role="switch" disabled checked>
+          <span class="switch"></span>
+          <span class="open">禁用</span>
+          <span class="close">关</span>
+        </label>
+      </div>
+
+      <div id="Input">
+        <div class="ft-h1 line mtb-20">Input</div>
+
+        <input type="text" class="ui-form-control" placeholder="请输入">
+
+        <div class="mb-20"></div>
+
+        <input readonly type="text" class="ui-form-control disabled" value="不可编辑">
+
+        <div class="mb-20"></div>
+
+        <input type="text" class="ui-form-control error" value="错误">
+
+        <div class="mb-20"></div>
+
+        <div class="ui-icon-input">
+          <input type="password" class="ui-form-control" value="123123">
+          <span class="suffix"><i class="iconfont icon-eye"></i></span>
+        </div>
+
+        <div class="mb-20"></div>
+
+        <div class="ui-enter-count">
+          <textarea rows="5" class="ui-form-control" maxlength="20" placeholder="请输入"></textarea>
+          <span class="count">0/20</span>
+        </div>
+      </div>
+
+      <div id="Select">
+        <div class="ft-h1 line mtb-20">Select</div>
+
+        <div class="ui-control-wrap mb-20">
+          <select name="select" id="select" class="ui-select ui-form-control js-select">
+            <option value="0">请选择</option>
+            <option value="1">选项1</option>
+            <option value="2">选项2</option>
+            <option value="3">选项3</option>
+          </select>
+        </div>
+
+        <h3 class="ft-h3">多选</h3>
+        <div class="ui-control-wrap mb-20">
+          <select name="" class="js-select ui-select ui-form-control" id="multiple" multiple>
+            <option value="1">选项1</option>
+            <option value="2">选项2</option>
+            <option value="3" selected>选项3</option>
+            <option value="4" selected>选项4</option>
+            <option value="5" selected>选项5</option>
+            <option value="6">选项6</option>
+            <option value="7">选项7</option>
+          </select>
+        </div>
+
+        <h3 class="ft-h3">分组</h3>
+        <div class="ui-control-wrap mb-20">
+          <select name="grouppp" class="js-select ui-select ui-form-control s23">
+            <optgroup label="第一组">
+              <option value="1">选项1</option>
+              <option value="2">选项2</option>
+              <option value="3">选项3</option>
+            </optgroup>
+            <option value="4">选项4</option>
+            <option value="5">选项5</option>
+            <optgroup label="第二组">
+              <option selected value="6">选项6</option>
+              <option value="7">选项7</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <h3 class="ft-h3">分组+搜索</h3>
+        <div class="ui-control-wrap mb-20">
+          <select name="groupsearch" class="ui-select ui-form-control js-select s23" data-search>
+            <optgroup label="第一组">
+              <option value="1">选项1</option>
+              <option value="2">选项2</option>
+              <option value="3">选项3</option>
+            </optgroup>
+            <option value="4">选项4</option>
+            <option value="5">选项5</option>
+            <optgroup label="第二组">
+              <option selected value="6">选项6</option>
+              <option value="7">选项7</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <h3 class="ft-h3">分组+搜索+多选</h3>
+        <div class="ui-control-wrap mb-20">
+          <select name="groupmulti" class="js-select ui-select ui-form-control" data-search multiple>
+            <optgroup label="第一组">
+              <option value="1">选项1</option>
+              <option value="2">选项2</option>
+              <option value="3">选项3</option>
+            </optgroup>
+            <option value="4">选项4</option>
+            <option value="5">选项5</option>
+            <optgroup label="第二组">
+              <option selected value="6">选项6</option>
+              <option value="7">选项7</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
+
+      <div id="Table" class="mb-20">
+        <div class="ft-h1 line mtb-20">Table</div>
+
+        <table class="ui-table">
+          <thead>
+            <tr>
+              <th>Avatar</th>
+              <th>Name</th>
+              <th>Contact</th>
+              <th>Group</th>
+              <th>Date</th>
+              <th>Options</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <img class="u-circle" src="https://picsum.photos/id/237/32/32" height="32" width="32" alt="">
+              </td>
+              <td>
+                <div class="ft-12">
+                  张明
+                  <div class="ft-gray">202002030007</div>
+                </div>
+              </td>
+              <td>
+                <div class="ft-12">
+                  19766203418<br>d.rlocsf@gmail.com
+                </div>
+              </td>
+              <td>自定义1</td>
+              <td>2020-02-02</td>
+              <td><a href="#" class="ft-primary">查看详情</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="Pagination">
+        <div class="ft-h1 line mb-20">Pagination</div>
+
+        <div class="ui-pagination">
+          <a href="#" class="page"><i class="iconfont icon-arrow-left"></i></a>
+          <span class="page active">1</span>
+          <a href="#" class="page">2</a>
+          <a href="#" class="page">3</a>
+          <!-- <span class="ellipsis">...</span> -->
+          <a href="#" class="page">4</a>
+          <a href="#" class="page">5</a>
+          <a href="#" class="page"><i class="iconfont icon-arrow-right"></i></a>
+          <div class="ui-control-wrap">
+            <select class="ui-select js-select w94">
+              <option value="1">10条/页</option>
+              <option value="2">20条/页</option>
+              <option value="3">30条/页</option>
+            </select>
+          </div>
+          <span class="text">跳至</span>
+          <input class="ui-form-control" type="text" name="page">
+          <span class="text">页</span>
+          <!-- <span class="total">10条/页，共126条</span> -->
+        </div>
+
+        <div class="mb-20"></div>
+
+        <div class="ui-pagination">
+          <a href="#" class="page"><i class="iconfont icon-arrow-left"></i></a>
+          <span class="page active">1</span>
+          <a href="#" class="page">2</a>
+          <a href="#" class="page">3</a>
+          <a href="#" class="page">4</a>
+          <a href="#" class="page">5</a>
+          <a href="#" class="page"><i class="iconfont icon-arrow-right"></i></a>
+        </div>
+
+        <div class="mb-20"></div>
+
+        <div class="ui-pagination small">
+          <a href="#" class="page"><i class="iconfont icon-arrow-left"></i></a>
+          <span class="page active">1</span>
+          <a href="#" class="page">2</a>
+          <a href="#" class="page">3</a>
+          <a href="#" class="page">4</a>
+          <a href="#" class="page">5</a>
+          <a href="#" class="page"><i class="iconfont icon-arrow-right"></i></a>
+          <span class="text">跳至</span>
+          <input class="ui-form-control" type="text" name="page">
+          <span class="text">页</span>
+        </div>
+      </div>
+    </main>
   </div>
 
+
+  <div class="hidden">
+
+
+
+
+    <div class="ft-h1 mtb-20">Badge</div>
+
+    <div>
+      <div class="pb-10">
+        <div class="ui-badge">
+          <i class="iconfont icon-bell"></i>
+          <em class="count">2</em>
+        </div>
+
+        <div class="ui-badge">
+          <i class="iconfont icon-bell"></i>
+          <em class="count">99+</em>
+        </div>
+      </div>
+
+      <div class="pb-10">
+        <div class="ui-badge">
+          <span class="text">运行中</span>
+        </div>
+        <div class="ui-badge stop">
+          <span class="text">停止运行</span>
+        </div>
+        <div class="ui-badge tip">
+          <span class="text">未读消息</span>
+        </div>
+        <div class="ui-badge over">
+          <span class="text">已读消息</span>
+        </div>
+      </div>
+    </div>
+
+
+  <div class="mtb-20 ft-h1">Steps</div>
+
+  <div>
+    <div class="ui-steps">
+      <ul class="steps">
+        <li class="step active"><span>筛选</span></li>
+        <li class="step"><span>配置</span></li>
+        <li class="step"><span>导出</span></li>
+      </ul>
+    </div>
+
+    <div class="mb-20"></div>
+
+    <div class="ui-steps">
+      <ul class="steps">
+        <li class="step pass"><span>筛选</span></li>
+        <li class="step active"><span>配置</span></li>
+        <li class="step"><span>导出</span></li>
+      </ul>
+    </div>
+
+    <div class="mb-20"></div>
+
+    <div class="ui-steps">
+      <ul class="steps">
+        <li class="step pass"><span>筛选</span></li>
+        <li class="step pass"><span>配置</span></li>
+        <li class="step active"><span>导出</span></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+  <div class="ft-h1 mtb-20">Upload</div>
+
+  <div class="ui-upload-img mr-12" style="width: 98px;height: 98px;">
+    <label class="trigger"><i class="iconfont icon-plus"></i><input type="file"></label>
+    <div class="image hidden"></div>
+  </div>
+
+  <div class="mb-20"></div>
+
+  <div class="ui-upload-img" style="width: 224px;height: 116px;">
+    <label class="trigger hidden"><i class="iconfont icon-plus"></i><input type="file"></label>
+    <div class="image">
+      <input type="hidden" name="file" value="https://picsum.photos/id/237/300/300">
+      <img src="https://picsum.photos/id/237/300/300">
+      <div class="option">
+        <a href="javascript:;" class="js-change">替换</a><a href="javascript:;" class="js-clean">清除</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="mb-20"></div>
+
+  <div class="ui-upload-multiple" data-drag>
+    <label class="trigger">
+      <input type="file" multiple accept=".csv">
+      <i class="iconfont icon-upload"></i>
+      <div class="mt-20">点击或将文件拖拽到这里上传，最大支持20MB文件，支持扩展名：.csv</div>
+    </label>
+  </div>
+
+  <div style="width: 642px;">
+    <div class="ui-file-list"></div>
+  </div>
+
+
+  <script>
+    // require(['ui', 'jquery'], function (ui, $) {
+    //   var ui = window.ui;
+    //   var Upload = ui.Upload;
+    //   var Message = ui.Message;
+    //   var UploadHelper = ui.UploadHelper;
+
+    //   UploadHelper('.ui-upload-img', {
+    //     url: 'https://api.cooode.xyz/api/upload'
+    //   })
+
+
+    //   UploadHelper(document.querySelector('.ui-upload-multiple'), {
+    //     url: 'https://api.cooode.xyz/api/upload',
+    //     start() {
+    //       var { id, file } = this;
+    //       var item = this;
+    //       var dom = $(`<div class="file-item" id="${id}">
+    //                   <a href="javascript:;" class="cancel iconfont icon-times"></a>
+    //                   <div class="file-name"><i class="iconfont icon-paperclip"></i>${file.name}</div>
+    //                   <div class="progress">
+    //                     <div class="bar" style="width: 0"></div>
+    //                   </div>
+    //                 </div>`);
+    //       $('.ui-file-list').append(dom);
+
+    //       $('#' + id).on('click', 'cancel', function () {
+    //         item.abort();
+    //       })
+
+    //       return true;
+    //     },
+    //     beforeUploadStart(data, aa) {
+    //       aa(true)
+    //     },
+    //     beforeUpload(num, callback) {
+    //       console.log(this, num)
+
+    //       callback(true)
+    //     },
+    //     progress(data) {
+    //       var percent = data + '%';
+    //       $('#' + this.id).find('.bar')[0].style.width = percent;
+    //       console.log(this, data)
+    //     },
+    //     success(data) {
+    //       $('#' + this.id).find('.cancel').remove();
+    //     },
+    //     error(err) {
+    //       console.log(err, 'error');
+    //       if (err.message) {
+    //         new Message().warn(err.message)
+    //       }
+
+    //       $('#' + this.id).find('.bar').addClass('warn');
+
+    //     }
+    //   })
+    // })
+  </script>
+
+  <div class="ft-h1 mtb-20">Tab</div>
+
+  <div class="ui-mod">
+    <div class="ui-path mb-12">
+      <a class="link" href="#">一级页面</a><span class="line">/</span><span>二级页面</span>
+    </div>
+    <div class="ui-tab">
+      <ul class="tab-list">
+        <li class="tab-itm"><a href="#">Tab1</a></li>
+        <li class="tab-itm active"><a href="#">Tab2</a></li>
+        <li class="tab-itm"><a href="#">Tab3</a></li>
+        <li class="tab-itm"><a href="#">Tab4</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="mb-20"></div>
+
+  <div class="ui-tab small">
+    <ul class="tab-list">
+      <li class="tab-itm"><a href="#" class="itm">Tab1</a></li>
+      <li class="tab-itm active"><a href="#" class="itm">Tab2</a></li>
+      <li class="tab-itm"><a href="#" class="itm">Tab3</a></li>
+      <li class="tab-itm"><a href="#" class="itm">Tab4</a></li>
+    </ul>
+  </div>
+
+  <div class="ft-h1 mtb-20">Tree</div>
+
+  <div class="w240">
+    <div class="ui-tree">
+      <div class="tree-group">
+        <div class="node-label node-trigger expend">默认模版</div>
+        <div class="tree-node active">
+          <a class="node-label pl-24" href="#">main.html</a>
+        </div>
+        <div class="tree-node">
+          <a class="node-label pl-24" href="#">main.html</a>
+        </div>
+      </div>
+      <div class="tree-group">
+        <div class="node-label node-trigger expend">自定义模版</div>
+        <div class="tree-node">
+          <a class="node-label pl-24" href="#">main.html</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="ft-h1 mtb-20">Transfer</div>
+
+  <div class="">
+    <div class="ui-transfer">
+      <div class="transfer-list">
+        <div class="ui-tree checkable" data-checkable>
+          <div class="tree-group">
+            <div class="node-label expend transfer-title">
+              <label class="ui-checkbox"><input type="checkbox" class="check-all" value="all"><i class="iconfont"></i><span>所有字段</span></label>
+            </div>
+            <div class="tree-group">
+              <div class="node-label node-trigger expend" style="padding-left: 16px;">
+                <label class="ui-checkbox"><input type="checkbox" class="check-all" value="sys"><i class="iconfont"></i><span>系统预制</span></label>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="1"><i class="iconfont"></i><span>会员ID</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="2"><i class="iconfont"></i><span>会员来源</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="3"><i class="iconfont"></i><span>注册时间</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="tree-group">
+              <div class="node-label node-trigger expend" style="padding-left: 16px;">
+                <label class="ui-checkbox"><input type="checkbox" class="check-all" value="base"><i class="iconfont"></i><span>基本信息</span></label>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="4"><i class="iconfont"></i><span>手机号</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="5"><i class="iconfont"></i><span>会员姓名</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="6"><i class="iconfont"></i><span>会员类型</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="7"><i class="iconfont"></i><span>公司名称</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="8"><i class="iconfont"></i><span>职务</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="9"><i class="iconfont"></i><span>职级</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="10"><i class="iconfont"></i><span>邮箱</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="11"><i class="iconfont"></i><span>历史购买状态</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="transfer-list">
+        <div class="transfer-title"><span class="ft-h3">已选字段</span><span class="ft-gray ml-8 ft-12">可拖动排序</span></div>
+        <div class="select-list">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // require(['ui', 'sortable'], function (ui, Sortable) {
+    //   var Transfer = window.ui.Transfer;
+    //   new Transfer('.ui-transfer', {}, Sortable);
+
+
+    // })
+  </script>
+
+
+
+  <!-- <h3 class="ft-h3">分组+checobox+多选</h3>
+  <div class="ui-control-wrap mb-20">
+    <select name="groupcheckbox" class="js-select ui-select ui-form-control" data-search data-checkable multiple>
+      <optgroup label="第一组">
+        <option value="1">选项1</option>
+        <option value="2">选项2</option>
+        <option value="3">选项3</option>
+      </optgroup>
+      <option value="4">选项4</option>
+      <option value="5">选项5</option>
+      <optgroup label="第二组">
+        <option selected value="6">选项6</option>
+        <option value="7">选项7</option>
+      </optgroup>
+    </select>
+  </div> -->
+
+  <h3 class="ft-h3">多选</h3>
+  <div class="ui-control-wrap mb-20">
+    <input type="text" class="js-select-tag ui-select ui-form-control" data-multiple data-max="2">
+  </div>
+
+  <script>
+    // require(['ui'], function () {
+    //   var ui = window.ui;
+    //   var Select = ui.Select;
+
+    //   var Tooltip = window.ui.Tooltip
+    //   new Tooltip('[data-tooltip]');
+
+    //   // 初始化下拉框
+    //   new Select('.js-select');
+
+    //   var sys = ['1', '2', '4', '7'];
+
+    //   var data = [{
+    //     label: 'abc',
+    //     value: '1',
+    //     selected: false,
+    //     type: 'sys'
+    //   }, {
+    //     label: 'def',
+    //     value: '2',
+    //     selected: false,
+    //     type: 'sys'
+    //   }, {
+    //     label: 'hig',
+    //     value: '3',
+    //     selected: false,
+    //     type: 'cus'
+    //   }, {
+    //     label: 'klmn',
+    //     value: '4',
+    //     selected: false,
+    //     type: 'cus'
+    //   }]
+
+    //   new Select('.js-select-tag', {
+    //     data: data,
+    //     multiple: true,
+    //     enterable: true,
+    //     optionTemplate: function ({ type, value, label }) {
+    //       return `<span data-tooltip data-position="center top" data-title="${label}" class="ui-tag ${type}">${label}</span>`
+    //     },
+    //     tagClass: function ({ type }) {
+    //       return type || 'cus';
+    //     }
+    //   })
+  </script>
+
+  <h3 class="ft-h3">多级联动</h3>
+  <div class="ui-control-wrap">
+    <input type="hidden" id="select3-input">
+    <div id="select3" class="ui-select ui-form-control" data-ajax="https://api.cooode.xyz/api/js-select,https://api.cooode.xyz/api/js-select,https://api.cooode.xyz/api/js-select" data-level="3" data-input="#select3-input">请选择</div>
+  </div>
+
+  <script>
+      // require(['ui'], function (ui) {
+      //   var ui = window.ui;
+      //   var Cascader = ui.Cascader;
+      //   new Cascader('#select3', {
+      //     optionGroupClass: 'ui-select-dropdown menu-group hide'
+      //   });
+      // })
+  </script>
+
+  <div class="ft-h1 mtb-20">Tip</div>
+
+  <div>
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="right top" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="right bottom" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="right middle" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="left top" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="left middle" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="center top" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="center bottom" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+  </div>
+
+  <div class="ft-h1 mtb-20">Alert</div>
+
+  <div id="alert">
+    <div>
+      <div class="ui-notice mb-20" data-closeable>
+        <p>这里是一般信息提示——单行，可手动“关闭”，如该信息不可关闭则右侧无“X”icon，其它提示信息不再列举可手动关闭样式</p>
+        <i class="iconfont icon-times"></i>
+      </div>
+
+      <div class="ui-notice mb-20" data-closeable>
+        <p>这里是一般信息提示——多行，这里是一般提示信息——多行，这里是一般提示信息——多行，这里是一般提示信息——多行，这里是一般提示信息——多行，这里是一般提示信息——多行，这里是一般提示信息——多行，这里是一般提示信息——多行，这里是一般提示信息——多行，这里是一般提示信息——多行，这里是一般提• 其它提示类信息不再略举多行样式和关闭样式</p>
+        <i class="iconfont icon-times"></i>
+      </div>
+
+      <div class="ui-notice small mb-20">这里是一般信息提示</div>
+
+      <div class="ui-notice line mb-20">弹窗里的那个提示</div>
+
+      <div class="ui-notice warn mb-20">
+        <p>这里是一般警示、警告信息提示</p>
+      </div>
+
+      <div class="ui-notice error mb-20">
+        <p>这里是一般严重警告、禁止信息提示</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="mtb-20 ft-h1">Modal</div>
+
+  <div class="pb-16">
+    <button class="ui-button primary js-modal-btn">Modal</button>
+  </div>
+  <div class="pb-16">
+    <button class="ui-button primary js-alert-btn">Alert</button>
+  </div>
+  <div class="pb-16">
+    <button class="ui-button primary js-alert-warn">Alert</button>
+  </div>
+  <div class="pb-16">
+    <button class="ui-button primary js-confirm-btn">Confirm</button>
+  </div>
+
+  <script>
+      // require(['ui'], function (ui) {
+      //   var ui = window.ui;
+      //   var Modal = ui.Modal;
+      //   var Message = ui.Message;
+
+
+      //   var btn = document.querySelector('.js-modal-btn');
+
+      //   var m = new Modal({
+      //     resize: true,
+      //     onOpen: function () {
+      //       console.log('open')
+      //     },
+      //     onConfirm: function (e, modal) {
+      //       console.log('ok');
+      //       modal.hide();
+      //     }
+      //   });
+
+      //   btn.addEventListener('click', function () {
+      //     m.show({
+      //       content: '<div class="modal-main">hello</main>',
+      //       title: 'Modal'
+      //     });
+      //   });
+
+      //   var m2 = new Message();
+
+      //   document.querySelector('.js-alert-btn').addEventListener('click', function () {
+      //     m2.success('这里是信息提示这里是信息提示这里是信息提示');
+      //   });
+
+      //   document.querySelector('.js-alert-warn').addEventListener('click', function () {
+      //     m2.warn('这里是信息提示这里是信息提示这里是信息提示');
+      //   });
+
+      //   var m3 = new Modal({
+      //     type: 'confirm',
+      //   });
+
+      //   document.querySelector('.js-confirm-btn').addEventListener('click', function () {
+      //     m3.confirm({
+      //       content: '积分不足',
+      //       desc: '当前积分余额为1，完成当前操作需要消耗20积分'
+      //     });
+      //   });
+      // })
+  </script>
+
+  <div class="ft-h1 mtb-20">Icon Input</div>
+
+  <div class="pb-10">
+    <div class="pb-20">
+      <div class="ui-control-wrap">
+        <div class="ui-icon-input w240 ">
+          <input type="text" class="ui-form-control" name="date" id="datepicker" readonly>
+          <span class="suffix"><i class="iconfont icon-arrow-down"></i></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="pb-10">
+    <div class="pb-20">
+      <div class="ui-icon-input w240">
+        <input type="text" class="ui-form-control" name="date-range" id="date-range">
+        <span class="suffix"><i class="iconfont icon-calendar"></i></span>
+      </div>
+    </div>
+  </div>
+
+  <script>
+      // require(['ui', 'jquery', 'pikaday', 'daterangepicker'], function (ui, $, Pikaday, daterangepicker) {
+      //   var ui = window.ui;
+
+      //   var InputCount = ui.InputCount;
+      //   var Validator = ui.Validator;
+      //   var PikaEx = ui.PikaEx;
+
+      //   $('#date-range').daterangepicker({
+      //     showDropdowns: true,
+      //     locale: {
+      //       format: 'YYYY/MM/DD',
+      //       separator: ' - ',
+      //       applyLabel: '确定',
+      //       cancelLabel: '取消',
+      //       fromLabel: '从',
+      //       toLabel: '到',
+      //       customRangeLabel: '自定义',
+      //       weekLabel: '周',
+      //       daysOfWeek: [
+      //         '日',
+      //         '一',
+      //         '二',
+      //         '三',
+      //         '四',
+      //         '五',
+      //         '六'
+      //       ],
+      //       monthNames: [
+      //         '一月',
+      //         '二月',
+      //         '三月',
+      //         '四月',
+      //         '五月',
+      //         '六月',
+      //         '七月',
+      //         '八月',
+      //         '九月',
+      //         '十月',
+      //         '十一月',
+      //         '十二月'
+      //       ],
+      //       firstDay: 1
+      //     }
+      //   });
+
+      //   new PikaEx('#datepicker', {}, [{
+      //     label: 'AA4321活动结束后自动开始',
+      //     value: '2020-02-02'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4323活动结束后自动开始',
+      //     value: 1585353600000
+      //   }], Pikaday);
+
+
+      //   // 输入文字计数
+      //   new InputCount('.ui-enter-count');
+
+      //   new Validator('#form');
+      //   // --- modal
+      // })
+  </script>
+
+
+  <div class="ui-empty mt-24">
+    <i class="iconfont icon-empty"></i>
+    <p class="con mb-24">暂无XXXXXXXXXX</p>
+  </div>
+
+  <div class="ft-h1 mtb-20">Layout</div>
+
+  <div class="ui-empty">
+    <i class="iconfont icon-empty"></i>
+    <p class="con mb-24">暂无XXXXXXXXXX</p>
+    <a href="#" class="ui-button primary">引导操作</a>
+  </div>
+
+  <div class="ui-feedback">
+    <div class="iconfont icon-success-fill ft-success"></div>
+    <div class="tit">XXXX成功</div>
+    <div class="con ft-gray">辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明</div>
+    <div class="btn">
+      <a href="#" class="ui-button">引导操作一</a>
+      <a href="#" class="ui-button">引导操作二</a>
+    </div>
+  </div>
+
+  <div class="ui-feedback">
+    <div class="iconfont icon-info-fill ft-error"></div>
+    <div class="tit">XXXX失败</div>
+    <div class="con ft-gray">辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明</div>
+    <div class="btn">
+      <a href="#" class="ui-button primary">引导操作</a>
+    </div>
+  </div>
+
+  <div class="ui-feedback">
+    <div class="iconfont icon-info-fill ft-primary"></div>
+    <div class="tit">XXXX成功</div>
+    <div class="con">辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明</div>
+    <div class="btn">
+      <a href="#" class="ui-button primary">引导操作</a>
+    </div>
+  </div>
+  </div>
+</div>
+
+  <!-- <div id="content">
+    <pre><code class="language-js">var turndownService = new TurndownService()
+      console.log(
+        turndownService.turndown('&lt;h1&gt;Hello world&lt;/h1&gt;')
+      )</code></pre>
+  </div> -->
+
   <script src="./src/ui.es6"></script>
+  <script>
+    window.onload = function () {
+      var turndownService = new TurndownService();
+      [].slice.call(document.querySelectorAll('.md-code')).forEach(item => {
+        turndownService.turndown(item)
+      })
+
+      var { Select } = window.ui;
+
+
+      new Select('.js-select');
+    }
+  </script>
 </body>
+
 </html>
