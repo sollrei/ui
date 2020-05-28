@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>iui</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Muli|Lato" rel="stylesheet">
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1674032_ock2bes9o9.css">
+
+    <link rel="stylesheet" href="/iui/assets/styles.css">
+    
+    <link rel="stylesheet" href="/iui/dist/ui.css">
+    
+</head>
+
+
+<body>
+
+<header class="page-header mb-20">
+  <div class="page-layout">
+    <h2 class="page-title pl-20">
+      UI
+    </h2>
+  </div>
+</header>
+
+<div class="page-wrap page-layout">
+    <div class="page-side">
+
+        <nav class="page-nav">
+    
+    
+    
+    <h4 class="ft-title">Base</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/typography/"><span>Typography</span></a></li>
+        
+    </ul>
+    
+    
+    
+    <h4 class="ft-title">Form</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/button/"><span>Button</span></a></li>
+        
+        <li class=""><a href="/iui/docs/checkbox/"><span>Checkbox</span></a></li>
+        
+        <li class="active"><a href="/iui/docs/input/"><span>Input</span></a></li>
+        
+        <li class=""><a href="/iui/docs/select/"><span>Select</span></a></li>
+        
+        <li class=""><a href="/iui/docs/upload/"><span>Upload</span></a></li>
+        
+        <li class=""><a href="/iui/docs/form/"><span>Form</span></a></li>
+        
+    </ul>
+    
+    
+    
+    <h4 class="ft-title">Data</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/pagination/"><span>Pagination</span></a></li>
+        
+        <li class=""><a href="/iui/docs/table/"><span>Table</span></a></li>
+        
+        <li class=""><a href="/iui/docs/tag/"><span>Tag</span></a></li>
+        
+        <li class=""><a href="/iui/docs/badge/"><span>Badge</span></a></li>
+        
+        <li class=""><a href="/iui/docs/progress/"><span>Progress</span></a></li>
+        
+    </ul>
+    
+    
+    
+    <h4 class="ft-title">Navigation</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/crumbs/"><span>Crumbs</span></a></li>
+        
+        <li class=""><a href="/iui/docs/menu/"><span>Menu</span></a></li>
+        
+        <li class=""><a href="/iui/docs/tab/"><span>Tab</span></a></li>
+        
+        <li class=""><a href="/iui/docs/tree/"><span>Tree</span></a></li>
+        
+    </ul>
+    
+    
+    
+    <h4 class="ft-title">Notice</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/alert/"><span>Alert</span></a></li>
+        
+        <li class=""><a href="/iui/docs/modal/"><span>Modal</span></a></li>
+        
+        <li class=""><a href="/iui/docs/popup/"><span>Popup</span></a></li>
+        
+        <li class=""><a href="/iui/docs/tooltip/"><span>Tooltip</span></a></li>
+        
+    </ul>
+    
+</nav>
+    </div>
+    <div class="page-main">
+        <main class="main" aria-label="content">
+            <h1 id="input">Input</h1>
+
+<h3 id="默认">默认</h3>
+
+<p><input type="text" class="ui-form-control" placeholder="请输入" /></p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"ui-form-control"</span> <span class="na">placeholder=</span><span class="s">"请输入"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="禁用">禁用</h3>
+
+<p><input type="text" class="ui-form-control disabled" disabled="" value="输入完成" /></p>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"ui-form-control disabled"</span> <span class="na">disabled</span> <span class="na">value=</span><span class="s">"输入完成"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="错误">错误</h3>
+
+<div class="ui-control-wrap">
+  <input type="text" class="ui-form-control error" value="输入完成" />
+</div>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"ui-form-control error"</span> <span class="na">value=</span><span class="s">"输入完成"</span><span class="nt">&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="icon">Icon</h3>
+
+<div class="ui-icon-input">
+  <input type="text" class="ui-form-control" />
+  <span class="suffix"><i class="iconfont icon-eye"></i></span>
+</div>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui-icon-input"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"ui-form-control"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"suffix"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"iconfont icon-eye"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<div class="ui-icon-input">
+  <span class="prefix"><i class="iconfont icon-search"></i></span>
+  <input type="text" class="ui-form-control" />
+</div>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui-icon-input"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"prefix"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"iconfont icon-search"</span><span class="nt">&gt;&lt;/i&gt;&lt;/span&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"ui-form-control"</span><span class="nt">&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<h3 id="字数限制">字数限制</h3>
+
+<blockquote>
+  <p>需要有<code class="highlighter-rouge">maxlenth</code>属性</p>
+</blockquote>
+
+<div class="ui-enter-count">
+  <input type="text" class="ui-form-control" maxlength="20" />
+  <span class="count">0/20</span>
+</div>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui-enter-count"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"text"</span> <span class="na">class=</span><span class="s">"ui-form-control"</span> <span class="na">maxlength=</span><span class="s">"20"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;span</span> <span class="na">class=</span><span class="s">"count"</span><span class="nt">&gt;</span>0/20<span class="nt">&lt;/span&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<div class="language-javascript highlighter-rouge"><pre class="highlight"><code><span class="k">new</span> <span class="nx">InputCount</span><span class="p">(</span><span class="s1">'.ui-enter-count'</span><span class="p">);</span>
+</code></pre>
+</div>
+
+        </main>
+    </div>
+
+</div>
+
+<footer class="page-footer">
+    &copy; 2020
+</footer>
+
+<script src="/iui/dist/ui.js"></script>
+<script src="/iui/assets/main.js"></script>
+
+
+</body>
+</html>

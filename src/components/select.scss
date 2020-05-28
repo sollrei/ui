@@ -3,7 +3,6 @@
 .ui-select {
   height: $form-control-height;
   position: relative;
-  appearance: none;
   background: #fff;
   cursor: pointer;
   white-space: nowrap;
@@ -93,6 +92,7 @@
 }
 
 select.ui-select {
+  appearance: none;
   color: $light;
   background-image: url(https://img-i.gcimg.net/2020/0409/lzims0ak34t1rchd011816.png);
   background-size: 16px;

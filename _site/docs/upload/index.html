@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>iui</title>
+
+    <link href="https://fonts.googleapis.com/css?family=Muli|Lato" rel="stylesheet">
+
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1674032_ock2bes9o9.css">
+
+    <link rel="stylesheet" href="/iui/assets/styles.css">
+    
+    <link rel="stylesheet" href="/iui/dist/ui.css">
+    
+</head>
+
+
+<body>
+
+<header class="page-header mb-20">
+  <div class="page-layout">
+    <h2 class="page-title pl-20">
+      UI
+    </h2>
+  </div>
+</header>
+
+<div class="page-wrap page-layout">
+    <div class="page-side">
+
+        <nav class="page-nav">
+    
+    
+    
+    <h4 class="ft-title">Base</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/typography/"><span>Typography</span></a></li>
+        
+    </ul>
+    
+    
+    
+    <h4 class="ft-title">Form</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/button/"><span>Button</span></a></li>
+        
+        <li class=""><a href="/iui/docs/checkbox/"><span>Checkbox</span></a></li>
+        
+        <li class=""><a href="/iui/docs/input/"><span>Input</span></a></li>
+        
+        <li class=""><a href="/iui/docs/select/"><span>Select</span></a></li>
+        
+        <li class="active"><a href="/iui/docs/upload/"><span>Upload</span></a></li>
+        
+        <li class=""><a href="/iui/docs/form/"><span>Form</span></a></li>
+        
+    </ul>
+    
+    
+    
+    <h4 class="ft-title">Data</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/pagination/"><span>Pagination</span></a></li>
+        
+        <li class=""><a href="/iui/docs/table/"><span>Table</span></a></li>
+        
+        <li class=""><a href="/iui/docs/tag/"><span>Tag</span></a></li>
+        
+        <li class=""><a href="/iui/docs/badge/"><span>Badge</span></a></li>
+        
+        <li class=""><a href="/iui/docs/progress/"><span>Progress</span></a></li>
+        
+    </ul>
+    
+    
+    
+    <h4 class="ft-title">Navigation</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/crumbs/"><span>Crumbs</span></a></li>
+        
+        <li class=""><a href="/iui/docs/menu/"><span>Menu</span></a></li>
+        
+        <li class=""><a href="/iui/docs/tab/"><span>Tab</span></a></li>
+        
+        <li class=""><a href="/iui/docs/tree/"><span>Tree</span></a></li>
+        
+    </ul>
+    
+    
+    
+    <h4 class="ft-title">Notice</h4>
+    <ul class="ft-content mb-20">
+        
+        <li class=""><a href="/iui/docs/alert/"><span>Alert</span></a></li>
+        
+        <li class=""><a href="/iui/docs/modal/"><span>Modal</span></a></li>
+        
+        <li class=""><a href="/iui/docs/popup/"><span>Popup</span></a></li>
+        
+        <li class=""><a href="/iui/docs/tooltip/"><span>Tooltip</span></a></li>
+        
+    </ul>
+    
+</nav>
+    </div>
+    <div class="page-main">
+        <main class="main" aria-label="content">
+            <h1 id="upload">Upload</h1>
+
+<div class="ui-upload-img" style="width: 98px;height: 98px;">
+  <label class="trigger"><i class="iconfont icon-plus"></i><input type="file" /></label>
+  <div class="image hidden"></div>
+</div>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui-upload-img"</span> <span class="na">style=</span><span class="s">"width: 98px;height: 98px;"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"trigger"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"iconfont icon-plus"</span><span class="nt">&gt;&lt;/i&gt;&lt;input</span> <span class="na">type=</span><span class="s">"file"</span><span class="nt">&gt;&lt;/label&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"image hidden"</span><span class="nt">&gt;&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<div class="ui-upload-img" style="width: 98px;height: 98px;">
+  <label class="trigger hidden"><i class="iconfont icon-plus"></i><input type="file" /></label>
+  <div class="image">
+    <input type="hidden" name="file" value="https://picsum.photos/id/237/300/300" />
+    <img src="https://picsum.photos/id/237/300/300" />
+    <div class="option">
+      <a href="javascript:;" class="js-change">替换</a><a href="javascript:;" class="js-clean">清除</a>
+    </div>
+  </div>
+</div>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui-upload-img"</span> <span class="na">style=</span><span class="s">"width: 98px;height: 98px;"</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"trigger hidden"</span><span class="nt">&gt;&lt;i</span> <span class="na">class=</span><span class="s">"iconfont icon-plus"</span><span class="nt">&gt;&lt;/i&gt;&lt;input</span> <span class="na">type=</span><span class="s">"file"</span><span class="nt">&gt;&lt;/label&gt;</span>
+  <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"image"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"hidden"</span> <span class="na">name=</span><span class="s">"file"</span> <span class="na">value=</span><span class="s">"https://picsum.photos/id/237/300/300"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">"https://picsum.photos/id/237/300/300"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"option"</span><span class="nt">&gt;</span>
+      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">"javascript:;"</span> <span class="na">class=</span><span class="s">"js-change"</span><span class="nt">&gt;</span>替换<span class="nt">&lt;/a&gt;&lt;a</span> <span class="na">href=</span><span class="s">"javascript:;"</span> <span class="na">class=</span><span class="s">"js-clean"</span><span class="nt">&gt;</span>清除<span class="nt">&lt;/a&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+<div class="ui-upload-multiple" data-drag="">
+  <label class="trigger">
+    <input type="file" multiple="" accept=".csv" />
+    <i class="iconfont icon-upload"></i>
+    <div class="mt-20">点击或将文件拖拽到这里上传，最大支持20MB文件，支持扩展名：.csv</div>
+  </label>
+</div>
+
+<div class="language-html highlighter-rouge"><pre class="highlight"><code><span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"ui-upload-multiple"</span> <span class="na">data-drag</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;label</span> <span class="na">class=</span><span class="s">"trigger"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">"file"</span> <span class="na">multiple</span> <span class="na">accept=</span><span class="s">".csv"</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;i</span> <span class="na">class=</span><span class="s">"iconfont icon-upload"</span><span class="nt">&gt;&lt;/i&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">"mt-20"</span><span class="nt">&gt;</span>点击或将文件拖拽到这里上传，最大支持20MB文件，支持扩展名：.csv<span class="nt">&lt;/div&gt;</span>
+  <span class="nt">&lt;/label&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+</code></pre>
+</div>
+
+        </main>
+    </div>
+
+</div>
+
+<footer class="page-footer">
+    &copy; 2020
+</footer>
+
+<script src="/iui/dist/ui.js"></script>
+<script src="/iui/assets/main.js"></script>
+
+
+</body>
+</html>

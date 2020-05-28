@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./iconfont/iconfont.css">
+  <link rel="stylesheet" href="./src/ui.scss">
+  <script src="https://unpkg.com/turndown/dist/turndown.js"></script>
+  <style>
+    .layout {
+      width: 80%;
+      margin: 40px auto;
+    }
+
+    nav {
+      width: 200px;
+      line-height: 2;
+    }
+
+    nav ul {
+      position: fixed;
+    }
+
+    pre {
+      background: #f2f3f4;
+    }
+
+    .md-code {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+
+<body class="layout">
+
+
+  <div class="hidden">
+
+
+
+
+  <script>
+    // require(['ui', 'jquery'], function (ui, $) {
+    //   var ui = window.ui;
+    //   var Upload = ui.Upload;
+    //   var Message = ui.Message;
+    //   var UploadHelper = ui.UploadHelper;
+
+    //   UploadHelper('.ui-upload-img', {
+    //     url: 'https://api.cooode.xyz/api/upload'
+    //   })
+
+
+    //   UploadHelper(document.querySelector('.ui-upload-multiple'), {
+    //     url: 'https://api.cooode.xyz/api/upload',
+    //     start() {
+    //       var { id, file } = this;
+    //       var item = this;
+    //       var dom = $(`<div class="file-item" id="${id}">
+    //                   <a href="javascript:;" class="cancel iconfont icon-times"></a>
+    //                   <div class="file-name"><i class="iconfont icon-paperclip"></i>${file.name}</div>
+    //                   <div class="progress">
+    //                     <div class="bar" style="width: 0"></div>
+    //                   </div>
+    //                 </div>`);
+    //       $('.ui-file-list').append(dom);
+
+    //       $('#' + id).on('click', 'cancel', function () {
+    //         item.abort();
+    //       })
+
+    //       return true;
+    //     },
+    //     beforeUploadStart(data, aa) {
+    //       aa(true)
+    //     },
+    //     beforeUpload(num, callback) {
+    //       console.log(this, num)
+
+    //       callback(true)
+    //     },
+    //     progress(data) {
+    //       var percent = data + '%';
+    //       $('#' + this.id).find('.bar')[0].style.width = percent;
+    //       console.log(this, data)
+    //     },
+    //     success(data) {
+    //       $('#' + this.id).find('.cancel').remove();
+    //     },
+    //     error(err) {
+    //       console.log(err, 'error');
+    //       if (err.message) {
+    //         new Message().warn(err.message)
+    //       }
+
+    //       $('#' + this.id).find('.bar').addClass('warn');
+
+    //     }
+    //   })
+    // })
+  </script>
+  <div class="ft-h1 mtb-20">Transfer</div>
+
+  <div class="">
+    <div class="ui-transfer">
+      <div class="transfer-list">
+        <div class="ui-tree checkable" data-checkable>
+          <div class="tree-group">
+            <div class="node-label expend transfer-title">
+              <label class="ui-checkbox"><input type="checkbox" class="check-all" value="all"><i class="iconfont"></i><span>所有字段</span></label>
+            </div>
+            <div class="tree-group">
+              <div class="node-label node-trigger expend" style="padding-left: 16px;">
+                <label class="ui-checkbox"><input type="checkbox" class="check-all" value="sys"><i class="iconfont"></i><span>系统预制</span></label>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="1"><i class="iconfont"></i><span>会员ID</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="2"><i class="iconfont"></i><span>会员来源</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="3"><i class="iconfont"></i><span>注册时间</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="tree-group">
+              <div class="node-label node-trigger expend" style="padding-left: 16px;">
+                <label class="ui-checkbox"><input type="checkbox" class="check-all" value="base"><i class="iconfont"></i><span>基本信息</span></label>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="4"><i class="iconfont"></i><span>手机号</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="5"><i class="iconfont"></i><span>会员姓名</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="6"><i class="iconfont"></i><span>会员类型</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="7"><i class="iconfont"></i><span>公司名称</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="8"><i class="iconfont"></i><span>职务</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="9"><i class="iconfont"></i><span>职级</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="10"><i class="iconfont"></i><span>邮箱</span></label>
+                </div>
+              </div>
+              <div class="tree-node">
+                <div class="node-label" style="padding-left: 64px;">
+                  <label class="ui-checkbox"><input type="checkbox" value="11"><i class="iconfont"></i><span>历史购买状态</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="transfer-list">
+        <div class="transfer-title"><span class="ft-h3">已选字段</span><span class="ft-gray ml-8 ft-12">可拖动排序</span></div>
+        <div class="select-list">
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // require(['ui', 'sortable'], function (ui, Sortable) {
+    //   var Transfer = window.ui.Transfer;
+    //   new Transfer('.ui-transfer', {}, Sortable);
+
+
+    // })
+  </script>
+
+
+
+  <!-- <h3 class="ft-h3">分组+checobox+多选</h3>
+  <div class="ui-control-wrap mb-20">
+    <select name="groupcheckbox" class="js-select ui-select ui-form-control" data-search data-checkable multiple>
+      <optgroup label="第一组">
+        <option value="1">选项1</option>
+        <option value="2">选项2</option>
+        <option value="3">选项3</option>
+      </optgroup>
+      <option value="4">选项4</option>
+      <option value="5">选项5</option>
+      <optgroup label="第二组">
+        <option selected value="6">选项6</option>
+        <option value="7">选项7</option>
+      </optgroup>
+    </select>
+  </div> -->
+
+  <h3 class="ft-h3">多选</h3>
+  <div class="ui-control-wrap mb-20">
+    <input type="text" class="js-select-tag ui-select ui-form-control" data-multiple data-max="2">
+  </div>
+
+  <script>
+    // require(['ui'], function () {
+    //   var ui = window.ui;
+    //   var Select = ui.Select;
+
+    //   var Tooltip = window.ui.Tooltip
+    //   new Tooltip('[data-tooltip]');
+
+    //   // 初始化下拉框
+    //   new Select('.js-select');
+
+    //   var sys = ['1', '2', '4', '7'];
+
+    //   var data = [{
+    //     label: 'abc',
+    //     value: '1',
+    //     selected: false,
+    //     type: 'sys'
+    //   }, {
+    //     label: 'def',
+    //     value: '2',
+    //     selected: false,
+    //     type: 'sys'
+    //   }, {
+    //     label: 'hig',
+    //     value: '3',
+    //     selected: false,
+    //     type: 'cus'
+    //   }, {
+    //     label: 'klmn',
+    //     value: '4',
+    //     selected: false,
+    //     type: 'cus'
+    //   }]
+
+    //   new Select('.js-select-tag', {
+    //     data: data,
+    //     multiple: true,
+    //     enterable: true,
+    //     optionTemplate: function ({ type, value, label }) {
+    //       return `<span data-tooltip data-position="center top" data-title="${label}" class="ui-tag ${type}">${label}</span>`
+    //     },
+    //     tagClass: function ({ type }) {
+    //       return type || 'cus';
+    //     }
+    //   })
+  </script>
+
+  <h3 class="ft-h3">多级联动</h3>
+  <div class="ui-control-wrap">
+    <input type="hidden" id="select3-input">
+    <div id="select3" class="ui-select ui-form-control" data-ajax="https://api.cooode.xyz/api/js-select,https://api.cooode.xyz/api/js-select,https://api.cooode.xyz/api/js-select" data-level="3" data-input="#select3-input">请选择</div>
+  </div>
+
+  <script>
+      // require(['ui'], function (ui) {
+      //   var ui = window.ui;
+      //   var Cascader = ui.Cascader;
+      //   new Cascader('#select3', {
+      //     optionGroupClass: 'ui-select-dropdown menu-group hide'
+      //   });
+      // })
+  </script>
+
+  <div class="ft-h1 mtb-20">Tip</div>
+
+  <div>
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="right top" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="right bottom" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="right middle" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="left top" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="left middle" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="center top" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+
+    <a class="iconfont icon-info mr-20 ft-gray ft-link" data-tooltip data-position="center bottom" data-text="内容区域内容区域内容区域内容区域内容区域内容区域内容区域内容区域"></a>
+  </div>
+
+  <div class="ft-h1 mtb-20">Alert</div>
+
+
+  <div class="mtb-20 ft-h1">Modal</div>
+
+  <div class="pb-16">
+    <button class="ui-button primary js-modal-btn">Modal</button>
+  </div>
+  <div class="pb-16">
+    <button class="ui-button primary js-alert-btn">Alert</button>
+  </div>
+  <div class="pb-16">
+    <button class="ui-button primary js-alert-warn">Alert</button>
+  </div>
+  <div class="pb-16">
+    <button class="ui-button primary js-confirm-btn">Confirm</button>
+  </div>
+
+  <script>
+      // require(['ui'], function (ui) {
+      //   var ui = window.ui;
+      //   var Modal = ui.Modal;
+      //   var Message = ui.Message;
+
+
+      //   var btn = document.querySelector('.js-modal-btn');
+
+      //   var m = new Modal({
+      //     resize: true,
+      //     onOpen: function () {
+      //       console.log('open')
+      //     },
+      //     onConfirm: function (e, modal) {
+      //       console.log('ok');
+      //       modal.hide();
+      //     }
+      //   });
+
+      //   btn.addEventListener('click', function () {
+      //     m.show({
+      //       content: '<div class="modal-main">hello</main>',
+      //       title: 'Modal'
+      //     });
+      //   });
+
+      //   var m2 = new Message();
+
+      //   document.querySelector('.js-alert-btn').addEventListener('click', function () {
+      //     m2.success('这里是信息提示这里是信息提示这里是信息提示');
+      //   });
+
+      //   document.querySelector('.js-alert-warn').addEventListener('click', function () {
+      //     m2.warn('这里是信息提示这里是信息提示这里是信息提示');
+      //   });
+
+      //   var m3 = new Modal({
+      //     type: 'confirm',
+      //   });
+
+      //   document.querySelector('.js-confirm-btn').addEventListener('click', function () {
+      //     m3.confirm({
+      //       content: '积分不足',
+      //       desc: '当前积分余额为1，完成当前操作需要消耗20积分'
+      //     });
+      //   });
+      // })
+  </script>
+
+  <div class="ft-h1 mtb-20">Icon Input</div>
+
+
+  <script>
+      // require(['ui', 'jquery', 'pikaday', 'daterangepicker'], function (ui, $, Pikaday, daterangepicker) {
+      //   var ui = window.ui;
+
+      //   var InputCount = ui.InputCount;
+      //   var Validator = ui.Validator;
+      //   var PikaEx = ui.PikaEx;
+
+      //   $('#date-range').daterangepicker({
+      //     showDropdowns: true,
+      //     locale: {
+      //       format: 'YYYY/MM/DD',
+      //       separator: ' - ',
+      //       applyLabel: '确定',
+      //       cancelLabel: '取消',
+      //       fromLabel: '从',
+      //       toLabel: '到',
+      //       customRangeLabel: '自定义',
+      //       weekLabel: '周',
+      //       daysOfWeek: [
+      //         '日',
+      //         '一',
+      //         '二',
+      //         '三',
+      //         '四',
+      //         '五',
+      //         '六'
+      //       ],
+      //       monthNames: [
+      //         '一月',
+      //         '二月',
+      //         '三月',
+      //         '四月',
+      //         '五月',
+      //         '六月',
+      //         '七月',
+      //         '八月',
+      //         '九月',
+      //         '十月',
+      //         '十一月',
+      //         '十二月'
+      //       ],
+      //       firstDay: 1
+      //     }
+      //   });
+
+      //   new PikaEx('#datepicker', {}, [{
+      //     label: 'AA4321活动结束后自动开始',
+      //     value: '2020-02-02'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4322活动结束后自动开始',
+      //     value: '2020-02-03'
+      //   }, {
+      //     label: 'AA4323活动结束后自动开始',
+      //     value: 1585353600000
+      //   }], Pikaday);
+
+
+      //   // 输入文字计数
+      //   new InputCount('.ui-enter-count');
+
+      //   new Validator('#form');
+      //   // --- modal
+      // })
+  </script>
+
+
+  <div class="ui-empty mt-24">
+    <i class="iconfont icon-empty"></i>
+    <p class="con mb-24">暂无XXXXXXXXXX</p>
+  </div>
+
+  <div class="ft-h1 mtb-20">Layout</div>
+
+  <div class="ui-empty">
+    <i class="iconfont icon-empty"></i>
+    <p class="con mb-24">暂无XXXXXXXXXX</p>
+    <a href="#" class="ui-button primary">引导操作</a>
+  </div>
+
+  <div class="ui-feedback">
+    <div class="iconfont icon-success-fill ft-success"></div>
+    <div class="tit">XXXX成功</div>
+    <div class="con ft-gray">辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明</div>
+    <div class="btn">
+      <a href="#" class="ui-button">引导操作一</a>
+      <a href="#" class="ui-button">引导操作二</a>
+    </div>
+  </div>
+
+  <div class="ui-feedback">
+    <div class="iconfont icon-info-fill ft-error"></div>
+    <div class="tit">XXXX失败</div>
+    <div class="con ft-gray">辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明</div>
+    <div class="btn">
+      <a href="#" class="ui-button primary">引导操作</a>
+    </div>
+  </div>
+
+  <div class="ui-feedback">
+    <div class="iconfont icon-info-fill ft-primary"></div>
+    <div class="tit">XXXX成功</div>
+    <div class="con">辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明辅助说明</div>
+    <div class="btn">
+      <a href="#" class="ui-button primary">引导操作</a>
+    </div>
+  </div>
+  </div>
+</div>
+
+  <!-- <div id="content">
+    <pre><code class="language-js">var turndownService = new TurndownService()
+      console.log(
+        turndownService.turndown('&lt;h1&gt;Hello world&lt;/h1&gt;')
+      )</code></pre>
+  </div> -->
+
+  <script src="./src/ui.es6"></script>
+  <script>
+    window.onload = function () {
+      var turndownService = new TurndownService();
+      [].slice.call(document.querySelectorAll('.md-code')).forEach(item => {
+        turndownService.turndown(item)
+      })
+
+      var { Select } = window.ui;
+
+
+      new Select('.js-select');
+    }
+  </script>
+</body>
+
+</html>

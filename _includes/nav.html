@@ -1,0 +1,12 @@
+<nav class="page-nav">
+    {% for item in site.data.nav %}
+    {% assign link = item.pages %}
+    {% assign link_slug = link.title%}
+    <h4 class="ft-title">{{item.title}}</h4>
+    <ul class="ft-content mb-20">
+        {% for l in link%}
+        <li class="{% if l.url == page.url %}active{% endif %}"><a href="{{ l.url | relative_url}}"><span>{{l.name}}</span></a></li>
+        {% endfor %}
+    </ul>
+    {% endfor %}
+</nav>

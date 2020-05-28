@@ -24,8 +24,10 @@ import Tag from './script/tag/Tag.es6';
 import Validator from './script/validator/Validator.es6';
 
 import Upload from './script/upload/Upload.es6';
-import UploadHelper from './script/upload/UploadHelper.es6';
-  
+// import UploadHelper from './script/upload/UploadHelper.es6';
+
+import './ui.scss';
+
 window.ui = {
   util,
   Select,
@@ -41,7 +43,7 @@ window.ui = {
   Popper,
   Layer,
   PikaEx,
-  UploadHelper,
+  // UploadHelper,
   Transfer,
   Position
 };
