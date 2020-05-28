@@ -4,7 +4,9 @@ layout: default
 
 # Input
 
-### 默认
+
+
+## 默认
 
 <input type="text" class="ui-form-control" placeholder="请输入">
 
@@ -12,7 +14,7 @@ layout: default
 <input type="text" class="ui-form-control" placeholder="请输入">
 ```
 
-### 禁用
+## 禁用
 
 <input type="text" class="ui-form-control disabled" disabled value="输入完成">
 
@@ -20,7 +22,7 @@ layout: default
 <input type="text" class="ui-form-control disabled" disabled value="输入完成">
 ```
 
-### 错误
+## 错误
 
 <div class="ui-control-wrap">
   <input type="text" class="ui-form-control error" value="输入完成">
@@ -31,7 +33,7 @@ layout: default
 <input type="text" class="ui-form-control error" value="输入完成">
 ```
 
-### Icon
+## Icon
 
 <div class="ui-icon-input">
   <input type="text" class="ui-form-control">
@@ -57,7 +59,7 @@ layout: default
 </div>
 ```
 
-### 字数限制
+## 字数限制
 
 > 需要有`maxlenth`属性
 

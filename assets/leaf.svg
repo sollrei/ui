@@ -1,0 +1,17 @@
+<svg
+    viewBox="0 0 14 17"
+    xmlns="http://www.w3.org/2000/svg"
+    fill-rule="evenodd"
+    clip-rule="evenodd"
+    stroke-linejoin="round"
+    stroke-miterlimit="2">
+  <path
+      fill="none"
+      d="M0 0h13.708v16.63H0z" />
+  <path
+      d="M3.949 15.83s-.58-4.414 2.809-6.632c3.389-2.219 4.362-3.403 4.611-3.75.25-.346-.166 7.865-7.42 10.382z"
+      fill="#517791" />
+  <path
+      d="M4.745 14.014S1.6 10.864 2.94 7.041C4.28 3.219 4.332 1.687 4.32 1.26c-.013-.426 4.652 6.344.425 12.754z"
+      fill="#c0d2db" />
+</svg>

@@ -1,25 +1,25 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-cn">
 {% include head.html %}
 <body>
-
-{% include header.html %}
-
-<div class="page-wrap page-layout">
+  {% include header.html %}
+  <div class="page-wrap page-layout">
     <div class="page-side">
-
-        {% include nav.html %}
+      {% include nav.html %}
     </div>
     <div class="page-main">
-        <main class="main" aria-label="content">
-            {{content}}
-        </main>
+      <main class="main" aria-label="content">
+        <div class="page-need-css" data-tooltip data-text="<p style='white-space: nowrap'>需要使用CSS</p>"></div>
+        {% if page.need_js %}
+        <div class="page-need-js" data-tooltip data-text="<p style='white-space: nowrap'>需要使用JavaScript</p>"></div>
+        {% endif %}
+        <div class="page-code">
+          {{content}}
+        </div>
+      </main>
     </div>
-
-</div>
-
-{% include footer.html %}
-
-
+  </div>
+  {% include footer.html %}
 </body>
+
 </html>
