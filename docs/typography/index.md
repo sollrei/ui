@@ -48,9 +48,7 @@ layout: default
 <div class="ft-light">文字颜色</div>
 ```
 
-{% example html%}
-<a href="#" class="ft-link">链接</a>
-{% endexample %}
+
 
 
 
