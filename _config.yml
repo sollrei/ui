@@ -30,7 +30,7 @@ plugins:
 
 plugins_dir: ./_plugins
 
-baseurl: /iui
+baseurl: /ui
 
 
 # Exclude from processing.
