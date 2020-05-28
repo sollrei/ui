@@ -1,5 +1,6 @@
 ---
 layout: default
+need_js: true
 ---
 
 
