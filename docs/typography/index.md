@@ -4,6 +4,8 @@ layout: default
 
 # Typography
 
+## Heading
+
 <div class="ft-h1">Heading 1</div>
 <div class="ft-h2">Heading 2</div>
 <div class="ft-h3">Heading 3</div>
@@ -45,6 +47,12 @@ layout: default
 <div class="ft-gray">文字颜色</div>
 <div class="ft-light">文字颜色</div>
 ```
+
+{% example html%}
+<a href="#" class="ft-link">链接</a>
+{% endexample %}
+
+
 
 
 
