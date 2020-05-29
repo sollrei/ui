@@ -1,14 +1,10 @@
 @import "variables";
 
-// form
-$padding: 4px 12px;
-$gap: 24px;
-
 .ui-form {
   font-size: 14px;
 
   .form-group {
-    margin-bottom: $gap - 2px;
+    margin-bottom: 22px;
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
@@ -202,13 +198,6 @@ textarea.ui-form-control {
   }
 }
 
-// .form-group {
-//   .ui-radio,
-//   .ui-checkbox {
-//     margin-right: 20px;
-//   }
-// }
-
 .ui-checkbox {
   .iconfont:before {
     content: '\eb34';
@@ -329,5 +318,4 @@ input[type="radio"] {
 .w160 {
   width: 160px !important;
 }
-
 

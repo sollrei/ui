@@ -30,13 +30,13 @@ plugins:
 
 plugins_dir: ./_plugins
 
-baseurl: /ui
+baseurl: /ui-pages
 
 
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-exclude:          [.git, .github, src/, build, js, node_modules, nuget, scss, vendor, bower.json, composer.json, Gemfile, Gemfile.lock, Gruntfile.js, package.js, package.json, package-lock.json, sache.json]
+exclude:          [.git, .github, src/, build, js, node_modules, nuget, scss, vendor, bower.json, composer.json, Gemfile, Gemfile.lock, Gruntfile.js, package.js, package.json, package-lock.json, sache.json, webpack.config.js]
 
 #   - Gemfile.lock
 #   - node_modules

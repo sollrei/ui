@@ -1,18 +1,17 @@
 // color system
 
 // new
-$gap: 16px !default;
-$black: #333 !default;
-$gray: #8c8c8c !default;
-$light: #ccc !default;
-$primary: #007adf !default;
-$green: #00b08c !default;
-$red: #f55959 !default;
-$yellow: #faab4d !default;
+$black: #333 !default; // 51, 51, 51
+$gray: #8c8c8c !default; // 140, 140, 140
+$light: #ccc !default; // 204, 204, 204
+$primary: #007adf !default; // 0,122,223
+$green: #00b08c !default; // 0, 176, 140
+$red: #f55959 !default;  // 245, 89, 89
+$yellow: #faab4d !default; // 250, 171, 77
 $violet: #ac64f1 !default;
 
 $color-white: #fff !default;
-$color-border: #e0e6ed !default;
+$color-border: #e0e6ed !default; // 224, 230, 237
 $color-bg: #f7f9fa !default;
 
 $color-bg-disabled: #f1f4f7 !default;
