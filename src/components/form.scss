@@ -1,21 +1,22 @@
 @import "variables";
 
 .ui-form {
-  font-size: 14px;
+  font-size: $form-font-size;
 
   .form-group {
-    margin-bottom: 22px;
+    margin-bottom: $form-gap;
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
   }
 
   .form-label {
-    width: 114px - 8px;
-    margin-right: 8px;
-    text-align: right;
+    width: $form-label-width - $form-label-margin;
+    margin-right: $form-label-margin;
+
     line-height: $form-control-height;
-    color: $gray;
+    text-align: right;
+    color: $form-label-color;
 
     em {
       padding-right: 4px;
@@ -50,20 +51,23 @@
   }
 }
 
-// form control
+/* Control */ 
 .ui-form-control {
   padding: $form-control-padding-v $form-control-padding-h;
-  width: $form-control-width;
-  box-sizing: border-box;
-  font-size: 14px;
-  line-height: $form-control-height - $form-control-padding-v * 2 - 2;
   min-height: $form-control-height;
+  width: $form-control-width;
+  max-width: 100%;
+  box-sizing: border-box;
+
+  font-size: 14px;
+  line-height: $form-control-height - $form-control-padding-v * 2 - 2px;
+  
   border: 1px solid $form-control-border-color;
   border-radius: $form-control-radius;
   vertical-align: middle;
   transition: border $transition-duration, box-shadow $transition-duration;
-  max-width: 100%;
 
+  /* Placeholder */
   // scss-lint:disable all
   &::-webkit-input-placeholder {
     color: $form-placeholder-color;
@@ -82,6 +86,7 @@
   }
   // scss-lint:enable all
 
+  /* States */
   &:hover {
     border-color: $primary;
   }
@@ -103,9 +108,9 @@
   &.disabled,
   &.disabled:hover,
   &.disabled:focus {
-    background-color: $form-control-disable-bg;
     cursor: default;
-    border: solid 1px rgba(204, 204, 204, 0.6);
+    background-color: $form-control-disable-bg;
+    border: solid 1px $form-control-border-disable-color;
   }
 
   &.error {
@@ -124,153 +129,6 @@ textarea.ui-form-control {
   box-shadow: $form-control-error-shadow;
 }
 
-// enter count
-.ui-enter-count {
-  display: inline-block;
-  position: relative;
-
-  .ui-form-control {
-    padding-right: 50px;
-  }
-
-  .count {
-    position: absolute;
-    right: 10px;
-    bottom: 0;
-    line-height: $form-control-height;
-    color: $light;
-    font-size: 12px;
-  }
-}
-
-//checkbox radio
-.ui-radio,
-.ui-checkbox {
-  cursor: pointer;
-  vertical-align: middle;
-  display: inline-flex;
-  align-items: center;
-
-  input {
-    display: none;
-  }
-
-  input:checked + .iconfont {
-    color: $primary;
-  }
-
-  input:disabled,
-  input.disabled {
-    + .iconfont {
-      cursor: not-allowed;
-      color: $color-border;
-    }
-
-    ~ span {
-      cursor: not-allowed;
-    }
-  }
-
-  &.disabled {
-    cursor: not-allowed;
-  }
-
-  input:disabled:checked,
-  input.disabled:checked {
-    + .iconfont {
-      color: rgba($primary, .5);
-    }
-  }
-
-  .iconfont {
-    padding-right: 8px;
-    color: $light;
-    line-height: 24px;
-  }
-
-  span {
-    vertical-align: middle;
-  }
-
-  &:hover .iconfont,
-  &:hover .iconfont {
-    color: $primary;
-  }
-}
-
-.ui-checkbox {
-  .iconfont:before {
-    content: '\eb34';
-  }
-
-  input:checked + .iconfont:before {
-    content: "\eb35";
-  }
-
-  input:indeterminate + .iconfont:before {
-    content: '\eb33';
-    color: $primary;
-  }
-}
-
-.ui-radio {
-  .iconfont:before {
-    content: '\eb0e';
-  }
-
-  input:checked + .iconfont:before {
-    content: "\eb11";
-  }
-}
-
-input[type="radio"],
-input[type="checkbox"] {
-  height: 13px;
-  width: 13px;
-  border: 1px solid $light;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-}
-
-input[type="radio"] {
-  border-radius: 50%;
-}
-
-// group
-.ui-radio-group {
-  display: inline-flex;
-
-  input {
-    display: none;
-  }
-  
-  label {
-    display: inline-block;
-    height: 32px;
-    padding-left: 16px;
-    padding-right: 16px;
-    line-height: 30px;
-    border: 1px solid #ccc;
-    margin-right: -1px;
-    cursor: pointer;
-    user-select: none;
-
-    &:first-of-type {
-      border-radius: 4px 0 0 4px;
-    }
-
-    &:last-of-type {
-      border-radius: 0 4px 4px 0;
-    }
-  }
-
-  :checked + label {
-    border-color: $primary;
-    z-index: 1;
-    position: relative;
-    color: $primary;
-  }
-}
 
 // validate
 .ui-control-wrap {

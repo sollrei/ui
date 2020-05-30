@@ -1,14 +1,16 @@
 @import "variables";
 
+// ui-mod ???
 .ui-mod {
   padding: 16px 24px;
   border-radius: 8px;
   border: 1px solid $color-border;
 }
 
+
 .ui-tab {
-  font-size: 18px;
-  line-height: 24px;
+  font-size: $tab-font-size;
+  line-height: $tab-height;
 
   .tab-list {
     display: flex;
@@ -26,8 +28,10 @@
     }
   }
 
+  /* Sizes */ 
+
   &.small {
-    font-size: 14px;  
+    font-size: $tab-small-font-size;  
 
     .tab-list {
       display: inline-flex;
@@ -35,23 +39,23 @@
 
     .tab-itm {
       margin-right: -1px;
-      height: 34px;
-      line-height: 32px;
-      border: 1px solid $light;
+      height: $tab-small-height;
+      line-height: $tab-small-height - 2px;
+      border: 1px solid $tab-border;
     }
 
     .itm {
       display: block;
-      padding-left: 16px;
-      padding-right: 16px;
+      padding-left: $tab-padding;
+      padding-right: $tab-padding;
     }
 
     .tab-itm:first-child {
-      border-radius: 4px 0 0 4px;
+      border-radius: $radius 0 0 $radius;
     }
 
     .tab-itm:last-child {
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 $radius $radius 0;
     }
 
     .active {

@@ -1,10 +1,5 @@
-html {
-  background: #f5f5fb;
-}
 
 body {
-  max-width: 1400px;
-  margin: 0 auto;
   background: #fff;
 }
 
@@ -20,10 +15,8 @@ body:after {
   position: fixed;
   top: 50px;
   bottom: 50px;
-  left: 50%;
-  transform: translate(-50%, 0);
-  max-width: 1300px;
-  width: calc(100vw - 100px);
+  left: 50px;
+  right: 50px;
   border-radius: 20px;
   box-shadow: 0 0 0 150px #f5f5fb;
   pointer-events: none;

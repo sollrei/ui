@@ -1,19 +1,23 @@
 @import "variables";
 
 .ui-tag {
+  display: inline-block;
   height: $tag-height;
-  line-height: $tag-height;
   max-width: $tag-max-width;
   padding: 0 $tag-padding;
-  display: inline-block;
+
   vertical-align: middle;
-  border-radius: 3px;
-  font-size: 12px;
+  line-height: $tag-height;
+  font-size: $tag-font-size;
   color: $black;
-  background: $color-bg-normal;
+
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  
+  border-radius: $tag-radius;
+  background: $color-bg-normal;
+  
 
   &.closeable,
   &[data-closeable] {
@@ -34,6 +38,8 @@
     font-size: 12px;
   }
 
+  /* Color */ 
+  
   &.green {
     color: #fff;
     background: $green;
@@ -55,26 +61,26 @@
   }
 
   &.gray {
-    height: 22px;
+    height: $tag-height + 2px;
     border: 1px solid $light; 
   }
 
   &.cus {
-    height: 22px;
+    height: $tag-height + 2px;
     color: $green;
-    border: solid 1px rgba(0, 176, 140, 0.2);
-    background-color: rgba(0, 176, 140, 0.06);
+    border: solid 1px rgba($green, 0.2);
+    background-color: rgba($green, 0.06);
   }
 
   &.sys {
-    height: 22px;
+    height: $tag-height + 2px;
     color: $primary;
-    border: solid 1px rgba(0, 122, 223, 0.2);
-    background-color: rgba(0, 122, 223, 0.06);
+    border: solid 1px rgba($primary, 0.2);
+    background-color: rgba($primary, 0.06);
   }
 
   &.white {
-    height: 22px;
+    height: $tag-height + 2px;
     background: #fff;
     border: 1px solid $color-border;
   }

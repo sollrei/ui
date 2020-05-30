@@ -1,10 +1,13 @@
 @import "components/variables";
 @import 'components/reset';
 @import "components/global";
+
 @import "components/typography";
 @import "components/badge";
-@import "components/button";
+
 @import "components/breadcrumb";
+
+
 @import "components/dropdown";
 @import "components/modal";
 @import "components/layer";
@@ -12,14 +15,17 @@
 @import "components/pagination";
 @import "components/popup";
 @import "components/progress";
-@import "components/rate";
-@import "components/switch";
 @import "components/tab";
 @import "components/table";
-@import "components/upload";
+
 @import "components/form";
+@import "components/upload";
 @import "components/input";
 @import "components/select";
+@import "components/switch";
+@import "components/checkbox";
+@import "components/button";
+
 @import "components/steps";
 @import "components/tag";
 @import "components/menu";

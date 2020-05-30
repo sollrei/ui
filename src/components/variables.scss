@@ -1,31 +1,53 @@
-// color system
+// note
+// 删除 ui-rate
+// 新增checkbox 从form单独分离了 还有input enter count
 
-// new
-$black: #333 !default; // 51, 51, 51
-$gray: #8c8c8c !default; // 140, 140, 140
-$light: #ccc !default; // 204, 204, 204
+
+/* ============================
+            base
+   ============================ */
+
+/* ------- front colors ------- */
+
+$black: #333    !default; // 51, 51, 51
+$gray:  #8c8c8c !default; // 140, 140, 140
+$light: #ccc    !default; // 204, 204, 204
+
 $primary: #007adf !default; // 0,122,223
-$green: #00b08c !default; // 0, 176, 140
-$red: #f55959 !default;  // 245, 89, 89
-$yellow: #faab4d !default; // 250, 171, 77
-$violet: #ac64f1 !default;
+$green:   #00b08c !default; // 0, 176, 140
+$red:     #f55959 !default;  // 245, 89, 89
+$yellow:  #faab4d !default; // 250, 171, 77
+$violet:  #ac64f1 !default;
 
-$color-white: #fff !default;
-$color-border: #e0e6ed !default; // 224, 230, 237
-$color-bg: #f7f9fa !default;
+$color-white:  #fff    !default;
 
-$color-bg-disabled: #f1f4f7 !default;
-$color-bg-normal: #e8edf2 !default;
+$color-border:         #e0e6ed !default; // 224, 230, 237  // o-  ebebeb  235
+$color-primary-border: #0067bc !default;
+
+/* ------- background color ------- */
+
+$color-bg:          #f7f9fa !default; // o-  f5f5f5  245
+$color-bg-disabled: #f1f4f7 !default; // o-  ebebeb
+$color-bg-normal:   #e8edf2 !default; // o-  f0f0f0  240
 
 $border: 1px solid $color-border;
 
-$font-family: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei UI, Microsoft YaHei, Source Han Sans CN, sans-serif !default;
+/* ------- font ------- */
+
+$font-family: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, 
+  Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, 
+  Microsoft YaHei UI, Microsoft YaHei, Source Han Sans CN, sans-serif !default;
+
+/* ------- other ------- */
 
 $radius: 4px !default;
-
 $shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) !default;
-
 $transition-duration: .2s !default;
+
+
+/* ----------------------------
+            Mixin
+   ---------------------------- */
 
 @mixin iconfont {
   font-family: "iconfont" !important;
@@ -36,13 +58,25 @@ $transition-duration: .2s !default;
   line-height: 1;
 }
 
-// tag
-$tag-height: 22px !default;
-$tag-padding: 5px !default;
-$tag-max-width: 308px !default;
+/* ============================
+            Components
+   ============================ */
 
-// form
-$form-control-height: 36px !default;
+
+/* ------- form 
+------- */
+
+/* Basic */ 
+$form-font-size: 14px !default;
+$form-gap: 22px !default; // form group margin bottom
+
+/* Label */ 
+$form-label-width: 114px !default;
+$form-label-margin: 8px !default;
+$form-label-color: $gray !default;
+
+/* Form control */
+$form-control-height: 36px !default; // o-  34px
 $form-control-width: 322px !default;
 $form-control-radius: $radius !default;
 $form-control-padding-h: 12px !default;
@@ -51,23 +85,66 @@ $form-control-padding-v: 4px !default;
 $form-placeholder-color: $light !default;
 
 $form-control-error-color: $red !default;
-$form-control-error-shadow: 0 0 0 3px rgba($red, .1) !default;
 
+$form-control-error-shadow: 0 0 0 3px rgba($red, .1) !default;
 $form-control-active-shadow: 0 0 0 3px rgba($primary, 0.1);
 
 $form-control-border-color: $color-border !default;
+$form-control-border-disable-color: rgba($light, 0.6) !default;
 $form-control-disable-bg: $color-bg-disabled !default;
-$form-control-normal-bg: $color-bg-normal !default;
 
-// button
-$button-height: 36px !default;
-$button-small-height: 26px !default;
-$button-radius: $radius !default;
+/* ------- Button ------- */
+
+$button-height: 36px !default; // o-  34px
 $button-padding: 24px !default;
+
+$button-small-height: 26px !default;
 $button-small-padding: 8px !default;
-$button-border-width: 0 !default;
+
+$button-font-size: 14px !default;
+$button-small-font-size: 12px !default;
+
+$button-radius: $radius !default;
+
+$button-border-color: $light !default;
+$button-border-width: 0 !default; // o-   1
 $button-border-type: solid !default;
 
-// pagination
+$button-hover: #fafafa !default;
+
+/* ------- Pagination 
+------- */
+
 $page-height: 36px !default;
 $page-height-small: 26px !default;
+
+/* ------- Grid ------- */
+
+$grid-gap: 16px !default;
+
+/* ------- Menu ------- */
+
+$menu-wrap-padding: 8px !default;
+$menu-wrap-radius: 8px !default;
+
+$menu-height: 32px !default;
+$menu-padding: 16px !default;
+
+/* ------- Tab ------- */
+
+$tab-height: 24px !default;
+$tab-small-height: 32px !default;
+
+$tab-font-size: 18px !default;
+$tab-small-font-size: 14px !default;
+
+$tab-border: $color-border !default; // o-  #ccc
+$tab-padding: 16px;
+
+/* ------- Tag ------- */
+
+$tag-height: 22px !default; // -o   20
+$tag-padding: 5px !default;
+$tag-max-width: 308px !default;
+$tag-radius: 3px !default;
+$tag-font-size: 12px !default;

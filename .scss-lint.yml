@@ -61,3 +61,5 @@ linters:
 
   UrlQuotes:
       enabled: false
+  Comment:
+      enabled: false

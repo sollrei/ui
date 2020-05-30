@@ -1,5 +1,24 @@
 @import "variables";
 
+/* Enter count */
+.ui-enter-count {
+  display: inline-block;
+  position: relative;
+
+  .ui-form-control {
+    padding-right: 50px;
+  }
+
+  .count {
+    position: absolute;
+    right: 10px;
+    bottom: 0;
+    line-height: $form-control-height;
+    color: $light;
+    font-size: 12px;
+  }
+}
+
 .ui-icon-input {
   position: relative;
   width: $form-control-width;

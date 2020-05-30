@@ -17,7 +17,7 @@
     background: $color-bg;
 
     .node-label {
-      color: #333;
+      color: $black;
     }
   }
 
@@ -40,7 +40,7 @@
       background: $color-bg;
 
       .node-label {
-        color: #333;
+        color: $black;
       }
     }
   }

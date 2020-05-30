@@ -1,80 +1,87 @@
 @import "variables";
 
-// button
 .ui-button {
   display: inline-block;
   height: $button-height;
   padding-left: $button-padding;
   padding-right: $button-padding;
+  box-sizing: border-box;
+
   line-height: $button-height - ($button-border-width * 2);
-  font-size: 14px;
+  font-size: $button-font-size;
   color: $black;
   vertical-align: middle;
+
   border-radius: $button-radius;
-  border: $button-border-width $button-border-type $light;
+  border: $button-border-width $button-border-type $button-border-color;
   background-color: $color-bg-normal;
+
   cursor: pointer;
   text-align: center;
   transition: background $transition-duration;
-  box-sizing: border-box;
+
+  /* States */
 
   &:focus {
     outline: none;
   }
 
   &:hover {
-    color: #333;
-    border-color: rgba($light, 0.6);
-    // background-color: rgba(240, 240, 240, 0.3);
-    background-color: #fafafa;
+    color: $black;
+    border-color: rgba($button-border-color, 0.6);
+    background-color: $button-hover;
   }
 
   &.disabled {
     cursor: not-allowed;
-    color: rgba(51, 51, 51, 0.3);
-    border-color: rgba($light, 0.6);
+    color: rgba($black, 0.3);
+    border-color: rgba($button-border-color, 0.6);
     background-color: #ebebeb;
 
     &:hover {
-      color: rgba(51, 51, 51, 0.3);
-      border-color: rgba($light, 0.6);
+      color: rgba($black, 0.3);
+      border-color: rgba($button-border-color, 0.6);
       background-color: #ebebeb;
     }
   }
+
+  /* Sizes */
 
   &.small {
     height: $button-small-height;
     padding-left: $button-small-padding;
     padding-right: $button-small-padding;
-    line-height: $button-small-height - 2px;
-    border-radius: 4px;
-    font-size: 12px;
+    line-height: $button-small-height - ($button-border-width * 2);
+    border-radius: $radius;
+    font-size: $button-small-font-size;
   }
+
+  /* Types */
 
   &.primary {
     color: $color-white;
     background: $primary;
-    border-color: #0067bc;
+    border-color: $color-primary-border;
 
     &:hover {
       color: #fff;
-      border-color: rgba(0, 103, 188, 0.9);
-      background-color: rgba(0, 122, 223, 0.9);
+      border-color: rgba($color-primary-border, 0.9);
+      background-color: rgba($primary, 0.9);
     }
 
     &.disabled,
     &.disabled:hover,
     &.disabled:active {
       color: #fff;
-      border-color: rgba(0, 103, 188, 0.2);
-      background-color: rgba(0, 122, 223, 0.5);
+      border-color: rgba($color-primary-border, 0.2);
+      background-color: rgba($primary, 0.5);
     }
   }
 
   &.warn {
     color: $red;
-    border-color: #f55959;
-    background-color: rgba(245, 89, 89, 0.06);
+    border-color: $red;
+    background-color: rgba($red, 0.06);
 
     &:hover {
       color: #fff;
@@ -85,17 +92,9 @@
     &.disabled,
     &.disabled:hover,
     &.disabled:active {
-      color: rgba(245, 89, 89, 0.5);
-      border-color: rgba(245, 89, 89, 0.5);
-      background-color: rgba(245, 89, 89, 0.06);
-    }
-  }
-
-  &.active {
-    color: $primary;
-
-    .icon-filter-normal:before { // scss-lint:disable MergeableSelector
-      content: '\eb24';
+      color: rgba($red, 0.5);
+      border-color: rgba($red, 0.5);
+      background-color: rgba($red, 0.06);
     }
   }
 
@@ -118,9 +117,19 @@
     align-items: center;
     
     .iconfont {
-      // margin-left: 4px;
+      margin-left: 4px;
     }
   }
+
+  &.active {
+    color: $primary;
+
+    .icon-filter-normal:before { // scss-lint:disable MergeableSelector
+      content: '\eb24';
+    }
+  }
+
+  // no need
 
   &.loading {
     position: relative;

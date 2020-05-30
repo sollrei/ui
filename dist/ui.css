@@ -1,3 +1,28 @@
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 html {
   line-height: 1.5; }
 
@@ -79,6 +104,31 @@ samp {
   text-overflow: ellipsis;
   white-space: nowrap; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
@@ -425,6 +475,31 @@ input[type=number]::-webkit-outer-spin-button {
 .hidden {
   display: none; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ft-primary {
   color: #007adf; }
   .ft-primary.disabled {
@@ -552,6 +627,31 @@ a.ft-primary:hover,
   .ui-feedback .ui-button {
     margin: 0 8px; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-badge {
   position: relative;
   display: -webkit-inline-box;
@@ -607,127 +707,31 @@ a.ft-primary:hover,
     font-size: 24px;
     color: #8c8c8c; }
 
-.ui-button {
-  display: inline-block;
-  height: 36px;
-  padding-left: 24px;
-  padding-right: 24px;
-  line-height: 36px;
-  font-size: 14px;
-  color: #333;
-  vertical-align: middle;
-  border-radius: 4px;
-  border: 0 solid #ccc;
-  background-color: #e8edf2;
-  cursor: pointer;
-  text-align: center;
-  -webkit-transition: background 0.2s;
-  transition: background 0.2s;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box; }
-  .ui-button:focus {
-    outline: none; }
-  .ui-button:hover {
-    color: #333;
-    border-color: rgba(204, 204, 204, 0.6);
-    background-color: #fafafa; }
-  .ui-button.disabled {
-    cursor: not-allowed;
-    color: rgba(51, 51, 51, 0.3);
-    border-color: rgba(204, 204, 204, 0.6);
-    background-color: #ebebeb; }
-    .ui-button.disabled:hover {
-      color: rgba(51, 51, 51, 0.3);
-      border-color: rgba(204, 204, 204, 0.6);
-      background-color: #ebebeb; }
-  .ui-button.small {
-    height: 26px;
-    padding-left: 8px;
-    padding-right: 8px;
-    line-height: 24px;
-    border-radius: 4px;
-    font-size: 12px; }
-  .ui-button.primary {
-    color: #fff;
-    background: #007adf;
-    border-color: #0067bc; }
-    .ui-button.primary:hover {
-      color: #fff;
-      border-color: rgba(0, 103, 188, 0.9);
-      background-color: rgba(0, 122, 223, 0.9); }
-    .ui-button.primary.disabled, .ui-button.primary.disabled:hover, .ui-button.primary.disabled:active {
-      color: #fff;
-      border-color: rgba(0, 103, 188, 0.2);
-      background-color: rgba(0, 122, 223, 0.5); }
-  .ui-button.warn {
-    color: #f55959;
-    border-color: #f55959;
-    background-color: rgba(245, 89, 89, 0.06); }
-    .ui-button.warn:hover {
-      color: #fff;
-      background: #f55959;
-      border-color: #f55959; }
-    .ui-button.warn.disabled, .ui-button.warn.disabled:hover, .ui-button.warn.disabled:active {
-      color: rgba(245, 89, 89, 0.5);
-      border-color: rgba(245, 89, 89, 0.5);
-      background-color: rgba(245, 89, 89, 0.06); }
-  .ui-button.active {
-    color: #007adf; }
-    .ui-button.active .icon-filter-normal:before {
-      content: '\EB24'; }
-  .ui-button.line {
-    width: 322px;
-    padding-left: 0;
-    padding-right: 0;
-    border: 1px dashed #ccc;
-    background: #fff;
-    color: #8c8c8c; }
-    .ui-button.line:hover {
-      color: #007adf;
-      border-color: #007adf; }
-  .ui-button.icon {
-    display: -webkit-inline-box;
-    display: -ms-inline-flexbox;
-    display: inline-flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center; }
-  .ui-button.loading {
-    position: relative;
-    color: transparent; }
-    .ui-button.loading:after {
-      content: "";
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      margin-left: -10px;
-      margin-top: -10px;
-      -webkit-box-sizing: border-box;
-              box-sizing: border-box;
-      height: 20px;
-      width: 20px;
-      border-radius: 50%;
-      border: 2px solid rgba(255, 255, 255, 0.4);
-        border-top-color: #fff;
-      -webkit-animation: rotate .5s linear infinite;
-              animation: rotate .5s linear infinite; }
-
-@-webkit-keyframes rotate {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0); }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg); } }
-
-@keyframes rotate {
-  0% {
-    -webkit-transform: rotate(0);
-            transform: rotate(0); }
-  100% {
-    -webkit-transform: rotate(360deg);
-            transform: rotate(360deg); } }
-
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-path {
   font-size: 12px;
   line-height: 16px; }
@@ -741,6 +745,31 @@ a.ft-primary:hover,
     padding-left: 4px;
     padding-right: 4px; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-drop {
   position: relative;
   display: inline-block; }
@@ -817,6 +846,31 @@ a.ft-primary:hover,
     -webkit-transform: translate3d(0, 0, 0);
             transform: translate3d(0, 0, 0); } }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .modal-open {
   height: 100vh;
   overflow-y: hidden;
@@ -1062,6 +1116,31 @@ a.ft-primary:hover,
     -webkit-transform: translate3d(-50%, -50%, 0);
             transform: translate3d(-50%, -50%, 0); } }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 html.layer-open {
   height: 100vh;
   overflow-y: hidden; }
@@ -1140,6 +1219,31 @@ html.layer-open {
     padding: 24px 26px 0 130px;
     border-top: 1px solid #ebebeb; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-notice {
   padding: 8px 184px 8px 36px;
   position: relative;
@@ -1196,6 +1300,31 @@ html.layer-open {
     color: #8c8c8c;
     cursor: pointer; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-pagination {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1304,6 +1433,31 @@ html.layer-open {
     .ui-pagination.small .text {
       line-height: 26px; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-tooltip {
   display: inline-block;
   position: absolute;
@@ -1354,6 +1508,31 @@ html.layer-open {
 .ui-popper-wp {
   position: relative; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-progress {
   position: relative;
   height: 4px;
@@ -1371,68 +1550,31 @@ html.layer-open {
     -webkit-transition: width 0.2s;
     transition: width 0.2s; }
 
-.ui-rate {
-  color: #f5a623; }
-  .ui-rate .disable {
-    color: #f7f9fa; }
-
-.ui-switch {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
-  .ui-switch input {
-    display: none; }
-  .ui-switch .switch {
-    position: relative;
-    height: 20px;
-    width: 32px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    display: inline-block;
-    vertical-align: middle;
-    padding: 2px;
-    border-radius: 10px;
-    background: #ccc;
-    cursor: pointer;
-    -webkit-transition: background 0.2s;
-    transition: background 0.2s; }
-  .ui-switch .open {
-    padding-left: 8px;
-    display: none; }
-  .ui-switch .close {
-    padding-left: 8px; }
-  .ui-switch .switch:before {
-    content: '';
-    height: 16px;
-    width: 16px;
-    position: absolute;
-    left: 2px;
-    top: 2px;
-    border-radius: 8px;
-    background: #fff;
-    -webkit-transition: left 0.2s;
-    transition: left 0.2s; }
-  .ui-switch input:checked + .switch {
-    background: #007adf; }
-  .ui-switch input:checked + .switch:before {
-    left: 14px; }
-  .ui-switch input:checked ~ .open {
-    display: inline; }
-  .ui-switch input:checked ~ .close {
-    display: none; }
-  .ui-switch input:disabled + .switch {
-    cursor: default;
-    background: #e0e6ed; }
-  .ui-switch input:disabled + .switch:before {
-    background: #ccc; }
-  .ui-switch input:disabled:checked + .switch {
-    background-color: rgba(0, 122, 223, 0.5); }
-  .ui-switch input:disabled:checked + .switch:before {
-    background: #fff; }
-
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-mod {
   padding: 16px 24px;
   border-radius: 8px;
@@ -1440,7 +1582,8 @@ html.layer-open {
 
 .ui-tab {
   font-size: 18px;
-  line-height: 24px; }
+  line-height: 24px;
+  /* Sizes */ }
   .ui-tab .tab-list {
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1459,9 +1602,9 @@ html.layer-open {
       display: inline-flex; }
     .ui-tab.small .tab-itm {
       margin-right: -1px;
-      height: 34px;
-      line-height: 32px;
-      border: 1px solid #ccc; }
+      height: 32px;
+      line-height: 30px;
+      border: 1px solid #e0e6ed; }
     .ui-tab.small .itm {
       display: block;
       padding-left: 16px;
@@ -1476,6 +1619,31 @@ html.layer-open {
       font-weight: 400;
       border-color: #007adf; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-table {
   width: 100%;
   border: 0;
@@ -1510,6 +1678,189 @@ html.layer-open {
   .ui-table tr:hover td:not(.ui-empty) {
     background: rgba(0, 122, 223, 0.06); }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
+.ui-form {
+  font-size: 14px; }
+  .ui-form .form-group {
+    margin-bottom: 22px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+            flex-flow: row wrap;
+    -ms-flex-line-pack: start;
+        align-content: flex-start; }
+  .ui-form .form-label {
+    width: 106px;
+    margin-right: 8px;
+    line-height: 36px;
+    text-align: right;
+    color: #8c8c8c; }
+    .ui-form .form-label em {
+      padding-right: 4px;
+      font-family: arial, sans-serif;
+      color: #f55959; }
+    .ui-form .form-label.w84 {
+      width: 84px; }
+    .ui-form .form-label.ft-left {
+      text-align: left; }
+  .ui-form .form-con .ui-radio,
+  .ui-form .form-con .ui-checkbox {
+    line-height: 36px; }
+  .ui-form .con-text {
+    line-height: 36px; }
+  .ui-form .select-wrap {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle; }
+
+/* Control */
+.ui-form-control {
+  padding: 4px 12px;
+  min-height: 36px;
+  width: 322px;
+  max-width: 100%;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  font-size: 14px;
+  line-height: 26px;
+  border: 1px solid #e0e6ed;
+  border-radius: 4px;
+  vertical-align: middle;
+  -webkit-transition: border 0.2s, -webkit-box-shadow 0.2s;
+  transition: border 0.2s, -webkit-box-shadow 0.2s;
+  transition: border 0.2s, box-shadow 0.2s;
+  transition: border 0.2s, box-shadow 0.2s, -webkit-box-shadow 0.2s;
+  /* Placeholder */
+  /* States */ }
+  .ui-form-control::-webkit-input-placeholder {
+    color: #ccc; }
+  .ui-form-control:-moz-placeholder {
+    color: #ccc; }
+  .ui-form-control::-moz-placeholder {
+    color: #ccc; }
+  .ui-form-control:-ms-input-placeholder {
+    color: #ccc; }
+  .ui-form-control:hover {
+    border-color: #007adf; }
+  .ui-form-control:focus {
+    outline: none; }
+  .ui-form-control:focus:not(:-moz-read-only) {
+    outline: none;
+    border-color: #007adf;
+    box-shadow: 0 0 0 3px rgba(0, 122, 223, 0.1); }
+  .ui-form-control.active, .ui-form-control:focus:not(:read-only) {
+    outline: none;
+    border-color: #007adf;
+    -webkit-box-shadow: 0 0 0 3px rgba(0, 122, 223, 0.1);
+            box-shadow: 0 0 0 3px rgba(0, 122, 223, 0.1); }
+  .ui-form-control:disabled, .ui-form-control:disabled:hover, .ui-form-control:disabled:focus, .ui-form-control.disabled, .ui-form-control.disabled:hover, .ui-form-control.disabled:focus {
+    cursor: default;
+    background-color: #f1f4f7;
+    border: solid 1px rgba(204, 204, 204, 0.6); }
+  .ui-form-control.error {
+    border-color: #f55959;
+    -webkit-box-shadow: 0 0 0 3px rgba(245, 89, 89, 0.1);
+            box-shadow: 0 0 0 3px rgba(245, 89, 89, 0.1); }
+
+textarea.ui-form-control {
+  padding-top: 8px;
+  padding-bottom: 8px; }
+
+.error + .ui-select:not(.ui-select-active) {
+  border-color: #f55959;
+  -webkit-box-shadow: 0 0 0 3px rgba(245, 89, 89, 0.1);
+          box-shadow: 0 0 0 3px rgba(245, 89, 89, 0.1); }
+
+.ui-control-wrap {
+  position: relative; }
+  .ui-control-wrap.loading:after {
+    content: "";
+    position: absolute;
+    right: 7px;
+    top: 50%;
+    margin-top: -7px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    background: radial-gradient(#fff, #fff 63%, transparent 64%), -webkit-gradient(linear, left bottom, left top, from(rgba(0, 122, 223, 0.3)), to(#fff)) 50px 0 no-repeat, -webkit-gradient(linear, left bottom, left top, from(rgba(0, 122, 223, 0.3)), to(#007adf)) 0 0;
+    background: radial-gradient(#fff, #fff 63%, transparent 64%), linear-gradient(to top, rgba(0, 122, 223, 0.3), #fff) 50px 0 no-repeat, linear-gradient(to top, rgba(0, 122, 223, 0.3), #007adf) 0 0;
+    -webkit-animation: rotate .5s linear infinite;
+            animation: rotate .5s linear infinite; }
+
+.v-error-tip {
+  position: absolute;
+  left: 12px;
+  bottom: -22px;
+  height: 22px;
+  color: #f55959;
+  line-height: 22px;
+  font-size: 12px;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity .3s;
+  transition: opacity .3s;
+  white-space: nowrap; }
+  .v-error-tip.show {
+    visibility: visible;
+    opacity: 1; }
+
+.w160 {
+  width: 160px !important; }
+
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-upload-img {
   height: 126px;
   width: 126px;
@@ -1666,98 +2017,32 @@ html.layer-open {
 .ui-file-list .warn {
   background: #f55959; }
 
-.ui-form {
-  font-size: 14px; }
-  .ui-form .form-group {
-    margin-bottom: 22px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: horizontal;
-    -webkit-box-direction: normal;
-        -ms-flex-flow: row wrap;
-            flex-flow: row wrap;
-    -ms-flex-line-pack: start;
-        align-content: flex-start; }
-  .ui-form .form-label {
-    width: 106px;
-    margin-right: 8px;
-    text-align: right;
-    line-height: 36px;
-    color: #8c8c8c; }
-    .ui-form .form-label em {
-      padding-right: 4px;
-      font-family: arial, sans-serif;
-      color: #f55959; }
-    .ui-form .form-label.w84 {
-      width: 84px; }
-    .ui-form .form-label.ft-left {
-      text-align: left; }
-  .ui-form .form-con .ui-radio,
-  .ui-form .form-con .ui-checkbox {
-    line-height: 36px; }
-  .ui-form .con-text {
-    line-height: 36px; }
-  .ui-form .select-wrap {
-    position: relative;
-    display: inline-block;
-    vertical-align: middle; }
-
-.ui-form-control {
-  padding: 4px 12px;
-  width: 322px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
-  font-size: 14px;
-  line-height: 26px;
-  min-height: 36px;
-  border: 1px solid #e0e6ed;
-  border-radius: 4px;
-  vertical-align: middle;
-  -webkit-transition: border 0.2s, -webkit-box-shadow 0.2s;
-  transition: border 0.2s, -webkit-box-shadow 0.2s;
-  transition: border 0.2s, box-shadow 0.2s;
-  transition: border 0.2s, box-shadow 0.2s, -webkit-box-shadow 0.2s;
-  max-width: 100%; }
-  .ui-form-control::-webkit-input-placeholder {
-    color: #ccc; }
-  .ui-form-control:-moz-placeholder {
-    color: #ccc; }
-  .ui-form-control::-moz-placeholder {
-    color: #ccc; }
-  .ui-form-control:-ms-input-placeholder {
-    color: #ccc; }
-  .ui-form-control:hover {
-    border-color: #007adf; }
-  .ui-form-control:focus {
-    outline: none; }
-  .ui-form-control:focus:not(:-moz-read-only) {
-    outline: none;
-    border-color: #007adf;
-    box-shadow: 0 0 0 3px rgba(0, 122, 223, 0.1); }
-  .ui-form-control.active, .ui-form-control:focus:not(:read-only) {
-    outline: none;
-    border-color: #007adf;
-    -webkit-box-shadow: 0 0 0 3px rgba(0, 122, 223, 0.1);
-            box-shadow: 0 0 0 3px rgba(0, 122, 223, 0.1); }
-  .ui-form-control:disabled, .ui-form-control:disabled:hover, .ui-form-control:disabled:focus, .ui-form-control.disabled, .ui-form-control.disabled:hover, .ui-form-control.disabled:focus {
-    background-color: #f1f4f7;
-    cursor: default;
-    border: solid 1px rgba(204, 204, 204, 0.6); }
-  .ui-form-control.error {
-    border-color: #f55959;
-    -webkit-box-shadow: 0 0 0 3px rgba(245, 89, 89, 0.1);
-            box-shadow: 0 0 0 3px rgba(245, 89, 89, 0.1); }
-
-textarea.ui-form-control {
-  padding-top: 8px;
-  padding-bottom: 8px; }
-
-.error + .ui-select:not(.ui-select-active) {
-  border-color: #f55959;
-  -webkit-box-shadow: 0 0 0 3px rgba(245, 89, 89, 0.1);
-          box-shadow: 0 0 0 3px rgba(245, 89, 89, 0.1); }
-
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
+/* Enter count */
 .ui-enter-count {
   display: inline-block;
   position: relative; }
@@ -1770,149 +2055,6 @@ textarea.ui-form-control {
     line-height: 36px;
     color: #ccc;
     font-size: 12px; }
-
-.ui-radio,
-.ui-checkbox {
-  cursor: pointer;
-  vertical-align: middle;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center; }
-  .ui-radio input,
-  .ui-checkbox input {
-    display: none; }
-  .ui-radio input:checked + .iconfont,
-  .ui-checkbox input:checked + .iconfont {
-    color: #007adf; }
-  .ui-radio input:disabled + .iconfont,
-  .ui-radio input.disabled + .iconfont,
-  .ui-checkbox input:disabled + .iconfont,
-  .ui-checkbox input.disabled + .iconfont {
-    cursor: not-allowed;
-    color: #e0e6ed; }
-  .ui-radio input:disabled ~ span,
-  .ui-radio input.disabled ~ span,
-  .ui-checkbox input:disabled ~ span,
-  .ui-checkbox input.disabled ~ span {
-    cursor: not-allowed; }
-  .ui-radio.disabled,
-  .ui-checkbox.disabled {
-    cursor: not-allowed; }
-  .ui-radio input:disabled:checked + .iconfont,
-  .ui-radio input.disabled:checked + .iconfont,
-  .ui-checkbox input:disabled:checked + .iconfont,
-  .ui-checkbox input.disabled:checked + .iconfont {
-    color: rgba(0, 122, 223, 0.5); }
-  .ui-radio .iconfont,
-  .ui-checkbox .iconfont {
-    padding-right: 8px;
-    color: #ccc;
-    line-height: 24px; }
-  .ui-radio span,
-  .ui-checkbox span {
-    vertical-align: middle; }
-  .ui-radio:hover .iconfont,
-  .ui-radio:hover .iconfont,
-  .ui-checkbox:hover .iconfont,
-  .ui-checkbox:hover .iconfont {
-    color: #007adf; }
-
-.ui-checkbox .iconfont:before {
-  content: '\EB34'; }
-
-.ui-checkbox input:checked + .iconfont:before {
-  content: "\EB35"; }
-
-.ui-checkbox input:indeterminate + .iconfont:before {
-  content: '\EB33';
-  color: #007adf; }
-
-.ui-radio .iconfont:before {
-  content: '\EB0E'; }
-
-.ui-radio input:checked + .iconfont:before {
-  content: "\EB11"; }
-
-input[type="radio"],
-input[type="checkbox"] {
-  height: 13px;
-  width: 13px;
-  border: 1px solid #ccc;
-  -webkit-appearance: none;
-  -moz-appearance: none; }
-
-input[type="radio"] {
-  border-radius: 50%; }
-
-.ui-radio-group {
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex; }
-  .ui-radio-group input {
-    display: none; }
-  .ui-radio-group label {
-    display: inline-block;
-    height: 32px;
-    padding-left: 16px;
-    padding-right: 16px;
-    line-height: 30px;
-    border: 1px solid #ccc;
-    margin-right: -1px;
-    cursor: pointer;
-    -webkit-user-select: none;
-       -moz-user-select: none;
-        -ms-user-select: none;
-            user-select: none; }
-    .ui-radio-group label:first-of-type {
-      border-radius: 4px 0 0 4px; }
-    .ui-radio-group label:last-of-type {
-      border-radius: 0 4px 4px 0; }
-  .ui-radio-group :checked + label {
-    border-color: #007adf;
-    z-index: 1;
-    position: relative;
-    color: #007adf; }
-
-.ui-control-wrap {
-  position: relative; }
-  .ui-control-wrap.loading:after {
-    content: "";
-    position: absolute;
-    right: 7px;
-    top: 50%;
-    margin-top: -7px;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    height: 14px;
-    width: 14px;
-    border-radius: 50%;
-    background: radial-gradient(#fff, #fff 63%, transparent 64%), -webkit-gradient(linear, left bottom, left top, from(rgba(0, 122, 223, 0.3)), to(#fff)) 50px 0 no-repeat, -webkit-gradient(linear, left bottom, left top, from(rgba(0, 122, 223, 0.3)), to(#007adf)) 0 0;
-    background: radial-gradient(#fff, #fff 63%, transparent 64%), linear-gradient(to top, rgba(0, 122, 223, 0.3), #fff) 50px 0 no-repeat, linear-gradient(to top, rgba(0, 122, 223, 0.3), #007adf) 0 0;
-    -webkit-animation: rotate .5s linear infinite;
-            animation: rotate .5s linear infinite; }
-
-.v-error-tip {
-  position: absolute;
-  left: 12px;
-  bottom: -22px;
-  height: 22px;
-  color: #f55959;
-  line-height: 22px;
-  font-size: 12px;
-  visibility: hidden;
-  opacity: 0;
-  -webkit-transition: opacity .3s;
-  transition: opacity .3s;
-  white-space: nowrap; }
-  .v-error-tip.show {
-    visibility: visible;
-    opacity: 1; }
-
-.w160 {
-  width: 160px !important; }
 
 .ui-icon-input {
   position: relative;
@@ -1968,6 +2110,31 @@ input[type="radio"] {
     -webkit-box-shadow: 0 0 0 3px rgba(0, 122, 223, 0.1);
             box-shadow: 0 0 0 3px rgba(0, 122, 223, 0.1); }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-select {
   height: 36px;
   position: relative;
@@ -2243,6 +2410,394 @@ select.ui-select {
   background: #e0e6ed;
   border-radius: 30px; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
+.ui-switch {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .ui-switch input {
+    display: none; }
+  .ui-switch .switch {
+    position: relative;
+    height: 20px;
+    width: 32px;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    display: inline-block;
+    vertical-align: middle;
+    padding: 2px;
+    border-radius: 10px;
+    background: #ccc;
+    cursor: pointer;
+    -webkit-transition: background 0.2s;
+    transition: background 0.2s; }
+  .ui-switch .open {
+    padding-left: 8px;
+    display: none; }
+  .ui-switch .close {
+    padding-left: 8px; }
+  .ui-switch .switch:before {
+    content: '';
+    height: 16px;
+    width: 16px;
+    position: absolute;
+    left: 2px;
+    top: 2px;
+    border-radius: 8px;
+    background: #fff;
+    -webkit-transition: left 0.2s;
+    transition: left 0.2s; }
+  .ui-switch input:checked + .switch {
+    background: #007adf; }
+  .ui-switch input:checked + .switch:before {
+    left: 14px; }
+  .ui-switch input:checked ~ .open {
+    display: inline; }
+  .ui-switch input:checked ~ .close {
+    display: none; }
+  .ui-switch input:disabled + .switch {
+    cursor: default;
+    background: #e0e6ed; }
+  .ui-switch input:disabled + .switch:before {
+    background: #ccc; }
+  .ui-switch input:disabled:checked + .switch {
+    background-color: rgba(0, 122, 223, 0.5); }
+  .ui-switch input:disabled:checked + .switch:before {
+    background: #fff; }
+
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
+.ui-radio,
+.ui-checkbox {
+  cursor: pointer;
+  vertical-align: middle;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
+  .ui-radio input,
+  .ui-checkbox input {
+    display: none; }
+  .ui-radio input:checked + .iconfont,
+  .ui-checkbox input:checked + .iconfont {
+    color: #007adf; }
+  .ui-radio input:disabled + .iconfont,
+  .ui-radio input.disabled + .iconfont,
+  .ui-checkbox input:disabled + .iconfont,
+  .ui-checkbox input.disabled + .iconfont {
+    cursor: not-allowed;
+    color: #e0e6ed; }
+  .ui-radio input:disabled ~ span,
+  .ui-radio input.disabled ~ span,
+  .ui-checkbox input:disabled ~ span,
+  .ui-checkbox input.disabled ~ span {
+    cursor: not-allowed; }
+  .ui-radio.disabled,
+  .ui-checkbox.disabled {
+    cursor: not-allowed; }
+  .ui-radio input:disabled:checked + .iconfont,
+  .ui-radio input.disabled:checked + .iconfont,
+  .ui-checkbox input:disabled:checked + .iconfont,
+  .ui-checkbox input.disabled:checked + .iconfont {
+    color: rgba(0, 122, 223, 0.5); }
+  .ui-radio .iconfont,
+  .ui-checkbox .iconfont {
+    padding-right: 8px;
+    color: #ccc;
+    line-height: 24px; }
+  .ui-radio span,
+  .ui-checkbox span {
+    vertical-align: middle; }
+  .ui-radio:hover .iconfont,
+  .ui-radio:hover .iconfont,
+  .ui-checkbox:hover .iconfont,
+  .ui-checkbox:hover .iconfont {
+    color: #007adf; }
+
+.ui-checkbox .iconfont:before {
+  content: '\EB34'; }
+
+.ui-checkbox input:checked + .iconfont:before {
+  content: "\EB35"; }
+
+.ui-checkbox input:indeterminate + .iconfont:before {
+  content: '\EB33';
+  color: #007adf; }
+
+.ui-radio .iconfont:before {
+  content: '\EB0E'; }
+
+.ui-radio input:checked + .iconfont:before {
+  content: "\EB11"; }
+
+input[type="radio"],
+input[type="checkbox"] {
+  height: 13px;
+  width: 13px;
+  border: 1px solid #ccc;
+  -webkit-appearance: none;
+  -moz-appearance: none; }
+
+input[type="radio"] {
+  border-radius: 50%; }
+
+.ui-radio-group {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex; }
+  .ui-radio-group input {
+    display: none; }
+  .ui-radio-group label {
+    display: inline-block;
+    height: 32px;
+    padding-left: 16px;
+    padding-right: 16px;
+    line-height: 30px;
+    border: 1px solid #ccc;
+    margin-right: -1px;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none; }
+    .ui-radio-group label:first-of-type {
+      border-radius: 4px 0 0 4px; }
+    .ui-radio-group label:last-of-type {
+      border-radius: 0 4px 4px 0; }
+  .ui-radio-group :checked + label {
+    border-color: #007adf;
+    z-index: 1;
+    position: relative;
+    color: #007adf; }
+
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
+.ui-button {
+  display: inline-block;
+  height: 36px;
+  padding-left: 24px;
+  padding-right: 24px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  line-height: 36px;
+  font-size: 14px;
+  color: #333;
+  vertical-align: middle;
+  border-radius: 4px;
+  border: 0 solid #ccc;
+  background-color: #e8edf2;
+  cursor: pointer;
+  text-align: center;
+  -webkit-transition: background 0.2s;
+  transition: background 0.2s;
+  /* States */
+  /* Sizes */
+  /* Types */ }
+  .ui-button:focus {
+    outline: none; }
+  .ui-button:hover {
+    color: #333;
+    border-color: rgba(204, 204, 204, 0.6);
+    background-color: #fafafa; }
+  .ui-button.disabled {
+    cursor: not-allowed;
+    color: rgba(51, 51, 51, 0.3);
+    border-color: rgba(204, 204, 204, 0.6);
+    background-color: #ebebeb; }
+    .ui-button.disabled:hover {
+      color: rgba(51, 51, 51, 0.3);
+      border-color: rgba(204, 204, 204, 0.6);
+      background-color: #ebebeb; }
+  .ui-button.small {
+    height: 26px;
+    padding-left: 8px;
+    padding-right: 8px;
+    line-height: 26px;
+    border-radius: 4px;
+    font-size: 12px; }
+  .ui-button.primary {
+    color: #fff;
+    background: #007adf;
+    border-color: #0067bc; }
+    .ui-button.primary:hover {
+      color: #fff;
+      border-color: rgba(0, 103, 188, 0.9);
+      background-color: rgba(0, 122, 223, 0.9); }
+    .ui-button.primary.disabled, .ui-button.primary.disabled:hover, .ui-button.primary.disabled:active {
+      color: #fff;
+      border-color: rgba(0, 103, 188, 0.2);
+      background-color: rgba(0, 122, 223, 0.5); }
+  .ui-button.warn {
+    color: #f55959;
+    border-color: #f55959;
+    background-color: rgba(245, 89, 89, 0.06); }
+    .ui-button.warn:hover {
+      color: #fff;
+      background: #f55959;
+      border-color: #f55959; }
+    .ui-button.warn.disabled, .ui-button.warn.disabled:hover, .ui-button.warn.disabled:active {
+      color: rgba(245, 89, 89, 0.5);
+      border-color: rgba(245, 89, 89, 0.5);
+      background-color: rgba(245, 89, 89, 0.06); }
+  .ui-button.line {
+    width: 322px;
+    padding-left: 0;
+    padding-right: 0;
+    border: 1px dashed #ccc;
+    background: #fff;
+    color: #8c8c8c; }
+    .ui-button.line:hover {
+      color: #007adf;
+      border-color: #007adf; }
+  .ui-button.icon {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center; }
+    .ui-button.icon .iconfont {
+      margin-left: 4px; }
+  .ui-button.active {
+    color: #007adf; }
+    .ui-button.active .icon-filter-normal:before {
+      content: '\EB24'; }
+  .ui-button.loading {
+    position: relative;
+    color: transparent; }
+    .ui-button.loading:after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      margin-left: -10px;
+      margin-top: -10px;
+      -webkit-box-sizing: border-box;
+              box-sizing: border-box;
+      height: 20px;
+      width: 20px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.4);
+        border-top-color: #fff;
+      -webkit-animation: rotate .5s linear infinite;
+              animation: rotate .5s linear infinite; }
+
+@-webkit-keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+@keyframes rotate {
+  0% {
+    -webkit-transform: rotate(0);
+            transform: rotate(0); }
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg); } }
+
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-steps {
   text-align: center; }
   .ui-steps .steps {
@@ -2308,20 +2863,46 @@ select.ui-select {
   .ui-steps .pass:after {
     background: #00b08c; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-tag {
+  display: inline-block;
   height: 22px;
-  line-height: 22px;
   max-width: 308px;
   padding: 0 5px;
-  display: inline-block;
   vertical-align: middle;
-  border-radius: 3px;
+  line-height: 22px;
   font-size: 12px;
   color: #333;
-  background: #e8edf2;
   overflow: hidden;
   white-space: nowrap;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  border-radius: 3px;
+  background: #e8edf2;
+  /* Color */ }
   .ui-tag.closeable, .ui-tag[data-closeable] {
     position: relative;
     padding-right: 20px; }
@@ -2347,23 +2928,48 @@ select.ui-select {
     color: #fff;
     background: #007adf; }
   .ui-tag.gray {
-    height: 22px;
+    height: 24px;
     border: 1px solid #ccc; }
   .ui-tag.cus {
-    height: 22px;
+    height: 24px;
     color: #00b08c;
     border: solid 1px rgba(0, 176, 140, 0.2);
     background-color: rgba(0, 176, 140, 0.06); }
   .ui-tag.sys {
-    height: 22px;
+    height: 24px;
     color: #007adf;
     border: solid 1px rgba(0, 122, 223, 0.2);
     background-color: rgba(0, 122, 223, 0.06); }
   .ui-tag.white {
-    height: 22px;
+    height: 24px;
     background: #fff;
     border: 1px solid #e0e6ed; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-menu .menu-item,
 .ui-select-dropdown .menu-item {
   display: -webkit-box;
@@ -2417,11 +3023,11 @@ select.ui-select {
 .ui-menu {
   padding-top: 8px;
   padding-bottom: 8px;
-  background: #fff;
   border-radius: 8px;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  border: 1px solid #e0e6ed; }
+  border: 1px solid #e0e6ed;
+  background: #fff; }
   .ui-menu .menu-item.selected {
     position: relative; }
   .ui-menu .menu-item.selected:after {
@@ -2437,6 +3043,31 @@ select.ui-select {
     top: 8px;
     color: #007adf; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-tree .tree-node:not(.active) .node-label:hover {
   background: rgba(0, 122, 223, 0.06);
   color: #007adf; }
@@ -2507,6 +3138,31 @@ select.ui-select {
 .ui-tree .expend ~ .tree-group {
   display: block; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-transfer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2620,6 +3276,31 @@ select.ui-select {
       -ms-flex-positive: 1;
           flex-grow: 1; }
 
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
+/* ------- font ------- */
+/* ------- other ------- */
+/* ----------------------------
+            Mixin
+   ---------------------------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form 
+------- */
+/* Basic */
+/* Label */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Pagination 
+------- */
+/* ------- Grid ------- */
+/* ------- Menu ------- */
+/* ------- Tab ------- */
+/* ------- Tag ------- */
 .ui-dl {
   display: table-row;
   table-layout: fixed; }
