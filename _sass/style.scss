@@ -251,6 +251,7 @@ main {
 }
 
 .page-code {
+  max-width: 1200px;
   padding-right: 100px;
 }
 
@@ -331,6 +332,27 @@ code.highlighter-rouge {
 .page-need-js:after {
   content: 'Js';
   font-size: 20px;
+}
+
+table:not(.ui-table) {
+  width: 100%;
+
+  thead {
+    th {
+      padding: 10px;
+      background: var(--color-light);
+    }
+  }
+
+  tr {
+    td {
+      padding: 10px;
+      border: 1px solid #f1f2f3 {
+        left: 0;
+        right: 0;
+      };
+    }
+  }
 }
 
 .highlight {
