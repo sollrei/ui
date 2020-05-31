@@ -34,6 +34,8 @@ $border: 1px solid $color-border;
 
 /* ------- font ------- */
 
+$font-size: 14px !default;
+$line-height: 1.72 !default; // 14px -> line-height 24px
 $font-family: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, 
   Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, 
   Microsoft YaHei UI, Microsoft YaHei, Source Han Sans CN, sans-serif !default;
@@ -153,4 +155,9 @@ $tag-font-size: 12px !default;
 
 $popup-radius: 8px;
 $popup-padding: 16px;
+
+/* ------- List ------- */
+
+$list-padding: 8px;
+$list-small-padding: 4px;
 

@@ -59,7 +59,7 @@
   max-width: 100%;
   box-sizing: border-box;
 
-  font-size: 14px;
+  font-size: $font-size;
   line-height: $form-control-height - $form-control-padding-v * 2 - 2px;
   
   border: 1px solid $form-control-border-color;
@@ -173,7 +173,4 @@ textarea.ui-form-control {
   }
 }
 
-.w160 {
-  width: 160px !important;
-}
 

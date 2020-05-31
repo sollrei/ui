@@ -1,5 +1,6 @@
 @import "variables";
 
+
 .ui-dl {
   display: table-row;
   table-layout: fixed;
@@ -7,13 +8,15 @@
   &.small {
     .dd,
     .dt {
-      padding-top: 4px;
-      padding-bottom: 4px;
+      padding-top: $list-small-padding;
+      padding-bottom: $list-small-padding;
     }
   }
 
   .dt {
-    padding: 8px 8px 8px 0;
+    padding: $list-padding {
+      left: 0;
+    };
     color: $gray;
     display: table-cell;
     white-space: nowrap;
@@ -21,8 +24,8 @@
   
   .dd {
     display: table-cell;
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: $list-padding;
+    padding-bottom: $list-padding;
   }
 }
 

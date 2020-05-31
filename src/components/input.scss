@@ -19,11 +19,13 @@
   }
 }
 
+/* icon input */
 .ui-icon-input {
   position: relative;
   width: $form-control-width;
-  display: inline-flex;
+  display: inline-flex;  
   align-items: center;
+  
   border: 1px solid $form-control-border-color;
   border-radius: $form-control-radius;
   vertical-align: middle;
@@ -33,7 +35,7 @@
     border-color: $primary;
   }
 
-  &:focus-within,
+  &:focus-within, // ie not support
   &.active {
     outline: none;
     border-color: $primary;
