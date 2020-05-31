@@ -1,23 +1,27 @@
 @import "variables";
 
-$color-popup-border: #c4e4fd;
 
 // popup
 .ui-tooltip {
   display: inline-block;
   position: absolute;
-  padding: 16px;
+  padding: $popup-padding;
+  max-width: 274px;
+  
   font-size: 12px;
   line-height: 1.33;
-  border-radius: 8px;
-  box-shadow: $shadow;
-  border: solid 1px #ebebeb;
-  background-color: #fff;
-  z-index: 9900;
-  word-break: break-all;
-  max-width: 274px;
   text-align: left;
   color: $black;
+  word-break: break-all;
+  
+  border-radius: $popup-radius;
+  box-shadow: $shadow;
+  border: solid 1px $color-border;
+  background-color: #fff;
+  
+  z-index: 9900;
+  
+  
   animation: fade-in-down $transition-duration both;
   
   &.normal {
@@ -44,10 +48,10 @@ $color-popup-border: #c4e4fd;
   position: absolute;
   left: 0;
   top: 0;
-  padding: 16px;
+  padding: $popup-padding;
   background: #fff;
-  border: 1px solid #ebebeb;
-  border-radius: 8px;
+  border: 1px solid $color-border;
+  border-radius: $popup-radius;
   box-shadow: $shadow;
 
   &:focus {
