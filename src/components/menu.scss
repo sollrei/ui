@@ -71,7 +71,7 @@
     position: absolute;
     @include iconfont;
     right: 12px;
-    top: 8px;
+    top: ($menu-height - 16px) / 2;
     color: $primary;
   }
 }

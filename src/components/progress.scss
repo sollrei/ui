@@ -1,20 +1,23 @@
 @import "variables";
 
+$bar-height: 4px !default;
+
+
 // progress
 .ui-progress {
   position: relative;
-  height: 4px;
+  height: $bar-height;
   width: 100%;
   vertical-align: middle;
-  border-radius: 2px;
+  border-radius: $bar-height / 2;
   background: $color-bg;
 
   .bar {
     position: absolute;
     left: 0;
     top: 0;
-    height: 4px;
-    border-radius: 2px;
+    height: $bar-height;
+    border-radius: $bar-height / 2;
     background: $green;
     transition: width $transition-duration;
   }
