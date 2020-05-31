@@ -1,8 +1,12 @@
 @import "variables";
 
+
+$icon-top: ($menu-height - 16px) / 2;
+
 .ui-select {
   height: $form-control-height;
   position: relative;
+  
   background: #fff;
   cursor: pointer;
   white-space: nowrap;
@@ -13,6 +17,7 @@
     display: none;
   }
 
+  // arrow
   &:before {
     content: "\eb3f";
     font-family: "iconfont";
@@ -21,10 +26,11 @@
     top: 0;
     line-height: $form-control-height - 2px;
     font-size: 16px;
-    transition: .2s;
+    transition: $transition-duration;
     color: $gray;
   }
 
+  /* types */
   &.clearable {
     .icon-clean {
       display: none;
@@ -35,6 +41,7 @@
     .icon-clean {
       position: absolute;
       right: 10px;
+      
       color: $light;
       line-height: 1;
       font-size: 18px;
@@ -49,8 +56,9 @@
     white-space: normal;
     height: auto;
     padding: 5px 6px 1px;
-    min-height: 34px;
-    line-height: 22px;
+    min-height: $form-control-height;
+    
+    line-height: $form-control-height - $form-control-padding-v * 2 - 2px;
     display: flex;
     flex-wrap: wrap;
 
@@ -58,6 +66,7 @@
       display: none;
     }
 
+    // ??? 
     .ft-gray {
       line-height: 24px;
     }
@@ -81,8 +90,9 @@
       height: 22px;
       padding-left: 6px;
       margin-bottom: 4px;
+      
       border: 0 none;
-      font-size: 14px;
+      font-size: $font-size;
     }
 
     .select-input:focus {
@@ -92,6 +102,7 @@
 }
 
 select.ui-select {
+  // reset select style
   appearance: none;
   color: $light;
   background-image: url(https://img-i.gcimg.net/2020/0409/lzims0ak34t1rchd011816.png);
@@ -100,6 +111,7 @@ select.ui-select {
   background-repeat: no-repeat;
 
   &::-ms-expand { 
+    // for ie
     display: none; 
   }
 
@@ -109,11 +121,11 @@ select.ui-select {
     &:before {
       display: none;
     }
-  }
-
-  optgroup,
-  option {
-    display: none;
+    
+    optgroup,
+    option {
+      display: none;
+    }
   }
 }
 
@@ -129,17 +141,20 @@ select.ui-select {
 .ui-select-dropdown {
   display: inline-block;
   // width: 160px;
-  white-space: nowrap;
   left: 0;
   margin-top: 4px;
-  font-size: 14px;
-  border-radius: 4px;
+  
+  font-size: $font-size;
+  white-space: nowrap;
+  border-radius: $radius;
+  
   transform-origin: center top;
   transition: transform $transition-duration, opacity $transition-duration, visibility $transition-duration;
-  border: solid 1px #ebebeb;
+  
+  border: solid 1px $color-border;
   background: #fff;
 
-  // status
+  // states
   &.hide {
     position: absolute;
     opacity: 0;
@@ -161,10 +176,11 @@ select.ui-select {
   .select-main {
     overflow-y: auto;
     overflow-x: hidden;
-    max-height: 276px;
+    max-height: $select-drop-height;
   }
 
   // search input
+  // delete
   .select-search {
     padding-left: 8px;
     padding-right: 8px;
@@ -183,9 +199,10 @@ select.ui-select {
   }
 
   // ul list
+  // menu style
   .select-ul {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding-top: $menu-wrap-padding;
+    padding-bottom: $menu-wrap-padding;
   }
 
   // multiple select
@@ -199,7 +216,7 @@ select.ui-select {
       position: absolute;
       @include iconfont;
       right: 12px;
-      top: 8px;
+      top: $icon-top;
       color: $primary;
     }
 
@@ -209,6 +226,7 @@ select.ui-select {
   }
 
   // tree structure
+  // need rewrite
   &.group {
     .select-main > .menu-item {
       padding-left: 36px;
@@ -270,7 +288,7 @@ select.ui-select {
     padding-left: 59px;
   }
 
-  // cascader wrap
+  /* Cascader */
   &.menu-group {
     width: auto !important;
     border-radius: $radius;
@@ -279,8 +297,8 @@ select.ui-select {
     display: flex;
 
     ul {
-      padding-top: 8px;
-      padding-bottom: 8px;
+      padding-top: $menu-wrap-padding;
+      padding-bottom: $menu-wrap-padding;
       width: 160px;
       border: 0 none;
       border-radius: 0;
@@ -289,14 +307,14 @@ select.ui-select {
 
     ul:first-child {
       border-left: 0;
-      border-top-left-radius: 8px;
-      border-bottom-left-radius: 8px;
+      border-top-left-radius: $menu-wrap-radius;
+      border-bottom-left-radius: $menu-wrap-radius;
     }
 
     ul:last-child {
       border-right-color: #fff;
-      border-top-right-radius: 8px;
-      border-bottom-right-radius: 8px;
+      border-top-right-radius: $menu-wrap-radius;
+      border-bottom-right-radius: $menu-wrap-radius;
     }
 
     .menu-item {
@@ -308,7 +326,7 @@ select.ui-select {
       @include iconfont;
       position: absolute;
       right: 12px;
-      top: 8px;
+      top: $icon-top;
       color: $gray;
     }
 
@@ -333,6 +351,8 @@ select.ui-select {
   }
 }
 
+
+// ??? 
 .ui-control-group {
   display: inline-flex;
 
@@ -368,6 +388,7 @@ select.ui-select {
   }
 }
 
+/* scrollbar */
 .select-main::-webkit-scrollbar {
   width: 6px;
 }
