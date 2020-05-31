@@ -1,5 +1,8 @@
 @import "variables";
 
+
+$btn-size: $switch-height - ($switch-padding * 2);
+
 // switch
 .ui-switch {
   display: inline-flex;
@@ -11,14 +14,16 @@
 
   .switch {
     position: relative;
-    height: 20px;
-    width: 32px;
+    height: $switch-height;
+    width: $switch-width;
+    padding: $switch-padding;
+    
     box-sizing: border-box;
     display: inline-block;
     vertical-align: middle;
-    padding: 2px;
-    border-radius: 10px;
-    background: $light;
+    
+    border-radius: 50%;
+    background: $switch-background;
     cursor: pointer;
     transition: background $transition-duration;
   }
@@ -34,12 +39,13 @@
 
   .switch:before {
     content: '';
-    height: 16px;
-    width: 16px;
+    height: $btn-size;
+    width: $btn-size;
     position: absolute;
-    left: 2px;
-    top: 2px;
-    border-radius: 8px;
+    left: $switch-padding;
+    top: $switch-padding;
+    
+    border-radius: 50%;
     background: $color-white;
     transition: left $transition-duration;
   }
