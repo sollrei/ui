@@ -1,7 +1,6 @@
-@import "variables";
+@import “variables”;
 
 // table
-$h: 40px;
 
 .ui-table {
   width: 100%;
@@ -13,18 +12,18 @@ $h: 40px;
   }
 
   th {
-    padding-left: 16px;
-    height: $h;
+    padding-left: $table-padding-h;
+    height: $table-head-height;
     font-size: 12px;
-    background: #f5f5f5;
+    background: $color-bg;
     font-weight: 600;
 
     &:first-child {
-      border-radius: 4px 0 0 4px;
+      border-radius: $radius 0 0 $radius;
     }
 
     &:last-child {
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 $radius $radius 0;
     }
 
     .iconfont {
@@ -33,9 +32,9 @@ $h: 40px;
   }
 
   td {
-    padding: 16px;
+    padding: $table-padding-v $table-padding-h;
     position: relative;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid $color-border;
     transition: background $transition-duration;
 
     &.ui-empty {
@@ -45,7 +44,7 @@ $h: 40px;
 
   &.small {
     td {
-      padding: 12px 16px;
+      padding: $table-small-padding-v $table-padding-h;
     }
   }
 

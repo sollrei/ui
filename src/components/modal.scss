@@ -1,6 +1,7 @@
 @import "variables";
 
-$w: 448px;
+// need rewrite
+
 $padding: 30px;
 $h-icon: 50px;
 $svg-timing: .9s;
@@ -154,7 +155,7 @@ $svg-timing: .9s;
     transform: translate(-50%, -50%);
     display: inline-block;
     box-shadow: $shadow;
-    border: solid 1px #ebebeb;
+    border: solid 1px $color-border;
     background-color: #fff;
   }
 }

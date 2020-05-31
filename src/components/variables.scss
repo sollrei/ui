@@ -113,6 +113,7 @@ $button-border-width: 0 !default; // o-   1
 $button-border-type: solid !default;
 
 $button-hover: #fafafa !default;
+$button-disable: $color-border !default;
 
 /* ------- Pagination 
 ------- */
@@ -142,6 +143,14 @@ $tab-small-font-size: 14px !default;
 
 $tab-border: $color-border !default; // o-  #ccc
 $tab-padding: 16px;
+
+/* ------- Table ------- */
+
+$table-head-height: 40px !default;
+$table-padding-h: 16px !default;
+$table-padding-v: 16px !default;
+$table-small-padding-v: 12px !default;
+
 
 /* ------- Tag ------- */
 

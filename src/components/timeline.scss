@@ -1,3 +1,4 @@
+// need rewrite
 
 .ui-timeline {
   display: flex;
@@ -41,7 +42,7 @@
       left: 16px;
       top: 10px;
       border-radius: 50%;
-      border: 2px solid #ebebeb;
+      border: 2px solid $color-border;
       background-color: #fff;
     }
   }
