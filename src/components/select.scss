@@ -177,6 +177,7 @@ select.ui-select {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: $select-drop-height;
+    @include scrollbars(6px, $color-border, transparent, 30px);
   }
 
   // search input
@@ -388,12 +389,3 @@ select.ui-select {
   }
 }
 
-/* scrollbar */
-.select-main::-webkit-scrollbar {
-  width: 6px;
-}
-
-.select-main::-webkit-scrollbar-thumb {
-  background: $color-border;
-  border-radius: 30px;
-}
