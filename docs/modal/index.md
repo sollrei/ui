@@ -1,18 +1,66 @@
 ---
 layout: default
+need_js: true
 ---
 
 # Modal
 
-<div class="pb-16">
-  <button class="ui-button primary js-modal-btn">Modal</button>
-</div>
-<div class="pb-16">
-  <button class="ui-button primary js-alert-btn">Alert</button>
-</div>
-<div class="pb-16">
-  <button class="ui-button primary js-alert-warn">Alert</button>
-</div>
-<div class="pb-16">
-  <button class="ui-button primary js-confirm-btn">Confirm</button>
-</div>
+## Standard
+
+<button class="ui-button primary js-modal-btn">Modal</button>
+
+```javascript
+var m = new Modal({
+  onOpen: function () {
+    console.log('open');
+  },
+  onConfirm: function (e, modal) {
+    console.log('ok');
+    modal.hide();
+  }
+});
+
+element.addEventListener('click', function () {
+  m.show({
+    title: 'Modal',
+    content: '<div class="modal-main">Modal Content Text .... ... ....</div>'
+  });
+});
+```
+
+## Message
+
+<button class="ui-button primary js-alert-btn">Alert</button>
+
+```javascript
+var m2 = new Message();
+element.addEventListener('click', function () {
+  m2.success('这里是信息提示');
+});
+```
+
+<button class="ui-button primary js-alert-warn">Alert warn</button>
+
+```javascript
+var m2 = new Message();
+element.addEventListener('click', function () {
+  m2.warn('这里是信息提示');
+});
+```
+
+## Confirm
+
+<button class="ui-button primary js-confirm-btn">Confirm</button>
+
+```javascript
+var m3 = new Modal({
+  type: 'confirm'
+});
+
+element.addEventListener('click', function () {
+  m3.confirm({
+    content: '提醒',
+    desc: '当前积分余额为1，完成当前操作需要消耗20积分'
+  });
+});
+```

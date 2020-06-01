@@ -7,9 +7,14 @@ window.onload = function () {
   var Tooltip = ui.Tooltip;
   var Popper = ui.Popper;
   var Validator = ui.Validator;
+  var Modal = ui.Modal;
+  var Message = ui.Message;
 
+  var btnModal = document.querySelector('.js-modal-btn');
   var btn = document.querySelector('.js-popper');
-
+  var m; 
+  var m2; 
+  var m3;
 
   [].slice.call(document.querySelectorAll('.page-code h2')).forEach(item => {
     var name = item.innerText;
@@ -20,11 +25,56 @@ window.onload = function () {
 
 
   new InputCount('.ui-enter-count');
-  window.s = new Select('.js-select');
+
+  new Select('.js-select');
+
   new Tooltip('[data-tooltip]');
+
   new Validator('.ui-form', function () {
     console.log('success');
   });
+ 
+
+  if (btnModal) {
+    m2 = new Message();
+    m = new Modal({
+      resize: true,
+      onOpen: function () {
+        console.log('open');
+      },
+      onConfirm: function (e, modal) {
+        console.log('ok');
+        modal.hide();
+      }
+    });
+    
+    document.querySelector('.js-modal-btn').addEventListener('click', function () {
+      m.show({
+        content: '<div class="modal-main">Modal Content Text .... ... ....</div>',
+        title: 'Modal'
+      });
+    });
+
+    document.querySelector('.js-alert-btn').addEventListener('click', function () {
+      m2.success('这里是信息提示');
+    });
+  
+    document.querySelector('.js-alert-warn').addEventListener('click', function () {
+      m2.warn('这里是信息提示');
+    });
+    
+    m3 = new Modal({
+      type: 'confirm'
+    });
+  
+    document.querySelector('.js-confirm-btn').addEventListener('click', function () {
+      m3.confirm({
+        content: '提醒',
+        desc: '当前积分余额为1，完成当前操作需要消耗20积分'
+      });
+    });
+  }
+  
   
   if (btn) {
     btn.addEventListener('click', function (e) {

@@ -4,6 +4,8 @@ layout: default
 
 # Pagination
 
+## Standard
+
 {% example html %}
 <div class="ui-pagination">
   <a href="#" class="page"><i class="iconfont icon-arrow-left"></i></a>
@@ -25,6 +27,8 @@ layout: default
   <span class="text">页</span>
 </div>
 {% endexample %}
+
+## Small
 
 {% example html %}
 <div class="ui-pagination small">
