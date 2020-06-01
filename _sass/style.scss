@@ -53,7 +53,6 @@ body:after {
 
 .page-main {
   flex: 1;
-  padding: 20px 80px;
 
 
   h1 {
@@ -251,12 +250,17 @@ main {
 }
 
 .page-code {
-  max-width: 1200px;
-  padding-right: 100px;
+  width: 80%;
+  padding: 20px 80px;
 }
 
-.item-title {
-  text-transform: capitalize;
+.page-menu {
+  position: sticky;
+  padding: 20px 0 20px 20px;
+  top: 100px;
+  line-height: 2.4;
+  margin-left: 40px; 
+  border-left: 1px solid #f1f2f3;
 }
 
 .bd-example {
@@ -298,20 +302,13 @@ code.highlighter-rouge {
 .page-need-js {
   height: 30px;
   width: 30px;
-  position: absolute;
+  position: relative;
+  display: inline-block;
   overflow: hidden;
   border-radius: 5px;
   background: var(--color-bg-light);
   opacity: .6;
   z-index: 1;
-}
-
-.page-need-css {
-  right: 0;
-}
-
-.page-need-js {
-  right: 40px;
 }
 
 .page-need-css:after,

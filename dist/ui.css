@@ -3,6 +3,19 @@
    ============================ */
 /* ------- front colors ------- */
 /* ------- background color ------- */
+/* ============================
+            Components
+   ============================ */
+/* ------- form ------- */
+/* Basic */
+/* Form control */
+/* ------- Button ------- */
+/* ------- Tag ------- */
+/* ============================
+            base
+   ============================ */
+/* ------- front colors ------- */
+/* ------- background color ------- */
 /* ------- font ------- */
 /* ------- other ------- */
 /* ----------------------------
@@ -22,7 +35,12 @@
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 html {
   line-height: 1.5; }
 
@@ -128,7 +146,12 @@ samp {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 html {
   -webkit-box-sizing: border-box;
           box-sizing: border-box; }
@@ -499,7 +522,12 @@ input[type=number]::-webkit-outer-spin-button {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ft-primary {
   color: #007adf; }
   .ft-primary.disabled {
@@ -651,7 +679,12 @@ a.ft-primary:hover,
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-badge {
   position: relative;
   display: -webkit-inline-box;
@@ -731,7 +764,12 @@ a.ft-primary:hover,
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-path {
   font-size: 12px;
   line-height: 16px; }
@@ -769,14 +807,19 @@ a.ft-primary:hover,
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-drop {
   position: relative;
   display: inline-block; }
   .ui-drop .drop-label {
     height: 24px;
     padding-right: 20px;
-    line-height: 24px;
+    line-height: 1.72;
     cursor: pointer; }
     .ui-drop .drop-label:after {
       position: absolute;
@@ -870,7 +913,12 @@ a.ft-primary:hover,
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .modal-open {
   height: 100vh;
   overflow-y: hidden;
@@ -991,7 +1039,7 @@ a.ft-primary:hover,
     display: inline-block;
     -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
             box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-    border: solid 1px #ebebeb;
+    border: solid 1px #e0e6ed;
     background-color: #fff; }
 
 .ui-confirm {
@@ -1140,7 +1188,12 @@ a.ft-primary:hover,
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 html.layer-open {
   height: 100vh;
   overflow-y: hidden; }
@@ -1217,7 +1270,7 @@ html.layer-open {
   .ui-layer .layer-footer {
     height: 80px;
     padding: 24px 26px 0 130px;
-    border-top: 1px solid #ebebeb; }
+    border-top: 1px solid #e0e6ed; }
 
 /* ============================
             base
@@ -1243,7 +1296,12 @@ html.layer-open {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-notice {
   padding: 8px 184px 8px 36px;
   position: relative;
@@ -1257,10 +1315,11 @@ html.layer-open {
     position: absolute;
     left: 12px;
     top: 12px;
-    font-family: iconfont;
+    font-family: "iconfont" !important;
+    font-size: 16px;
+    font-style: normal;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    font-size: 16px;
     line-height: 1;
     color: #007adf; }
   .ui-notice.small {
@@ -1324,7 +1383,12 @@ html.layer-open {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-pagination {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1457,23 +1521,28 @@ html.layer-open {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-tooltip {
   display: inline-block;
   position: absolute;
   padding: 16px;
+  max-width: 274px;
   font-size: 12px;
   line-height: 1.33;
+  text-align: left;
+  color: #333;
+  word-break: break-all;
   border-radius: 8px;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-  border: solid 1px #ebebeb;
+  border: solid 1px #e0e6ed;
   background-color: #fff;
   z-index: 9900;
-  word-break: break-all;
-  max-width: 274px;
-  text-align: left;
-  color: #333;
   -webkit-animation: fade-in-down 0.2s both;
           animation: fade-in-down 0.2s both; }
   .ui-tooltip.normal {
@@ -1498,7 +1567,7 @@ html.layer-open {
   top: 0;
   padding: 16px;
   background: #fff;
-  border: 1px solid #ebebeb;
+  border: 1px solid #e0e6ed;
   border-radius: 8px;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
           box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1); }
@@ -1532,7 +1601,12 @@ html.layer-open {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-progress {
   position: relative;
   height: 4px;
@@ -1574,7 +1648,12 @@ html.layer-open {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-mod {
   padding: 16px 24px;
   border-radius: 8px;
@@ -1604,7 +1683,7 @@ html.layer-open {
       margin-right: -1px;
       height: 32px;
       line-height: 30px;
-      border: 1px solid #e0e6ed; }
+      border: 1px solid #ccc; }
     .ui-tab.small .itm {
       display: block;
       padding-left: 16px;
@@ -1619,31 +1698,6 @@ html.layer-open {
       font-weight: 400;
       border-color: #007adf; }
 
-/* ============================
-            base
-   ============================ */
-/* ------- front colors ------- */
-/* ------- background color ------- */
-/* ------- font ------- */
-/* ------- other ------- */
-/* ----------------------------
-            Mixin
-   ---------------------------- */
-/* ============================
-            Components
-   ============================ */
-/* ------- form 
-------- */
-/* Basic */
-/* Label */
-/* Form control */
-/* ------- Button ------- */
-/* ------- Pagination 
-------- */
-/* ------- Grid ------- */
-/* ------- Menu ------- */
-/* ------- Tab ------- */
-/* ------- Tag ------- */
 .ui-table {
   width: 100%;
   border: 0;
@@ -1654,7 +1708,7 @@ html.layer-open {
     padding-left: 16px;
     height: 40px;
     font-size: 12px;
-    background: #f5f5f5;
+    background: #f7f9fa;
     font-weight: 600; }
     .ui-table th:first-child {
       border-radius: 4px 0 0 4px; }
@@ -1663,9 +1717,9 @@ html.layer-open {
     .ui-table th .iconfont {
       font-weight: 400; }
   .ui-table td {
-    padding: 16px;
+    padding: 16px 16px;
     position: relative;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #e0e6ed;
     -webkit-transition: background 0.2s;
     transition: background 0.2s; }
     .ui-table td.ui-empty {
@@ -1702,7 +1756,12 @@ html.layer-open {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-form {
   font-size: 14px; }
   .ui-form .form-group {
@@ -1833,9 +1892,6 @@ textarea.ui-form-control {
     visibility: visible;
     opacity: 1; }
 
-.w160 {
-  width: 160px !important; }
-
 /* ============================
             base
    ============================ */
@@ -1860,7 +1916,12 @@ textarea.ui-form-control {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-upload-img {
   height: 126px;
   width: 126px;
@@ -2041,7 +2102,12 @@ textarea.ui-form-control {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 /* Enter count */
 .ui-enter-count {
   display: inline-block;
@@ -2056,6 +2122,7 @@ textarea.ui-form-control {
     color: #ccc;
     font-size: 12px; }
 
+/* icon input */
 .ui-icon-input {
   position: relative;
   width: 322px;
@@ -2134,7 +2201,12 @@ textarea.ui-form-control {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-select {
   height: 36px;
   position: relative;
@@ -2142,7 +2214,8 @@ textarea.ui-form-control {
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  /* types */ }
   .ui-select select {
     display: none; }
   .ui-select:before {
@@ -2153,8 +2226,8 @@ textarea.ui-form-control {
     top: 0;
     line-height: 34px;
     font-size: 16px;
-    -webkit-transition: .2s;
-    transition: .2s;
+    -webkit-transition: 0.2s;
+    transition: 0.2s;
     color: #8c8c8c; }
   .ui-select.clearable .icon-clean {
     display: none; }
@@ -2173,8 +2246,8 @@ textarea.ui-form-control {
     white-space: normal;
     height: auto;
     padding: 5px 6px 1px;
-    min-height: 34px;
-    line-height: 22px;
+    min-height: 36px;
+    line-height: 26px;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -2221,9 +2294,9 @@ select.ui-select {
     background-image: none; }
     select.ui-select[multiple]:before {
       display: none; }
-  select.ui-select optgroup,
-  select.ui-select option {
-    display: none; }
+    select.ui-select[multiple] optgroup,
+    select.ui-select[multiple] option {
+      display: none; }
 
 .ui-select-active {
   border-color: #007adf;
@@ -2235,10 +2308,10 @@ select.ui-select {
 
 .ui-select-dropdown {
   display: inline-block;
-  white-space: nowrap;
   left: 0;
   margin-top: 4px;
   font-size: 14px;
+  white-space: nowrap;
   border-radius: 4px;
   -webkit-transform-origin: center top;
           transform-origin: center top;
@@ -2246,8 +2319,9 @@ select.ui-select {
   transition: opacity 0.2s, visibility 0.2s, -webkit-transform 0.2s;
   transition: transform 0.2s, opacity 0.2s, visibility 0.2s;
   transition: transform 0.2s, opacity 0.2s, visibility 0.2s, -webkit-transform 0.2s;
-  border: solid 1px #ebebeb;
-  background: #fff; }
+  border: solid 1px #e0e6ed;
+  background: #fff;
+  /* Cascader */ }
   .ui-select-dropdown.hide {
     position: absolute;
     opacity: 0;
@@ -2403,6 +2477,7 @@ select.ui-select {
   .ui-control-group .ui-select-active {
     z-index: 1; }
 
+/* scrollbar */
 .select-main::-webkit-scrollbar {
   width: 6px; }
 
@@ -2434,7 +2509,12 @@ select.ui-select {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-switch {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -2448,12 +2528,12 @@ select.ui-select {
     position: relative;
     height: 20px;
     width: 32px;
+    padding: 2px;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
     display: inline-block;
     vertical-align: middle;
-    padding: 2px;
-    border-radius: 10px;
+    border-radius: 50%;
     background: #ccc;
     cursor: pointer;
     -webkit-transition: background 0.2s;
@@ -2470,7 +2550,7 @@ select.ui-select {
     position: absolute;
     left: 2px;
     top: 2px;
-    border-radius: 8px;
+    border-radius: 50%;
     background: #fff;
     -webkit-transition: left 0.2s;
     transition: left 0.2s; }
@@ -2516,7 +2596,12 @@ select.ui-select {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-radio,
 .ui-checkbox {
   cursor: pointer;
@@ -2646,7 +2731,12 @@ input[type="radio"] {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-button {
   display: inline-block;
   height: 36px;
@@ -2678,11 +2768,11 @@ input[type="radio"] {
     cursor: not-allowed;
     color: rgba(51, 51, 51, 0.3);
     border-color: rgba(204, 204, 204, 0.6);
-    background-color: #ebebeb; }
+    background-color: #e0e6ed; }
     .ui-button.disabled:hover {
       color: rgba(51, 51, 51, 0.3);
       border-color: rgba(204, 204, 204, 0.6);
-      background-color: #ebebeb; }
+      background-color: #e0e6ed; }
   .ui-button.small {
     height: 26px;
     padding-left: 8px;
@@ -2797,7 +2887,12 @@ input[type="radio"] {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-steps {
   text-align: center; }
   .ui-steps .steps {
@@ -2887,7 +2982,12 @@ input[type="radio"] {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-tag {
   display: inline-block;
   height: 22px;
@@ -2969,7 +3069,12 @@ input[type="radio"] {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-menu .menu-item,
 .ui-select-dropdown .menu-item {
   display: -webkit-box;
@@ -3067,7 +3172,12 @@ input[type="radio"] {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-tree .tree-node:not(.active) .node-label:hover {
   background: rgba(0, 122, 223, 0.06);
   color: #007adf; }
@@ -3162,7 +3272,12 @@ input[type="radio"] {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-transfer {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -3300,7 +3415,12 @@ input[type="radio"] {
 /* ------- Grid ------- */
 /* ------- Menu ------- */
 /* ------- Tab ------- */
+/* ------- Table ------- */
 /* ------- Tag ------- */
+/* ------- popup ------- */
+/* ------- List ------- */
+/* ------- Select ------- */
+/* ------- Switch ------- */
 .ui-dl {
   display: table-row;
   table-layout: fixed; }
@@ -3309,7 +3429,8 @@ input[type="radio"] {
     padding-top: 4px;
     padding-bottom: 4px; }
   .ui-dl .dt {
-    padding: 8px 8px 8px 0;
+    padding: 8px;
+      padding-left: 0;
     color: #8c8c8c;
     display: table-cell;
     white-space: nowrap; }
@@ -3357,8 +3478,11 @@ input[type="radio"] {
       left: 16px;
       top: 10px;
       border-radius: 50%;
-      border: 2px solid #ebebeb;
+      border: 2px solid #e0e6ed;
       background-color: #fff; }
+
+.w160 {
+  width: 160px !important; }
 
 .w240 {
   width: 240px; }

@@ -1,8 +1,3 @@
-// note
-// 删除 ui-rate
-// 新增checkbox 从form单独分离了 还有input enter count
-
-
 /* ============================
             base
    ============================ */
@@ -21,14 +16,14 @@ $violet:  #ac64f1 !default;
 
 $color-white:  #fff    !default;
 
-$color-border:         #e0e6ed !default; // 224, 230, 237  // o-  ebebeb  235
+$color-border:         #ebebeb !default; // 235
 $color-primary-border: #0067bc !default;
 
 /* ------- background color ------- */
 
-$color-bg:          #f7f9fa !default; // o-  f5f5f5  245
-$color-bg-disabled: #f1f4f7 !default; // o-  ebebeb
-$color-bg-normal:   #e8edf2 !default; // o-  f0f0f0  240
+$color-bg:          #f5f5f5 !default; //  245
+$color-bg-disabled: #ebebeb !default;
+$color-bg-normal:   #f0f0f0 !default; // 240
 
 $border: 1px solid $color-border;
 
@@ -69,7 +64,6 @@ $transition-duration: .2s !default;
 ------- */
 
 /* Basic */ 
-$form-font-size: 14px !default;
 $form-gap: 22px !default; // form group margin bottom
 
 /* Label */ 
@@ -78,7 +72,7 @@ $form-label-margin: 8px !default;
 $form-label-color: $gray !default;
 
 /* Form control */
-$form-control-height: 36px !default; // o-  34px
+$form-control-height: 34px !default;
 $form-control-width: 322px !default;
 $form-control-radius: $radius !default;
 $form-control-padding-h: 12px !default;
@@ -97,7 +91,7 @@ $form-control-disable-bg: $color-bg-disabled !default;
 
 /* ------- Button ------- */
 
-$button-height: 36px !default; // o-  34px
+$button-height: 34px !default;
 $button-padding: 24px !default;
 
 $button-small-height: 26px !default;
@@ -109,7 +103,7 @@ $button-small-font-size: 12px !default;
 $button-radius: $radius !default;
 
 $button-border-color: $light !default;
-$button-border-width: 0 !default; // o-   1
+$button-border-width: 1px !default;
 $button-border-type: solid !default;
 
 $button-hover: #fafafa !default;
@@ -141,7 +135,7 @@ $tab-small-height: 32px !default;
 $tab-font-size: 18px !default;
 $tab-small-font-size: 14px !default;
 
-$tab-border: $color-border !default; // o-  #ccc
+$tab-border: $light !default;
 $tab-padding: 16px;
 
 /* ------- Table ------- */
@@ -154,7 +148,7 @@ $table-small-padding-v: 12px !default;
 
 /* ------- Tag ------- */
 
-$tag-height: 22px !default; // -o   20
+$tag-height: 20px !default;
 $tag-padding: 5px !default;
 $tag-max-width: 308px !default;
 $tag-radius: 3px !default;
