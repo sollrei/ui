@@ -22,8 +22,8 @@ $btn-size: $switch-height - ($switch-padding * 2);
     display: inline-block;
     vertical-align: middle;
     
-    border-radius: 50%;
-    background: $switch-background;
+    border-radius: $switch-height / 2;
+    background: $switch-bg;
     cursor: pointer;
     transition: background $transition-duration;
   }
@@ -68,11 +68,11 @@ $btn-size: $switch-height - ($switch-padding * 2);
 
   input:disabled + .switch {
     cursor: default;
-    background: $color-border;
+    background: $switch-disable-bg;
   }
 
   input:disabled + .switch:before {
-    background: $light;
+    background: $switch-disable-btn-bg;
   }
 
   input:disabled:checked + .switch {

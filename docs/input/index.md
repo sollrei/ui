@@ -5,78 +5,57 @@ need_js: true
 
 # Input
 
-
-
 ## 默认
 
+{% example html %}
 <input type="text" class="ui-form-control" placeholder="请输入">
+{% endexample %}
 
-```html
-<input type="text" class="ui-form-control" placeholder="请输入">
-```
 
 ## 禁用
 
+{% example html %}
 <input type="text" class="ui-form-control disabled" disabled value="输入完成">
+{% endexample %}
 
-```html
-<input type="text" class="ui-form-control disabled" disabled value="输入完成">
-```
 
 ## 错误
 
+{% example html %}
 <div class="ui-control-wrap">
   <input type="text" class="ui-form-control error" value="输入完成">
 </div>
+{% endexample %}
 
-
-```html
-<input type="text" class="ui-form-control error" value="输入完成">
-```
 
 ## Icon
 
+{% example html %}
 <div class="ui-icon-input">
   <input type="text" class="ui-form-control">
   <span class="suffix"><i class="iconfont icon-eye"></i></span>
 </div>
+{% endexample %}
 
-```html
-<div class="ui-icon-input">
-  <input type="text" class="ui-form-control">
-  <span class="suffix"><i class="iconfont icon-eye"></i></span>
-</div>
-```
-
+{% example html %}
 <div class="ui-icon-input">
   <span class="prefix"><i class="iconfont icon-search"></i></span>
   <input type="text" class="ui-form-control">
 </div>
-
-```html
-<div class="ui-icon-input">
-  <span class="prefix"><i class="iconfont icon-search"></i></span>
-  <input type="text" class="ui-form-control">
-</div>
-```
+{% endexample %}
 
 ## 字数限制
 
 > 需要有`maxlenth`属性
 
+{% example html %}
 <div class="ui-enter-count">
   <input type="text" class="ui-form-control" maxlength="20">
   <span class="count">0/20</span>
 </div>
+{% endexample %}
 
-
-
-```html
-<div class="ui-enter-count">
-  <input type="text" class="ui-form-control" maxlength="20">
-  <span class="count">0/20</span>
-</div>
-```
+## JavaScript
 
 ```javascript
 new InputCount('.ui-enter-count');

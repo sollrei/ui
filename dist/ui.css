@@ -165,7 +165,7 @@ html {
 body {
   -webkit-font-smoothing: antialiased;
   font-family: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, Microsoft YaHei UI, Microsoft YaHei, Source Han Sans CN, sans-serif;
-  color: #333;
+  color: #1f253a;
   scroll-behavior: smooth;
   font-size: 14px; }
 
@@ -175,7 +175,7 @@ li {
   padding: 0; }
 
 a {
-  color: #333; }
+  color: #1f253a; }
   a.disabled {
     cursor: default; }
 
@@ -565,10 +565,10 @@ a.ft-primary:hover,
   background: #00b08c; }
 
 .ft-black {
-  color: #333; }
+  color: #1f253a; }
 
 .bg-black {
-  background: #333; }
+  background: #1f253a; }
 
 .ft-gray {
   color: #8c8c8c; }
@@ -1413,7 +1413,7 @@ html.layer-open {
     height: 36px;
     width: 36px;
     margin-right: 12px;
-    color: #333;
+    color: #1f253a;
     border-radius: 4px;
     border: 1px solid #e0e6ed;
     display: -webkit-inline-box;
@@ -1535,7 +1535,7 @@ html.layer-open {
   font-size: 12px;
   line-height: 1.33;
   text-align: left;
-  color: #333;
+  color: #1f253a;
   word-break: break-all;
   border-radius: 8px;
   -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
@@ -2163,7 +2163,7 @@ textarea.ui-form-control {
     line-height: 1;
     padding-right: 12px; }
   .ui-icon-input .iconfont {
-    color: #8c8c8c; }
+    color: #e0e6ed; }
 
 .error .ui-icon-input {
   border-color: #f55959;
@@ -2210,25 +2210,25 @@ textarea.ui-form-control {
 .ui-select {
   height: 36px;
   position: relative;
-  background: #fff;
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: #fff;
   /* types */ }
   .ui-select select {
     display: none; }
   .ui-select:before {
     content: "\EB3F";
-    font-family: "iconfont";
     position: absolute;
     right: 10px;
     top: 0;
+    font-family: "iconfont";
     line-height: 34px;
     font-size: 16px;
     -webkit-transition: 0.2s;
     transition: 0.2s;
-    color: #8c8c8c; }
+    color: #e0e6ed; }
   .ui-select.clearable .icon-clean {
     display: none; }
   .ui-select.clearable:hover .icon-clean {
@@ -2533,8 +2533,8 @@ select.ui-select {
             box-sizing: border-box;
     display: inline-block;
     vertical-align: middle;
-    border-radius: 50%;
-    background: #ccc;
+    border-radius: 10px;
+    background: #f0f1f3;
     cursor: pointer;
     -webkit-transition: background 0.2s;
     transition: background 0.2s; }
@@ -2564,7 +2564,7 @@ select.ui-select {
     display: none; }
   .ui-switch input:disabled + .switch {
     cursor: default;
-    background: #e0e6ed; }
+    background: #f1f4f7; }
   .ui-switch input:disabled + .switch:before {
     background: #ccc; }
   .ui-switch input:disabled:checked + .switch {
@@ -2746,11 +2746,11 @@ input[type="radio"] {
           box-sizing: border-box;
   line-height: 36px;
   font-size: 14px;
-  color: #333;
+  color: #1f253a;
   vertical-align: middle;
   border-radius: 4px;
   border: 0 solid #ccc;
-  background-color: #e8edf2;
+  background-color: #f0f1f3;
   cursor: pointer;
   text-align: center;
   -webkit-transition: background 0.2s;
@@ -2761,16 +2761,16 @@ input[type="radio"] {
   .ui-button:focus {
     outline: none; }
   .ui-button:hover {
-    color: #333;
+    color: #1f253a;
     border-color: rgba(204, 204, 204, 0.6);
     background-color: #fafafa; }
   .ui-button.disabled {
     cursor: not-allowed;
-    color: rgba(51, 51, 51, 0.3);
+    color: rgba(31, 37, 58, 0.3);
     border-color: rgba(204, 204, 204, 0.6);
     background-color: #e0e6ed; }
     .ui-button.disabled:hover {
-      color: rgba(51, 51, 51, 0.3);
+      color: rgba(31, 37, 58, 0.3);
       border-color: rgba(204, 204, 204, 0.6);
       background-color: #e0e6ed; }
   .ui-button.small {
@@ -2821,8 +2821,6 @@ input[type="radio"] {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center; }
-    .ui-button.icon .iconfont {
-      margin-left: 4px; }
   .ui-button.active {
     color: #007adf; }
     .ui-button.active .icon-filter-normal:before {
@@ -2939,7 +2937,7 @@ input[type="radio"] {
     line-height: 18px;
     text-align: center; }
   .ui-steps .active {
-    color: #333; }
+    color: #1f253a; }
     .ui-steps .active:before {
       color: #fff;
       border-color: #00b08c;
@@ -2996,12 +2994,12 @@ input[type="radio"] {
   vertical-align: middle;
   line-height: 22px;
   font-size: 12px;
-  color: #333;
+  color: #1f253a;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
   border-radius: 3px;
-  background: #e8edf2;
+  background: #f0f1f3;
   /* Color */ }
   .ui-tag.closeable, .ui-tag[data-closeable] {
     position: relative;
@@ -3095,7 +3093,7 @@ input[type="radio"] {
           align-items: center; }
   .ui-menu .menu-item:hover,
   .ui-select-dropdown .menu-item:hover {
-    color: #333;
+    color: #1f253a;
     background-color: rgba(0, 122, 223, 0.06); }
   .ui-menu .menu-item.disabled,
   .ui-select-dropdown .menu-item.disabled {
@@ -3188,7 +3186,7 @@ input[type="radio"] {
   background: #f7f9fa; }
   .ui-tree .active .node-label,
   .ui-tree .active:hover .node-label {
-    color: #333; }
+    color: #1f253a; }
 
 .ui-tree.checkable .node-label:not(.transfer-title):hover {
   background: rgba(0, 122, 223, 0.06);
@@ -3200,7 +3198,7 @@ input[type="radio"] {
   background: #f7f9fa; }
   .ui-tree.checkable .active .node-label,
   .ui-tree.checkable .active:hover .node-label {
-    color: #333; }
+    color: #1f253a; }
 
 .ui-tree .node-label {
   display: -webkit-box;

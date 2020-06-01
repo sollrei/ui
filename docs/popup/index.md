@@ -7,11 +7,9 @@ need_js: true
 
 ## Popper
 
+{% example html %}
 <button class="ui-button js-popper">Click Me</button>
-
-```html
-<button class="ui-button js-popper">Click Me</button>
-```
+{% endexample %}
 
 #### JavaScript
 

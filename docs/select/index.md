@@ -7,7 +7,7 @@ need_js: true
 # Select
 
 
-## 单选
+## Standard
 
 {% example html %}
 <div class="ui-control-wrap">
@@ -20,8 +20,21 @@ need_js: true
 </div>
 {% endexample %}
 
+## Clearable
 
-## 多选
+{% example html %}
+<div class="ui-control-wrap">
+  <select name="select" class="ui-select ui-form-control js-select" data-clearable>
+    <option value="">请选择</option>
+    <option value="1">选项1</option>
+    <option value="2">选项2</option>
+    <option value="3">选项3</option>
+  </select>
+</div>
+{% endexample %}
+
+
+## Multiple
 
 > 需要添加`multiple`属性，或者在option中增加`multiple: true`
 
@@ -39,7 +52,7 @@ need_js: true
 </div>
 {% endexample %}
 
-## 分组
+## Group
 
 {% example html %}
 <div class="ui-control-wrap">
@@ -59,7 +72,7 @@ need_js: true
 </div>
 {% endexample %}
 
-## 分组多选
+## Group + Multiple
 
 {% example html %}
 <div class="ui-control-wrap">
@@ -80,7 +93,7 @@ need_js: true
 {% endexample %}
 
 
-## 可输入
+## Enterable
 
 {% example html %}
 <div class="ui-control-wrap">

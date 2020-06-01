@@ -89,6 +89,8 @@ $form-control-border-color: $color-border !default;
 $form-control-border-disable-color: rgba($light, 0.6) !default;
 $form-control-disable-bg: $color-bg-disabled !default;
 
+$form-control-icon-color: $gray !default;
+
 /* ------- Button ------- */
 
 $button-height: 34px !default;
@@ -173,6 +175,9 @@ $select-drop-height: 276px !default;
 
 $switch-height: 20px !default;
 $switch-width: 32px !default;
-$switch-background: $light !default;
 $switch-padding: 2px !default;
+
+$switch-bg: $light !default;
+$switch-disable-bg: $color-border !default;
+$switch-disable-btn-bg: $light !default;
 

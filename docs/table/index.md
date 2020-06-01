@@ -4,6 +4,7 @@ layout: default
 
 # Table
 
+{% example html %}
 <table class="ui-table">
   <thead>
     <tr>
@@ -37,3 +38,4 @@ layout: default
     </tr>
   </tbody>
 </table>
+{% endexample %}

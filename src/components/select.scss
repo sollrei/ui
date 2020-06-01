@@ -1,17 +1,16 @@
 @import "variables";
 
-
 $icon-top: ($menu-height - 16px) / 2;
 
 .ui-select {
   height: $form-control-height;
   position: relative;
   
-  background: #fff;
   cursor: pointer;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: #fff;
 
   select {
     display: none;
@@ -20,14 +19,15 @@ $icon-top: ($menu-height - 16px) / 2;
   // arrow
   &:before {
     content: "\eb3f";
-    font-family: "iconfont";
     position: absolute;
     right: 10px;
     top: 0;
+
+    font-family: "iconfont";
     line-height: $form-control-height - 2px;
     font-size: 16px;
     transition: $transition-duration;
-    color: $gray;
+    color: $form-control-icon-color;
   }
 
   /* types */
