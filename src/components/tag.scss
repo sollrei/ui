@@ -41,22 +41,22 @@
   /* Color */ 
   
   &.green {
-    color: #fff;
+    color: $white;
     background: $green;
   }
 
   &.yellow {
-    color: #fff;
+    color: $white;
     background: $yellow;
   }
 
   &.violet {
-    color: #fff;
+    color: $white;
     background: $violet;
   }
 
   &.blue {
-    color: #fff;
+    color: $white;
     background: $primary;
   }
 
@@ -81,7 +81,7 @@
 
   &.white {
     height: $tag-height + 2px;
-    background: #fff;
+    background: $white;
     border: 1px solid $color-border;
   }
 }

@@ -80,6 +80,6 @@ $btn-size: $switch-height - ($switch-padding * 2);
   }
 
   input:disabled:checked + .switch:before {
-    background: #fff;
+    background: $white;
   }
 }

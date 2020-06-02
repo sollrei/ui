@@ -11,7 +11,7 @@
   line-height: 1;
 }
 
-@mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, #fff, 50%), $radius: 30px) {
+@mixin scrollbar($size, $foreground-color, $background-color: mix($foreground-color, $white, 50%), $radius: 30px) {
   // For Google Chrome
   &::-webkit-scrollbar {
     width: $size;

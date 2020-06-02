@@ -46,7 +46,7 @@ $icon-top: ($menu-height - 16px) / 2;
       line-height: 1;
       font-size: 18px;
       top: 50%;
-      background: #fff;
+      background: $white;
       transform: translateY(-50%);
       display: block;
     }
@@ -152,7 +152,7 @@ select.ui-select {
   transition: transform $transition-duration, opacity $transition-duration, visibility $transition-duration;
   
   border: solid 1px $color-border;
-  background: #fff;
+  background: $white;
 
   // states
   &.hide {
@@ -177,7 +177,7 @@ select.ui-select {
     overflow-y: auto;
     overflow-x: hidden;
     max-height: $select-drop-height;
-    @include scrollbars(6px, $color-border, transparent, 30px);
+    @include scrollbar(6px, $color-border, transparent, 30px);
   }
 
   // search input
@@ -294,7 +294,7 @@ select.ui-select {
     width: auto !important;
     border-radius: $radius;
     border: 1px solid $color-border;
-    background: #fff;
+    background: $white;
     display: flex;
 
     ul {
@@ -313,7 +313,7 @@ select.ui-select {
     }
 
     ul:last-child {
-      border-right-color: #fff;
+      border-right-color: $white;
       border-top-right-radius: $menu-wrap-radius;
       border-bottom-right-radius: $menu-wrap-radius;
     }

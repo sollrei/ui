@@ -55,7 +55,7 @@
     right: 0;
     height: 32px;
     line-height: 32px;
-    background: #fff;
+    background: $white;
     text-align: center;
     opacity: 0;
     visibility: hidden;
@@ -175,7 +175,7 @@
     margin-top: 8px;
     position: relative;
     border-radius: 2px;
-    background: #ebebeb;
+    background: $color-border;
   }
 
   .bar {
