@@ -131,7 +131,7 @@ class SelectBase {
 
   /**
    * @method
-   * hide other select's option
+   * hide other select option
    * @param {HTMLElement} select
    * */
   hideOther(select) {

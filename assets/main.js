@@ -16,7 +16,7 @@ window.onload = function () {
   var m2; 
   var m3;
 
-  [].slice.call(document.querySelectorAll('.page-code h2')).forEach(item => {
+  [].slice.call(document.querySelectorAll('.page-code h2')).forEach(function (item) {
     var name = item.innerText;
     var id = item.id;
     arr += '<li><a href="#' + id + '">' + name + '</a></li>';

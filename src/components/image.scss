@@ -50,7 +50,7 @@ $small-avatar: 32px;
     top: 0;
     height: 300px;
     width: 300px;
-    box-shadow: 0 0 0 50px rgba(#fff, .5) inset;
+    box-shadow: 0 0 0 50px rgba($white, .5) inset;
     cursor: move;
 
     &:before {

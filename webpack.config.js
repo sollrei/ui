@@ -31,6 +31,12 @@ module.exports = {
         },
         'sass-loader',
       ]
+    }, {
+      test: /\.es6$/,
+      loader: 'babel-loader',
+      query: {
+          presets: ['es2015']
+      }
     }]
   },
   plugins: [

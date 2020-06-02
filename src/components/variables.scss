@@ -6,21 +6,19 @@ $color-base: #fff !default;
 
 /* ------- foreground colors ------- */
 
-// $black: #333    !default; // 51, 51, 51
-$light: darken($color-base, 20%) !default; // #ccc 204, 204, 204
+$light: darken($color-base, 20%) !default; // #ccc    204, 204, 204
 $gray:  darken($color-base, 45%) !default; // #8c8c8c 140, 140, 140
-$black: darken($color-base, 80%) !default;
+$black: darken($color-base, 80%) !default; // #333    51, 51, 51
+
 $white: #fff !default;
 $dark:  #000 !default;
 
 
-$primary: #007adf !default;  // 0,122,223
+$primary: #007adf !default;  // 0, 122, 223
 $green:   #00b08c !default;  // 0, 176, 140
 $red:     #f55959 !default;  // 245, 89, 89
 $yellow:  #faab4d !default;  // 250, 171, 77
 $violet:  #ac64f1 !default;
-
-$color-white:  #fff    !default;
 
 $color-border:           darken($color-base, 8%) !default; // #ebebeb 235
 $color-primary-border: #0067bc !default;
@@ -50,7 +48,7 @@ $font-family: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu,
 /* ------- other ------- */
 
 $radius: 4px !default;
-$shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1) !default;
+$shadow: 0 2px 4px 0 rgba($dark, .1) !default;
 $transition-duration: .2s !default;
 
 
@@ -58,8 +56,7 @@ $transition-duration: .2s !default;
             Components
    ============================ */
 
-/* ------- form 
-------- */
+/* ------- Form ------- */
 
 /* Basic */ 
 $form-gap: 22px !default; // form group margin bottom
@@ -109,8 +106,7 @@ $button-border-type: solid !default;
 $button-hover: $color-bg-hover !default;
 $button-disable: $color-bg-disabled !default;
 
-/* ------- Pagination 
-------- */
+/* ------- Pagination ------- */
 
 $page-height: 36px !default;
 $page-height-small: 26px !default;
@@ -195,8 +191,7 @@ $notice-warn-bg: #ffeded !default;
 
 $notice-radius: 8px !default;
 
-/* ------- Transfer
--------*/ 
+/* ------- Transfer -------*/ 
 
 $transfer-hover-color: #f4f8fc !default;
 

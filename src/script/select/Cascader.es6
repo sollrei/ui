@@ -3,6 +3,7 @@ import SelectBase from './SelectBase.es6';
 
 const doc = document;
 
+
 class Cascader extends SelectBase {
   constructor(elementSelector, options) {
     const defaultSettings = Object.assign({}, {

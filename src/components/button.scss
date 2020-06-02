@@ -6,11 +6,11 @@
   padding-left: $button-padding;
   padding-right: $button-padding;
   box-sizing: border-box;
+  vertical-align: middle;
 
   line-height: $button-height - ($button-border-width * 2);
   font-size: $button-font-size;
   color: $black;
-  vertical-align: middle;
 
   border-radius: $button-radius;
   border: $button-border-width $button-border-type $button-border-color;
@@ -55,7 +55,7 @@
   /* Types */
 
   &.primary {
-    color: $color-white;
+    color: $white;
     border-color: $color-primary-border;
     background: $primary;
 
@@ -99,7 +99,7 @@
     padding-left: 0;
     padding-right: 0;
     border: 1px dashed $light;
-    background: $color-white;
+    background: $white;
     color: $gray;
 
     &:hover {
@@ -126,7 +126,6 @@
   }
 
   // no need
-
   &.loading {
     position: relative;
     color: transparent;
@@ -142,8 +141,8 @@
       height: 20px;
       width: 20px;
       border-radius: 50%;
-      border: 2px solid rgba($color-white, .4) {
-        top-color: $color-white;
+      border: 2px solid rgba($white, .4) {
+        top-color: $white;
       };
 
       animation: rotate .5s linear infinite;

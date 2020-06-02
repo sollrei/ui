@@ -46,7 +46,7 @@ $btn-size: $switch-height - ($switch-padding * 2);
     top: $switch-padding;
     
     border-radius: 50%;
-    background: $color-white;
+    background: $white;
     transition: left $transition-duration;
   }
 

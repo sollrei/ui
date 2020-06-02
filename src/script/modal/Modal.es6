@@ -296,7 +296,7 @@ class Modal {
     const modalBox = this.modalBox;
     const docEle = document.documentElement;
     const { onResize } = this.settings;
-    const { height: minHeight, width: minWidth } = modalBox.getBoundingClientRect();
+    // const { height: minHeight, width: minWidth } = modalBox.getBoundingClientRect();
 
     let startX;
     let startY;
