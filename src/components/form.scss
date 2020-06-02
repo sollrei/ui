@@ -145,8 +145,8 @@ textarea.ui-form-control {
       height: 14px;
       width: 14px;
       border-radius: 50%;
-      background: radial-gradient(#fff, #fff 63%, transparent 64%),
-        linear-gradient(to top, rgba($primary, .3), #fff) 50px 0 no-repeat,
+      background: radial-gradient($white, $white 63%, transparent 64%),
+        linear-gradient(to top, rgba($primary, .3), $white) 50px 0 no-repeat,
         linear-gradient(to top, rgba($primary, .3), $primary) 0 0;
 
       animation: rotate .5s linear infinite;

@@ -22,8 +22,15 @@ layout: default
   <div class="bg-primary flex1"></div>
   <div class="bg-green flex1"></div>
   <div class="bg-black flex1"></div>
+</div>
+
+<div class="ui-row mtb-20" style="height: 80px;">
   <div class="bg-gray flex1"></div>
   <div class="bg-light flex1"></div>
+  <div class="bg-disabled flex1"></div>
+  <div class="bg-normal flex1"></div>
+  <div class="bg-bg flex1"></div>
+  <div class="bg-hover flex1"></div>
 </div>
 
 {% example html%}

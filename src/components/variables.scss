@@ -2,47 +2,50 @@
             base
    ============================ */
 
-/* ------- front colors ------- */
 $color-base: #fff !default;
 
-$black: #333    !default; // 51, 51, 51
-$gray:  darken($color-base, 45%) !default;
-// $gray:  #8c8c8c !default; // 140, 140, 140
-$light: darken($color-base, 20%) !default;
-// $light: #ccc    !default; // 204, 204, 204
+/* ------- foreground colors ------- */
 
-$primary: #007adf !default; // 0,122,223
-$green:   #00b08c !default; // 0, 176, 140
+// $black: #333    !default; // 51, 51, 51
+$light: darken($color-base, 20%) !default; // #ccc 204, 204, 204
+$gray:  darken($color-base, 45%) !default; // #8c8c8c 140, 140, 140
+$black: darken($color-base, 80%) !default;
+$white: #fff !default;
+$dark:  #000 !default;
+
+
+$primary: #007adf !default;  // 0,122,223
+$green:   #00b08c !default;  // 0, 176, 140
 $red:     #f55959 !default;  // 245, 89, 89
-$yellow:  #faab4d !default; // 250, 171, 77
+$yellow:  #faab4d !default;  // 250, 171, 77
 $violet:  #ac64f1 !default;
 
 $color-white:  #fff    !default;
 
-
-$color-border: darken($color-base, 8%) !default;
-// $color-border:         #ebebeb !default; // 235
+$color-border:           darken($color-base, 8%) !default; // #ebebeb 235
 $color-primary-border: #0067bc !default;
+
+
 
 /* ------- background color ------- */
 
-$color-bg:          darken($color-base, 4%) !default;
-$color-bg-hover:    darken($color-base, 2%) !default;
-// $color-bg:          #f5f5f5 !default; //  245
-$color-bg-normal:   darken($color-base, 6%) !default;
-// $color-bg-normal:   #f0f0f0 !default; // 240
-$color-bg-disabled: darken($color-base, 8%) !default;
-// $color-bg-disabled: #ebebeb !default;
+$color-bg:          darken($color-base, 4%) !default;  // #f5f5f5 245
+$color-bg-hover:    darken($color-base, 2%) !default;  // #fafafa 250
+$color-bg-normal:   darken($color-base, 6%) !default;  // #f0f0f0 240
+$color-bg-disabled: darken($color-base, 8%) !default;  // #ebebeb 235
 
-$border: 1px solid $color-border;
+
 
 /* ------- font ------- */
 
 $font-size: 14px !default;
 $line-height: 1.72 !default; // 14px -> line-height 24px
 $font-family: -apple-system, BlinkMacSystemFont, Roboto, Ubuntu, 
-  Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, 
-  Microsoft YaHei UI, Microsoft YaHei, Source Han Sans CN, sans-serif !default;
+              Helvetica Neue, Helvetica, Arial, PingFang SC, Hiragino Sans GB, 
+              Microsoft YaHei UI, Microsoft YaHei, Source Han Sans CN, sans-serif !default;
+
+
+
 
 /* ------- other ------- */
 
@@ -54,7 +57,6 @@ $transition-duration: .2s !default;
 /* ============================
             Components
    ============================ */
-
 
 /* ------- form 
 ------- */
@@ -79,7 +81,7 @@ $form-placeholder-color: $light !default;
 $form-control-error-color: $red !default;
 
 $form-control-error-shadow: 0 0 0 3px rgba($red, .1) !default;
-$form-control-active-shadow: 0 0 0 3px rgba($primary, 0.1);
+$form-control-active-shadow: 0 0 0 3px rgba($primary, 0.1) !default;
 
 $form-control-border-color: $color-border !default;
 $form-control-border-disable-color: rgba($light, 0.6) !default;
@@ -159,8 +161,8 @@ $popup-padding: 16px;
 
 /* ------- List ------- */
 
-$list-padding: 8px;
-$list-small-padding: 4px;
+$list-padding: 8px !default;
+$list-small-padding: 4px !default;
 
 /* ------- Select ------- */
 
@@ -176,4 +178,20 @@ $switch-padding: 2px !default;
 $switch-bg: $light !default;
 $switch-disable-bg: $color-border !default;
 $switch-disable-btn-bg: $light !default;
+
+/* ------- Alert ------- */ 
+
+$alert-success-border-color: #a0e3d5 !default;
+$alert-success-bg: #ecfcf8 !default;
+
+$alert-warn-border-color: #ffd9ac !default;
+$alert-warn-bg: #fff7ed !default;
+
+$notice-border-color: #c9e2f6 !default;
+$notice-bg: #f2f9ff !default;
+
+$notice-warn-border-color: #ffcfcf !default;
+$notice-warn-bg: #ffeded !default;
+
+$notice-radius: 8px !default;
 

@@ -46,6 +46,7 @@
     height: $button-small-height;
     padding-left: $button-small-padding;
     padding-right: $button-small-padding;
+    
     line-height: $button-small-height - ($button-border-width * 2);
     border-radius: $radius;
     font-size: $button-small-font-size;
@@ -55,11 +56,11 @@
 
   &.primary {
     color: $color-white;
-    background: $primary;
     border-color: $color-primary-border;
+    background: $primary;
 
     &:hover {
-      color: #fff;
+      color: $white;
       border-color: rgba($color-primary-border, 0.9);
       background-color: rgba($primary, 0.9);
     }
@@ -67,7 +68,7 @@
     &.disabled,
     &.disabled:hover,
     &.disabled:active {
-      color: #fff;
+      color: $white;
       border-color: rgba($color-primary-border, 0.2);
       background-color: rgba($primary, 0.5);
     }
@@ -79,7 +80,7 @@
     background-color: rgba($red, 0.06);
 
     &:hover {
-      color: #fff;
+      color: $white;
       background: $red;
       border-color: $red;
     }

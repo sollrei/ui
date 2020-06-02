@@ -6,6 +6,9 @@ const autoprefixer = require('autoprefixer');
 
 module.exports = {
   watch: true,
+  watchOptions: {
+    ignored: './src/script/',
+  },
   entry: {
     ui: './src/ui.es6'
   },

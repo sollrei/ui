@@ -8,10 +8,6 @@
   }
 }
 
-.bg-primary {
-  background: $primary;
-}
-
 a.ft-primary,
 .ft-link.ft-primary {
   &:hover {
@@ -28,17 +24,9 @@ a.ft-primary,
   color: $yellow;
 }
 
-.bg-yellow {
-  background: $yellow;
-}
-
 .ft-error,
 .ft-red {
   color: $red;
-}
-
-.bg-red {
-  background: $red;
 }
 
 .ft-success,
@@ -46,34 +34,17 @@ a.ft-primary,
   color: $green;
 }
 
-.bg-green {
-  background: $green;
-}
-
 .ft-black {
   color: $black;
-}
-
-.bg-black {
-  background: $black;
 }
 
 .ft-gray {
   color: $gray;
 }
 
-.bg-gray {
-  background: $gray;
-}
-
 .ft-light {
   color: $light;
 }
-
-.bg-light {
-  background: $light;
-}
-
 
 .ft-center {
   text-align: center;
@@ -172,5 +143,55 @@ a.ft-primary,
   .ui-button {
     margin: 0 8px;
   }
+}
+
+
+
+.bg-primary {
+  background: $primary;
+}
+
+.bg-yellow {
+  background: $yellow;
+}
+
+.bg-red {
+  background: $red;
+}
+
+.bg-green {
+  background: $green;
+}
+
+.bg-black {
+  background: $black;
+}
+
+.bg-gray {
+  background: $gray;
+}
+
+.bg-light {
+  background: $light;
+}
+
+.bg-border {
+  background-color: $color-border;
+}
+
+.bg-bg {
+  background: $color-bg;
+}
+
+.bg-hover {
+  background: $color-bg-hover;
+}
+
+.bg-normal {
+  background: $color-bg-normal;
+}
+
+.bg-disabled {
+  background: $color-bg-disabled;
 }
 

@@ -21,7 +21,7 @@ $svg-timing: .9s;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba($dark, 0.5);
   z-index: -1;
   text-align: center;
   overflow: hidden;
@@ -142,7 +142,7 @@ $svg-timing: .9s;
     top: 0;
     bottom: 0;
     right: 0;
-    background: rgba(#000, .5);
+    background: rgba($dark, .5);
     z-index: 10;
   }
 
@@ -156,7 +156,7 @@ $svg-timing: .9s;
     display: inline-block;
     box-shadow: $shadow;
     border: solid 1px $color-border;
-    background-color: #fff;
+    background-color: $white;
   }
 }
 
@@ -220,8 +220,8 @@ $svg-timing: .9s;
   }
 
   .alert-success {
-    border-color: #a0e3d5;
-    background: #ecfcf8;
+    border-color: $alert-success-border-color;
+    background: $alert-success-bg;
 
     &:before {
       color: $green;
@@ -231,8 +231,8 @@ $svg-timing: .9s;
   }
 
   .alert-warn {
-    background: #fff7ed;
-    border-color: #ffd9ac;
+    background: $alert-warn-bg;
+    border-color: $alert-warn-border-color;
 
     &:before {
       color: $yellow;

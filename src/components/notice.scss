@@ -3,11 +3,13 @@
 .ui-notice {
   padding: 8px 184px 8px 36px;
   position: relative;
-  border-radius: 8px;
-  border: 1px solid #c9e2f6;
-  background: #f2f9ff;
-  line-height: 24px;
+
   font-size: 12px;
+  line-height: 24px;
+  
+  border-radius: $notice-radius;
+  border: 1px solid $notice-border-color;
+  background: $notice-bg;
 
   &:before {
     content: '\eb1d';
@@ -44,8 +46,8 @@
   }
 
   &.warn {
-    border-color: #ffd9ac;
-    background: #fff7ed;
+    border-color: $alert-warn-border-color;
+    background: $alert-warn-bg;
 
     &:before {
       color: $yellow;
@@ -53,8 +55,8 @@
   }
 
   &.error {
-    border: solid 1px #ffcfcf;
-    background-color: #ffeded;
+    border: solid 1px $notice-warn-border-color;
+    background-color: $notice-warn-bg;
 
     &:before {
       content: '\eb07';

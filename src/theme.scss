@@ -9,17 +9,9 @@
 
 /* ------- front colors ------- */
 
-$black: #1f253a;
+$color-base: #fafbfc;
 
-$primary: #007adf; // 0,122,223
-$color-border: #e0e6ed;// o-  ebebeb  235
-$color-primary-border: #0067bc;
-
-/* ------- background color ------- */
-
-$color-bg:          #f7f9fa; // o-  f5f5f5  245
-$color-bg-disabled: #f1f4f7; // o-  ebebeb
-$color-bg-normal:   #f0f1f3; // o-  f0f0f0  240
+$primary: #007adf;
 
 /* ============================
             Components
@@ -30,7 +22,6 @@ $color-bg-normal:   #f0f1f3; // o-  f0f0f0  240
 /* Basic */ 
 /* Form control */
 $form-control-height: 36px;
-$form-control-icon-color: $color-border;
 
 /* ------- Button ------- */
 
@@ -41,6 +32,3 @@ $button-border-width: 0;
 /* ------- Tag ------- */
 
 $tag-height: 22px;
-
-$switch-bg: $color-bg-normal !default;
-$switch-disable-bg: $color-bg-disabled !default;

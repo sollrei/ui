@@ -9,7 +9,7 @@
     content: '';
     width: 2px;
     left: 153px;
-    background-color: #ebebeb;
+    background-color: $color-border;
     position: absolute;
     top: 16px;
     bottom: 18px;
@@ -22,6 +22,7 @@
 
   .date {
     width: 132px;
+    min-width: 132px;
   }
 
   .time {
@@ -43,7 +44,34 @@
       top: 10px;
       border-radius: 50%;
       border: 2px solid $color-border;
-      background-color: #fff;
+      background-color: $white;
+    }
+  }
+
+  .ui-button {
+    padding-left: 0;
+    padding-right: 0;
+    width: 132px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .time-content {
+    display: none;
+  }
+
+  .expend {
+    .total {
+      display: none;
+    }
+
+    .time-content {
+      display: block;
+    }
+
+    .icon-caret-right {
+      transform: rotate(90deg);
     }
   }
 }

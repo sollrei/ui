@@ -57,6 +57,9 @@
     - title: 树结构
       name: Tree
       url: /docs/tree/
+    - title: 列表
+      name: List
+      url: /docs/list/
 
 - title: Notice
   pages:

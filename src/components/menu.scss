@@ -25,7 +25,7 @@
     }
 
     &.disabled:hover {
-      background: #fff;
+      background: $white;
     }
   }
 
@@ -37,7 +37,7 @@
     cursor: not-allowed;
 
     &:hover {
-      background: #fff;
+      background: $white;
     }
   }
 }
@@ -60,7 +60,7 @@
 
   box-shadow: $shadow;
   border: 1px solid $color-border;
-  background: #fff;
+  background: $white;
 
   .menu-item.selected {
     position: relative;

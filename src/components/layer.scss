@@ -8,7 +8,7 @@ html.layer-open {
 }
 
 .layer-visible {
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba($dark, 0.5);
 
   ~ .layer-visible {
     background: none;
@@ -40,7 +40,7 @@ html.layer-open {
     right: 0;
     top: 0;
     min-width: 640px;
-    background: #fff;
+    background: $white;
     bottom: 0;
     transform: translate(100%, 0);
     transition: .3s;
