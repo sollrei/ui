@@ -3,6 +3,9 @@
     - title: 排版
       name: Typography
       url: /docs/typography/
+    - title: 布局
+      name: Layout
+      url: /docs/layout/
 
 - title: Form
   pages:
