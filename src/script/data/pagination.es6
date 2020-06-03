@@ -1,39 +1,12 @@
 import u from '../base/util.es6';
 
-// const demo = {
-//   // pagination in dialog
-//   // pagination in page
-//   page(wrap) {
-//     const self = this;
-//     const _wrap = wrap || $('.ui-pagination');
-
-//     if (!_wrap.length) return;
-
-//     const selectNum = $('.js-select', _wrap);
-//     const pageNum = $('input', _wrap);
-
-//     selectNum.on('change', function () {
-//       const value = this.value;
-//       location.href = self.dealPageUrl('limit', value);
-//     });
-
-//     pageNum.on('keyup', function (e) {
-//       if (e.keyCode === 13) {
-//         const value = this.value;
-//         location.href = self.dealPageUrl('page', value);
-//       }
-//     });
-//   }
-
-// };
-
 class Pagination {
   constructor(selector, options) {
     const defaultSettings = {
       total: 0,
-      current: 1,
-      size: 5, // data number per page
-      page: 5 // page number
+      page: 1,
+      size: 5,  // data length per page
+      pages: 5  // page number
     };
 
     this.settings = Object.assign({}, defaultSettings, options);
@@ -47,59 +20,36 @@ class Pagination {
       element = document.querySelector(selector);
     }
 
-    const { total, current, size, page } = this.settings;
+    if (!element) return;
+    
+    this.wrapper = element;
+    
+    this.page = this.settings.page;
+    
+    
   }
 
-  static createNormalPage(number) {
+  static createNormalPageItem(number) {
     return `<a href="javascript:;" class="page" data-page="${number}">${number}</a>`;
   }
 
-  static createCurrentPage(number) {
+  static createCurrentPageItem(number) {
     return `<span class="page active" data-page="${number}">${number}</span>`;
   }
-
-  static createMenu(className, pageNum, icon) {
-    return `<a href="javascript:;" class="page ${className}" data-page="${pageNum}"><i class="iconfont icon-arrow-${icon}"></i></a>`;
-  }
-
-  static createPrev(current) {
-    const disableClass = current === 1 ? 'disabled' : '';
-    return Pagination.createMenu(disableClass, current - 1, 'left');
-  }
-
-  static createNext(current, max) {
-    let disableClass = current === max ? 'disabled' : '';
-    return Pagination.createMenu(disableClass, current + 1, 'right');
-  }
-
+  
   static createInput() {
     return '<span class="text">跳至</span><input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off"><span class="text">页</span>';
   }
-
-  createPageDom(current) {
-    const { total, size, page } = this.settings; 
-
-    if (total <= size) return '';
-
-    const pageArr = Pagination.createPageArray(total, current, page, size);
-
-    let pageHtml = pageArr.reduce((pre, cur) => cur === current 
-      ? pre + Pagination.createCurrentPage(cur) 
-      : pre + Pagination.createNormalPage(cur)
-    , '');
-
-    pageHtml = Pagination.createPrev(current)
-       + pageHtml
-       + Pagination.createNext(current, pageArr.length)
-       + Pagination.createInput();
-
-    return pageHtml;
+  
+  static createArray(start, length) {
+    return Array.from({ length }).map((item, index) => index + start);
   }
-
-  static createPageArray(total, current, pageShowNum, count = 5) {
+  
+  static createPageArray({total, page: current, pages: pageShowNum, size: count}) {
     const pageTotal = Math.ceil(total / count);
     const middle = Math.ceil(pageShowNum / 2);
     const half = Math.floor(pageShowNum / 2);
+    const { createArray } = Pagination;
 
     let pageArr = [];
 
@@ -123,6 +73,45 @@ class Pagination {
 
     return pageArr;
   }
+  
+  createPageNav(type, limit) {
+    const className = (this.page === limit) ? 'disabled' : '';
+    
+    return `<a href="javascript:;" class="page ${className}" data-page="${page}">
+      <i class="iconfont icon-arrow-${type}"></i>
+    </a>`;
+  }
+  
+  createPageButton(str, cur) {
+    if (cur === this.page) {
+      return str + `<span class="page active" data-page="${number}">${number}</span>`;
+    }
+    
+    return str + `<a href="javascript:;" class="page" data-page="${number}">${number}</a>`;
+  }
+
+  createPageDom(page) {
+    const { total, size, pages } = this.settings; 
+
+    if (total <= size) {
+      return '';
+    }
+
+    const pageArr = Pagination.createPageArray({total, pages, page, size});
+    const pageHtml = pageArr.reduce(this.createPageButton, '');
+    const prevButton = this.createPageNav('prev', 0);
+    const nextButton = this.createPageNav('next', pageArr.length);
+
+    return prevButton + pageHtml + nextButton + Pagination.createInput();
+  }
+
+
+
+
+
+
+
+
 
   static dealPageUrl(name, value) {
     const url = location.href;
