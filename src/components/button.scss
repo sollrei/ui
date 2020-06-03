@@ -11,13 +11,13 @@
   line-height: $button-height - ($button-border-width * 2);
   font-size: $button-font-size;
   color: $black;
+  text-align: center;
+  cursor: pointer;
 
   border-radius: $button-radius;
   border: $button-border-width $button-border-type $button-border-color;
   background-color: $color-bg-normal;
-
-  cursor: pointer;
-  text-align: center;
+  
   transition: background $transition-duration;
 
   /* States */

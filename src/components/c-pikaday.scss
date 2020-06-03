@@ -17,7 +17,7 @@
   }
 
   .pika-button {
-    background: #fff;
+    background: $white;
     text-align: center;
     font-size: 14px;
     padding: 0;
@@ -37,7 +37,7 @@
   }
 
   .is-today .pika-button:hover {
-    color: #fff;
+    color: $white;
   }
 
   .is-today.is-selected .pika-button,
@@ -45,7 +45,7 @@
   .has-event .pika-button {
     // background: $primary;
     color: $primary;
-    background: #fff;
+    background: $white;
     box-shadow: none;
     padding: 4px;
     border: 1px solid $primary;
@@ -74,7 +74,7 @@
   box-shadow: $shadow;
   border-radius: 8px;
   position: absolute;
-  background: #fff;
+  background: $white;
   z-index: 10;
   opacity: 0;
   visibility: hidden;

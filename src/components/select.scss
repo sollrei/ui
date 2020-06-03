@@ -10,7 +10,7 @@ $icon-top: ($menu-height - 16px) / 2;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  background: #fff;
+  background: $white;
 
   select {
     display: none;

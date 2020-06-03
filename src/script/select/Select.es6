@@ -663,6 +663,40 @@ class Select extends SelectBase {
     }
   }
 
+  // need test
+  handleClickOptionItem(item) {
+    const self = this;
+    const { select } = self;
+    const { selectFn } = self.settings;
+
+    if (u.hasClass(item, 'label-item') // group label
+      || u.hasClass(item, 'disabled') // disabled item
+      || (self.max && self.value.length >= self.max && !u.hasClass(item, 'selected')) // max limit
+    ) return;
+
+    // single select [selected]
+    if (!self.multiple && u.hasClass(item, 'selected')) {
+      self.hideOption(select);
+      return;
+    }
+
+    const value = item.getAttribute('data-value');
+    const { label } = self.cache[value];
+
+    if (selectFn && typeof selectFn === 'function') {
+      selectFn(value, select);
+    }
+
+    self.toggleItemSelected(value);
+
+    if (self.multiple) {
+      self.changeMultiSelectValue(true);
+    } else {
+      self.changeSelectValue(select, value, label);
+      self.changeMultiSelectedClass();
+    }
+  }
+
   /**
    * @method
    * @param {Object} select
@@ -671,7 +705,6 @@ class Select extends SelectBase {
     const select = this.select;
     const option = select.option;
     const self = this;
-    const selectFn = this.settings.selectFn;
 
     this.selectClickEvent(select, function () {
       if (self.enterable) {
@@ -694,38 +727,7 @@ class Select extends SelectBase {
     u.on(option, 'click', '.menu-item', function (e) {
       e.stopPropagation();
       
-      // group label
-      if (u.hasClass(this, 'label-item')) return;
-
-      // disabled item
-      if (u.hasClass(this, 'disabled')) return;
-
-      // max limit
-      if (self.max && self.value.length >= self.max && !u.hasClass(this, 'selected')) {
-        return;
-      }
-
-      // single select [selected]
-      if (!self.multiple && u.hasClass(this, 'selected')) {
-        self.hideOption(select);
-        return;
-      }
-
-      const value = this.getAttribute('data-value');
-      const { label } = self.cache[value];
-
-      if (selectFn && typeof selectFn === 'function') {
-        selectFn(value, select);
-      }
-
-      self.toggleItemSelected(value);
-
-      if (self.multiple) {
-        self.changeMultiSelectValue(true);
-      } else {
-        self.changeSelectValue(select, value, label);
-        self.changeMultiSelectedClass();
-      }
+      self.handleClickOptionItem(this);
     });
 
     u.on(option, 'click', '.group-label', function (e) {
