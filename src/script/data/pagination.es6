@@ -28,7 +28,7 @@ import u from '../base/util.es6';
 // };
 
 class Pagination {
-  constructor(options) {
+  constructor(selector, options) {
     const defaultSettings = {
       total: 0,
       current: 1,
@@ -37,10 +37,16 @@ class Pagination {
     };
 
     this.settings = Object.assign({}, defaultSettings, options);
-    this.init();
+    this.init(selector);
   }
 
-  init() {
+  init(selector) {
+    let element = selector;
+
+    if (typeof selector === 'string') {
+      element = document.querySelector(selector);
+    }
+
     const { total, current, size, page } = this.settings;
   }
 
@@ -52,26 +58,22 @@ class Pagination {
     return `<span class="page active" data-page="${number}">${number}</span>`;
   }
 
-  static createPageMenu(className, pageNum, icon) {
+  static createMenu(className, pageNum, icon) {
     return `<a href="javascript:;" class="page ${className}" data-page="${pageNum}"><i class="iconfont icon-arrow-${icon}"></i></a>`;
-  }
-
-  static createMenu(current, max, type) {
-    
   }
 
   static createPrev(current) {
     const disableClass = current === 1 ? 'disabled' : '';
-    const pageNum = current - 1;
-    const icon = 'left';
-    return Pagination.createPageMenu(disableClass, pageNum, icon);
+    return Pagination.createMenu(disableClass, current - 1, 'left');
   }
 
   static createNext(current, max) {
     let disableClass = current === max ? 'disabled' : '';
-    const pageNum = current + 1;
-    const icon = 'right';
-    return Pagination.createPageMenu(disableClass, pageNum, icon);
+    return Pagination.createMenu(disableClass, current + 1, 'right');
+  }
+
+  static createInput() {
+    return '<span class="text">跳至</span><input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off"><span class="text">页</span>';
   }
 
   createPageDom(current) {
@@ -83,16 +85,16 @@ class Pagination {
 
     let pageHtml = pageArr.reduce((pre, cur) => cur === current 
       ? pre + Pagination.createCurrentPage(cur) 
-      : pre + Pagination.createNormalPage(cur), '');
+      : pre + Pagination.createNormalPage(cur)
+    , '');
 
     pageHtml = Pagination.createPrev(current)
        + pageHtml
        + Pagination.createNext(current, pageArr.length)
-       + '<span class="text">跳至</span><input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off"><span class="text">页</span>';
+       + Pagination.createInput();
 
     return pageHtml;
   }
-
 
   static createPageArray(total, current, pageShowNum, count = 5) {
     const pageTotal = Math.ceil(total / count);
