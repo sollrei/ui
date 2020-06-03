@@ -10,7 +10,7 @@ module.exports = {
     ignored: './src/script/',
   },
   entry: {
-    ui: './src/ui.es6'
+    ui: './src/index.es6'
   },
   output: {
     path: __dirname + '/dist',

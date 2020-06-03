@@ -1,6 +1,7 @@
 /* ============================
             base
    ============================ */
+@import 'mixin';
 
 $color-base: #fff !default;
 
@@ -23,6 +24,7 @@ $violet:  #ac64f1 !default;
 $color-border:           darken($color-base, 8%) !default; // #ebebeb 235
 $color-primary-border: #0067bc !default;
 
+$border: 1px solid $color-border;
 
 
 /* ------- background color ------- */

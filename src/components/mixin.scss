@@ -32,8 +32,3 @@
   scrollbar-track-color: $background-color;
 }
 
-@mixin colors ($color, $border-color, $bg-color) {
-  color: $color;
-  border-color: $border-color;
-  background-color: $bg-color;
-}
