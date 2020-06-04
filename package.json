@@ -8,9 +8,14 @@
   },
   "author": "sollrei",
   "devDependencies": {
+    "@babel/cli": "^7.10.1",
+    "@babel/core": "^7.10.2",
+    "@babel/plugin-transform-runtime": "^7.10.1",
+    "@babel/preset-env": "^7.10.2",
+    "@babel/runtime": "^7.10.2",
     "autoprefixer": "^9.8.0",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.5",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^8.1.0",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "css-loader": "^0.28.4",
@@ -40,5 +45,10 @@
         ]
       }
     }
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "ch": "^0.3.0",
+    "mocha": "^7.2.0"
   }
 }

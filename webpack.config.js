@@ -10,7 +10,8 @@ module.exports = {
     ignored: './src/script/',
   },
   entry: {
-    ui: './src/index.es6'
+    ui: './src/index.es6',
+    demo: './src/demo.es6'
   },
   output: {
     path: __dirname + '/dist',
@@ -33,9 +34,12 @@ module.exports = {
       ]
     }, {
       test: /\.es6$/,
-      loader: 'babel-loader',
-      query: {
-          presets: ['es2015']
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader',
+        options: {
+          presets: ['@babel/preset-env']
+        }
       }
     }]
   },

@@ -1,5 +1,6 @@
 import './polyfill/promise-polyfill.js';
 import './polyfill/fetch-polyfill.js';
+import './polyfill/array.js';
 
 import './script/base/polyfill.es6';
 import util from './script/base/util.es6';
