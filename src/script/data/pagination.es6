@@ -1,12 +1,10 @@
-import u from '../base/util.es6';
-
 class Pagination {
   constructor(selector, options) {
     const defaultSettings = {
       total: 0,
       page: 1,
-      size: 5,  // data length per page
-      pages: 5  // page number
+      size: 5, // data length per page
+      pages: 5 // page number
     };
 
     this.settings = Object.assign({}, defaultSettings, options);
@@ -25,8 +23,8 @@ class Pagination {
     this.wrapper = element;
     
     this.page = this.settings.page;
-    
-    
+
+    this.createPageDom();
   }
 
   static createNormalPageItem(number) {
@@ -45,29 +43,28 @@ class Pagination {
     return Array.from({ length }).map((item, index) => index + start);
   }
   
-  static createPageArray({total, page: current, pages: pageShowNum, size: count}) {
-    const pageTotal = Math.ceil(total / count);
-    const middle = Math.ceil(pageShowNum / 2);
-    const half = Math.floor(pageShowNum / 2);
-    const { createArray } = Pagination;
+  static createPageArray({ total, page, pages, size }) {
+    const pageTotal = Math.ceil(total / size);
+    const middle = Math.ceil(pages / 2);
+    const half = Math.floor(pages / 2);
 
     let pageArr = [];
 
-    if (pageTotal <= pageShowNum) {
+    if (pageTotal <= pages) {
       for (let i = 0; i < pageTotal; i += 1) {
         pageArr.push(i + 1);
       }
-    } else if (current <= middle) {
-      for (let i = 0; i < pageShowNum; i += 1) {
+    } else if (page <= middle) {
+      for (let i = 0; i < pages; i += 1) {
         pageArr.push(i + 1);
       }
-    } else if (current >= pageTotal - half) {
-      for (let i = 0; i < pageShowNum; i += 1) {
-        pageArr.push((pageTotal - pageShowNum) + 1 + i);
+    } else if (page >= pageTotal - half) {
+      for (let i = 0; i < pages; i += 1) {
+        pageArr.push((pageTotal - pages) + 1 + i);
       }
     } else {
-      for (let i = 0; i < pageShowNum; i += 1) {
-        pageArr.push((current - half) + i);
+      for (let i = 0; i < pages; i += 1) {
+        pageArr.push((page - half) + i);
       }
     }
 
@@ -75,19 +72,23 @@ class Pagination {
   }
   
   createPageNav(type, limit) {
-    const className = (this.page === limit) ? 'disabled' : '';
-    
-    return `<a href="javascript:;" class="page ${className}" data-page="${page}">
+    const { page } = this;
+    const className = (page === limit) ? 'disabled' : '';
+    const pageNumber = (type === 'left') ? (page - 1) : (page + 1);
+
+    return `<a href="javascript:;" class="page ${className}" data-page="${pageNumber}">
       <i class="iconfont icon-arrow-${type}"></i>
     </a>`;
   }
   
   createPageButton(str, cur) {
-    if (cur === this.page) {
-      return str + `<span class="page active" data-page="${number}">${number}</span>`;
+    const { page } = this;
+
+    if (cur === page) {
+      return str + `<span class="page active" data-page="${page}">${page}</span>`;
     }
     
-    return str + `<a href="javascript:;" class="page" data-page="${number}">${number}</a>`;
+    return str + `<a href="javascript:;" class="page" data-page="${page}">${page}</a>`;
   }
 
   createPageDom(page) {
@@ -97,49 +98,12 @@ class Pagination {
       return '';
     }
 
-    const pageArr = Pagination.createPageArray({total, pages, page, size});
+    const pageArr = Pagination.createPageArray({ total, pages, page, size });
     const pageHtml = pageArr.reduce(this.createPageButton, '');
     const prevButton = this.createPageNav('prev', 0);
     const nextButton = this.createPageNav('next', pageArr.length);
 
     return prevButton + pageHtml + nextButton + Pagination.createInput();
-  }
-
-
-
-
-
-
-
-
-
-  static dealPageUrl(name, value) {
-    const url = location.href;
-
-    if (!location.search) {
-      return url + '?' + name + '=' + encodeURI(value);
-    }
-
-    const base = url.split('?')[0];
-    const search = location.search.substring(1);
-    let params = [];
-    let hasIt = false;
-    
-    search.split('&').forEach(item => {
-      let [_name, _value] = item.split('=');
-      if (_name === name) {
-        _value = value;
-        hasIt = true;
-      }
-
-      params.push(_name + '=' + encodeURI(_value));
-    });
-
-    if (!hasIt) {
-      return url + '&' + name + '=' + value;
-    }
-
-    return base + '?' + params.join('&');
   }
 }
 
