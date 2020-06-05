@@ -1,7 +1,5 @@
 @import "variables";
 
-
-// popup
 .ui-tooltip {
   display: inline-block;
   position: absolute;
@@ -17,10 +15,9 @@
   border-radius: $popup-radius;
   box-shadow: $shadow;
   border: solid 1px $color-border;
-  background-color: #fff;
+  background-color: $white;
   
   z-index: 9900;
-  
   
   animation: fade-in-down $transition-duration both;
   

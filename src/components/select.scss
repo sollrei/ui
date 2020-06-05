@@ -23,11 +23,12 @@ $icon-top: ($menu-height - 16px) / 2;
     right: 10px;
     top: 0;
 
-    font-family: "iconfont";
-    line-height: $form-control-height - 2px;
     font-size: 16px;
-    transition: $transition-duration;
+    font-family: "iconfont";
     color: $form-control-icon-color;
+    line-height: $form-control-height - 2px;
+    
+    transition: $transition-duration;
   }
 
   /* types */

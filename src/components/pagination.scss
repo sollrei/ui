@@ -1,8 +1,7 @@
 @import "variables";
 
 // need rewrite
- 
-// pagination
+
 .ui-pagination {
   display: flex;
   line-height: $page-height;
@@ -34,28 +33,28 @@
     height: $page-height;
     width: $page-height;
     margin-right: 12px;
+    display: inline-flex;
+
     color: $black;
     border-radius: $radius;
     border: 1px solid $color-border;
-    display: inline-flex;
+    user-select: none;
+
     justify-content: center;
     align-items: center;
-
-    &.disabled,
-    &.disabled:hover {
-      border-color: rgba($light, .5);
-      color: $gray;
-    }
   } 
 
   .page:hover,
-  .active {
+  .active,
+  .active:hover {
     color: $primary;
     border-color: $primary;
+  }
 
-    &:hover {
-      color: $primary;
-    }
+  .disabled,
+  .disabled:hover {
+    border-color: rgba($light, .5);
+    color: $gray;
   }
 
   form {

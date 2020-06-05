@@ -67,6 +67,13 @@ const util = {
     }
   },
 
+  /**
+   * @description
+   * @param {HTMLElement} element
+   * @param {string} eventName
+   * @param {string} selector
+   * @param {function} handler
+   */
   on(element, eventName, selector, handler) {
     this.addMultiEvent(element, eventName, event => {
       for (let target = event.target; target && target !== element; target = target.parentNode) {

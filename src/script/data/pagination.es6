@@ -1,3 +1,5 @@
+import u from '../base/util.es6';
+
 class Pagination {
   constructor(selector, options) {
     const defaultSettings = {
@@ -12,10 +14,12 @@ class Pagination {
   }
 
   static createInput() {
-    return '<span class="text">跳至</span><input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off"><span class="text">页</span>';
+    return '';
+    // return '<span class="text">跳至</span><input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off"><span class="text">页</span>';
   }
 
-  // static createPageArray({ total, page, pages, size }) {
+  // createPageArray() {
+  //   const { total, page, pages, size } = this;
   //   const pageTotal = Math.ceil(total / size);
   //   const middle = Math.ceil(pages / 2);
   //   const half = Math.floor(pages / 2);
@@ -47,28 +51,8 @@ class Pagination {
     return Array.from({ length }).map((item, index) => index + start);
   }
 
-  static createPageArray({ total, page, pages, size }) {
-    const pageTotal = Math.ceil(total / size);
-    const middle = Math.ceil(pages / 2);
-    const half = Math.floor(pages / 2);
-    const { createArray } = Pagination;
-
-    if (pageTotal <= pages) {
-      return createArray(1, pageTotal);
-    }
-
-    if (page <= middle) {
-      return createArray(1, pages);
-    }
-
-    if (page >= pageTotal - half) {
-      return createArray(pageTotal - pages + 1, pages);
-    }
-
-    return createArray(page - half, pages);
-  }
-
   init(selector) {
+    const { page, total, size, pages } = this.settings;
     let element = selector;
 
     if (typeof selector === 'string') {
@@ -79,24 +63,49 @@ class Pagination {
 
     this.wrapper = element;
 
-    this.wrapper.innerHTML = this.createPageDom(this.settings.page);
+    this.total = total;
+    this.size = size;
+    this.pages = pages;
+
+    this.wrapper.innerHTML = this.createPageDom(page);
+
+    this.events();
   }
 
-  createPageNav(type, limit) {
-    const { page } = this;
+  createPageArray() {
+    const { total, page, pages, size } = this;
+    const pageTotal = Math.ceil(total / size);
+    const middle = Math.ceil(pages / 2);
+    const half = Math.floor(pages / 2);
+    const { createArray } = Pagination;
+
+    this.max = pageTotal;
+
+    if (pageTotal <= pages || page <= middle) {
+      return createArray(1, Math.min(pageTotal, pages));
+    }
+
+    if (page >= pageTotal - half) {
+      return createArray(pageTotal - pages + 1, pages);
+    }
+
+    return createArray(page - half, pages);
+  }
+
+  static createPageNav(page, type, limit) {
     const pageNumber = type === 'left' ? page - 1 : page + 1;
     let className = '';
 
     if (
-      (type === 'left' && page <= limit) ||
-      (type === 'right' && page >= limit)
+      (type === 'left' && pageNumber <= limit) ||
+      (type === 'right' && pageNumber > limit)
     ) {
       className = 'disabled';
     }
 
     return `<a href="javascript:;" class="page ${className}" data-page="${pageNumber}">
-              <i class="iconfont icon-arrow-${type}"></i>
-            </a>`;
+        <i class="iconfont icon-arrow-${type}"></i>
+      </a>`;
   }
 
   createPageButton(str, cur) {
@@ -109,19 +118,35 @@ class Pagination {
   }
 
   createPageDom(page) {
-    const { total, size, pages } = this.settings;
+    const { total, size } = this;
     this.page = page;
 
     if (total <= size) {
       return '';
     }
 
-    const pageArr = Pagination.createPageArray({ total, pages, page, size });
+    const pageArr = this.createPageArray();
     const pageHtml = pageArr.reduce(this.createPageButton.bind(this), '');
-    const prevButton = this.createPageNav('left', 0);
-    const nextButton = this.createPageNav('right', pageArr.length);
+    const prevButton = Pagination.createPageNav(page, 'left', 0);
+    const nextButton = Pagination.createPageNav(page, 'right', this.max);
 
     return prevButton + pageHtml + nextButton + Pagination.createInput();
+  }
+
+  handleChangePage(element) {
+    if (u.hasClass(element, 'disabled') || u.hasClass(element, 'active')) return;
+
+    const page = element.getAttribute('data-page');
+    this.wrapper.innerHTML = this.createPageDom(Number(page));
+  }
+
+  events() {
+    const self = this;
+    const { wrapper } = self;
+
+    u.on(wrapper, 'click', '.page', function () {
+      self.handleChangePage(this);
+    });
   }
 }
 

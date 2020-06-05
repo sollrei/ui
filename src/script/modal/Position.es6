@@ -13,19 +13,24 @@ class Position {
     const { left, top } = targetElement.getBoundingClientRect();
     const data = targetElement.getAttribute('data-position');
     const position = data || this.settings.position;
+    const ele = element;
+
+    const { offsetHeight: targetHeight, offsetWidth: targetWidth } = targetElement;
+    const { scrollX, scrollY } = window;
+    const { offsetHeight: elementHeight, offsetWidth: elementWidth } = element;
 
     const pos = {
-      targetHeight: targetElement.offsetHeight,
-      targetWidth: targetElement.offsetWidth,
-      targetLeft: left + window.scrollX,
-      targetTop: top + window.scrollY,
-      elementHeight: element.offsetHeight,
-      elementWidth: element.offsetWidth
+      targetHeight,
+      targetWidth,
+      targetLeft: left + scrollX,
+      targetTop: top + scrollY,
+      elementHeight,
+      elementWidth
     };
 
     const style = element.style;
 
-    element.style.width = element.offsetWidth + 'px';
+    ele.style.width = element.offsetWidth + 'px';
 
     const [x, y] = position.split(' ');
 
@@ -78,7 +83,7 @@ class Position {
     sty.top = ((pos.targetTop + (pos.targetHeight / 2)) - (pos.elementHeight / 2)) + 'px';
 
     if (x === 'left') {
-      sty.left = (pos.targetLeft - gap) - pos.elementWidth + 'px';
+      sty.left = ((pos.targetLeft - gap) - pos.elementWidth) + 'px';
     }
 
     if (x === 'right') {
