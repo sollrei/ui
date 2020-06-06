@@ -1,58 +1,39 @@
+// @ts-ignore
 import u from '../base/util.es6';
 
 class Pagination {
+  /**
+   * @param selector {(string|Object)}
+   * @param options {Object=}
+   */
   constructor(selector, options) {
     const defaultSettings = {
       total: 0,
       page: 1,
-      size: 5, // data length per page
-      pages: 5 // page number
+      size: 5,
+      pages: 5,
+      prevIcon: 'iconfont icon-arrow-left',
+      nextIcon: 'iconfont icon-arrow-right',
+      pageInput: false
     };
 
     this.settings = Object.assign({}, defaultSettings, options);
     this.init(selector);
   }
 
-  static createInput() {
-    return '';
-    // return '<span class="text">跳至</span><input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off"><span class="text">页</span>';
-  }
-
-  // createPageArray() {
-  //   const { total, page, pages, size } = this;
-  //   const pageTotal = Math.ceil(total / size);
-  //   const middle = Math.ceil(pages / 2);
-  //   const half = Math.floor(pages / 2);
-
-  //   let pageArr = [];
-
-  //   if (pageTotal <= pages) {
-  //     for (let i = 0; i < pageTotal; i += 1) {
-  //       pageArr.push(i + 1);
-  //     }
-  //   } else if (page <= middle) {
-  //     for (let i = 0; i < pages; i += 1) {
-  //       pageArr.push(i + 1);
-  //     }
-  //   } else if (page >= pageTotal - half) {
-  //     for (let i = 0; i < pages; i += 1) {
-  //       pageArr.push((pageTotal - pages) + 1 + i);
-  //     }
-  //   } else {
-  //     for (let i = 0; i < pages; i += 1) {
-  //       pageArr.push((page - half) + i);
-  //     }
-  //   }
-
-  //   return pageArr;
-  // }
-
-  static createArray(start, length) {
+  /**
+   * @param start {number}
+   * @param length {number}
+   * @returns {number[]} array of page number
+   */
+  static createPageNumberArray(start, length) {
     return Array.from({ length }).map((item, index) => index + start);
   }
 
+  /**
+   * @param selector {(string|Object)}
+   */
   init(selector) {
-    const { page, total, size, pages } = this.settings;
     let element = selector;
 
     if (typeof selector === 'string') {
@@ -61,62 +42,20 @@ class Pagination {
 
     if (!element) return;
 
-    this.wrapper = element;
+    const { page, total, size, pages } = this.settings;
 
+    this.wrapper = element;
     this.total = total;
     this.size = size;
     this.pages = pages;
-
     this.wrapper.innerHTML = this.createPageDom(page);
-
     this.events();
   }
 
-  createPageArray() {
-    const { total, page, pages, size } = this;
-    const pageTotal = Math.ceil(total / size);
-    const middle = Math.ceil(pages / 2);
-    const half = Math.floor(pages / 2);
-    const { createArray } = Pagination;
-
-    this.max = pageTotal;
-
-    if (pageTotal <= pages || page <= middle) {
-      return createArray(1, Math.min(pageTotal, pages));
-    }
-
-    if (page >= pageTotal - half) {
-      return createArray(pageTotal - pages + 1, pages);
-    }
-
-    return createArray(page - half, pages);
-  }
-
-  static createPageNav(page, type, limit) {
-    const pageNumber = type === 'left' ? page - 1 : page + 1;
-    let className = '';
-
-    if (
-      (type === 'left' && pageNumber <= limit) ||
-      (type === 'right' && pageNumber > limit)
-    ) {
-      className = 'disabled';
-    }
-
-    return `<a href="javascript:;" class="page ${className}" data-page="${pageNumber}">
-        <i class="iconfont icon-arrow-${type}"></i>
-      </a>`;
-  }
-
-  createPageButton(str, cur) {
-    if (cur === this.page) {
-      return str + `<span class="page active" data-page="${cur}">${cur}</span>`;
-    }
-    return (
-      str + `<a href="javascript:;" class="page" data-page="${cur}">${cur}</a>`
-    );
-  }
-
+  /**
+   * @param page {number}
+   * @returns {string}
+   */
   createPageDom(page) {
     const { total, size } = this;
     this.page = page;
@@ -127,12 +66,86 @@ class Pagination {
 
     const pageArr = this.createPageArray();
     const pageHtml = pageArr.reduce(this.createPageButton.bind(this), '');
-    const prevButton = Pagination.createPageNav(page, 'left', 0);
-    const nextButton = Pagination.createPageNav(page, 'right', this.max);
+    const prevButton = this.createPageNav('prev');
+    const nextButton = this.createPageNav('next');
+    const input = this.createInput();
 
-    return prevButton + pageHtml + nextButton + Pagination.createInput();
+    return prevButton + pageHtml + nextButton + input;
   }
 
+  createPageArray() {
+    const { total, pages, size } = this;
+    const pageTotal = Math.ceil(total / size);
+    const middle = Math.ceil(pages / 2);
+    const half = Math.floor(pages / 2);
+    const { createPageNumberArray } = Pagination;
+
+    if (this.page > pageTotal) {
+      this.page = pageTotal;
+    } else if (this.page < 1) {
+      this.page = 1;
+    }
+    
+    this.max = pageTotal;
+    const { page } = this;
+
+    if (pageTotal <= pages || page <= middle) {
+      return createPageNumberArray(1, Math.min(pageTotal, pages));
+    }
+
+    if (page >= pageTotal - half) {
+      return createPageNumberArray((pageTotal - pages) + 1, pages);
+    }
+
+    return createPageNumberArray(page - half, pages);
+  }
+
+  /**
+   * @param type {string}
+   */
+  createPageNav(type) {
+    const { page, max, settings } = this;
+    const icon = settings[`${type}Icon`];
+    const pageNumber = (type === 'prev') ? page - 1 : page + 1;
+    let className = '';
+
+    if (pageNumber <= 0 || pageNumber > max) {
+      className = 'disabled';
+    }
+
+    return `<a href="javascript:;" class="page ${className}" data-page="${pageNumber}">
+        <i class="${icon}"></i>
+      </a>`;
+  }
+
+  /**
+   * @param str {string}
+   * @param cur {number}
+   */
+  createPageButton(str, cur) {
+    if (cur === this.page) {
+      return str + `<span class="page active" data-page="${cur}">${cur}</span>`;
+    }
+
+    return str + `<a href="javascript:;" class="page" data-page="${cur}">${cur}</a>`;
+  }
+
+  /**
+   * @returns {string}
+   */
+  createInput() {
+    if (this.settings.pageInput) {
+      return `<span class="text">跳至</span>
+                <input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off">
+              <span class="text">页</span>`;
+    }
+    
+    return '';
+  }
+
+  /**
+   * @param element {HTMLElement}
+   */
   handleChangePage(element) {
     if (u.hasClass(element, 'disabled') || u.hasClass(element, 'active')) return;
 
