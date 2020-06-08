@@ -86,6 +86,15 @@ layout: default
 </div>
 {% endexample %}
 
+{% example html %}
+<div class="ui-row">
+  <div class="col-1-3 bg-light">content</div>
+  <div class="col-1-6 bg-light">content</div>
+  <div class="col-1-6 bg-light">content</div>
+  <div class="col-1-3 bg-light">content</div>
+</div>
+{% endexample %}
+
 ## Column
 
 {% example html %}
