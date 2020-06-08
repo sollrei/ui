@@ -9,6 +9,7 @@ window.onload = function () {
   var Validator = ui.Validator;
   var Modal = ui.Modal;
   var Message = ui.Message;
+  var Page = ui.Pagination;
 
   var btnModal = document.querySelector('.js-modal-btn');
   var btn = document.querySelector('.js-popper');
@@ -75,7 +76,13 @@ window.onload = function () {
     });
   }
   
-  
+  new Page('#test', {
+    total: 120,
+    page: 1,
+    size: 10,
+    pages: 5
+  });
+
   if (btn) {
     btn.addEventListener('click', function (e) {
       e.stopPropagation();

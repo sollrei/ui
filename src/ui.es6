@@ -27,6 +27,8 @@ import Validator from './script/validator/Validator.es6';
 import Upload from './script/upload/Upload.es6';
 import UploadHelper from './script/upload/UploadHelper.es6';
 
+import Pagination from './script/data/Pagination.es6';
+
 window.ui = {
   util,
   Select,
@@ -44,7 +46,9 @@ window.ui = {
   PikaEx,
   UploadHelper,
   Transfer,
-  Position
+  Position,
+
+  Pagination
 };
 
 util.on(document, 'click', '[data-closeable]', function (e) {

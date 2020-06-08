@@ -6,8 +6,37 @@ layout: default
 
 > ui-mod不是必须样式
 
-## Rows
+## Margin
 
+> 4 8 12 16 20 24 28
+
+* `ml-` margin-left
+* `mr-` margin-right
+* `mlr-` margin-left margin-right
+* `mt-` margin-top
+* `mb-` margin-bottom
+* `mtb-` margin-top margin-bottom
+
+```html
+<div class="ml-4"></div>
+```
+
+## Padding
+
+* `pl-` padding-left
+* `pr-` padding-right
+* `plr-` padding-left padding-right
+* `pt-` padding-top
+* `pb-` padding-bottom
+* `ptb-` padding-top padding-bottom
+
+```html
+<div class="pl-4"></div>
+```
+
+
+
+## Rows
 {% example html %}
 <div class="ui-row">
   <div class="ui-mod">Main</div>

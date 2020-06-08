@@ -207,6 +207,16 @@ main {
   margin-left: -20px;
 }
 
+@media screen and (max-width: 1200px) {
+  .page-code {
+    width: 100%;
+  }
+
+  .page-menu-wrap {
+    display: none;
+  }
+}
+
 .page-menu {
   position: sticky;
   top: 80px;

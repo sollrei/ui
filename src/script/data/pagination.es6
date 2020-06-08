@@ -1,4 +1,3 @@
-// @ts-ignore
 import u from '../base/util.es6';
 
 class Pagination {

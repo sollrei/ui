@@ -11,7 +11,6 @@ module.exports = {
   },
   entry: {
     ui: './src/index.es6',
-    demo: './src/demo.es6'
   },
   output: {
     path: __dirname + '/dist',
