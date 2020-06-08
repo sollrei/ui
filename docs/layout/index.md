@@ -71,6 +71,21 @@ layout: default
 </div>
 {% endexample %}
 
+{% example html %}
+<div class="ui-row nowrap middle">
+  <div class="ft-gray col">Name</div>
+  <div class="ui-control-wrap flex1 col">
+    <input class="ui-form-control" placeholder="First Name" />
+  </div>
+  <div class="ui-control-wrap flex1 col">
+    <input class="ui-form-control" placeholder="Middle Name" />
+  </div>
+  <div class="ui-control-wrap flex1 col">
+    <input class="ui-form-control" placeholder="Last Name"/>
+  </div>
+</div>
+{% endexample %}
+
 ## Column
 
 {% example html %}

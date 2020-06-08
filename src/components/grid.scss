@@ -2,6 +2,10 @@
   display: flex;
   flex-flow: row wrap;
 
+  &.nowrap {
+    flex-wrap: nowrap;
+  }
+
   &.middle {
     align-items: center;
   }
@@ -15,11 +19,23 @@
   }
   
   .col-3 {
-    width: calc((100% - 32px) / 3);
+    width: calc((100% - #{$grid-gap * 2}) / 3);
     margin-right: $grid-gap;
 
     &:nth-child(3n) {
       margin-right: 0;
+    }
+  }
+
+  .col {
+    margin-right: $grid-gap;
+
+    &:last-child {
+      margin-right: 0;
+    }
+
+    .ui-form-control {
+      width: 100%;
     }
   }
 
@@ -29,6 +45,25 @@
 
   .flex1 {
     flex: 1;
+  }
+
+  .flex2 {
+    flex: 2;
+  }
+
+  .flex3 {
+    flex: 3;
+  }
+
+  @for $i from 3 through 6 {
+    .col-1-#{$i} {
+      width: calc((100% - #{($i - 1) * $grid-gap}) / #{$i});
+      margin-right: $grid-gap;
+  
+      &:nth-child(#{$i}n) {
+        margin-right: 0;
+      }
+    }
   }
 }
 
