@@ -1,3 +1,5 @@
+// scss-lint:disable ColorVariable
+
 $bg: #fafbfd;
 
 $color-bg: #7ea6b8;
@@ -571,5 +573,11 @@ table:not(.ui-table) {
 
   .il {
     color: #f5871f;
+  }
+}
+
+.ui-tab-content {
+  .tab-content:not(.show) {
+    display: none;
   }
 }

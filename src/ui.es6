@@ -29,6 +29,8 @@ import UploadHelper from './script/upload/UploadHelper.es6';
 
 import Pagination from './script/data/Pagination.es6';
 
+import Tab from './script/menu/Tab.es6';
+
 window.ui = {
   util,
   Select,
@@ -48,7 +50,8 @@ window.ui = {
   Transfer,
   Position,
 
-  Pagination
+  Pagination,
+  Tab
 };
 
 util.on(document, 'click', '[data-closeable]', function (e) {

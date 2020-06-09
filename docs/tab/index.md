@@ -1,5 +1,6 @@
 ---
 layout: default
+need_js: true
 ---
 
 # Tab
@@ -22,7 +23,6 @@ layout: default
 </div>
 {% endexample %}
 
-
 ## Small
 
 {% example html %}
@@ -35,3 +35,36 @@ layout: default
   </ul>
 </div>
 {% endexample %}
+
+## JavaScript
+
+{% example html %}
+<div class="ui-tab-wrap">
+  <div class="ui-tab small">
+    <ul class="tab-list">
+      <li class="tab-itm active"><a href="javascript:;" class="itm">Tab1</a></li>
+      <li class="tab-itm"><a href="javascript:;" class="itm">Tab2</a></li>
+      <li class="tab-itm"><a href="javascript:;" class="itm">Tab3</a></li>
+    </ul>
+  </div>
+  <div class="ui-tab-content">
+    <div class="tab-content show">content1</div>
+    <div class="tab-content">content2</div>
+    <div class="tab-content">content3</div>
+  </div>
+</div>
+{% endexample %}
+
+```javascript
+  Tab('.ui-tab-wrap');
+
+  // or
+  const wrap = document.querySelector('.ui-tab-wrap');
+  Tab(wrap, {
+    navSelector: '.tab-itm',
+    conSelector: '.tab-content',
+    navActive: 'active',
+    conActive: 'show',
+    onChange(index) {}
+  })
+```

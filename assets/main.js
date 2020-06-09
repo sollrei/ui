@@ -10,6 +10,7 @@ window.onload = function () {
   var Modal = ui.Modal;
   var Message = ui.Message;
   var Page = ui.Pagination;
+  var Tab = ui.Tab;
 
   var btnModal = document.querySelector('.js-modal-btn');
   var btn = document.querySelector('.js-popper');
@@ -82,6 +83,8 @@ window.onload = function () {
     size: 10,
     pages: 5
   });
+
+  Tab('.ui-tab-wrap');
 
   if (btn) {
     btn.addEventListener('click', function (e) {
