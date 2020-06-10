@@ -11,6 +11,7 @@ window.onload = function () {
   var Message = ui.Message;
   var Page = ui.Pagination;
   var Tab = ui.Tab;
+  var Table = ui.Table;
 
   var btnModal = document.querySelector('.js-modal-btn');
   var btn = document.querySelector('.js-popper');
@@ -83,6 +84,8 @@ window.onload = function () {
     size: 10,
     pages: 5
   });
+
+  new Table('#table');
 
   Tab('.ui-tab-wrap');
 

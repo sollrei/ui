@@ -1,3 +1,4 @@
+// @ts-ignore
 import u from '../base/util.es6';
 
 class Pagination {
@@ -13,11 +14,12 @@ class Pagination {
       pages: 5,
       prevIcon: 'iconfont icon-arrow-left',
       nextIcon: 'iconfont icon-arrow-right',
-      pageInput: false
+      pageInput: false,
+      onChangePage: null
     };
 
     this.settings = Object.assign({}, defaultSettings, options);
-    this.init(selector);
+    this.initPage(selector);
   }
 
   /**
@@ -32,7 +34,7 @@ class Pagination {
   /**
    * @param selector {(string|Object)}
    */
-  init(selector) {
+  initPage(selector) {
     let element = selector;
 
     if (typeof selector === 'string') {
@@ -43,11 +45,11 @@ class Pagination {
 
     const { page, total, size, pages } = this.settings;
 
-    this.wrapper = element;
+    this.pageWrapper = element;
     this.total = total;
     this.size = size;
     this.pages = pages;
-    this.wrapper.innerHTML = this.createPageDom(page);
+    this.pageWrapper.innerHTML = this.createPageDom(page);
     this.events();
   }
 
@@ -149,14 +151,14 @@ class Pagination {
     if (u.hasClass(element, 'disabled') || u.hasClass(element, 'active')) return;
 
     const page = element.getAttribute('data-page');
-    this.wrapper.innerHTML = this.createPageDom(Number(page));
+    this.pageWrapper.innerHTML = this.createPageDom(Number(page));
   }
 
   events() {
     const self = this;
-    const { wrapper } = self;
+    const { pageWrapper } = self;
 
-    u.on(wrapper, 'click', '.page', function () {
+    u.on(pageWrapper, 'click', '.page', function () {
       self.handleChangePage(this);
     });
   }
