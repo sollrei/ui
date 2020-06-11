@@ -1,34 +1,34 @@
-// @ts-ignore
 import u from '../base/util.es6';
-// @ts-ignore
 import Pagination from './Pagination.es6';
 
+/**
+ * @class
+ * @augments Pagination
+ */
 class Table extends Pagination {
   /**
-   * @param selector {string|Object}
-   * @param options {Object=}
+   * @param {string|object} selector .
+   * @param {object=} options .
    */
   constructor(selector, options) {
     const defaultSettings = {
-      header: [{
-        name: 'title',
-        label: 'title'
-      }, {
-        name: 'date',
-        label: 'date'
-      }],
+      header: [],
 
-      tableClass: 'ui-table',
       data: [],
       type: 'ajax', // local
-      onChangePage: null,
+      fetchUrl: '',
 
-      total: 120,
+      onChangePage: null,
+      
+      total: 0,
       page: 1,
       size: 5,
       pages: 5,
+      
+      tableClass: 'ui-table',
       prevIcon: 'iconfont icon-arrow-left',
       nextIcon: 'iconfont icon-arrow-right',
+      pageClass: 'ui-pagination right',
       pageInput: false
     };
 
@@ -41,7 +41,7 @@ class Table extends Pagination {
 
     if (!element) return;
 
-    const pageWrapper = u.createElement('div', { className: 'ui-pagination' });
+    const pageWrapper = u.createElement('div', { className: 'ui-row mt-16' });
     const tableWrapper = u.createElement('div', { className: 'table-wrapper' });
     const wrapTable = element.appendChild(tableWrapper);
     const wrapPage = element.appendChild(pageWrapper);
@@ -49,22 +49,29 @@ class Table extends Pagination {
     super(wrapPage, settings);
 
     this.settings = settings;
+    this.pageWrapper = wrapPage;
 
     this.init(wrapTable);
   }
 
   /**
-   * @param element {string|Object}
+   * @param {string|object} element - 
    */
   init(element) {
+    const { data } = this.settings;
     this.wrapper = element;
+
     this.table = this.createTable();
     this.thead = this.createTableHeader();
     this.tbody = this.createTableTbody();
+    
+    if (data.length) {
+      this.updateList(data);
+    }
   }
 
   /**
-   * @returns {HTMLElement}
+   * @returns {HTMLElement} .
    */
   createTable() {
     const dom = u.createElement('table', { className: this.settings.tableClass });
@@ -72,7 +79,7 @@ class Table extends Pagination {
   }
 
   /**
-   * @returns {HTMLElement}
+   * @returns {HTMLElement} - thead 
    */
   createTableHeader() {
     const { header } = this.settings;
@@ -82,12 +89,13 @@ class Table extends Pagination {
     if (Array.isArray(header)) {
       str = header.reduce((pre, cur) => {
         let name = cur;
+        let width = cur.width || '';
 
         if (typeof cur === 'object') {
           name = cur.name;
         }
 
-        return pre + `<th>${name}</th>`;
+        return pre + `<th width="${width}">${name}</th>`;
       }, '');
     }
 
@@ -97,7 +105,7 @@ class Table extends Pagination {
   }
 
   /**
-   * @returns {HTMLElement}
+   * @returns {HTMLElement} - tbody
    */
   createTableTbody() {
     const tbody = u.createElement('tbody');
@@ -105,8 +113,8 @@ class Table extends Pagination {
   }
 
   /**
-   * @param data {Object}
-   * @returns {string}
+   * @param {object} data - 
+   * @returns {string} - tr
    */
   createTableRow(data) {
     const { header } = this.settings;
@@ -127,12 +135,11 @@ class Table extends Pagination {
       });
     }
 
-    return str;
+    return `<tr>${str}</tr>`;
   }
 
   /**
-   * 
-   * @param data {Array}
+   * @param {Array} data -
    */
   updateList(data) {
     const list = data.reduce((pre, cur) => {
@@ -140,6 +147,36 @@ class Table extends Pagination {
     }, '');
 
     this.tbody.innerHTML = list;
+  }
+
+  handleChangePage(element) {
+    const { onChangePage } = this.settings;
+
+    if (u.hasClass(element, 'disabled') || u.hasClass(element, 'active')) return;
+
+    const page = element.getAttribute('data-page');
+    const _page = Number(page);
+    
+    if (onChangePage && typeof onChangePage === 'function') {
+      onChangePage(page, (next) => {
+        if (next) {
+          // @ts-ignore
+          this.changePageDom(_page);
+        }
+      });
+    } else {
+      // @ts-ignore
+      this.changePageDom(_page);
+    }
+  }
+
+  events() {
+    const self = this;
+    const { pageWrapper } = self;
+
+    u.on(pageWrapper, 'click', '.page', function () {
+      self.handleChangePage(this);
+    });
   }
 }
 

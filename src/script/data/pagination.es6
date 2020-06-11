@@ -1,10 +1,9 @@
-// @ts-ignore
 import u from '../base/util.es6';
 
 class Pagination {
   /**
-   * @param selector {(string|Object)}
-   * @param options {Object=}
+   * @param {(string|object)} selector - page wrapper
+   * @param {object=} options - user settings
    */
   constructor(selector, options) {
     const defaultSettings = {
@@ -14,6 +13,7 @@ class Pagination {
       pages: 5,
       prevIcon: 'iconfont icon-arrow-left',
       nextIcon: 'iconfont icon-arrow-right',
+      pageClass: 'ui-pagination',
       pageInput: false,
       onChangePage: null
     };
@@ -23,16 +23,16 @@ class Pagination {
   }
 
   /**
-   * @param start {number}
-   * @param length {number}
-   * @returns {number[]} array of page number
+   * @param {number} start - start page number
+   * @param {number} length - page button number
+   * @returns {number[]} - array of page number
    */
   static createPageNumberArray(start, length) {
     return Array.from({ length }).map((item, index) => index + start);
   }
 
   /**
-   * @param selector {(string|Object)}
+   * @param  {(string|object)} selector -
    */
   initPage(selector) {
     let element = selector;
@@ -54,11 +54,12 @@ class Pagination {
   }
 
   /**
-   * @param page {number}
-   * @returns {string}
+   * @param {number} page - current page number
+   * @returns {string} - pagination html
    */
   createPageDom(page) {
     const { total, size } = this;
+    const { pageClass } = this.settings;
     this.page = page;
 
     if (total <= size) {
@@ -71,7 +72,7 @@ class Pagination {
     const nextButton = this.createPageNav('next');
     const input = this.createInput();
 
-    return prevButton + pageHtml + nextButton + input;
+    return `<div class="${pageClass}">` + prevButton + pageHtml + nextButton + input + '</div>';
   }
 
   createPageArray() {
@@ -102,7 +103,8 @@ class Pagination {
   }
 
   /**
-   * @param type {string}
+   * @param {string} type - 
+   * @returns {string} - prev or next button html
    */
   createPageNav(type) {
     const { page, max, settings } = this;
@@ -120,8 +122,9 @@ class Pagination {
   }
 
   /**
-   * @param str {string}
-   * @param cur {number}
+   * @param {string} str - 
+   * @param {number} cur -
+   * @returns {string} - page item
    */
   createPageButton(str, cur) {
     if (cur === this.page) {
@@ -132,7 +135,7 @@ class Pagination {
   }
 
   /**
-   * @returns {string}
+   * @returns {string} - input html
    */
   createInput() {
     if (this.settings.pageInput) {
@@ -144,14 +147,30 @@ class Pagination {
     return '';
   }
 
+  changePageDom(page) {
+    this.pageWrapper.innerHTML = this.createPageDom(page);
+  }
+
   /**
-   * @param element {HTMLElement}
+   * @param {HTMLElement} element - 
    */
   handleChangePage(element) {
+    const { onChangePage } = this.settings;
+
     if (u.hasClass(element, 'disabled') || u.hasClass(element, 'active')) return;
 
     const page = element.getAttribute('data-page');
-    this.pageWrapper.innerHTML = this.createPageDom(Number(page));
+    const _page = Number(page);
+    
+    if (onChangePage && typeof onChangePage === 'function') {
+      onChangePage(page, (next) => {
+        if (next) {
+          this.changePageDom(_page);
+        }
+      });
+    } else {
+      this.changePageDom(_page);
+    }
   }
 
   events() {

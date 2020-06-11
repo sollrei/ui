@@ -1,3 +1,4 @@
+// from https://github.com/github/fetch
 var support = {
   searchParams: 'URLSearchParams' in self,
   iterable: 'Symbol' in self && 'iterator' in Symbol,

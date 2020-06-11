@@ -24,6 +24,7 @@ window.onload = function () {
     var id = item.id;
     arr += '<li><a href="#' + id + '">' + name + '</a></li>';
   });
+
   document.querySelector('.page-menu-list').innerHTML = '<ul>' + arr + '</ul>';
 
 
@@ -34,19 +35,20 @@ window.onload = function () {
   new Tooltip('[data-tooltip]');
 
   new Validator('.ui-form', function () {
-    console.log('success');
+    // console.log('success');
   });
  
+  Tab('.ui-tab-wrap');
 
   if (btnModal) {
     m2 = new Message();
     m = new Modal({
       resize: true,
       onOpen: function () {
-        console.log('open');
+        // console.log('open');
       },
       onConfirm: function (e, modal) {
-        console.log('ok');
+        // console.log('ok');
         modal.hide();
       }
     });
@@ -77,17 +79,6 @@ window.onload = function () {
       });
     });
   }
-  
-  new Page('#test', {
-    total: 120,
-    page: 1,
-    size: 10,
-    pages: 5
-  });
-
-  new Table('#table');
-
-  Tab('.ui-tab-wrap');
 
   if (btn) {
     btn.addEventListener('click', function (e) {
@@ -99,4 +90,40 @@ window.onload = function () {
       });
     }, false);
   }
+  
+  new Page('#test', {
+    total: 120,
+    page: 1,
+    size: 10,
+    pages: 5
+  });
+
+  fetch('https://api.cooode.xyz/api/st-table').then(res => res.json()).then(res => {
+    if (res.code === 200) {
+      const table = new Table('#table', {
+        header: [{
+          name: 'type',
+          label: '类型',
+          width: 100
+        }, {
+          name: 'name',
+          label: '名称',
+          width: 200
+        }],
+        total: res.data.total,
+        page: res.data.current,
+        data: res.data.table,
+        onChangePage(page, cb) {
+          fetch('https://api.cooode.xyz/api/st-table?page=' + page)
+            .then(_res => _res.json())
+            .then(_res => {
+              if (_res.code === 200) {
+                table.updateList(_res.data.table);
+                cb(true);
+              }
+            });
+        }
+      });
+    }
+  });
 };

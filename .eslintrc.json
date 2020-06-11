@@ -1,5 +1,6 @@
 {
-  "extends": "airbnb/legacy",
+  "extends": ["airbnb/legacy", "plugin:jsdoc/recommended"],
+  "plugins": ["jsdoc"],
   "env": {
     "browser": true,
     "es6": true
@@ -15,6 +16,7 @@
       "error",
       "never"
     ]
+
   },
   "parserOptions": {
     "ecmaVersion": 7,
