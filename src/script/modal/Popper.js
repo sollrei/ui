@@ -1,5 +1,5 @@
-import Util from '../base/util.es6';
-import Position from './Position.es6';
+import Util from '../base/util.js';
+import Position from './Position.js';
 
 let poppers = [];
 

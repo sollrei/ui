@@ -1,5 +1,5 @@
-import Util from '../base/util.es6';
-import SelectBase from './SelectBase.es6';
+import Util from '../base/util.js';
+import SelectBase from './SelectBase.js';
 
 const doc = document;
 
@@ -56,7 +56,7 @@ class Cascader extends SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * */
   initAjaxSelect() {
     const select = this.select;
@@ -139,10 +139,10 @@ class Cascader extends SelectBase {
   }
 
   /**
-   * @method
-   * @param {Node|Object} select
-   * @param {Number} level
-   * @param {Object} [d = {}]
+   * @function
+   * @param {Node|object} select
+   * @param {number} level
+   * @param {object} [d = {}]
    * @param {*} type
    * */
   createAjaxOption(level, d = {}, type = false) {
@@ -175,10 +175,10 @@ class Cascader extends SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * @param {Array} data - options data array
-   * @param {Object} select
-   * @param {Number} level - linkage level
+   * @param {object} select
+   * @param {number} level - linkage level
    * (index = level - 1, index from 0, level from 1)
    * @param {*} type
    * */
@@ -228,8 +228,8 @@ class Cascader extends SelectBase {
   }
 
   /**
-   * @method
-   * @param {Object} select
+   * @function
+   * @param {object} select
    * */
   optionClickEvent() {
     const self = this;
@@ -290,10 +290,9 @@ class Cascader extends SelectBase {
 
   /**
    * @static
-   * set select text and value
-   * @param {Object} select
-   * @param {Boolean} show
-   * */
+   * @param {object} select
+   * @param {boolean} show
+   */
   setValue(show) {
     const select = this.select;
     let valueAll = [];
@@ -307,7 +306,7 @@ class Cascader extends SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * remove created option and input dom
    * */
   destroy() {

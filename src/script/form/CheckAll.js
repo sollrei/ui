@@ -1,4 +1,4 @@
-import u from '../base/util.es6';
+import u from '../base/util.js';
 
 class CheckAll {
   constructor(selector, option) {

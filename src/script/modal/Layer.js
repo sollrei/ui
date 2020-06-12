@@ -1,4 +1,4 @@
-import Util from '../base/util.es6';
+import Util from '../base/util.js';
 
 class Layer {
   constructor(settings) {

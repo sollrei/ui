@@ -1,4 +1,4 @@
-import u from '../base/util.es6';
+import u from '../base/util.js';
 
 const doc = document;
 
@@ -23,12 +23,13 @@ class SelectBase {
   }
 
   /**
-   * @method
-   * @param {Boolean} selected  - selected status
-   * @param {String} value - option value
-   * @param {String} label - option text
-   * @returns {String}  new option html
-   * */
+   * @function
+   * @param {boolean} selected  - selected status
+   * @param {string} value - option value
+   * @param option
+   * @param {string} label - option text
+   * @returns {string}  new option html
+   */
   createOptionItem({ selected, value, label, disabled }, option) {
     const { selectedClass } = this.settings;
     let className = selected ? selectedClass : '';
@@ -67,7 +68,7 @@ class SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * change selected option     in Cascader ColorPicker
    * @param {HTMLElement} option
    * @param {HTMLElement} current
@@ -91,10 +92,10 @@ class SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * bind click event
-   * @param {HTMLElement|Node|Object} select
-   * @param {function} [beforeShow = null]
+   * @param {HTMLElement|Node|object} select
+   * @param {Function} [beforeShow = null]
    * */
   selectClickEvent(select, beforeShow) {
     const self = this;
@@ -130,7 +131,7 @@ class SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * hide other select option
    * @param {HTMLElement} select
    * */
@@ -144,9 +145,9 @@ class SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * display select option
-   * @param {Object} select
+   * @param {object} select
    * */
   showOption(select) {
     const { selectShowClass, showClass, bottomMargin } = this.settings;
@@ -186,8 +187,8 @@ class SelectBase {
 
   /**
    * hide option
-   * @param {Object} select
-   * @param {String} className
+   *
+   * @param {object} select
    * */
   hideOption(select) {
     const { selectShowClass, showClass } = this.settings;
@@ -202,11 +203,12 @@ class SelectBase {
 
   /**
    * change text and value
-   * @param {Object} select
-   * @param {String} value
-   * @param {String} label
-   * @param {Boolean} show
-   * @param {String} type
+   *
+   * @param {object} select
+   * @param {string} value
+   * @param {string} label
+   * @param {boolean} show
+   * @param {string} type
    * */
   changeSelectValue(select, value, label, show = false, type = 'change') {
     const element = select;

@@ -1,7 +1,8 @@
 {
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"],
   "compilerOptions": {
     "module": "es6",
     "target": "esnext",
-  },
-  "include": ["src/*"]
+  }
 }

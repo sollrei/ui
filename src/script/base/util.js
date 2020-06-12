@@ -72,7 +72,7 @@ const util = {
    * @param {HTMLElement} element
    * @param {string} eventName
    * @param {string} selector
-   * @param {function} handler
+   * @param {Function} handler
    */
   on(element, eventName, selector, handler) {
     this.addMultiEvent(element, eventName, event => {
@@ -89,7 +89,7 @@ const util = {
    * @param {string} type - element type
    * @param {object} attribute - element attributes
    * @param {string} html - innerHTML
-   * @returns {HTMLElement}
+   * @returns {HTMLElement} -
    * */
   createElement(type, attribute = {}, html = '') {
     const dom = document.createElement(type);
@@ -143,11 +143,11 @@ const util = {
   },
 
   /**
-   * @param {String} url - request url
-   * @param {Object} data - request data
-   * @param {String} method  - request method
-   * @param {Object} header
-   * @returns {Promise}
+   * @param {string} url - request url
+   * @param {object} data - request data
+   * @param {string} method  - request method
+   * @param {object} header -
+   * @returns {Promise} - 
    * */
   fetchData(url, data = {}, method = 'GET', header = { 'Content-Type': 'application/x-www-form-urlencoded' }) {
     let dataArr = [];

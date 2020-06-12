@@ -1,4 +1,4 @@
-import Util from '../base/util.es6';
+import Util from '../base/util.js';
 
 const doc = document;
 const docEle = doc.documentElement;
@@ -380,6 +380,9 @@ class Validator {
 
     const { fields: __fields, form: __form, settings: __settings } = this;
 
+    /**
+     *
+     */
     function cb() {
       if (valid) {
         if (typeof callback === 'function') {
@@ -405,6 +408,9 @@ class Validator {
       }
     }
     
+    /**
+     * @param index
+     */
     function checkValid(index) {
       if (index >= arr.length) {
         valid = true;
@@ -450,7 +456,7 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * @param {Array} fields
    * [{
    *   name,   // element [name]
@@ -490,7 +496,7 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * create error tip element
    * @param  {Node|NodeList} [node] - elements
    * @returns {Node}
@@ -521,7 +527,7 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * get rule and msg from element node
    * @param  {NodeList} items nodeList of form item
    * */
@@ -542,10 +548,9 @@ class Validator {
 
   /**
    * @static
-   * get name & rules & error messages from form element
    * @param {HTMLFormElement} element
-   * @returns {Object|Boolean} field or nothing
-   * */
+   * @returns {object|boolean} field or nothing
+   */
   addItem(element) {
     const name = element.name;
     const elements = this.form[name];
@@ -565,7 +570,7 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * @param {string} rules [form item valid rule]
    * @param {string} msgs  [error message]
    * @returns {object}
@@ -626,7 +631,7 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * delegate event
    * - focusin for normal form elements
    * - change for hidden form elements
@@ -646,7 +651,7 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * remove error style class
    * @param {HTMLElement} target - form element
    * @param {HTMLElement} tip - error tip element
@@ -666,7 +671,7 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * add loading class for remote item
    * @param {HTMLElement} target - form element
    * */
@@ -681,7 +686,7 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * remove loading class for remote item
    * @param {HTMLElement} target - form element
    * */
@@ -724,10 +729,10 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * verify single filed
    * @param {object} fieldItem
-   * @param {String} type
+   * @param {string} type
    * {
         element,
         name,
@@ -798,11 +803,11 @@ class Validator {
   }
 
   /**
-   * @method
+   * @function
    * show error tip element
    * @param {HTMLFormElement} element - form element
    * @param {HTMLElement} tip - error tip element
-   * @param {String} message - error message
+   * @param {string} message - error message
    * */
   showErrorTip(element, tip, message) {
     const { errorClass, wrapClass } = this.settings;

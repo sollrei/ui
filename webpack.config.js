@@ -7,10 +7,10 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
   watch: true,
   watchOptions: {
-    ignored: './src/script/',
+    // ignored: './src/script/',
   },
   entry: {
-    ui: './src/index.es6',
+    ui: './source/index.es6',
   },
   output: {
     path: __dirname + '/dist',

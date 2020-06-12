@@ -1,4 +1,4 @@
-import u from '../base/util.es6';
+import u from '../base/util.js';
 
 class Tab {
   /**
@@ -108,6 +108,10 @@ class Tab {
   }
 }
 
+/**
+ * @param selector
+ * @param options
+ */
 export default function (selector, options) {
   if (typeof selector === 'string') {
     const elements = document.querySelectorAll(selector);

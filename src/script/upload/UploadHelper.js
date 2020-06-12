@@ -1,5 +1,5 @@
-import u from '../base/util.es6';
-import Upload from './Upload.es6';
+import u from '../base/util.js';
+import Upload from './Upload.js';
 
 // move this js file to common
 
@@ -112,6 +112,10 @@ class UploadHelper {
   }
 }
 
+/**
+ * @param selector
+ * @param options
+ */
 export default function (selector, options) {
   if (typeof selector === 'string') {
     const element = document.querySelectorAll(selector);

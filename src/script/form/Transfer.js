@@ -1,5 +1,5 @@
-import u from '../base/util.es6';
-import CheckAll from './CheckAll.es6';
+import u from '../base/util.js';
+import CheckAll from './CheckAll.js';
 // need Sortable js
 let Sortable;
 

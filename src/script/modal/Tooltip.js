@@ -1,5 +1,5 @@
-import u from '../base/util.es6';
-import Position from './Position.es6';
+import u from '../base/util.js';
+import Position from './Position.js';
 
 const doc = document;
 

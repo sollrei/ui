@@ -15,7 +15,9 @@
     "func-names": [
       "error",
       "never"
-    ]
+    ],
+
+    "jsdoc/require-param-description": 0
 
   },
   "parserOptions": {

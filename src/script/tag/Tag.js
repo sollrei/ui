@@ -1,4 +1,4 @@
-import Util from '../base/util.es6';
+import Util from '../base/util.js';
 
 class Tag {
   constructor(selector, options) {
@@ -79,7 +79,7 @@ class Tag {
   }
 
   /**
-   * @param {String} value
+   * @param {string} value
    * */
   addTagValue(value) {
     const { max } = this.settings;

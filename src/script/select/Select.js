@@ -1,5 +1,5 @@
-import u from '../base/util.es6';
-import SelectBase from './SelectBase.es6';
+import u from '../base/util.js';
+import SelectBase from './SelectBase.js';
 
 class Select extends SelectBase {
   constructor(elementSelector, options) {
@@ -44,13 +44,14 @@ class Select extends SelectBase {
   }
 
   /**
-   * @method
-   * @param {NodeList} element
+   * @function
+   * @param ele
+   * @param {NodeList} element 
    * 
    * 
    * this.data  [{label, value, selected[boolean]}]
    * this.cache {id: {label, value}}
-   * */
+   */
   init(ele) {
     let element = ele;
     if (!element) return;
@@ -200,7 +201,7 @@ class Select extends SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * create new element to exchange select element
    * @param {HTMLElement} item
    * */
@@ -238,10 +239,10 @@ class Select extends SelectBase {
   }
 
   /**
-   * @method
+   * @function
    * create new select element
    * @param {HTMLElement} element
-   * @returns {Object}
+   * @returns {object}
    * */
   createSelectDom(element) {
     const { selectClass, emptyLabel } = this.settings;
@@ -310,11 +311,12 @@ class Select extends SelectBase {
   }
 
   /**
-   * @method
-   * create new 'option'
+   * @function 
+create new 'option'
+   * @param match
    * @param {HTMLElement} element
-   * @returns {String}
-   * */
+   * @returns {string}
+   */
   createDropdown(match) {
     let domString = '<div class="select-ul">';
     const { emptyLi } = this.settings;
@@ -330,8 +332,13 @@ class Select extends SelectBase {
 
   /**
    * create main options list
+   *
    * @param element {HTMLElement} origin select
+   * @param data
+   * @param data
    * @param match {string|any} search content
+   * @param option
+   * @param option
    */ 
   createOptionContent(data, match, option) {
     return data.reduce((str, item) => {
@@ -539,8 +546,8 @@ class Select extends SelectBase {
   }
 
   /**
-   * @param {Boolean} show
-   * @param {String} type
+   * @param {boolean} show
+   * @param {string} type
    * */
   changeMultiSelectValue(show = false, type = 'change') {
     const { select } = this;
@@ -698,8 +705,8 @@ class Select extends SelectBase {
   }
 
   /**
-   * @method
-   * @param {Object} select
+   * @function
+   * @param {object} select
    * */
   bindEvent() {
     const select = this.select;
@@ -760,6 +767,10 @@ class Select extends SelectBase {
   }
 }
 
+/**
+ * @param selector
+ * @param options
+ */
 export default function (selector, options) {
   if (typeof selector === 'string') {
     const elements = document.querySelectorAll(selector);

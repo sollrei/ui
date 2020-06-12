@@ -1,4 +1,4 @@
-import Util from '../base/util.es6';
+import Util from '../base/util.js';
 
 const doc = document;
 const body = doc.body;
@@ -57,11 +57,11 @@ class Modal {
   }
 
   /**
-   * @method
-   * create modal element
-   *
+   * @param type
+   * @function 
+create modal element
    * @returns {Node}
-   * */
+   */
   createModalHtml(type) {
     const closeIcon = '<span class="modal-close iconfont icon-times" data-modal-close></span>';
     let str = '';
@@ -133,9 +133,9 @@ class Modal {
   }
 
   /**
-   * @method
-   * @param {Object} option
-   * @returns {String} confirm html
+   * @function
+   * @param {object} option
+   * @returns {string} confirm html
    * */
   static createConfirmHtml(option) {
     const { content, desc } = option;
@@ -170,20 +170,20 @@ class Modal {
   }
 
   /**
-   * @method
+   * @function
    * set modal content
    *
-   * @param {String} content
+   * @param {string} content
    * */
   setContent(content) {
     this.modalContent.innerHTML = content;
   }
 
   /**
-   * @method
+   * @function
    * set modal title
    *
-   * @param {String} title
+   * @param {string} title
    * */
   setTitle(title) {
     if (!title) return;
@@ -191,10 +191,10 @@ class Modal {
   }
 
   /**
-   * @method
+   * @function
    * display modal
    *
-   * @param {Object} options
+   * @param {object} options
    * */
   show(options) {
     const { content, title } = options;
@@ -215,7 +215,7 @@ class Modal {
   }
 
   /**
-   * @method
+   * @function
    * hide modal
    * */
   hide() {
@@ -307,6 +307,9 @@ class Modal {
 
     const resizeTrigger = modalBox.querySelector('.resize-trigger');
 
+    /**
+     * @param e
+     */
     function doDrag(e) {
       let width = startWidth + ((e.clientX - startX) * 2);
       let height = startHeight + ((e.clientY - startY) * 2);
@@ -327,6 +330,9 @@ class Modal {
       }
     }
 
+    /**
+     *
+     */
     function stopDrag() {
       docEle.removeEventListener('mousemove', doDrag, false);
       docEle.removeEventListener('mouseup', stopDrag, false);

@@ -1,5 +1,5 @@
-import u from '../base/util.es6';
-import Pagination from './Pagination.es6';
+import u from '../base/util.js';
+import Pagination from './Pagination.js';
 
 /**
  * @class
@@ -160,12 +160,10 @@ class Table extends Pagination {
     if (onChangePage && typeof onChangePage === 'function') {
       onChangePage(page, (next) => {
         if (next) {
-          // @ts-ignore
           this.changePageDom(_page);
         }
       });
     } else {
-      // @ts-ignore
       this.changePageDom(_page);
     }
   }
