@@ -1,9 +1,9 @@
 module.exports = {
   paths: {
     clean: 'dist/',
-    css: 'src/ui.scss',
-    js: 'src/ui.es6',
-    base: 'src/',
+    css: 'source/*.scss',
+    js: 'source/*.es6',
+    base: 'source/',
     dist: 'dist/'
   }
 };

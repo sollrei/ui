@@ -1,4 +1,4 @@
-const { task, series } = require('gulp');
+const { task, series, watch } = require('gulp');
 
 
 const clean = require('./tasks/clean');
@@ -16,4 +16,12 @@ task('js', () => { return js(); });
 exports.build = series(
   ['clean'],
   ['css', 'js']
+);
+
+exports.watch = series(
+  function (done) {
+    watch('src/**/*.js', { delay: 1000 }, js);
+    watch('src/**/*.scss', { delay: 1000 }, css);
+    done();
+  }
 );

@@ -2,9 +2,8 @@
   "name": "ui",
   "version": "0.0.3",
   "description": "ui",
-  "main": "webpack.config.js",
   "scripts": {
-    "start": "bundle exec jekyll serve & webpack"
+    "start": "bundle exec jekyll serve & gulp watch"
   },
   "author": "sollrei",
   "devDependencies": {
@@ -22,7 +21,6 @@
     "browserify": "^16.5.1",
     "css-loader": "^0.28.4",
     "del": "^5.1.0",
-    "extract-text-webpack-plugin": "^3.0.0",
     "faker": "^4.1.0",
     "glob": "^7.1.6",
     "gulp": "^4.0.2",
@@ -35,7 +33,6 @@
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "json-server": "^0.12.1",
-    "mini-css-extract-plugin": "^0.9.0",
     "node-sass": "^4.14.1",
     "postcss-loader": "^2.0.6",
     "rollup": "^2.15.0",
@@ -43,8 +40,7 @@
     "sass": "^1.26.7",
     "sass-loader": "^8.0.2",
     "style-loader": "^0.18.2",
-    "through2": "^3.0.1",
-    "uglifyjs-webpack-plugin": "^1.2.3"
+    "through2": "^3.0.1"
   },
   "browserslist": [
     "> 1%",
