@@ -1,9 +1,13 @@
-import Util from '../base/util.js';
+import u from '../base/util.js';
 import Position from './Position.js';
 
 let poppers = [];
 
 class Popper extends Position {
+  /**
+   * @param {HTMLElement} element 
+   * @param {object=} options 
+   */
   constructor(element, options) {
     const defaultSettings = {
       className: 'ui-popper',
@@ -20,6 +24,9 @@ class Popper extends Position {
     this.init(element);
   }
 
+  /**
+   * @param {HTMLElement} element 
+   */
   init(element) {
     if (!element) return;
 
@@ -55,7 +62,7 @@ class Popper extends Position {
 
   createPopper() {
     const { className, content } = this.settings;
-    const dom = Util.createElement('div', { className: `${className}` }, content);
+    const dom = u.createElement('div', { className: `${className}` }, content);
     return document.body.appendChild(dom);
   }
 
@@ -67,6 +74,7 @@ class Popper extends Position {
 }
 
 document.addEventListener('click', (e) => {
+  // @ts-ignore
   if (e.target.closest('.ui-popper')) return;
 
   poppers.forEach(item => {

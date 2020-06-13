@@ -1,9 +1,12 @@
-import Util from '../base/util.js';
+import u from '../base/util.js';
 
 const doc = document;
 const body = doc.body;
 
 class Modal {
+  /**
+   * @param {object=} settings 
+   */
   constructor(settings) {
     const defaultSettings = {
       modal: null,
@@ -56,95 +59,6 @@ class Modal {
     this.init();
   }
 
-  /**
-   * @param type
-   * @function 
-create modal element
-   * @returns {Node}
-   */
-  createModalHtml(type) {
-    const closeIcon = '<span class="modal-close iconfont icon-times" data-modal-close></span>';
-    let str = '';
-    let className = 'ui-modal';
-
-    switch (type) {
-      case 'confirm':
-        str = this.getConfirmTypeHtml();
-        className = 'ui-modal-confirm';
-        break;
-      default:
-        str = this.getModalTypeHtml(closeIcon);
-        break;
-    }
-
-    const div = Util.createElement('div', { className }, str);
-
-    return body.appendChild(div);
-  }
-
-  createModalFooter() {
-    const { cancelBtn, footer, confirmBtn, btnOkClass, btnCancelClass, onCancel } = this.settings;
-
-    let confirmButton = '';
-    let cancelButton = '';
-    let foot = '';
-
-    if (!footer) {
-      return foot;
-    }
-
-    if (confirmBtn) {
-      confirmButton = `<button class="${btnOkClass} modal-ok">${confirmBtn}</button>`;
-    }
-
-    if (cancelBtn) {
-      if (onCancel) {
-        cancelButton = `<button class="${btnCancelClass} modal-cancel">${cancelBtn}</button>`;
-      } else {
-        cancelButton = `<button class="${btnCancelClass} modal-cancel" data-modal-close>${cancelBtn}</button>`;
-      }
-    }
-
-    if (confirmBtn || cancelBtn) {
-      foot = `<div class="modal-footer">${confirmButton}${cancelButton}</div>`;
-    }
-
-    return foot;
-  }
-
-  getModalTypeHtml(closeIcon) {
-    const { resize } = this.settings;
-    const resizeClass = resize ? ' resizable' : '';
-    const resizeTrigger = resize ? '<span class="resize-trigger"></span>' : '';
-    const foot = this.createModalFooter();
-
-    return `<div class="modal-box${resizeClass}">${closeIcon}`
-            + '<div class="modal-title"></div><div class="modal-content"></div>'
-            + `${foot}${resizeTrigger}</div>`;
-  }
-
-  getConfirmTypeHtml() {
-    const foot = this.createModalFooter();
-
-    return '<div class="ui-confirm modal-box">'
-      + '<div class="modal-content"></div>'
-      + foot
-      + '</div>';
-  }
-
-  /**
-   * @function
-   * @param {object} option
-   * @returns {string} confirm html
-   * */
-  static createConfirmHtml(option) {
-    const { content, desc } = option;
-    const titHtml = content ? `<div class="warn">${content}</div>` : '';
-    const descHtml = desc ? `<div class="desc">${desc}</div>` : '';
-
-    return `${titHtml}${descHtml}`;
-  }
-
   init() {
     let modal = this.settings.modal;
     const {
@@ -170,9 +84,96 @@ create modal element
   }
 
   /**
-   * @function
-   * set modal content
-   *
+   * @param {string} type
+   * @returns {Node} - ui-modal element
+   */
+  createModalHtml(type) {
+    let str = '';
+    let className = 'ui-modal';
+
+    switch (type) {
+      case 'confirm':
+        str = this.createConfirmTypeHtml();
+        className = 'ui-modal-confirm';
+        break;
+      default:
+        str = this.createModalTypeHtml();
+        break;
+    }
+
+    const div = u.createElement('div', { className }, str);
+
+    return body.appendChild(div);
+  }
+
+  createModalFooter() {
+    const { cancelBtn, footer, confirmBtn, btnOkClass, btnCancelClass, onCancel } = this.settings;
+
+    let confirmButton = '';
+    let cancelButton = '';
+    let foot = '';
+
+    if (!footer) {
+      return foot;
+    }
+
+    if (confirmBtn) {
+      confirmButton = `<button class="${btnOkClass} modal-ok">${confirmBtn}</button>`;
+    }
+
+    if (cancelBtn) {
+      let cancelClass = onCancel ? '' : 'data-modal-close';
+      
+      cancelButton = `<button class="${btnCancelClass} modal-cancel" ${cancelClass}>${cancelBtn}</button>`;
+    }
+
+    if (confirmBtn || cancelBtn) {
+      foot = `<div class="modal-footer">${confirmButton}${cancelButton}</div>`;
+    }
+
+    return foot;
+  }
+
+  /**
+   * @returns {string} - normal modal html
+   */
+  createModalTypeHtml() {
+    const { resize } = this.settings;
+    const resizeClass = resize ? ' resizable' : '';
+    const resizeTrigger = resize ? '<span class="resize-trigger"></span>' : '';
+    const foot = this.createModalFooter();
+
+    return `<div class="modal-box${resizeClass}">`
+      + '<span class="modal-close iconfont icon-times" data-modal-close></span>'
+      + '<div class="modal-title"></div><div class="modal-content"></div>'
+      + `${foot}${resizeTrigger}</div>`;
+  }
+
+  /**
+   * @returns {string} - confirm modal html
+   */
+  createConfirmTypeHtml() {
+    const foot = this.createModalFooter();
+
+    return '<div class="ui-confirm modal-box">'
+      + '<div class="modal-content"></div>'
+      + foot
+      + '</div>';
+  }
+
+  /**
+   * @param {object} option
+   * @returns {string} confirm html
+   * */
+  static createConfirmHtml(option) {
+    const { content, desc } = option;
+    const titHtml = content ? `<div class="warn">${content}</div>` : '';
+    const descHtml = desc ? `<div class="desc">${desc}</div>` : '';
+
+    return `${titHtml}${descHtml}`;
+  }
+
+  /**
    * @param {string} content
    * */
   setContent(content) {
@@ -180,9 +181,6 @@ create modal element
   }
 
   /**
-   * @function
-   * set modal title
-   *
    * @param {string} title
    * */
   setTitle(title) {
@@ -191,9 +189,6 @@ create modal element
   }
 
   /**
-   * @function
-   * display modal
-   *
    * @param {object} options
    * */
   show(options) {
@@ -203,21 +198,20 @@ create modal element
     this.setTitle(title);
 
     this.toggleShowHide('show');
-    Util.addClass(document.querySelector('html'), 'modal-open');
+    u.addClass(document.querySelector('html'), 'modal-open');
   }
 
+  /**
+   * @param {object=} option 
+   * @param {*} getData 
+   */
   confirm(option, getData = null) {
     const content = Modal.createConfirmHtml(option);
     this.getData = getData;
     this.setContent(content);
-
     this.toggleShowHide('show');
   }
 
-  /**
-   * @function
-   * hide modal
-   * */
   hide() {
     this.toggleShowHide('hide');
     this.modalContent.innerHTML = '';
@@ -225,7 +219,7 @@ create modal element
       this.modalTitle.innerHTML = '';
     }
 
-    Util.removeClass(document.querySelector('html'), 'modal-open');
+    u.removeClass(document.querySelector('html'), 'modal-open');
   }
 
   /**
@@ -237,8 +231,8 @@ create modal element
     const { showClass, animateClass, onOpen, onClose } = this.settings;
 
     if (type === 'show') {
-      Util.addClass(modal, showClass);
-      Util.addClass(modalBox, animateClass);
+      u.addClass(modal, showClass);
+      u.addClass(modalBox, animateClass);
 
       this.isShow = true;
       if (typeof onOpen === 'function') {
@@ -252,8 +246,8 @@ create modal element
         onClose(this);
       }
 
-      Util.removeClass(modal, showClass);
-      Util.removeClass(modalBox, animateClass);
+      u.removeClass(modal, showClass);
+      u.removeClass(modalBox, animateClass);
     }
   }
 
@@ -262,7 +256,7 @@ create modal element
     const { clickOutside, closeKey, resize, onCancel, onConfirm } = this.settings;
     const { modalOk, modalCancel } = this;
 
-    Util.on(this.modal, 'click', '[data-modal-close]', () => {
+    u.on(this.modal, 'click', '[data-modal-close]', () => {
       this.hide();
     });
 
@@ -308,7 +302,7 @@ create modal element
     const resizeTrigger = modalBox.querySelector('.resize-trigger');
 
     /**
-     * @param e
+     * @param {object} e
      */
     function doDrag(e) {
       let width = startWidth + ((e.clientX - startX) * 2);

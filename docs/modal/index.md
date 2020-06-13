@@ -12,10 +12,10 @@ need_js: true
 ```javascript
 var m = new Modal({
   onOpen: function () {
-    console.log('open');
+    // console.log('open');
   },
   onConfirm: function (e, modal) {
-    console.log('ok');
+    // console.log('ok');
     modal.hide();
   }
 });

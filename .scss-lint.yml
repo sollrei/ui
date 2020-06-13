@@ -16,7 +16,7 @@ linters:
     enabled: false
 
   ExtendDirective:
-    enabled: true
+    enabled: false
 
   ImportantRule:
     enabled: false

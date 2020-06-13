@@ -1,34 +1,37 @@
 @import "variables";
 
-.ui-tooltip {
-  display: inline-block;
+%tip {
   position: absolute;
   padding: $popup-padding;
-  max-width: 274px;
-  
+
+  border: 1px solid $color-border;
+  border-radius: $popup-radius;
+  box-shadow: $shadow;
+  background-color: $white;
+}
+
+%tip-text {
   font-size: 12px;
   line-height: 1.33;
   text-align: left;
   color: $black;
   word-break: break-all;
+}
+
+.ui-tooltip {
+  display: inline-block;
+  max-width: 274px;
   
-  border-radius: $popup-radius;
-  box-shadow: $shadow;
-  border: solid 1px $color-border;
-  background-color: $white;
+  @extend %tip;
+  @extend %tip-text;
   
   z-index: 9900;
-  
   animation: fade-in-down $transition-duration both;
   
   &.normal {
     font-size: 14px;
     line-height: 24px;
   }
-
-  // &.center {
-  //   transform: translateX(-50%);
-  // }
 
   @keyframes fade-in-down {
     0% {
@@ -41,15 +44,32 @@
   }
 }
 
+.ui-title-tip[title] {
+  &:after {
+    content: attr(title);
+    max-width: 274px;
+    width: auto;
+
+    @extend %tip;
+    @extend %tip-text;
+
+    display: none;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  &:hover:after {
+    display: block;
+    z-index: 10;
+    animation: tip .1s .1s forwards;
+  }
+}
+
 .ui-popper {
-  position: absolute;
   left: 0;
   top: 0;
-  padding: $popup-padding;
-  background: $white;
-  border: 1px solid $color-border;
-  border-radius: $popup-radius;
-  box-shadow: $shadow;
+
+  @extend %tip;
 
   &:focus {
     outline: none;
@@ -58,4 +78,16 @@
 
 .ui-popper-wp {
   position: relative;
+}
+
+@keyframes tip {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
 }

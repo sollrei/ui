@@ -5,6 +5,12 @@ need_js: true
 
 # Popup
 
+## Pure Css Title
+
+{% example html %}
+<a href="#" title="this is my title" class="ui-title-tip">text</a>
+{% endexample %}
+
 ## Popper
 
 {% example html %}

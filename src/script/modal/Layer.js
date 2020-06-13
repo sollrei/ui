@@ -1,6 +1,9 @@
-import Util from '../base/util.js';
+import u from '../base/util.js';
 
 class Layer {
+  /**
+   * @param {object=} settings
+   */
   constructor(settings) {
     const defaults = {
       layer: null,
@@ -43,15 +46,21 @@ class Layer {
       <div class="layer-head"></div>
       <div class="layer-content"></div>
     </div>`;
-    const div = Util.createElement('div', { className: 'ui-layer' }, htmlString);
+    const div = u.createElement('div', { className: 'ui-layer' }, htmlString);
 
     return document.body.appendChild(div);
   }
 
+  /**
+   * @param {string} str - content
+   */
   setContent(str) {
     this.layerContent.innerHTML = str;
   }
 
+  /**
+   * @param {string} str - title
+   */
   setTitle(str) {
     this.layerHead.innerHTML = `<div class="layer-title">${str}</div>`;
   }
@@ -62,8 +71,8 @@ class Layer {
     const { content, title } = option;
     this.setContent(content);
     this.setTitle(title);
-    Util.addClass(document.querySelector('html'), 'layer-open');
-    Util.addClass(layer, showClass);
+    u.addClass(document.querySelector('html'), 'layer-open');
+    u.addClass(layer, showClass);
     if (onOpen) {
       onOpen(this);
     }
@@ -76,14 +85,14 @@ class Layer {
       onClose(this);
     }
     
-    Util.removeClass(this.layer, showClass);
+    u.removeClass(this.layer, showClass);
     if (!document.querySelector('.' + showClass)) {
-      Util.removeClass(document.querySelector('html'), 'layer-open');
+      u.removeClass(document.querySelector('html'), 'layer-open');
     }
   }
 
   events() {
-    Util.on(this.layer, 'click', '[data-layer-close]', () => {
+    u.on(this.layer, 'click', '[data-layer-close]', () => {
       this.hide();
     });
   }

@@ -2,9 +2,8 @@ import u from '../base/util.js';
 
 class Tab {
   /**
-   * 
-   * @param selector {string|Object}
-   * @param options {Object=}
+   * @param {string|object} selector
+   * @param {object=} options
    */
   constructor(selector, options) {
     const defaultSettings = {
@@ -52,7 +51,7 @@ class Tab {
   }
 
   /**
-   * @param btn {HTMLElement}
+   * @param {HTMLElement} btn
    */
   handleChangeTab(btn) {
     const { navActive, onChange } = this.settings;
@@ -73,23 +72,23 @@ class Tab {
   }
 
   /**
-   * @param btn {HTMLElement}
-   * @param _index {number}
+   * @param {HTMLElement} btn
+   * @param {number} index
    */
-  changeTab(btn, _index) {
+  changeTab(btn, index) {
     const { settings, navElements, contentElements } = this;
     const { navActive, conActive } = settings;
 
     u.addClass(btn, navActive);
 
     [].slice.call(navElements).forEach((nav, ind) => {
-      if (ind !== _index) {
+      if (ind !== index) {
         u.removeClass(nav, navActive);
       }
     });
     
     [].slice.call(contentElements).forEach((item, ind) => {
-      if (ind === _index) {
+      if (ind === index) {
         u.addClass(item, conActive);
       } else {
         u.removeClass(item, conActive);
@@ -109,8 +108,9 @@ class Tab {
 }
 
 /**
- * @param selector
- * @param options
+ * @param {string|object} selector
+ * @param {object=} options
+ * @returns {object} tab
  */
 export default function (selector, options) {
   if (typeof selector === 'string') {

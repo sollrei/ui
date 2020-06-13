@@ -1,6 +1,11 @@
-import Util from '../base/util.js';
+import u from '../base/util.js';
+
+// count
 
 class Message {
+  /**
+   * @param {object=} settings 
+   */
   constructor(settings) {
     const defaultSettings = {
       duration: 3000,
@@ -19,14 +24,27 @@ class Message {
     // this.messages = [];
   }
 
+  /**
+   * @param {string} message - message content
+   * @param {'top'|'center'} position 
+   */
   success(message, position) {
     this.show(message, true, position);
   }
 
+  /**
+   * @param {string} message - message content
+   * @param {'top'|'center'} position 
+   */
   warn(message, position) {
     this.show(message, false, position);
   }
 
+  /**
+   * @param {string} message - message content
+   * @param {boolean} type 
+   * @param {'top'|'center'} position
+   */
   show(message, type, position) {
     const content = Message.createAlert(message, type);
 
@@ -80,6 +98,12 @@ class Message {
   //   });
   // }
 
+  /**
+   * 
+   * @param {string} content 
+   * @param {boolean} type 
+   * @returns {HTMLElement} - ui-alert element
+   */
   static createAlert(content, type) {
     let _type = 'success';
     if (typeof type === 'boolean' && !type) {
@@ -88,7 +112,7 @@ class Message {
     const className = 'alert-' + _type;
 
     const domString = Message.createDomString(content, className);
-    const div = Util.createElement('div', { className: 'ui-alert' }, domString);
+    const div = u.createElement('div', { className: 'ui-alert' }, domString);
 
     return div;
   }
