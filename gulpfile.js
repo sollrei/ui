@@ -2,9 +2,9 @@ const { task, series, watch } = require('gulp');
 
 
 const clean = require('./tasks/clean');
-const css = require('./tasks/css');
-const js = require('./tasks/js');
 
+const css = require('./tasks/build/css');
+const js = require('./tasks/build/js');
 
 task('clean', () => { return clean(); });
 

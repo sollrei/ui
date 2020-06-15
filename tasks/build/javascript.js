@@ -1,5 +1,5 @@
 const { src, dest } = require('gulp');
-const config = require('./config');
+const config = require('../config');
 const through = require('through2');
 const babel = require('gulp-babel');
 const uglify = require('gulp-uglify');
