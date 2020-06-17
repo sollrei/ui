@@ -39,7 +39,7 @@ sass:
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.
-exclude:          [.git, .github, src/, build, js, node_modules, nuget, scss, vendor, bower.json, composer.json, Gemfile, Gemfile.lock, Gruntfile.js, package.js, package.json, package-lock.json, sache.json, gulpfile.js, README.md, note.md, tsconfig.json]
+exclude:          [.git, .github, src/, build, js, node_modules, nuget, scss, vendor, bower.json, composer.json, Gemfile, Gemfile.lock, Gruntfile.js, package.js, package.json, package-lock.json, sache.json, gulpfile.js, README.md, note.md, tsconfig.json, tasks/, source/]
 
 #   - Gemfile.lock
 #   - node_modules

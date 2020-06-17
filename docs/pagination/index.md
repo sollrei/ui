@@ -45,3 +45,6 @@ layout: default
 </div>
 {% endexample %}
 
+## JavaScript
+
+<div id="table"></div>

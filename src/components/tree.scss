@@ -1,11 +1,6 @@
 @import "variables";
 // need rewrite
 .ui-tree {
-  .node-label,
-  .tree-group {
-    // padding-left: 24px;
-  }
-
   .tree-node:not(.active) .node-label:hover {
     background: rgba($primary, .06);
     color: $primary;
@@ -22,13 +17,6 @@
   }
 
   &.checkable {
-    // padding-left: 24px;
-    
-    .node-trigger:before {
-      // position: absolute;
-      // left: 0;
-    }
-
     .node-label:not(.transfer-title):hover {
       background: rgba($primary, .06);
       color: $primary;
@@ -51,16 +39,12 @@
     height: 32px;
     line-height: 32px;
     overflow: hidden;
-
-    // label {
-    //   flex: 1;
-    // }
+    user-select: none;
   }
 
   .node-trigger {
     cursor: pointer;
     position: relative;
-    // margin-left: -24px;
 
     label {
       flex: 0 0 auto;

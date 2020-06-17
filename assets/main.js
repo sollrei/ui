@@ -98,7 +98,7 @@ window.onload = function () {
     pages: 5
   });
 
-  fetch('https://api.cooode.xyz/api/st-table').then(res => res.json()).then(res => {
+  fetch('https://api.cooode.xyz/api/ui-demo-table').then(res => res.json()).then(res => {
     if (res.code === 200) {
       const table = new Table('#table', {
         header: [{
@@ -114,7 +114,7 @@ window.onload = function () {
         page: res.data.current,
         data: res.data.table,
         onChangePage(page, cb) {
-          fetch('https://api.cooode.xyz/api/st-table?page=' + page)
+          fetch('https://api.cooode.xyz/api/ui-demo-table?page=' + page)
             .then(_res => _res.json())
             .then(_res => {
               if (_res.code === 200) {
