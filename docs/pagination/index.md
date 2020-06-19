@@ -47,4 +47,4 @@ layout: default
 
 ## JavaScript
 
-<div id="table"></div>
+<div id="js-table"></div>

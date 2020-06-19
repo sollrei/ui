@@ -100,7 +100,7 @@ window.onload = function () {
 
   fetch('https://api.cooode.xyz/api/ui-demo-table').then(res => res.json()).then(res => {
     if (res.code === 200) {
-      const table = new Table('#table', {
+      const table = new Table('#js-table', {
         header: [{
           name: 'type',
           label: '类型',
