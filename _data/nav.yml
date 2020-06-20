@@ -26,7 +26,7 @@
       url: /docs/range/
     - title: 颜色选择器
       name: ColorPicker
-      url: /docs/colorPicker
+      url: /docs/colorPicker/
     - title: 上传
       name: Upload
       url: /docs/upload/
