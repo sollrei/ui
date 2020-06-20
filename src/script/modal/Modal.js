@@ -1,8 +1,5 @@
 import u from '../base/util.js';
 
-const doc = document;
-const body = doc.body;
-
 class Modal {
   /**
    * @param {object=} settings 
@@ -103,7 +100,7 @@ class Modal {
 
     const div = u.createElement('div', { className }, str);
 
-    return body.appendChild(div);
+    return document.body.appendChild(div);
   }
 
   createModalFooter() {
@@ -273,7 +270,7 @@ class Modal {
     }
 
     if (clickOutside) {
-      body.addEventListener('keydown', (e) => {
+      document.body.addEventListener('keydown', (e) => {
         if (e.keyCode === closeKey) {
           this.hide();
         }

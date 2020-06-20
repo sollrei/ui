@@ -19,17 +19,23 @@ need_js: true
 
 #### JavaScript
 
-```javascript
-var btn = document.querySelector('.js-popper');
-btn.addEventListener('click', function (e) {
-  e.stopPropagation();
-  
-  new Popper(btn, {
-    position: 'center top',
-    content: '内容部分'
-  });
-}, false);
-```
+{% example html %}
+<script>
+  var Popper = ui.Popper;
+  var btn = document.querySelector('.js-popper');
+
+  if (btn) {
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      
+      new Popper(btn, {
+        position: 'center top',
+        content: '内容部分'
+      });
+    }, false);
+  }
+</script>
+{% endexample %}
 
 ## Tooltip
 
@@ -42,6 +48,9 @@ btn.addEventListener('click', function (e) {
 
 #### JavaScript
 
-```javascript
-new Tooltip('[data-tooltip]');
-```
+{% example html %}
+<script>
+  var Tooltip = ui.Tooltip;
+  new Tooltip('[data-tooltip]');
+</script>
+{% endexample %}

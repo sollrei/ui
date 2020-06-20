@@ -55,16 +55,20 @@ need_js: true
 </div>
 {% endexample %}
 
-```javascript
-  Tab('.ui-tab-wrap');
-
-  // or
-  const wrap = document.querySelector('.ui-tab-wrap');
-  Tab(wrap, {
+{% example html %}
+<script>
+  var Tab = ui.Tab;
+  Tab('.ui-tab-wrap', {
     navSelector: '.tab-itm',
     conSelector: '.tab-content',
     navActive: 'active',
     conActive: 'show',
-    onChange(index) {}
-  })
-```
+    // 以上是默认配置
+
+    onChange(index, cb) {
+      console.log(index)
+      cb();
+    }
+  });
+</script>
+{% endexample %}

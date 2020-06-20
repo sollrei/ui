@@ -21,6 +21,12 @@
     - title: 选择
       name: Select
       url: /docs/select/
+    - title: 范围
+      name: Range
+      url: /docs/range/
+    - title: 颜色选择器
+      name: ColorPicker
+      url: /docs/colorPicker
     - title: 上传
       name: Upload
       url: /docs/upload/

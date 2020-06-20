@@ -55,8 +55,11 @@ need_js: true
 </div>
 {% endexample %}
 
-## JavaScript
+#### JavaScript
 
-```javascript
-new InputCount('.ui-enter-count');
-```
+{% example html %}
+<script>
+  var InputCount = ui.InputCount;
+  new InputCount('.ui-enter-count');
+</script>
+{% endexample %}

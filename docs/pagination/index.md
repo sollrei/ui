@@ -28,6 +28,13 @@ layout: default
 </div>
 {% endexample %}
 
+{% example html %}
+<script>
+  var Select = ui.Select;
+  new Select('.js-select');
+</script>
+{% endexample %}
+
 ## Small
 
 {% example html %}
@@ -44,6 +51,7 @@ layout: default
   <span class="text">页</span>
 </div>
 {% endexample %}
+
 
 ## JavaScript
 

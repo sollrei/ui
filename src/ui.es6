@@ -13,6 +13,8 @@ import CheckAll from './script/form/CheckAll.js';
 
 import Transfer from './script/form/Transfer.js';
 
+import Range from './script/form/Range.js';
+
 
 import Select from './script/select/Select.js';
 
@@ -48,6 +50,7 @@ import Table from './script/data/Table';
 
 import Tab from './script/menu/Tab.js';
 
+import ColorPicker from './script/color/ColorPicker.js';
 
 const ui = {
   util,
@@ -70,7 +73,9 @@ const ui = {
 
   Pagination,
   Table,
-  Tab
+  Tab,
+  Range,
+  ColorPicker
 };
 
 // @ts-ignore
@@ -96,5 +101,15 @@ if (!util.supportPseudo(':focus-within')) {
     util.removeClass(this.closest('.ui-icon-input'), 'active');
   });
 } 
+
+window.addEventListener('load', function () {
+  document.body.addEventListener('click', function () {
+    const pika = document.querySelectorAll('.ui-pika');
+  
+    util.forEach(pika, item => {
+      item.hide();
+    });
+  });
+});
 
 export default ui;

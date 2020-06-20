@@ -6,6 +6,9 @@ need_js: true
 
 # Select
 
+> 需要调用js  `new Select('.js-select');`
+
+> 部分配置可以写在初始元素上，也可以单独传参数设置
 
 ## Standard
 
@@ -111,13 +114,33 @@ need_js: true
 
 ## JavaScript
 
-```javascript
-new Select(selector, {
-  multiple: [boolean] // 多选
-});
+{% example html %}
+<script>
+  var Select = ui.Select;
+  new Select('.js-select');
+</script>
+{% endexample %}
 
-// e.g.
-new Select('.js-select', {
-  multiple: true
+#### Settings
+
+```javascript
+// selector可以是css选择器，可以是HTMLElement
+// e.g.   .js-select
+//        document.querySelector('.js-select')
+//        document.querySelectorAll('.js-select')
+
+
+new Select(selector, {
+  placeholder: '',
+
+  clearable: false, // 可清除
+  multiple: false,  // 多选
+  enterable: false, // 可输入
+  max: null,        // 最多选几个选项
+  checkable: false, // 输出checkbox
+
+  selectFn: null,   // 选中回调，使用input或select的也可以监听change事件
 });
 ```
+
+> 可能会重构，或者整个重写，目前逻辑比较混乱

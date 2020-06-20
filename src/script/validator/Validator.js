@@ -2,7 +2,6 @@ import Util from '../base/util.js';
 
 const doc = document;
 const docEle = doc.documentElement;
-const body = doc.body;
 
 const defaultSettings = {
   chinese: '请填写中文',
@@ -394,8 +393,8 @@ class Validator {
 
           if (tipElement) {
             const top = (tipElement.getBoundingClientRect().top - 80)
-              + (docEle.scrollTop + body.scrollTop);
-            const left = docEle.scrollLeft + body.scrollLeft;
+              + (docEle.scrollTop + document.body.scrollTop);
+            const left = docEle.scrollLeft + document.body.scrollLeft;
 
             // scroll to error tip position
             window.scrollTo(left, top);

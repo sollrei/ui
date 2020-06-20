@@ -209,12 +209,5 @@ class PikaEx {
   }
 }
 
-document.body.addEventListener('click', function () {
-  const pika = document.querySelectorAll('.ui-pika');
-
-  u.forEach(pika, item => {
-    item.hide();
-  });
-});
 
 export default PikaEx;

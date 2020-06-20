@@ -71,9 +71,15 @@ need_js: true
 
 ## JavaScript
 
-```javascript
-new Validator('.ui-form');
-```
+{% example html %}
+<script>
+var Validator = ui.Validator;
+
+new Validator('.ui-form', function () {
+  alert('success');
+});
+</script>
+{% endexample %}
 
 ## Validator
 

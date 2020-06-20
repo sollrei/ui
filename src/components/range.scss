@@ -1,0 +1,71 @@
+@import "variables";
+
+.ui-slider-wrap {
+  cursor: pointer;
+
+  input[type="range"] {
+    display: none;
+  }
+}
+
+.ui-slider {
+  display: inline-block;
+  height: $range-height;
+  width: $range-width;
+
+  vertical-align: middle;
+
+  .bar {
+    height: $range-height;
+    position: relative;
+
+    border-radius: $range-height / 2;
+    background: $color-bg;
+  }
+
+  .rate {
+    height: $range-height;
+    position: absolute;
+    left: 0;
+    top: 0;
+    border-radius: $range-height / 2;
+    background: $primary;
+    z-index: 2;
+  }
+
+  .btn {
+    position: absolute;
+    box-sizing: border-box;
+    height: $range-btn-size;
+    width: $range-btn-size;
+    right: -$range-btn-size / 2;
+    top: ($range-height / 2) - ($range-btn-size / 2);
+
+    border-radius: 50%;
+    border: 1px solid $color-border;
+    cursor: pointer;
+    background: $white;
+    box-shadow: $shadow;
+  }
+
+  .negative-rate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: $range-height;
+    background: $color-bg;
+    width: 100%;
+  }
+
+  .negative {
+    position: absolute;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    height: $range-height;
+    background: $primary;
+  }
+}
+
+
+

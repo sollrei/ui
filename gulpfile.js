@@ -20,7 +20,7 @@ exports.build = series(
 
 exports.watch = series(
   function (done) {
-    watch('src/**/*.js', { delay: 1000 }, js);
+    watch('src/**/*.(js|es6)', { delay: 1000 }, js);
     watch('src/**/*.scss', { delay: 1000 }, css);
     done();
   }

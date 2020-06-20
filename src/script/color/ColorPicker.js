@@ -1,299 +1,416 @@
-// // @ts-nocheck
-// /* eslint-disable */ 
-// let canvas; 
-// let ctx;
-// const tinycolor = window.tinycolor;
+let tinyColor;
+import u from '../base/util';
 
-// // 中间的canvas
-// var spectrumCanvas = document.getElementById('spectrum-canvas');
-// var spectrumCtx = spectrumCanvas.getContext('2d');
-// var spectrumCursor = document.getElementById('spectrum-cursor'); 
-// var spectrumRect = spectrumCanvas.getBoundingClientRect();
-  
-// // 颜色条
-// var hueCanvas = document.getElementById('hue-canvas');
-// var hueCtx = hueCanvas.getContext('2d');
-// var hueCursor = document.getElementById('hue-cursor'); 
-// var hueRect = hueCanvas.getBoundingClientRect();
-  
-// var currentColor = '';
 
-// var hue = 0;
-// var saturation = 1;
-// var lightness = 0.5;
-  
-// var rgbFields = document.getElementById('rgb-fields');
-// var hexField = document.getElementById('hex-field');
+class ColorPicker {
+  constructor(input, options) {
+    tinyColor = window.tinycolor;
 
-// var red = document.getElementById('red');
-// var blue = document.getElementById('blue');
-// var green = document.getElementById('green');
-// var hex = document.getElementById('hex'); 
+    const defaultSettings = {
+      swatches: ['#000000', '#595959', '#BFBFBF', '#f5f5f5', '#F5242D', '#FA541C', '#FA8C17', '#FADB13', '#52C41A', '#13C2C2', '#1790FF', '#2F54EB', '#722ED1', '#EB2F96', '#2A86C5', '#2E5089'],
+      onChange: null
+    };
+  
+    const settings = Object.assign({}, defaultSettings, options);
+  
+    this.settings = settings;
 
-// function ColorPicker() {
-//   this.addDefaultSwatches();
-//   createShadeSpectrum();
-//   createHueSpectrum();
-// }
-  
-// ColorPicker.prototype.defaultSwatches = [
-//   '#000000', 
-//   '#595959', 
-//   '#BFBFBF', 
-//   '#f5f5f5', 
-//   '#F5242D', 
-//   '#FA541C', 
-//   '#FA8C17',
-//   '#FADB13',
-//   '#52C41A',
-//   '#13C2C2',
-//   '#1790FF',
-//   '#2F54EB',
-//   '#722ED1',
-//   '#EB2F96',
-//   '#2A86C5',
-//   '#2E5089'
-// ];
-  
-// /**
-//  * @param target
-//  * @param color
-//  */
-// // 创建默认色板 或用户选择色板
-// function createSwatch(target, _color) {
-//   var swatch = document.createElement('button');
+    if (tinyColor) {
+      this.init(input);
+    }
+  }
 
-//   swatch.className = 'swatch';
-//   swatch.style.backgroundColor = _color;
+  static createDom() {
+    const div = document.createElement('div');
+    div.className = 'ui-color-picker';
+  
+    div.innerHTML = `<div class="color-picker-panel">
+      <div class="spectrum-map">
+        <a href="javascript:;" class="spectrum-cursor color-cursor"></a>
+        <canvas class="spectrum-canvas"></canvas>
+      </div>
+      <div class="panel-row panel-color-row">
+        <div class="panel-color"></div>
+        <div class="panel-bar">
+          <div class="hue-map">
+            <a href="javascript:;" class="hue-cursor color-cursor"></a>
+            <canvas class="hue-canvas"></canvas>
+          </div>
+          <div class="panel-input">
+          <label>#</label>
+          <input type="text" class="hex field-input" maxlength="6"/>
+          <button class="field-button color-confirm">确定</button>
+        </div>
+        </div>
+      </div>
+      <div class="panel-row">
+        <div class="swatches-title">预制</div>
+        <div class="swatches default-swatches"></div>
+      </div>
+    </div>`;
+  
+    return div;
+  }
 
-//   swatch.addEventListener('click', function () {
-//     var color = tinycolor(this.style.backgroundColor);     
-//     colorToPos(color);
-//     setColorValues(color);
-//   });
+  /**
+   * @param {string} _color
+   * @returns {string}
+   */
+  static colorToHue(_color) {
+    const color = tinyColor(_color);
+    const hueString = tinyColor('hsl ' + color.toHsl().h + ' 1 .5').toHslString();
+    return hueString;
+  }
 
-//   target.appendChild(swatch);
-//   refreshElementRects();
-// }
-  
-// // 添加默认色板
-// ColorPicker.prototype.addDefaultSwatches = function () {
-//   const swatches = document.getElementsByClassName('default-swatches')[0];
+  /**
+   * @param {*} input 
+   */
+  init(input) {
+    let element = input;
 
-//   this.defaultSwatches.forEach(item => {
-//     createSwatch(swatches, item);
-//   })
-// };
-  
-// /**
-//  * 刷新canvas rect
-//  */
-// function refreshElementRects() {
-//   spectrumRect = spectrumCanvas.getBoundingClientRect();
-//   hueRect = hueCanvas.getBoundingClientRect();
-// }
-  
-// function createShadeSpectrum(color) {
-//   canvas = spectrumCanvas;
-//   ctx = spectrumCtx;
-//   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  
-//   if (!color) color = '#f00';
-//   ctx.fillStyle = color;
-//   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-//   const whiteGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
-//   whiteGradient.addColorStop(0, '#fff');
-//   whiteGradient.addColorStop(1, 'transparent');
+    if (typeof input === 'string') {
+      element = document.querySelector(input);
+    }
 
-//   ctx.fillStyle = whiteGradient;
-//   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-//   const blackGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-//   blackGradient.addColorStop(0, 'transparent');
-//   blackGradient.addColorStop(1, '#000');
+    if (!element) return;
 
-//   ctx.fillStyle = blackGradient;
-//   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  
-//   canvas.addEventListener('mousedown', function (e) {
-//     startGetSpectrumColor(e);
-//   });
-// }
+    this.input = element;
 
-// function createHueSpectrum() {
-//   var canvas = hueCanvas;
-//   var ctx = hueCtx;
-//   var hueGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
-  
-//   hueGradient.addColorStop(0.00, 'hsl(0,100%,50%)');
-//   hueGradient.addColorStop(0.17, 'hsl(298.8, 100%, 50%)');
-//   hueGradient.addColorStop(0.33, 'hsl(241.2, 100%, 50%)');
-//   hueGradient.addColorStop(0.50, 'hsl(180, 100%, 50%)');
-//   hueGradient.addColorStop(0.67, 'hsl(118.8, 100%, 50%)');
-//   hueGradient.addColorStop(0.83, 'hsl(61.2,100%,50%)');
-//   hueGradient.addColorStop(1.00, 'hsl(360,100%,50%)');
-//   ctx.fillStyle = hueGradient;
-//   ctx.fillRect(0, 0, canvas.width, canvas.height);
+    const dom = ColorPicker.createDom();
+    const wrap = document.body;
 
-//   canvas.addEventListener('mousedown', function (e) {
-//     startGetHueColor(e);
-//   });
-// }
-  
-// /**
-//  * @param color
-//  */
-// function colorToHue(color) {
-//   var color = tinycolor(color);
-//   var hueString = tinycolor('hsl ' + color.toHsl().h + ' 1 .5').toHslString();
-//   return hueString;
-// }
-  
-// /**
-//  * @param color
-//  */
-// function colorToPos(color) {
-//   var color = tinycolor(color);
-//   var hsl = color.toHsl();
-//   hue = hsl.h;
-//   var hsv = color.toHsv();
-//   var x = spectrumRect.width * hsv.s;
-//   var y = spectrumRect.height * (1 - hsv.v);
-//   var hueY = hueRect.height - ((hue / 360) * hueRect.height);
-//   updateSpectrumCursor(x, y);
-//   updateHueCursor(hueY);
-//   setCurrentColor(color);
-//   createShadeSpectrum(colorToHue(color));   
-// }
-  
-// /**
-//  * @param color
-//  */
-// function setColorValues(color) {  
-//   var color = tinycolor(color);
-//   var hexValue = color.toHex();
+    document.body.appendChild(dom);
 
-//   hex.value = hexValue;
-// }
-  
-// /**
-//  * @param color
-//  */
-// function setCurrentColor(color) {
-//   color = tinycolor(color);
-//   currentColor = color;
-//   spectrumCursor.style.backgroundColor = color; 
-//   hueCursor.style.backgroundColor = 'hsl(' + color.toHsl().h + ', 100%, 50%)';
-// }
-  
-// /**
-//  * @param y
-//  */
-// function updateHueCursor(y) {
-//   hueCursor.style.top = y + 'px';
-// }
-  
-// /**
-//  * @param x
-//  * @param y
-//  */
-// function updateSpectrumCursor(x, y) {
-//   // assign position
-//   spectrumCursor.style.left = x + 'px';
-//   spectrumCursor.style.top = y + 'px';  
-// }
-  
-// var startGetSpectrumColor = function (e) {
-//   getSpectrumColor(e);
-//   spectrumCursor.classList.add('dragging');
-//   window.addEventListener('mousemove', getSpectrumColor);
-//   window.addEventListener('mouseup', endGetSpectrumColor);
-// };
-  
-// /**
-//  * @param e
-//  */
-// function getSpectrumColor(e) {
-//   // got some help here - http://stackoverflow.com/questions/23520909/get-hsl-value-given-x-y-and-hue
-//   e.preventDefault();
-//   // get x/y coordinates
-//   var x = e.pageX - spectrumRect.left;
-//   var y = e.pageY - spectrumRect.top;
-//   // constrain x max
-//   if (x > spectrumRect.width) { x = spectrumRect.width; }
-//   if (x < 0) { x = 0; }
-//   if (y > spectrumRect.height) { y = spectrumRect.height; }
-//   if (y < 0) { y = 0.1; }  
-//   // convert between hsv and hsl
-//   var xRatio = x / spectrumRect.width * 100;
-//   var yRatio = y / spectrumRect.height * 100; 
-//   var hsvValue = 1 - (yRatio / 100);
-//   var hsvSaturation = xRatio / 100;
-//   lightness = (hsvValue / 2) * (2 - hsvSaturation);
-//   saturation = (hsvValue * hsvSaturation) / (1 - Math.abs(2 * lightness - 1));
-//   var color = tinycolor('hsl ' + hue + ' ' + saturation + ' ' + lightness);
-//   setCurrentColor(color);  
-//   setColorValues(color);
-//   updateSpectrumCursor(x, y);
-// }
-  
-// /**
-//  * @param e
-//  */
-// function endGetSpectrumColor(e) {
-//   spectrumCursor.classList.remove('dragging');
-//   window.removeEventListener('mousemove', getSpectrumColor);
-// }
-  
-// /**
-//  * @param e
-//  */
-// function startGetHueColor(e) {
-//   getHueColor(e);
-//   hueCursor.classList.add('dragging');
-//   window.addEventListener('mousemove', getHueColor);
-//   window.addEventListener('mouseup', endGetHueColor);
-// }
-  
-// function getHueColor(e) {
-//   e.preventDefault();
-//   var y = e.pageY - hueRect.top;
+    const panel = wrap.querySelector('.ui-color-picker');
+    this.panel = panel;
 
-//   if (y > hueRect.height) { 
-//     y = hueRect.height; 
-//   }
-
-//   if (y < 0) { 
-//     y = 0; 
-//   }  
-
-//   var percent = y / hueRect.height;
-
-//   hue = 360 - (360 * percent);
-
-//   var hueColor = tinycolor('hsl ' + hue + ' 1 .5').toHslString();
-//   var color = tinycolor('hsl ' + hue + ' ' + saturation + ' ' + lightness).toHslString();
-
-//   createShadeSpectrum(hueColor);
-//   updateHueCursor(y, hueColor);
-//   setCurrentColor(color);
-//   setColorValues(color);
-// }
-
-// function endGetHueColor(e) {
-//   hueCursor.classList.remove('dragging');
-//   window.removeEventListener('mousemove', getHueColor);
-// }
+    this.initColors(panel);
+  }
   
-// hex.addEventListener('change', function () {
-//   const value = this.value;
-//   colorToPos(value);
-// });
+  initColors(panel) {
+    this.spectrumCanvas = panel.querySelector('.spectrum-canvas');
+    this.spectrumCtx = this.spectrumCanvas.getContext('2d');
+    this.spectrumCursor = panel.querySelector('.spectrum-cursor'); 
+    this.spectrumRect = this.spectrumCanvas.getBoundingClientRect();
+
+    this.hueCanvas = panel.querySelector('.hue-canvas');
+    this.hueCtx = this.hueCanvas.getContext('2d');
+    this.hueCursor = panel.querySelector('.hue-cursor'); 
+    this.hueRect = this.hueCanvas.getBoundingClientRect();
+
+    this.panelColor = panel.querySelector('.panel-color');
+
+    this.currentColor = '';
+    this.hue = 0;
+    this.saturation = 1;
+    this.lightness = 0.5;
+
+    this.hexField = panel.querySelector('.hex-field');
+    this.hex = panel.querySelector('.hex');
+
+    this.createSwatch();
+    this.createShadeSpectrum();
+    this.createHueSpectrum();
+
+    this.events();
+  }
   
+  changeColor(_color) {
+    const color = tinyColor(_color); 
+    this.colorToPos(color);
+    this.setColorValues(color);
+  }
   
-// window.addEventListener('resize', function () {
-//   refreshElementRects();
-// });
+  createSwatch() {
+    const swatches = this.panel.querySelector('.default-swatches');
+    const { settings } = this;
+    const self = this;
+
+    settings.swatches.forEach(_color => {
+      const swatch = document.createElement('button');
+      swatch.className = 'swatch';
+      swatch.style.backgroundColor = _color;
   
-// new ColorPicker();
+      swatch.addEventListener('click', function () {
+        self.changeColor(this.style.backgroundColor);
+      });
+
+      swatches.appendChild(swatch);
+      self.refreshElementRects();
+    });
+  }
+  
+  createHueSpectrum() {
+    const canvas = this.hueCanvas;
+    const ctx = this.hueCtx;
+    const self = this;
+    const hueGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    
+    hueGradient.addColorStop(0.00, 'hsl(0,100%,50%)');
+    hueGradient.addColorStop(0.17, 'hsl(298.8, 100%, 50%)');
+    hueGradient.addColorStop(0.33, 'hsl(241.2, 100%, 50%)');
+    hueGradient.addColorStop(0.50, 'hsl(180, 100%, 50%)');
+    hueGradient.addColorStop(0.67, 'hsl(118.8, 100%, 50%)');
+    hueGradient.addColorStop(0.83, 'hsl(61.2,100%,50%)');
+    hueGradient.addColorStop(1.00, 'hsl(360,100%,50%)');
+
+    ctx.fillStyle = hueGradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  
+    canvas.addEventListener('mousedown', function (e) {
+      self.startGetHueColor(e);
+    });
+  }
+  
+  refreshElementRects() {
+    this.spectrumRect = this.spectrumCanvas.getBoundingClientRect();
+    this.hueRect = this.hueCanvas.getBoundingClientRect();
+  }
+  
+  setColorValues(_color) {  
+    const color = tinyColor(_color);
+    const hexValue = color.toHex();
+  
+    this.hex.value = hexValue;
+  }
+  
+  colorToPos(_color) {
+    const { hueRect } = this;
+    const color = tinyColor(_color);
+    const hsl = color.toHsl();
+    const hsv = color.toHsv();
+    const x = this.spectrumRect.width * hsv.s;
+    const y = this.spectrumRect.height * (1 - hsv.v);
+
+    this.hue = hsl.h;
+
+    const hueX = hueRect.width - ((this.hue / 360) * hueRect.width);
+
+    this.updateSpectrumCursor(x, y);
+    this.updateHueCursor(hueX);
+
+    this.setCurrentColor(color);
+    this.createShadeSpectrum(ColorPicker.colorToHue(color));   
+  }
+  
+  updateSpectrumCursor(x, y) {
+    this.spectrumCursor.style.left = x + 'px';
+    this.spectrumCursor.style.top = y + 'px';  
+  }
+  
+  updateHueCursor(x) {
+    this.hueCursor.style.left = x + 'px';
+  }
+  
+  setCurrentColor(_color) {
+    const color = tinyColor(_color);
+    this.currentColor = color;
+    this.spectrumCursor.style.backgroundColor = color; 
+    this.panelColor.style.backgroundColor = color;
+  }
+  
+
+  createShadeSpectrum(_color) {
+    const canvas = this.spectrumCanvas;
+    const ctx = this.spectrumCtx;
+    let color = _color;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    
+    if (!color) color = '#f00';
+
+    ctx.fillStyle = color;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    const whiteGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    whiteGradient.addColorStop(0, '#fff');
+    whiteGradient.addColorStop(1, 'rgba(255,255,255,0)');
+  
+    ctx.fillStyle = whiteGradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    
+    const blackGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    blackGradient.addColorStop(0, 'rgba(0,0,0,0)');
+    blackGradient.addColorStop(1, '#000');
+  
+    ctx.fillStyle = blackGradient;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+  
+  startGetSpectrumColor(e) {
+    this.getSpectrumColor(e);
+    u.addClass(this.spectrumCursor, 'dragging');
+    this.isDrag = true;
+  }
+  
+  endGetSpectrumColor() {
+    u.removeClass(this.spectrumCursor, 'dragging');
+    this.isDrag = false;
+  }
+  
+  startGetHueColor(e) {
+    this.getHueColor(e);
+    u.addClass(this.hueCursor, 'dragging');
+    this.hueDrag = true;
+  }
+  
+  endGetHueColor() {
+    u.removeClass(this.hueCursor, 'dragging');
+    window.removeEventListener('mousemove', this.getHueColor);
+    this.hueDrag = false;
+  }
+  
+  getHueColor(e) {
+    if (!this.hueDrag) return;
+
+    e.preventDefault();
+    
+    const { hueRect } = this;
+    let x = e.pageX - hueRect.left;
+  
+    if (x > hueRect.width) { 
+      x = hueRect.width; 
+    }
+  
+    if (x < 0) { 
+      x = 0; 
+    }  
+  
+    const percent = x / hueRect.width;
+  
+    const hue = 360 - (360 * percent);
+
+    this.hue = hue;
+  
+    const hueColor = tinyColor('hsl ' + hue + ' 1 .5').toHslString();
+    const color = tinyColor('hsl ' + hue + ' ' + this.saturation + ' ' + this.lightness).toHslString();
+  
+    this.createShadeSpectrum(hueColor);
+    this.updateHueCursor(x);
+    
+    this.setCurrentColor(color);
+    this.setColorValues(color);
+  }
+  
+  // got some help here - http://stackoverflow.com/questions/23520909/get-hsl-value-given-x-y-and-hue
+  getSpectrumColor(e) {
+    if (!this.isDrag) return;
+    e.preventDefault();
+
+    const { spectrumRect } = this;
+    // get x/y coordinates
+    let x = e.pageX - spectrumRect.left - document.documentElement.scrollLeft;
+    let y = e.pageY - spectrumRect.top - document.documentElement.scrollTop;
+
+    // constrain x max
+    if (x > spectrumRect.width) { x = spectrumRect.width; }
+    if (x < 0) { x = 0; }
+    if (y > spectrumRect.height) { y = spectrumRect.height; }
+    if (y < 0) { y = 0.1; }  
+
+    // convert between hsv and hsl
+    const xRatio = (x / spectrumRect.width) * 100;
+    const yRatio = (y / spectrumRect.height) * 100; 
+    const hsvValue = 1 - (yRatio / 100);
+    const hsvSaturation = xRatio / 100;
+
+    this.lightness = (hsvValue / 2) * (2 - hsvSaturation);
+    this.saturation = (hsvValue * hsvSaturation) / (1 - Math.abs((2 * this.lightness) - 1));
+    const color = tinyColor('hsl ' + this.hue + ' ' + this.saturation + ' ' + this.lightness);
+
+    this.setCurrentColor(color);  
+    this.setColorValues(color);
+    this.updateSpectrumCursor(x, y);
+  }
+  
+  show(ele) {
+    const { input, panel } = this;
+    const pos = input.getBoundingClientRect();
+    const x = pos.left + document.documentElement.scrollLeft;
+    const y = pos.top + pos.height + document.documentElement.scrollTop;
+
+    let color = '';
+
+    if (ele.value) {
+      color = ele.value;
+    }
+
+    if (ele.getAttribute('data-color')) {
+      color = ele.getAttribute('data-color');
+    }
+
+    panel.style.left = x + 'px';
+    panel.style.top = y + 'px';
+
+    this.refreshElementRects();
+    
+    if (color) {
+      this.changeColor(color);
+    }
+
+    u.addClass(this.panel, 'show');
+  }
+  
+  hide() {
+    u.removeClass(this.panel, 'show');
+  }
+  
+  confirm() {
+    const { onChange } = this.settings;
+    const color = this.currentColor;
+    const hex = color.toHex();
+
+    if (onChange && typeof onChange === 'function') {
+      onChange(hex);
+    }
+
+    this.hide();
+  }
+  
+  events() {
+    const self = this;
+
+    this.hex.addEventListener('change', function () {
+      const value = this.value;
+      self.colorToPos(value);
+    });
+
+    window.addEventListener('resize', function () {
+      self.refreshElementRects();
+    });
+
+    window.addEventListener('scroll', function () {
+      self.refreshElementRects();
+    });
+
+    window.addEventListener('mousemove', this.getSpectrumColor.bind(this));
+    window.addEventListener('mouseup', this.endGetSpectrumColor.bind(this));
+
+    window.addEventListener('mousemove', this.getHueColor.bind(this));
+    window.addEventListener('mouseup', this.endGetHueColor.bind(this));
+
+    this.spectrumCanvas.addEventListener('mousedown', function (e) {
+      self.startGetSpectrumColor(e);
+    });
+
+    this.input.addEventListener('click', function (e) {
+      e.stopPropagation();
+      self.show(this);
+    });
+
+    this.panel.querySelector('.color-confirm').addEventListener('click', function (e) {
+      self.confirm();
+    });
+
+    this.panel.addEventListener('click', (e) => {
+      e.stopPropagation();
+    });
+
+    window.addEventListener('click', function () {
+      self.hide();
+    });
+  }
+}
+
+
+export default ColorPicker;
