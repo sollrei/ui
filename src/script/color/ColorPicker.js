@@ -4,6 +4,7 @@ import u from '../base/util';
 
 class ColorPicker {
   constructor(input, options) {
+    // @ts-ignore
     tinyColor = window.tinycolor;
 
     const defaultSettings = {
@@ -54,7 +55,7 @@ class ColorPicker {
 
   /**
    * @param {string} _color
-   * @returns {string}
+   * @returns {string} color hue
    */
   static colorToHue(_color) {
     const color = tinyColor(_color);
@@ -84,29 +85,37 @@ class ColorPicker {
     const panel = wrap.querySelector('.ui-color-picker');
     this.panel = panel;
 
-    this.initColors(panel);
+    this.initColors();
   }
   
-  initColors(panel) {
+  initColors() {
+    const { panel } = this;
+
     this.spectrumCanvas = panel.querySelector('.spectrum-canvas');
+    // @ts-ignore
     this.spectrumCtx = this.spectrumCanvas.getContext('2d');
-    this.spectrumCursor = panel.querySelector('.spectrum-cursor'); 
+    this.spectrumCursor = panel.querySelector('.spectrum-cursor');
+
     this.spectrumRect = this.spectrumCanvas.getBoundingClientRect();
 
     this.hueCanvas = panel.querySelector('.hue-canvas');
+    // @ts-ignore
     this.hueCtx = this.hueCanvas.getContext('2d');
-    this.hueCursor = panel.querySelector('.hue-cursor'); 
+    this.hueCursor = panel.querySelector('.hue-cursor');
+
     this.hueRect = this.hueCanvas.getBoundingClientRect();
 
     this.panelColor = panel.querySelector('.panel-color');
 
+    this.hexField = panel.querySelector('.hex-field');
+    this.hex = panel.querySelector('.hex');
+
     this.currentColor = '';
+
+    // hsl
     this.hue = 0;
     this.saturation = 1;
     this.lightness = 0.5;
-
-    this.hexField = panel.querySelector('.hex-field');
-    this.hex = panel.querySelector('.hex');
 
     this.createSwatch();
     this.createShadeSpectrum();
@@ -115,6 +124,9 @@ class ColorPicker {
     this.events();
   }
   
+  /**
+   * @param {string} _color 
+   */
   changeColor(_color) {
     const color = tinyColor(_color); 
     this.colorToPos(color);
@@ -144,7 +156,9 @@ class ColorPicker {
     const canvas = this.hueCanvas;
     const ctx = this.hueCtx;
     const self = this;
-    const hueGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    // @ts-ignore
+    const { height, width } = canvas;
+    const hueGradient = ctx.createLinearGradient(0, 0, width, 0);
     
     hueGradient.addColorStop(0.00, 'hsl(0,100%,50%)');
     hueGradient.addColorStop(0.17, 'hsl(298.8, 100%, 50%)');
@@ -155,7 +169,7 @@ class ColorPicker {
     hueGradient.addColorStop(1.00, 'hsl(360,100%,50%)');
 
     ctx.fillStyle = hueGradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, width, height);
   
     canvas.addEventListener('mousedown', function (e) {
       self.startGetHueColor(e);
@@ -167,13 +181,20 @@ class ColorPicker {
     this.hueRect = this.hueCanvas.getBoundingClientRect();
   }
   
+  /**
+   * @param {string} _color 
+   */
   setColorValues(_color) {  
     const color = tinyColor(_color);
     const hexValue = color.toHex();
   
+    // @ts-ignore
     this.hex.value = hexValue;
   }
   
+  /**
+   * @param {string} _color 
+   */
   colorToPos(_color) {
     const { hueRect } = this;
     const color = tinyColor(_color);
@@ -194,18 +215,23 @@ class ColorPicker {
   }
   
   updateSpectrumCursor(x, y) {
+    // @ts-ignore
     this.spectrumCursor.style.left = x + 'px';
+    // @ts-ignore
     this.spectrumCursor.style.top = y + 'px';  
   }
   
   updateHueCursor(x) {
+    // @ts-ignore
     this.hueCursor.style.left = x + 'px';
   }
   
   setCurrentColor(_color) {
     const color = tinyColor(_color);
     this.currentColor = color;
+    // @ts-ignore
     this.spectrumCursor.style.backgroundColor = color; 
+    // @ts-ignore
     this.panelColor.style.backgroundColor = color;
   }
   
@@ -213,28 +239,30 @@ class ColorPicker {
   createShadeSpectrum(_color) {
     const canvas = this.spectrumCanvas;
     const ctx = this.spectrumCtx;
+    // @ts-ignore
+    const { height, width } = canvas;
     let color = _color;
 
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, width, height);
     
     if (!color) color = '#f00';
 
     ctx.fillStyle = color;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, width, height);
     
-    const whiteGradient = ctx.createLinearGradient(0, 0, canvas.width, 0);
+    const whiteGradient = ctx.createLinearGradient(0, 0, width, 0);
     whiteGradient.addColorStop(0, '#fff');
     whiteGradient.addColorStop(1, 'rgba(255,255,255,0)');
   
     ctx.fillStyle = whiteGradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, width, height);
     
-    const blackGradient = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    const blackGradient = ctx.createLinearGradient(0, 0, 0, height);
     blackGradient.addColorStop(0, 'rgba(0,0,0,0)');
     blackGradient.addColorStop(1, '#000');
   
     ctx.fillStyle = blackGradient;
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    ctx.fillRect(0, 0, width, height);
   }
   
   startGetSpectrumColor(e) {
@@ -260,6 +288,9 @@ class ColorPicker {
     this.hueDrag = false;
   }
   
+  /**
+   * @param {MouseEvent} e 
+   */
   getHueColor(e) {
     if (!this.hueDrag) return;
 
@@ -277,7 +308,6 @@ class ColorPicker {
     }  
   
     const percent = x / hueRect.width;
-  
     const hue = 360 - (360 * percent);
 
     this.hue = hue;
@@ -293,8 +323,8 @@ class ColorPicker {
   }
   
   // got some help here - http://stackoverflow.com/questions/23520909/get-hsl-value-given-x-y-and-hue
-  getSpectrumColor(e) {
-    if (!this.isDrag) return;
+  getSpectrumColor(e, type) {
+    if (!this.isDrag && !type) return;
     e.preventDefault();
 
     const { spectrumRect } = this;
@@ -323,6 +353,10 @@ class ColorPicker {
     this.updateSpectrumCursor(x, y);
   }
   
+  /**
+   * 
+   * @param {HTMLElement|HTMLInputElement} ele 
+   */
   show(ele) {
     const { input, panel } = this;
     const pos = input.getBoundingClientRect();
@@ -331,15 +365,17 @@ class ColorPicker {
 
     let color = '';
 
-    if (ele.value) {
-      color = ele.value;
+    if (ele.getAttribute('value')) {
+      color = ele.getAttribute('value');
     }
 
     if (ele.getAttribute('data-color')) {
       color = ele.getAttribute('data-color');
     }
 
+    // @ts-ignore
     panel.style.left = x + 'px';
+    // @ts-ignore
     panel.style.top = y + 'px';
 
     this.refreshElementRects();
@@ -389,6 +425,10 @@ class ColorPicker {
     window.addEventListener('mousemove', this.getHueColor.bind(this));
     window.addEventListener('mouseup', this.endGetHueColor.bind(this));
 
+    this.spectrumCanvas.addEventListener('click', function (e) {
+      self.getSpectrumColor(e, 'click');
+    });
+
     this.spectrumCanvas.addEventListener('mousedown', function (e) {
       self.startGetSpectrumColor(e);
     });
@@ -398,7 +438,8 @@ class ColorPicker {
       self.show(this);
     });
 
-    this.panel.querySelector('.color-confirm').addEventListener('click', function (e) {
+    // @ts-ignore
+    this.panel.querySelector('.color-confirm').addEventListener('click', function () {
       self.confirm();
     });
 
