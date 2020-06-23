@@ -9,6 +9,7 @@ $color-light: #f7f8fa;
 
 body {
   background: $bg;
+  min-width: 800px;
 }
 
 ::-moz-selection {

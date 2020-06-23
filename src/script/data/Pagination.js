@@ -7,19 +7,40 @@ class Pagination {
    */
   constructor(selector, options) {
     const defaultSettings = {
-      total: 0,
-      page: 1,
-      size: 5,
-      pages: 5,
+      total: 0, // data length
+      page: 1, // current page
+      size: 5, // page size
+      pages: 5, // page button
+
       prevIcon: 'iconfont icon-arrow-left',
       nextIcon: 'iconfont icon-arrow-right',
       pageClass: 'ui-pagination',
+
       pageInput: false,
-      onChangePage: null
+
+      onChangePage: null // callback
     };
 
     this.settings = Object.assign({}, defaultSettings, options);
     this.initPage(selector);
+  }
+
+  /**
+   * @param {number} min 
+   * @param {number} max 
+   * @param {number} value 
+   * @returns {number} page number
+   */
+  static limitRange(min, max, value) {
+    if (value < min) {
+      return min;
+    }
+
+    if (value > max) {
+      return max;
+    }
+
+    return value;
   }
 
   /**
@@ -32,7 +53,7 @@ class Pagination {
   }
 
   /**
-   * @param  {(string|object)} selector -
+   * @param  {string|object} selector
    */
   initPage(selector) {
     let element = selector;
@@ -74,6 +95,7 @@ class Pagination {
 
     return `<div class="${pageClass}">` + prevButton + pageHtml + nextButton + input + '</div>';
   }
+  
 
   createPageArray() {
     const { total, pages, size } = this;
@@ -81,15 +103,10 @@ class Pagination {
     const middle = Math.ceil(pages / 2);
     const half = Math.floor(pages / 2);
     const { createPageNumberArray } = Pagination;
-
-    if (this.page > pageTotal) {
-      this.page = pageTotal;
-    } else if (this.page < 1) {
-      this.page = 1;
-    }
+    const page = Pagination.limitRange(1, pageTotal, this.page);
     
     this.max = pageTotal;
-    const { page } = this;
+    this.page = page;
 
     if (pageTotal <= pages || page <= middle) {
       return createPageNumberArray(1, Math.min(pageTotal, pages));
@@ -103,7 +120,7 @@ class Pagination {
   }
 
   /**
-   * @param {string} type - 
+   * @param {string} type
    * @returns {string} - prev or next button html
    */
   createPageNav(type) {
@@ -122,8 +139,8 @@ class Pagination {
   }
 
   /**
-   * @param {string} str - 
-   * @param {number} cur -
+   * @param {string} str
+   * @param {number} cur
    * @returns {string} - page item
    */
   createPageButton(str, cur) {
@@ -152,7 +169,7 @@ class Pagination {
   }
 
   /**
-   * @param {HTMLElement} element - 
+   * @param {HTMLElement} element
    */
   handleChangePage(element) {
     const { onChangePage } = this.settings;
