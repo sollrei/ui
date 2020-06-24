@@ -1,9 +1,10 @@
 let tinyColor;
 import u from '../base/util';
+import Position from '../modal/Position';
 
-class ColorPicker {
+class ColorPicker extends Position {
   /**
-   * @param {string|Element} trigger
+   * @param {string|HTMLElement} trigger
    * @param {object=} options
    */
   constructor(trigger, options) {
@@ -11,11 +12,17 @@ class ColorPicker {
     tinyColor = window.tinycolor;
 
     const defaultSettings = {
-      swatches: ['#000000', '#595959', '#BFBFBF', '#f5f5f5', '#F5242D', '#FA541C', '#FA8C17', '#FADB13', '#52C41A', '#13C2C2', '#1790FF', '#2F54EB', '#722ED1', '#EB2F96', '#2A86C5', '#2E5089'],
-      onChange: null
+      swatches: [
+        '#000000', '#595959', '#BFBFBF', '#f5f5f5', '#F5242D', '#FA541C', '#FA8C17', '#FADB13', 
+        '#52C41A', '#13C2C2', '#1790FF', '#2F54EB', '#722ED1', '#EB2F96', '#2A86C5', '#2E5089'],
+      onChange: null,
+      gap: 0,
+      position: 'right bottom'
     };
   
     const settings = Object.assign({}, defaultSettings, options);
+
+    super(settings);
   
     this.settings = settings;
 
@@ -57,26 +64,23 @@ class ColorPicker {
   }
 
   /**
-   * @param {string} _color
+   * @param {number} hue
    * @returns {string} color hue
    */
-  static colorToHue(_color) {
-    const color = tinyColor(_color);
-    const hueString = tinyColor('hsl ' + color.toHsl().h + ' 1 .5').toHslString();
-    return hueString;
+  static colorToHue(hue) {
+    return tinyColor('hsl ' + hue + ' 1 .5').toHslString();
   }
 
   /**
-   * @param {string|Element} trigger
+   * @param {*} trigger
    */
   init(trigger) {
     let element = trigger;
 
     if (typeof trigger === 'string') {
+      /** @type {HTMLElement} */
       element = document.querySelector(trigger);
     }
-
-    if (!element) return;
 
     this.input = element;
 
@@ -90,17 +94,21 @@ class ColorPicker {
   cacheVariable() {
     const { panel } = this;
 
+    /** @type {HTMLCanvasElement} */
     this.spectrumCanvas = panel.querySelector('.spectrum-canvas');
+    /** @type {HTMLElement} */
     this.spectrumCursor = panel.querySelector('.spectrum-cursor');
-    // @ts-ignore
     this.spectrumCtx = this.spectrumCanvas.getContext('2d');
 
+    /** @type {HTMLCanvasElement} */
     this.hueCanvas = panel.querySelector('.hue-canvas');
+    /** @type {HTMLElement} */
     this.hueCursor = panel.querySelector('.hue-cursor');
-    // @ts-ignore
     this.hueCtx = this.hueCanvas.getContext('2d');
 
+    /** @type {HTMLElement} */
     this.panelColor = panel.querySelector('.panel-color');
+    /** @type {HTMLInputElement} */
     this.hex = panel.querySelector('.hex');
 
     this.spectrumRect = null;
@@ -141,7 +149,6 @@ class ColorPicker {
   initHueSpectrum() {
     const self = this;
     const { hueCanvas: canvas, hueCtx: ctx } = self;
-    // @ts-ignore
     const { height, width } = canvas;
     const hueGradient = ctx.createLinearGradient(width, 0, 0, 0);
     
@@ -183,7 +190,6 @@ class ColorPicker {
     const color = tinyColor(_color);
     const hexValue = color.toHex();
   
-    // @ts-ignore
     this.hex.value = hexValue;
   }
   
@@ -192,21 +198,24 @@ class ColorPicker {
    */
   colorToPos(_color) {
     const { hueRect } = this;
+    const { width, height } = this.spectrumRect;
     const color = tinyColor(_color);
-    const hsl = color.toHsl();
     const hsv = color.toHsv();
-    const x = this.spectrumRect.width * hsv.s;
-    const y = this.spectrumRect.height * (1 - hsv.v);
+    const hsl = color.toHsl();
+    const x = width * hsv.s;
+    const y = height * (1 - hsv.v);
+    const hue = hsv.h;
+    const hueX = (hue / 360) * hueRect.width;
 
-    this.hue = hsl.h;
-
-    const hueX = (this.hue / 360) * hueRect.width;
+    this.hue = hue;
+    this.lightness = hsl.l;
+    this.saturation = hsl.s;
 
     this.updateSpectrumCursor(x, y);
     this.updateHueCursor(hueX);
 
     this.setCurrentColor(color);
-    this.createShadeSpectrum(ColorPicker.colorToHue(color));   
+    this.createShadeSpectrum(ColorPicker.colorToHue(hue));   
   }
   
   /**
@@ -214,35 +223,33 @@ class ColorPicker {
    * @param {number} y 
    */
   updateSpectrumCursor(x, y) {
-    const { spectrumCursor } = this;
-    spectrumCursor.style.left = x + 'px';
-    spectrumCursor.style.top = y + 'px';  
+    const { style } = this.spectrumCursor;
+    style.left = x + 'px';
+    style.top = y + 'px';  
   }
   
   /**
    * @param {number} x 
    */
   updateHueCursor(x) {
-    // @ts-ignore
     this.hueCursor.style.left = x + 'px';
   }
   
   /**
-   * @param {*} _color 
+   * @param {object|string} _color 
    */
   setCurrentColor(_color) {
     const color = tinyColor(_color);
     this.currentColor = color;
-    // @ts-ignore
     this.spectrumCursor.style.backgroundColor = color; 
-    // @ts-ignore
     this.panelColor.style.backgroundColor = color;
   }
 
+  /**
+   * @param {*=} _color 
+   */
   createShadeSpectrum(_color) {
-    const canvas = this.spectrumCanvas;
-    const ctx = this.spectrumCtx;
-    // @ts-ignore
+    const { spectrumCanvas: canvas, spectrumCtx: ctx } = this;
     const { height, width } = canvas;
     let color = _color;
 
@@ -298,24 +305,17 @@ class ColorPicker {
 
     e.preventDefault();
     
+    const { saturation, lightness } = this;
     const { left, width } = this.hueRect;
-    let x = e.clientX - left;
-  
-    if (x > width) { 
-      x = width; 
-    }
-  
-    if (x < 0) { 
-      x = 0; 
-    }  
+    const x = ColorPicker.limitRange(0, width, e.clientX - left);
   
     const percent = x / width;
     const hue = 360 * percent;
 
     this.hue = hue;
   
-    const hueColor = tinyColor('hsl ' + hue + ' 1 .5').toHslString();
-    const color = tinyColor('hsl ' + hue + ' ' + this.saturation + ' ' + this.lightness).toHslString();
+    const hueColor = ColorPicker.colorToHue(hue);
+    const color = tinyColor(`hsl ${hue} ${saturation} ${lightness}`).toHslString();
   
     this.createShadeSpectrum(hueColor);
     this.updateHueCursor(x);
@@ -323,30 +323,41 @@ class ColorPicker {
     this.setCurrentColor(color);
     this.setColorValues(color);
   }
+
+  /**
+   * @param {number} min 
+   * @param {number} max 
+   * @param {number} value 
+   * @returns {number} new value
+   */
+  static limitRange(min, max, value) {
+    if (value < min) {
+      return min;
+    }
+
+    if (value > max) {
+      return max;
+    }
+
+    return value;
+  }
   
+  /**
+   * @param {*} e 
+   * @param {string=} type 
+   */
   getSpectrumColor(e, type) {
     if (!this.isDrag && !type) return;
+
     e.preventDefault();
 
-    const { spectrumRect } = this;
-    const { width, height, left, top } = spectrumRect;
+    const { width, height, left, top } = this.spectrumRect;
+
     let x = e.clientX - left;
     let y = e.clientY - top;
 
-    if (x > width) { 
-      x = width; 
-    }
-
-    if (x < 0) { 
-      x = 0; 
-    }
-    if (y > height) { 
-      y = height; 
-    }
-
-    if (y < 0) { 
-      y = 0.1; 
-    }  
+    x = ColorPicker.limitRange(0, width, x);
+    y = ColorPicker.limitRange(0.1, height, y);
 
     const hsvValue = 1 - (y / height);
     const hsvSaturation = x / width;
@@ -363,16 +374,10 @@ class ColorPicker {
   }
   
   /**
-   * 
    * @param {HTMLElement|HTMLInputElement} ele 
    */
   show(ele) {
-    const { input, panel } = this;
-    // @ts-ignore
-    const pos = input.getBoundingClientRect();
-    const x = pos.left + document.documentElement.scrollLeft;
-    const y = pos.top + pos.height + document.documentElement.scrollTop;
-
+    const { panel } = this;
     let color = '';
 
     if (ele.getAttribute('value')) {
@@ -383,10 +388,7 @@ class ColorPicker {
       color = ele.getAttribute('data-color');
     }
 
-    // @ts-ignore
-    panel.style.left = x + 'px';
-    // @ts-ignore
-    panel.style.top = y + 'px';
+    this.setPosition(panel, ele);
 
     this.refreshElementRects();
     
@@ -415,10 +417,10 @@ class ColorPicker {
   
   events() {
     const self = this;
+    const { hex, input, spectrumCanvas, panel } = self;
 
-    this.hex.addEventListener('change', function () {
-      const value = this.value;
-      self.colorToPos(value);
+    hex.addEventListener('change', function () {
+      self.colorToPos(this.value);
     });
 
     window.addEventListener('resize', function () {
@@ -435,25 +437,26 @@ class ColorPicker {
     window.addEventListener('mousemove', this.getHueColor.bind(this));
     window.addEventListener('mouseup', this.endGetHueColor.bind(this));
 
-    this.spectrumCanvas.addEventListener('click', function (e) {
+    spectrumCanvas.addEventListener('click', function (e) {
       self.getSpectrumColor(e, 'click');
     });
 
-    this.spectrumCanvas.addEventListener('mousedown', function (e) {
+    spectrumCanvas.addEventListener('mousedown', function (e) {
       self.startGetSpectrumColor(e);
     });
 
-    this.input.addEventListener('click', function (e) {
-      e.stopPropagation();
-      self.show(this);
-    });
+    if (input) {
+      input.addEventListener('click', function (e) {
+        e.stopPropagation();
+        self.show(this);
+      });
+    }
 
-    // @ts-ignore
-    this.panel.querySelector('.color-confirm').addEventListener('click', function () {
+    panel.querySelector('.color-confirm').addEventListener('click', function () {
       self.confirm();
     });
 
-    this.panel.addEventListener('click', (e) => {
+    panel.addEventListener('click', (e) => {
       e.stopPropagation();
     });
 

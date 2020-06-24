@@ -1,10 +1,10 @@
 .ui-color-picker {
   opacity: 0;
   visibility: hidden;
-  left: 130px;
-  top: 100px;
+  left: 0;
+  top: 0;
   position: absolute;
-  height: 289px;
+  height: 309px;
   width: 228px;
   transition: opacity .2s, visibility .2s;
   
@@ -15,9 +15,9 @@
 
   .color-picker-panel {
     width: 228px;
-    position: absolute;
+    position: relative;
     background: $white;
-    border-radius: 8px;
+    border-radius: $picker-radius;
     box-shadow: $shadow;
     overflow: hidden;
   }

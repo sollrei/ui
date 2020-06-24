@@ -1,4 +1,7 @@
 class Position {
+  /**
+   * @param {object=} options 
+   */
   constructor(options) {
     const defaultSettings = {
       position: 'right bottom',
@@ -8,22 +11,30 @@ class Position {
     this.settings = Object.assign({}, defaultSettings, options);
   }
 
+  /**
+   * @param {HTMLElement} element 
+   * @param {HTMLElement} targetElement 
+   */
   setPosition(element, targetElement) {
-    const { gap } = this.settings;
+    const { gap, position } = this.settings;
     const { left, top } = targetElement.getBoundingClientRect();
     const data = targetElement.getAttribute('data-position');
-    const position = data || this.settings.position;
+    const _position = data || position;
     const ele = element;
 
     const { offsetHeight: targetHeight, offsetWidth: targetWidth } = targetElement;
-    const { scrollX, scrollY } = window;
     const { offsetHeight: elementHeight, offsetWidth: elementWidth } = element;
+    const { scrollX, scrollY } = window;
 
     const pos = {
       targetHeight,
       targetWidth,
       targetLeft: left + scrollX,
       targetTop: top + scrollY,
+      left,
+      top,
+      scrollX,
+      scrollY,
       elementHeight,
       elementWidth
     };
@@ -32,62 +43,85 @@ class Position {
 
     ele.style.width = element.offsetWidth + 'px';
 
-    const [x, y] = position.split(' ');
+    const [x, y] = _position.split(' ');
 
     if (y === 'middle') {
       Position.setPositionMiddle(x, pos, style, gap);
     } else {
       Position.setPositionVertical(y, pos, style, gap);
-      Position.setPositionHorizontal(x, pos, style, gap);
+      Position.setPositionHorizontal(x, pos, style);
     }
   }
 
+  /**
+   * @param {'bottom'|'top'} y
+   * @param {object} pos 
+   * @param {object} style 
+   * @param {number} gap 
+   */
   static setPositionVertical(y, pos, style, gap) {
+    const { targetTop, targetHeight, elementHeight, top, scrollY } = pos;
+    let bottomPosition = targetTop + targetHeight + gap;
+    let topPosition = targetTop - elementHeight - gap;
     const sty = style;
-    const h = (pos.targetTop + pos.targetHeight + gap) + 'px';
-    let t = (pos.targetTop - pos.elementHeight - gap) + 'px';
 
-    if (pos.targetTop < pos.elementHeight) {
-      t = h;
+    if (top < elementHeight) {
+      topPosition = bottomPosition;
+    } else if ((bottomPosition - scrollY) + elementHeight > document.documentElement.clientHeight) {
+      bottomPosition = topPosition;
     }
 
     if (y === 'bottom') {
-      sty.top = h;
+      sty.top = bottomPosition + 'px';
     }
+
     if (y === 'top') {
-      sty.top = t;
+      sty.top = topPosition + 'px';
     }
   }
 
+  /**
+   * @param {'left'|'right'|'center'} x 
+   * @param {object} pos 
+   * @param {object} style 
+   */
   static setPositionHorizontal(x, pos, style) {
     const sty = style;
+    const { targetLeft, targetWidth, elementWidth } = pos;
 
     switch (x) {
       case 'right':
-        sty.left = pos.targetLeft + 'px';
+        sty.left = targetLeft + 'px';
         break;
       case 'left':
-        sty.left = ((pos.targetLeft + pos.targetWidth) - pos.elementWidth) + 'px';
+        sty.left = ((targetLeft + targetWidth) - elementWidth) + 'px';
         break;
       case 'center':
-        sty.left = ((pos.targetLeft + (pos.targetWidth / 2)) - (pos.elementWidth / 2)) + 'px';
+        sty.left = ((targetLeft + (targetWidth / 2)) - (elementWidth / 2)) + 'px';
         break;
       default:
         break;
     }
   }
 
+  /**
+   * @param {'left'|'right'} x 
+   * @param {object} pos 
+   * @param {object} style 
+   * @param {number} gap 
+   */
   static setPositionMiddle(x, pos, style, gap) {
     const sty = style;
+    const { targetTop, targetHeight, elementHeight, elementWidth, targetLeft, targetWidth } = pos;
 
-    sty.top = ((pos.targetTop + (pos.targetHeight / 2)) - (pos.elementHeight / 2)) + 'px';
+    sty.top = ((targetTop + (targetHeight / 2)) - (elementHeight / 2)) + 'px';
 
     if (x === 'left') {
-      sty.left = ((pos.targetLeft - gap) - pos.elementWidth) + 'px';
+      sty.left = ((targetLeft - gap) - elementWidth) + 'px';
     }
 
     if (x === 'right') {
-      sty.left = pos.targetLeft + pos.targetWidth + gap + 'px';
+      sty.left = targetLeft + targetWidth + gap + 'px';
     }
   }
 }
