@@ -15,7 +15,6 @@ class Pagination {
       prevIcon: 'iconfont icon-arrow-left',
       nextIcon: 'iconfont icon-arrow-right',
       pageClass: 'ui-pagination',
-
       pageInput: false,
 
       onChangePage: null // callback
@@ -95,7 +94,6 @@ class Pagination {
 
     return `<div class="${pageClass}">` + prevButton + pageHtml + nextButton + input + '</div>';
   }
-  
 
   createPageArray() {
     const { total, pages, size } = this;
@@ -157,13 +155,16 @@ class Pagination {
   createInput() {
     if (this.settings.pageInput) {
       return `<span class="text">跳至</span>
-                <input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off">
-              <span class="text">页</span>`;
+        <input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off">
+      <span class="text">页</span>`;
     }
     
     return '';
   }
 
+  /**
+   * @param {number} page 
+   */
   changePageDom(page) {
     this.pageWrapper.innerHTML = this.createPageDom(page);
   }

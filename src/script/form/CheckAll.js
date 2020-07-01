@@ -1,6 +1,10 @@
 import u from '../base/util.js';
 
 class CheckAll {
+  /**
+   * @param {*} selector 
+   * @param {object=} option 
+   */
   constructor(selector, option) {
     const defaultSettings = {
       groupClass: 'tree-group',
@@ -8,10 +12,15 @@ class CheckAll {
       nodeClass: 'tree-node',
       labelClass: 'node-label'
     };
+
     this.settings = Object.assign({}, defaultSettings, option);
+    
     this.init(selector);
   }
   
+  /**
+   * @param {*} selector 
+   */
   init(selector) {
     let element = selector;
 
@@ -23,14 +32,26 @@ class CheckAll {
 
     this.element = element;
 
-
     this.cache = {};
     this.data = [];
     this.value = [];
 
+    let ele = element;
+
+    // if (!u.hasClass(ele, 'ui-tree')) {
+    //   ele = this.element.querySelector('.ui-tree');
+    // }
+
+    this.data = this.getDataFromDom(ele.children);
+    this.createDataCache(this.data);
+
     this.events();
   }
 
+  /**
+   * @param {object} element 
+   * @returns {object} data
+   */
   getDataFromDom(element) {
     const { groupClass, nodeClass, labelClass } = this.settings;
     let elements = element;
@@ -176,17 +197,6 @@ class CheckAll {
 
   events() {
     const { element } = this;
-
-    let ele = element;
-
-    // if (!u.hasClass(ele, 'ui-tree')) {
-    //   ele = this.element.querySelector('.ui-tree');
-    // }
-
-    this.data = this.getDataFromDom(ele.children);
-    
-    this.createDataCache(this.data);
-
     const self = this;
 
     u.on(element, 'change', 'input', function () {

@@ -24,10 +24,12 @@ class SelectBase {
 
   /**
    * @function
-   * @param {boolean} selected  - selected status
-   * @param {string} value - option value
+   * @param {object} selected  - selected status
+   * @param selected.selected
+   * @param selected.value
+   * @param selected.label
+   * @param selected.disabled
    * @param option
-   * @param {string} label - option text
    * @returns {string}  new option html
    */
   createOptionItem({ selected, value, label, disabled }, option) {

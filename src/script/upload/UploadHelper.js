@@ -4,6 +4,10 @@ import Upload from './Upload.js';
 // move this js file to common
 
 class UploadHelper {
+  /**
+   * @param {*} selector 
+   * @param {object} options 
+   */
   constructor(selector, options) {
     const defaultSettings = {
       url: ''
@@ -14,6 +18,9 @@ class UploadHelper {
     this.init(selector);
   }
 
+  /**
+   * @param {*} selector 
+   */
   init(selector) {
     let element = selector;
 
@@ -43,14 +50,6 @@ class UploadHelper {
     this.inputEvent();
   }
 
-  createUpload(input) {
-    const { url } = this.settings;
-
-    new Upload(url, input, this.settings);
-
-    // input.value = ''; // eslint-disable-line
-  }
-
   singleUpload() {
     const { wrap } = this;
     const trigger = wrap.querySelector('.trigger');
@@ -63,6 +62,26 @@ class UploadHelper {
       image.innerHTML = '';
       self.input.value = '';
     });
+
+    u.on(wrap, 'click', '.js-change', function () {
+      self.input.trigger('click');
+      console.log(self.input, self.input.trigger);
+      console.log(1);
+    });
+  }
+
+  createSingleDom(url) {
+    const { wrap } = this;
+    const trigger = wrap.querySelector('.trigger');
+    const image = wrap.querySelector('.image');
+
+    image.innerHTML = `<input type="hidden" name="file[]" value="${url}"><img src="${url}" alt="">
+    <div class="option">
+      <a href="javascript:;" class="js-change">替换</a><a href="javascript:;" class="js-clean">清除</a>
+    </div>`;
+
+    u.removeClass(image, 'hidden');
+    u.addClass(trigger, 'hidden');
   }
 
   inputEvent() {
@@ -72,6 +91,14 @@ class UploadHelper {
     input.addEventListener('change', function () {
       self.createUpload(this);
     });
+  }
+
+  createUpload(input) {
+    const { url } = this.settings;
+
+    new Upload(url, input, this.settings);
+  
+    // input.value = ''; // eslint-disable-line
   }
 
   dragEvents() {
@@ -113,25 +140,36 @@ class UploadHelper {
 }
 
 /**
- * @param selector
- * @param options
+ * @param {*} selector
+ * @param {object} options
+ * @returns {object} -
  */
 export default function (selector, options) {
+  const arr = [];
+  
   if (typeof selector === 'string') {
     const element = document.querySelectorAll(selector);
     u.forEach(element, item => {
-      new UploadHelper(item, options);
+      arr.push(new UploadHelper(item, options));
     });
-    return;
+
+    if (element.length > 1) {
+      return arr;
+    }
+
+    return arr[0];
   }
   
   if (typeof selector === 'object') {
     if (selector.length) {
       u.forEach(selector, item => {
-        new UploadHelper(item, options);
+        arr.push(new UploadHelper(item, options));
       });
-      return;
+      return arr;
     }
-    new UploadHelper(selector, options);
+    
+    return new UploadHelper(selector, options);
   }
+
+  return null;
 }

@@ -29,7 +29,12 @@ const util = {
     });
   },
 
-  // addClass removeClass toggleClass ie10+
+  /**
+   * addClass removeClass toggleClass ie10+
+   *
+   * @param {HTMLElement|Element} element 
+   * @param {string} className 
+   */
   addClass(element, className) {
     if (!element || !className) return;
 
@@ -40,6 +45,10 @@ const util = {
     }
   },
 
+  /**
+   * @param {HTMLElement|Element} element 
+   * @param {string} className 
+   */
   removeClass(element, className) {
     if (!element || !className) return;
 
@@ -50,6 +59,10 @@ const util = {
     }
   },
 
+  /**
+   * @param {HTMLElement|Element} element 
+   * @param {string} className 
+   */
   toggleClass(element, className) { 
     if (!element || !className) return;
 
@@ -60,6 +73,11 @@ const util = {
     }
   },
 
+  /**
+   * @param {HTMLElement|Element|HTMLDocument} element 
+   * @param {string} eventNames 
+   * @param {object|Function} listener 
+   */
   addMultiEvent(element, eventNames, listener) {
     const eventArray = eventNames.split(' ');
     for (let i = 0, l = eventArray.length; i < l; i += 1) {
@@ -69,7 +87,7 @@ const util = {
 
   /**
    * @description
-   * @param {HTMLElement} element
+   * @param {HTMLElement|Element|HTMLDocument} element
    * @param {string} eventName
    * @param {string} selector
    * @param {Function} handler
@@ -101,7 +119,7 @@ const util = {
     try {
       dom.innerHTML = html;
     } catch (e) {
-      console.warn('innerHTML error');
+      throw new Error(e);
     }
     return dom;
   },

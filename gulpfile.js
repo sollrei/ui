@@ -1,4 +1,4 @@
-const { task, series, watch, parallel } = require('gulp');
+const { task, series, watch } = require('gulp');
 
 
 const clean = require('./tasks/clean');

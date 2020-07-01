@@ -1,3 +1,4 @@
+// @ts-nocheck
 // https://developer.mozilla.org/zh-CN/docs/Web/API/Element/closest
 if (!Element.prototype.matches) {
   Element.prototype.matches = Element.prototype.msMatchesSelector

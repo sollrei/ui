@@ -1,3 +1,7 @@
+/**
+ * @param {object} obj
+ * @returns {boolean} is object
+ */
 function isObject(obj) {
   return ((typeof obj === 'object') && (obj !== null));
 }
@@ -477,8 +481,9 @@ class Upload {
 
   /**
    * 单个文件上传结束
-   * @param num {number} file index
-   * @param status {string} file status
+   *
+   * @param {number} num file index
+   * @param {string} status file status
    */
   complete(num, status) {
     const { complete } = this.settings;
@@ -491,7 +496,8 @@ class Upload {
 
   /**
    * 单个文件取消上传 -> 文件上传结束
-   * @param num {number} file index
+   *
+   * @param {number} num file index
    * */ 
   cancel(num) {
     const { cancel } = this.settings;
@@ -504,8 +510,8 @@ class Upload {
   }
 
   /**
-   * @param num {number} file index
-   * @param status {string}
+   * @param {number} num file index
+   * @param {string} status
    * */ 
   fileComplete(num, status) {
     this.complete(num, status);

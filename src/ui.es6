@@ -52,6 +52,8 @@ import Tab from './script/menu/Tab.js';
 
 import ColorPicker from './script/color/ColorPicker.js';
 
+import Tree from './script/tree/Tree.js';
+
 const ui = {
   util,
   Select,
@@ -75,7 +77,8 @@ const ui = {
   Table,
   Tab,
   Range,
-  ColorPicker
+  ColorPicker,
+  Tree
 };
 
 // @ts-ignore

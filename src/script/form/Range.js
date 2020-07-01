@@ -130,6 +130,9 @@ class Range {
     }
   }
 
+  /**
+   * @param {number|string} val 
+   */
   changeValue(val) {
     const { max, min, range } = this;
     let rate = 0;
@@ -148,7 +151,6 @@ class Range {
   }
 
   /**
-   * 
    * @param {number} rate 
    * @param {number} value 
    */
