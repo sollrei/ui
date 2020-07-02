@@ -224,8 +224,10 @@ class Range {
     });
 
     container.addEventListener('click', (e) => {
+      this.startMove(e);
       this.moving(e);
       this.setStopStatus();
+      this.stopMove();
     });
 
     doc.addEventListener('mousemove', this.moving);

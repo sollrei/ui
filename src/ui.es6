@@ -5,7 +5,6 @@ import './polyfill/array.js';
 import './script/base/polyfill.js';
 import util from './script/base/util.js';
 
-import InputCount from './script/form/InputCount.js';
 
 import PikaEx from './script/form/PikaEx.js';
 
@@ -13,7 +12,9 @@ import CheckAll from './script/form/CheckAll.js';
 
 import Transfer from './script/form/Transfer.js';
 
-import Range from './script/form/Range.js';
+import Range from './script/input/Range.js';
+
+import InputCount from './script/input/InputCount.js';
 
 
 import Select from './script/select/Select.js';
