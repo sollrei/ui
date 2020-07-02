@@ -89,6 +89,20 @@ class UploadHelper {
     u.addClass(trigger, 'hidden');
   }
 
+  static createProgress({ id, file }) {
+    const div = document.createElement('div');
+    div.id = id;
+    div.className = 'file-item mt-12';
+    div.innerHTML = `<div class="ui-progress mb-8" style="width: 100%;">
+        <div class="bar" style="width: 0;"></div>
+      </div>
+      <div class="file-name ui-row">
+        <i class="iconfont icon-paperclip"></i>${file.name}
+        <a href="javascript:;" class="cancel right ft-primary">取消</a>
+      </div>`;
+    return div;
+  }
+
   inputEvent() {
     const { input } = this;
     const self = this;
@@ -149,7 +163,7 @@ class UploadHelper {
  * @param {object} options
  * @returns {object} -
  */
-export default function (selector, options) {
+function ep(selector, options) {
   const arr = [];
   
   if (typeof selector === 'string') {
@@ -178,3 +192,7 @@ export default function (selector, options) {
 
   return null;
 }
+
+ep.createProgress = UploadHelper.createProgress;
+
+export default ep;
