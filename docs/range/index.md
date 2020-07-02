@@ -10,11 +10,7 @@ need_js: true
 {% example html %}
 <div class="ui-row middle">
   <div class="ui-slider-wrap mr-20 js-range">
-    <input type="range" max="100" min="0" value="0"/>
-  </div>
-  <div class="ui-icon-input" style="width: 80px">
-    <input class="ui-form-control js-value" type="text" value="0" name="yourInputName"/>
-    <span class="suffix">%</span>
+    <input type="range" max="10" min="0" value="0" name="yourInputName"/>
   </div>
 </div>
 {% endexample %}
@@ -24,26 +20,24 @@ need_js: true
 {% example html %}
 <script>
   var Range = window.ui.Range;
-  var input = document.querySelector('.js-value');
   var wrap = document.querySelector('.js-range');
   
   var range = new Range(wrap, {
     onChange: function (data) {
-      input.value = data;
+      console.log(data)
     }
   });
-  
-  input.addEventListener('change', function () {
-    range.changeValue(this.value);
-  })
 </script>
 {% endexample %}
 
 ## Negative
 
 {% example html %}
-<div class="ui-slider-wrap js-range2">
-  <input type="range" max="100" min="-100" value="0"/>
+
+<div class="ui-row middle">
+  <div class="ui-slider-wrap js-range2">
+    <input type="range" max="100" min="-100" value="10" name="yourInputName"/>
+  </div>
 </div>
 {% endexample %}
 
@@ -52,8 +46,31 @@ need_js: true
 {% example html %}
 <script>
   var Range = window.ui.Range;
-  var wrap = document.querySelector('.js-range2');
+  new Range(document.querySelector('.js-range2'));
+</script>
+{% endexample %}
+
+## With Input
+
+{% example html %}
+
+<div class="ui-row middle">
+  <div class="ui-slider-wrap js-range3">
+    <input type="range" max="100" min="0" value="0" name="yourInputName"/>
+  </div>
+</div>
+{% endexample %}
+
+#### JavaScript
+
+{% example html %}
+<script>
+  var Range = window.ui.Range;
+  var wrap = document.querySelector('.js-range3');
   
-  new Range(wrap);
+  new Range(wrap, {
+    withInput: true,
+    inputUnit: '%'
+  });
 </script>
 {% endexample %}

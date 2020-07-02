@@ -9,8 +9,13 @@ class Range {
       sliderDom: '',
       thumbClass: '.thumb',
       rateClass: '.rate',
-      delay: 10,
-      width: 180
+      delay: 30,
+      width: 180,
+
+      withInput: false,
+      inputWidth: 80,
+      inputUnit: '%',
+      inputName: 'range'
     };
   
     let container = selector;
@@ -43,29 +48,37 @@ class Range {
 
     this.min = Number(min);
     this.max = Number(max);
+    this.value = Number(value);
     this.range = this.max - this.min;
     this.zero = 0;
 
     this.startDrag = false;
+    this.timer = null;
 
     if (min < 0) {
       this.zero = 0 - this.min;
     }
 
+    this.initDom();
+    this.initRate(this.value);
+  }
+
+  initDom() {
     const slider = this.createSlider();
     const rangeSlider = this.container.appendChild(slider);
-    const { thumbClass, rateClass } = this.settings;
-
-    this.value = Number(value);
-    
-    this.timer = null;
+    const { thumbClass, rateClass, withInput } = this.settings;
 
     this.rangeSlider = rangeSlider;
     // cache thumb button, rate element and popup element
     this.elementThumb = rangeSlider.querySelector(thumbClass);
     this.elementRate = rangeSlider.querySelector(rateClass);
 
-    this.initRate(Number(value));
+    if (withInput) {
+      const inputDom = this.createInput();
+      const inputWrap = this.container.parentNode.appendChild(inputDom);
+      this.valueInput = inputWrap.querySelector('.js-range-value');
+    }
+    
     this.events();
   }
   
@@ -75,6 +88,19 @@ class Range {
     slider.innerHTML = this.createDomStr();
 
     return slider;
+  }
+
+  createInput() {
+    const { inputWidth, inputUnit } = this.settings;
+    const { value } = this;
+    const div = document.createElement('div');
+
+    div.className = 'ui-icon-input ml-20';
+    div.style.width = inputWidth + 'px';
+    div.innerHTML = `<input class="ui-form-control js-range-value" type="text" value="${value}"/>
+    <span class="suffix">${inputUnit}</span>`;
+
+    return div;
   }
 
   /**
@@ -122,11 +148,14 @@ class Range {
    * @param {number} value
    * */
   setValue(value) {
-    const onChange = this.settings.onChange;
+    const { onChange, withInput } = this.settings;
 
     this.value = value;
     if (onChange && typeof onChange === 'function') {
       onChange(value);
+    } 
+    if (withInput) {
+      this.valueInput.value = value;
     }
   }
 
@@ -212,8 +241,9 @@ class Range {
    * bind events
    * */
   events() {
-    const { elementThumb, container } = this;
+    const { elementThumb, container, settings, valueInput } = this;
     const doc = document;
+    const self = this;
 
     elementThumb.addEventListener('mousedown', (e) => {
       this.startMove(e);
@@ -231,6 +261,19 @@ class Range {
     });
 
     doc.addEventListener('mousemove', this.moving);
+
+    if (!settings.withInput) return;
+
+    valueInput.addEventListener('change', function () {
+      self.changeValue(this.value);
+    });
+
+    valueInput.addEventListener('keydown', function (e) {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        self.changeValue(this.value);
+      }
+    });
   }
 }
 

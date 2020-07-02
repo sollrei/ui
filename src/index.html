@@ -8,10 +8,19 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sollrei/ui-pages/dist/ui.css">
 </head>
 <body style="padding: 100px;">
-  <div class="ui-tree" id="tree"></div>
+  <div class="ui-row middle">
+    <div class="ui-slider-wrap mr-20 js-range">
+      <input type="range" max="100" min="0" value="0"/>
+    </div>
+    
+  </div>
 
   <script type="module">
-    
+    import Range from './script/input/Range.js';
+
+    new Range('.js-range', {
+      withInput: true
+    })
   </script>
 
 </body>
