@@ -179,8 +179,8 @@ class Upload {
 
   /**
    * 
-   * @param num {number} file index
-   * @param state {number} file state
+   * @param {number} num file index
+   * @param {number} state file state
    */ 
   setUploadState(num, state) {
     const stateText = {

@@ -1,8 +1,6 @@
 import u from '../base/util.js';
 import Upload from './Upload.js';
 
-// move this js file to common
-
 class UploadHelper {
   /**
    * @param {*} selector 
@@ -31,6 +29,11 @@ class UploadHelper {
     if (!element) return;
 
     const input = element.querySelector('input[type="file"]');
+
+    if (!input) {
+      console.warn('loose input');
+      return;
+    }
 
     this.wrap = element;
     this.input = input;
@@ -64,18 +67,20 @@ class UploadHelper {
     });
 
     u.on(wrap, 'click', '.js-change', function () {
-      self.input.trigger('click');
-      console.log(self.input, self.input.trigger);
-      console.log(1);
+      self.input.click();
     });
   }
 
-  createSingleDom(url) {
+  /**
+   * @param {string} url 
+   * @param {string=} name 
+   */
+  createSingleDom(url, name = 'file') {
     const { wrap } = this;
     const trigger = wrap.querySelector('.trigger');
     const image = wrap.querySelector('.image');
 
-    image.innerHTML = `<input type="hidden" name="file[]" value="${url}"><img src="${url}" alt="">
+    image.innerHTML = `<input type="hidden" name="${name}" value="${url}"><img src="${url}" alt="">
     <div class="option">
       <a href="javascript:;" class="js-change">替换</a><a href="javascript:;" class="js-clean">清除</a>
     </div>`;
