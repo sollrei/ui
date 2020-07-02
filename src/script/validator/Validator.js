@@ -3,7 +3,7 @@ import Util from '../base/util.js';
 const doc = document;
 const docEle = doc.documentElement;
 
-const defaultSettings = {
+const defaultMsgs = {
   chinese: '请填写中文',
   date: '日期格式不正确',
   email: '邮箱格式不正确',
@@ -21,25 +21,14 @@ const defaultSettings = {
   int: '请填写不为0的正整数'
 };
 
-const regs = {
+const regRule = {
   rule: /^(.+?)\((.+)\)$/,
   chinese: /^[\u0391-\uFFE5]+$/,
   date: /^([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})(((0[13578]|1[02])(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))$/,
-  /**
-   * @description 邮箱规则
-   * 1.邮箱以a-z、A-Z、0-9开头，最小长度为1.
-   * 2.如果左侧部分包含-、_、.则这些特殊符号的前面必须包一位数字或字母。
-   * 3.@符号是必填项
-   * 4.右则部分可分为两部分，第一部分为邮件提供商域名地址，第二部分为域名后缀，现已知的最短为2位。最长的为6为。
-   * 5.邮件提供商域可以包含特殊字符-、_、.
-   */
   email: /^[a-zA-Z0-9]+([._\\-]*[a-zA-Z0-9])*@([a-zA-Z0-9]+[-a-zA-Z0-9]*[a-zA-Z0-9]+.){1,63}[a-zA-Z0-9]+$/,
   english: /^[A-Za-z]+$/,
   idCard: /^\d{6}(19|2\d)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)?$/,
   int: /^[1-9][0-9]*$/,
-  /**
-   * @description phone 简化版
-   * */
   mobile: /^1[3-9]\d{9}$/,
   number: /^[0-9]+$/,
   qq: /^[1-9]\d{4,}$/,
@@ -49,96 +38,87 @@ const regs = {
   time: /^([01]\d|2[0-3])(:[0-5]\d){1,2}$/,
   price: /^-?(([1-9]+\d*)|([1-9]\d*.\d{0,2})|(0.\d{0,2})|(0))$/,
   password: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
-  /**
-   *@description
-   * 130、131、132、133、134、135、136、137、138、139
-   * 145、147
-   * 150、151、152、153、155、156、157、158、159
-   * 166 167
-   * 170、176、177、178
-   * 180、181、182、183、184、185、186、187、188、189
-   * 198 199 191 
-   * 国际码 如：中国(+86)
-   * 防止跟不上运营商开新数字，可以考虑使用mobile验证
-   */
   phone: /^((\+?[0-9]{1,4})|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[67]|17[0135678]|18[0-9]|19[189])\d{8}$/,
   passport: /^((E|K)[0-9]{8})|(((SE)|(DE)|(PE)|(MA))[0-9]{7})$/
 };
 
 const testReg = {
-  is_email(value) {
-    return value ? regs.email.test(value) : true;
+  is_email({ value }) {
+    return value ? regRule.email.test(value) : true;
   },
 
-  is_english(value) {
-    return value ? regs.english.test(value) : true;
+  is_english({ value }) {
+    return value ? regRule.english.test(value) : true;
   },
 
-  is_chinese(value) {
-    return value ? regs.chinese.test(value) : true;
+  is_chinese({ value }) {
+    return value ? regRule.chinese.test(value) : true;
   },
 
-  is_number(value) {
-    return value ? regs.number.test(value) : true;
+  is_number({ value }) {
+    return value ? regRule.number.test(value) : true;
   },
 
-  is_idCard(value) {
-    return value ? regs.idCard.test(value) : true;
+  is_idCard({ value }) {
+    return value ? regRule.idCard.test(value) : true;
   },
 
-  is_int(value, rule, key, field) {
-    if (field.element.validity && field.element.validity.badInput) {
+  is_int({ value, field }) {
+    const { validity } = field.element;
+    
+    if (validity && validity.badInput) {
       return false;
     }
-    return value ? regs.int.test(value) : true;
+    
+    return value ? regRule.int.test(value) : true;
   },
 
-  is_mobile(value) {
-    return value ? regs.mobile.test(value) : true;
+  is_mobile({ value }) {
+    return value ? regRule.mobile.test(value) : true;
   },
 
-  is_price(value) {
-    return value ? regs.price.test(value) : true;
+  is_price({ value }) {
+    return value ? regRule.price.test(value) : true;
   },
 
-  is_qq(value) {
-    return value ? regs.qq.test(value) : true;
+  is_qq({ value }) {
+    return value ? regRule.qq.test(value) : true;
   },
 
-  is_weChat(value) {
-    return value ? regs.weChat.test(value) : true;
+  is_weChat({ value }) {
+    return value ? regRule.weChat.test(value) : true;
   },
 
-  is_tel(value) {
-    return value ? regs.tel.test(value) : true;
+  is_tel({ value }) {
+    return value ? regRule.tel.test(value) : true;
   },
 
-  is_time(value) {
-    return value ? regs.time.test(value) : true;
+  is_time({ value }) {
+    return value ? regRule.time.test(value) : true;
   },
 
-  is_passport(value) {
-    return value ? regs.passport.test(value) : true;
+  is_passport({ value }) {
+    return value ? regRule.passport.test(value) : true;
   },
 
-  is_url(value) {
-    return value ? regs.url.test(value) : true;
+  is_url({ value }) {
+    return value ? regRule.url.test(value) : true;
   },
 
-  is_required(value) {
+  is_required({ value }) {
     return !!(value && (value !== '') && (value !== undefined));
   },
 
-  is_reg(value, rule) {
+  is_reg({ value, rule }) {
     const reg = new RegExp(rule.value);
     return value ? reg.test(value) : true;
   },
 
-  is_password(value) {
-    return value ? regs.password.test(value) : true;
+  is_password({ value }) {
+    return value ? regRule.password.test(value) : true;
   },
 
-  is_not(value, rule) {
+  is_not({ value, rule }) {
     return value !== rule.value;
   },
 
@@ -154,7 +134,7 @@ const testReg = {
     return cl;
   },
 
-  is_max(value, rule, name, field) {
+  is_max({ value, rule, field }) {
     const { type, element } = field;
     const max = rule.value;
 
@@ -171,7 +151,7 @@ const testReg = {
     return true;
   },
 
-  is_min(value, rule, name, field) {
+  is_min({ value, rule, field }) {
     const { type, element } = field;
 
     if (type === 'checkbox') {
@@ -183,11 +163,11 @@ const testReg = {
     return value ? (value.length >= rule.value) : true;
   },
 
-  is_phone(value) {
-    return value ? regs.phone.test(value) : true;
+  is_phone({ value }) {
+    return value ? regRule.phone.test(value) : true;
   },
 
-  is_remote(value, rule, name, field, form) {
+  is_remote({ value, rule, field, form }) {
     let url = rule.value;
     let urlArr = url.split(',');
     let data = {};
@@ -222,50 +202,62 @@ const testReg = {
     return false;
   },
 
-  is_same(value, rule) {
+  is_same({ value, rule }) {
+    /** @type {HTMLInputElement} */
     const ele = doc.querySelector(`[name="${rule.value}"]`);
     const eleValue = ele.value.trim();
     return value === eleValue;
   },
 
-  is_diff(value, rule, key, field, form) {
+  is_diff({ value, rule, form }) {
     const ele = form.querySelector(`[name="${rule.value}"]`);
     const eleValue = ele.value.trim();
+
+    if (!eleValue.length) {
+      return true;
+    }
+
     return value !== eleValue;
   },
 
-  is_gt(value, rule) {
+  is_gt({ value, rule }) {
+    /** @type {HTMLInputElement} */
     const ele = doc.querySelector(`[name="${rule.value}"]`);
     return Number(value) > Number(ele.value);
   },
 
-  is_gte(value, rule) {
+  is_gte({ value, rule }) {
+    /** @type {HTMLInputElement} */
     const ele = doc.querySelector(`[name="${rule.value}"]`);
     return Number(value) >= Number(ele.value);
   },
 
-  is_gtnum(value, rule) { // great than number
+  // great than number
+  is_gtnum({ value, rule }) { 
     if (value !== '') {
       return Number(value) > Number(rule.value);
     }
     return true;
   },
 
-  is_gtenum(value, rule) { // great than or equal
+  // great than or equal
+  is_gtenum({ value, rule }) { 
     if (value !== '') {
       return Number(value) >= Number(rule.value);
     }
     return true;
   },
 
-  is_ltnum(value, rule) { // less than number
+  // less than number
+  is_ltnum({ value, rule }) { 
     if (value !== '') {
       return Number(value) < Number(rule.value);
     }
     return true;
   },
 
-  is_ltenum(value, rule) { // less than or equal
+  // less than or equal
+  is_ltenum({ value, rule }) { 
     if (value !== '') {
       return Number(value) <= Number(rule.value);
     }
@@ -274,6 +266,17 @@ const testReg = {
 };
 
 class Validator {
+  /**
+   * @param {*} _selector 
+   * @param {*} _fields 
+   * @param {*} _settings 
+   * @param {*} _callback 
+   * @param {*} _errorCallback 
+   * 
+   * _selector, _callback[, _errorCallback]
+   * _selector, _settings, _callback[, _errorCallback]
+   * _selector, _fields, _settings, _callback[, _errorCallback]
+   */
   constructor(_selector, _fields, _settings, _callback, _errorCallback) {
     let selector = _selector;
     let fields = _fields;
@@ -281,12 +284,12 @@ class Validator {
     let callback = _callback;
     let errorCallback = _errorCallback;
 
-    if (typeof _fields === 'function') { // (selector, callback, ..)
+    if (typeof _fields === 'function') {
       callback = _fields;
       errorCallback = _settings;
       fields = null;
       settings = null;
-    } else if (typeof _settings === 'function') { // (selector, setting, callback, ..)
+    } else if (typeof _settings === 'function') {
       callback = _settings;
       errorCallback = _callback;
       fields = null;
@@ -321,13 +324,16 @@ class Validator {
 
       shouldFresh: false,
 
-      scrollToError: false
+      scrollToError: false,
+
+      fetchSuccess(res) {
+        return res.code === 200;
+      }
     };
 
     this.settings = Object.assign({}, options, settings);
 
     this.fields = {};
-
     this.form = form;
 
     if (fields) {
@@ -349,12 +355,16 @@ class Validator {
     });
   }
 
+  /**
+   * @param {Function=} callback 
+   * @param {Function=} errorCallback 
+   */
   validAllFiles(callback, errorCallback) {
-    const {
-      validClass, tipClass, showClass, shouldFresh 
-    } = this.settings;
-
+    const { validClass, shouldFresh } = this.settings;
+    const self = this;
     const items = this.form.querySelectorAll(validClass);
+    const nameArray = [];
+
     if (items) {
       if (shouldFresh) {
         this.fields = {};
@@ -364,79 +374,101 @@ class Validator {
     }
 
     this.validForm();
-
-    let valid = true;
-    let arr = [];
+    
+    this.valid = true;
 
     Object.keys(this.fields).every(key => {
-      arr.push(key);
+      nameArray.push(key);
+
       let item = this.fields[key];
+
       if (!item.valid) {
-        valid = false;
+        this.valid = false;
       }
+
       return item.valid;
     });
 
-    const { fields: __fields, form: __form, settings: __settings } = this;
-
-    /**
-     *
-     */
-    function cb() {
-      if (valid) {
-        if (typeof callback === 'function') {
-          callback(__form, __fields);
-        }
-      } else {
-        if (__settings.scrollToError) {
-          const tipElement = doc.querySelector('.' + tipClass + '.' + showClass);
-
-          if (tipElement) {
-            const top = (tipElement.getBoundingClientRect().top - 80)
-              + (docEle.scrollTop + document.body.scrollTop);
-            const left = docEle.scrollLeft + document.body.scrollLeft;
-
-            // scroll to error tip position
-            window.scrollTo(left, top);
-          }
-        }
-
-        if (typeof errorCallback === 'function') {
-          errorCallback(__form, __fields);
-        }
-      }
-    }
-    
-    /**
-     * @param index
-     */
-    function checkValid(index) {
-      if (index >= arr.length) {
-        valid = true;
-        cb();
-        return;
-      }
-      const item = __fields[arr[index]];
-      if (item.remote) {
-        item.remote.then(res => {
-          if (res.code === 200) {
-            checkValid(index + 1);
-          } else {
-            valid = false;
-            cb();
-          }
-        });
-      } else if (!item.valid) {
-        valid = false;
-        cb();
-      } else {
-        checkValid(index + 1);
-      }
-    }
-    
-    checkValid(0);
+    this.checkValid(0, nameArray, () => {
+      self.validCallback(callback, errorCallback);
+    });
   }
 
+  /**
+   * @param {number} index 
+   * @param {Array} arr 
+   * @param {Function=} cb 
+   */
+  checkValid(index, arr, cb) {
+    const { fields, settings } = this;
+    const { fetchSuccess } = settings;
+    const self = this;
+
+    if (index >= arr.length) {
+      self.valid = true;
+      cb();
+      return;
+    }
+    
+    const item = fields[arr[index]];
+
+    if (item.remote) {
+      item.remote.then(res => {
+        if (fetchSuccess(res)) {
+          self.checkValid(index + 1, arr, cb);
+        } else {
+          self.valid = false;
+          cb();
+        }
+      });
+    } else if (!item.valid) {
+      self.valid = false;
+      cb();
+    } else {
+      self.checkValid(index + 1, arr, cb);
+    }
+  }
+
+  /**
+   * @param {Function=} callback 
+   * @param {Function=} errorCallback 
+   */
+  validCallback(callback, errorCallback) {
+    const { tipClass, showClass, scrollToError } = this.settings;
+    const { fields, form } = this;
+    const self = this;
+
+    if (self.valid) {
+      if (typeof callback === 'function') {
+        callback(form, fields);
+      }
+    } else {
+      if (scrollToError) {
+        // !!!!!!!!! need rewrite
+        const tipElement = doc.querySelector('.' + tipClass + '.' + showClass);
+
+        if (tipElement) {
+          const top = (tipElement.getBoundingClientRect().top - 80)
+            + (docEle.scrollTop + (document.body.scrollTop || document.documentElement.scrollTop));
+          const left = docEle.scrollLeft
+            + (document.body.scrollLeft || document.documentElement.scrollLeft);
+
+          // scroll to error tip position
+          window.scrollTo(left, top);
+        }
+      }
+
+      if (typeof errorCallback === 'function') {
+        errorCallback(form, fields);
+      }
+    }
+  }
+
+  /**
+   * @param {*} element 
+   * @param {*} attr 
+   * @returns {*} -
+   */
   static getAttrChecked(element, attr) {
     if (element.length > 0 && Validator.isRadioOrCheckbox(element[0].type)) {
       for (let i = 0, l = element.length; i < l; i += 1) {
@@ -455,29 +487,29 @@ class Validator {
   }
 
   /**
-   * @function
-   * @param {Array} fields
-   * [{
-   *   name,   // element [name]
-   *   rules,  // valid rule
-   *   msgs    // error message
-   * }]
+   * @param {[{ name: string , rules: string, msgs: string}]} fields
    * */
   addFields(fields) {
     const { validClass, realTime } = this.settings;
+    const { form } = this;
+
     for (let i = 0, l = fields.length; i < l; i += 1) {
       const field = fields[i];
-      const name = field.name;
-      const rules = Validator.rulesToObject(field.rules, field.msgs);
-      const element = this.form[name];
-      const type = element.length > 0 ? (element.type || element[0].type) : element.type;
-      const tip = this.createErrorTip(element);
+      const { name, rules: _rules, msgs } = field;
+      const element = form[name];
+
       const fieldItem = {
+        /** @type {HTMLElement} */
         element,
+        /** @type {string} */
         name,
-        type,
-        rules,
-        tip,
+        /** @type {string} */
+        type: element.length > 0 ? (element.type || element[0].type) : element.type,
+        /** @type {object} */
+        rules: Validator.rulesToObject(_rules, msgs),
+        /** @type {HTMLElement} */
+        tip: this.createErrorTip(element),
+
         value: null,
         checked: null,
         fn: field.fn || null
@@ -495,26 +527,24 @@ class Validator {
   }
 
   /**
-   * @function
    * create error tip element
-   * @param  {Node|NodeList} [node] - elements
-   * @returns {Node}
+   *
+   * @param  {*} node - elements
+   * @returns {HTMLElement} -
    * */
   createErrorTip(node) {
-    let element = node.length > 1 ? node[0] : node;
+    let element = (node.length && node.length > 0) ? node[0] : node;
     const { tipElement, wrapClass, tipClass } = this.settings;
     const parent = element.closest(wrapClass);
     const addedClass = element.id ? ` v-tip-${element.id}` : '';
-
+    const dataTip = element.getAttribute('data-tip');
     let tip;
 
-    if (element.getAttribute('data-tip')) {
-      tip = document.querySelector(element.getAttribute('data-tip'));
-
+    if (dataTip) {
+      tip = this.form.querySelector(dataTip);
       return tip;
     } else if (parent.querySelector(`.${tipClass}`)) {
       tip = parent.querySelector(`.${tipClass}`);
-
       return tip;
     }
 
@@ -535,6 +565,7 @@ class Validator {
 
     [].slice.call(items).forEach(element => {
       if (!(element.name in this.fields)) {
+        /** @type {[{ name: string, rules: string, msgs: string }]} */
         const filed = this.addItem(element);
         if (filed) {
           fields.push(filed);
@@ -572,7 +603,7 @@ class Validator {
    * @function
    * @param {string} rules [form item valid rule]
    * @param {string} msgs  [error message]
-   * @returns {object}
+   * @returns {object} result object
    * */
   static rulesToObject(rules, msgs) {
     const rulesArray = rules.split('|');
@@ -580,7 +611,7 @@ class Validator {
     const msgArray = msgs ? msgs.split('|') : '';
 
     rulesArray.forEach((item, index) => {
-      const r = item.match(regs.rule);
+      const r = item.match(regRule.rule);
       let ruleName;
       let ruleValue;
       let ruleMsg;
@@ -592,7 +623,7 @@ class Validator {
         ruleName = item;
       }
 
-      ruleMsg = msgArray[index] || defaultSettings[ruleName] || '';
+      ruleMsg = msgArray[index] || defaultMsgs[ruleName] || 'error';
 
       rulesObject[ruleName] = {
         value: ruleValue,
@@ -760,7 +791,7 @@ class Validator {
         return false;
       }
 
-      const validResult = testReg[`is_${key}`](value, rule, key, field, this.form);
+      const validResult = testReg[`is_${key}`]({ value, rule, key, field, form: this.form });
 
       if (typeof validResult === 'boolean') {
         if (!validResult) {

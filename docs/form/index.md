@@ -5,69 +5,223 @@ need_js: true
 
 # Form
 
-## Form
-
 <form action="https://api.cooode.xyz/api2/star-success-demo" method="post" class="ui-form" autocomplete="off">
-    <div class="form-group">
-      <div class="form-label">邮箱：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <input type="text" class="ui-form-control v-item" data-rules="required|email" data-msgs="请填写|格式错误" name="name" placeholder="Enter">
-        </div>
+  <div class="form-group">
+    <div class="form-label">required：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="required"  name="required" placeholder="required">
       </div>
     </div>
-    <div class="form-group">
-      <div class="form-label">多行输入：</div>
+  </div>
+  <div class="form-group">
+      <div class="form-label">Select：</div>
       <div class="form-con">
         <div class="ui-control-wrap">
-          <div class="ui-enter-count">
-            <textarea rows="4" class="ui-form-control" maxlength="200" placeholder="Enter"></textarea>
-            <span class="count">0/200</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-label">下拉选择：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <select name="direct" class="js-select ui-select ui-form-control">
-            <option value="1">Option1</option>
-            <option value="2">Option2</option>
+          <select name="select" class="js-select ui-select ui-form-control v-item" data-rules="required">
+            <option value="">请选择</option>
+            <option value="1">选项1</option>
+            <option value="2">选项2</option>
           </select>
         </div>
       </div>
     </div>
-    <div class="form-group">
-      <div class="form-label">单选：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <label class="ui-radio mr-24">
-            <input type="radio" name="type" value="1" checked>
-            <i class="iconfont"></i>
-            <span>选项1</span>
-          </label>
-          <label class="ui-radio mr-24">
-            <input type="radio" name="type" value="2">
-            <i class="iconfont"></i>
-            <span>选项2</span>
-          </label>
-          <label class="ui-radio mr-24">
-            <input type="radio" name="type" value="3">
-            <i class="iconfont"></i>
-            <span>选项3</span>
-          </label>
-        </div>
+  <div class="form-group">
+    <div class="form-label">邮箱：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="email"  name="email" placeholder="email">
       </div>
     </div>
-    <div class="form-group">
-      <div class="form-label"></div>
-      <div class="form-con ui-row">
-        <button class="ui-button primary mr-16" type="submit">保存</button>
-        <button class="ui-button" type="reset">重置</button>
+  </div>
+  <div class="form-group">
+    <div class="form-label">相同：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="same(email)"  name="same" placeholder="same(email)">
       </div>
     </div>
-  </form>
+  </div>
+  <div class="form-group">
+    <div class="form-label">相异：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="diff(email)"  name="diff" placeholder="diff(email)">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">手机：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="mobile"  name="mobile" placeholder="mobile">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">中文：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="chinese" name="chinese" placeholder="chinese">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">数字：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="number" name="number" placeholder="number">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">大于某个数：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="gtnum(10)" name="gtnum" placeholder="gtnum(10)">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">大于等于某数：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="gtenum(10)" name="gtenum" placeholder="gtenum(10)">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">小于某数：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="ltnum(10)" name="ltnum" placeholder="ltnum(10)">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">小于等于某数：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="ltenum(10)" name="ltenum" placeholder="ltenum(10)">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">English：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="english" data-msgs="" name="english" placeholder="english">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">idCard：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="idCard" data-msgs="" name="idCard" placeholder="idCard">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">price：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="price" data-msgs="" name="price" placeholder="price">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">qq：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="qq" data-msgs="" name="qq" placeholder="qq">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">weChat：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="weChat" data-msgs="" name="weChat" placeholder="weChat">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">tel：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="tel" data-msgs="" name="tel" placeholder="tel">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">time：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="time" data-msgs="" name="time" placeholder="time">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">passport：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="passport" data-msgs="" name="passport" placeholder="passport">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">url：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="url" data-msgs="" name="url" placeholder="url">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">password：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="password" data-msgs="" name="password" placeholder="password">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">not：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control v-item" data-rules="not(1)" data-msgs="" name="not" placeholder="not(1)">
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">限制数量多选：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <label class="ui-checkbox"><input type="checkbox" name="checkmin" value="1" class="v-item" data-rules="min(2)" data-msgs="最少选两项"><i class="iconfont"></i><span>选项1</span></label>
+        <label class="ui-checkbox"><input type="checkbox" name="checkmin" value="2"><i class="iconfont"></i><span>选项2</span></label>
+        <label class="ui-checkbox"><input type="checkbox" name="checkmin" value="3"><i class="iconfont"></i><span>选项3</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label">限制数量多选：</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <label class="ui-checkbox"><input type="checkbox" name="check" value="1" class="v-item" data-rules="max(2)" data-msgs="最多选两项"><i class="iconfont"></i><span>选项1</span></label>
+        <label class="ui-checkbox"><input type="checkbox" name="check" value="2"><i class="iconfont"></i><span>选项2</span></label>
+        <label class="ui-checkbox"><input type="checkbox" name="check" value="3"><i class="iconfont"></i><span>选项3</span></label>
+      </div>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="form-label"></div>
+    <div class="form-con ui-row">
+      <button class="ui-button primary mr-16" type="submit">保存</button>
+      <button class="ui-button" type="reset">重置</button>
+    </div>
+  </div>
+</form>
 
 ## JavaScript
 
