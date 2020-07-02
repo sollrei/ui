@@ -74,3 +74,19 @@ need_js: true
   });
 </script>
 {% endexample %}
+
+
+### Config
+
+```javascript
+new Range(wrapElement, {
+  delay: 30,
+  width: 180, // bar width
+  
+  withInput: false, // render value input
+  inputWidth: 80,
+  inputUnit: '%',
+  
+  onChange: null // change callback
+});
+```

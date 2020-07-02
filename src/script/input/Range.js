@@ -5,17 +5,17 @@ class Range {
    */
   constructor(selector, options) {
     const defaultSetting = {
-      onChange: null,
-      sliderDom: '',
       thumbClass: '.thumb',
       rateClass: '.rate',
+      
       delay: 30,
       width: 180,
-
+      
       withInput: false,
       inputWidth: 80,
       inputUnit: '%',
-      inputName: 'range'
+      
+      onChange: null
     };
   
     let container = selector;
@@ -111,8 +111,7 @@ class Range {
     const percent = (zero / range) * 100;
     const width = (settings.width * percent) / 100;
     
-    return settings.sliderDom
-      || '<div class="bar">'
+    return '<div class="bar">'
           + `<div class="negative" style="width: ${percent}%"></div>`
           + '<div class="rate">'
           + `<div class="negative-rate" style="max-width: ${width}px"></div>`
