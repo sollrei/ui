@@ -74,6 +74,9 @@ need_js: true
 {% example html %}
 <script>
 var Validator = ui.Validator;
+var Select = ui.Select;
+
+new Select('.js-select');
 
 new Validator('.ui-form', function () {
   alert('success');
