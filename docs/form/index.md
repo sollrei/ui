@@ -240,6 +240,9 @@ new Validator('.ui-form', function () {
 
 ## Validator
 
+注意事项：
+data-rules上有remote时需要把remote放在最后
+
 ```html
 <input class="v-item" data-rules="rule1|rule2|..." data-msgs="msg1|msg2|..." />
 ```
@@ -261,3 +264,8 @@ new Validator('.ui-form', function () {
 | gte(name) | 大于等于指定字段值（数字） |
 | gtnum(number) | 大于number值 |
 | gtenum(number) | 大于等于number值 |
+
+### Method
+
+cleanTips 清除错误提示样式
+

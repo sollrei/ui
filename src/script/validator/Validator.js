@@ -22,7 +22,7 @@ const defaultMsgs = {
 };
 
 const regRule = {
-  rule: /^(.+?)\((.+)\)$/,
+  _rule: /^(.+?)\((.+)\)$/,
   chinese: /^[\u0391-\uFFE5]+$/,
   date: /^([0-9]{3}[1-9]|[0-9]{2}[1-9][0-9]{1}|[0-9]{1}[1-9][0-9]{2}|[1-9][0-9]{3})(((0[13578]|1[02])(0[1-9]|[12][0-9]|3[01]))|((0[469]|11)(0[1-9]|[12][0-9]|30))|(02-(0[1-9]|[1][0-9]|2[0-8])))$/,
   email: /^[a-zA-Z0-9]+([._\\-]*[a-zA-Z0-9])*@([a-zA-Z0-9]+[-a-zA-Z0-9]*[a-zA-Z0-9]+.){1,63}[a-zA-Z0-9]+$/,
@@ -268,7 +268,7 @@ const testReg = {
 class Validator {
   /**
    * @param {*} _selector 
-   * @param {*} _fields 
+   * @param {*} _fields [{ name, rules, msgs }]
    * @param {*} _settings 
    * @param {*} _callback 
    * @param {*} _errorCallback 
@@ -320,9 +320,13 @@ class Validator {
 
       showClass: 'show',
 
+      separator: '|',
+
       realTime: true,
 
       shouldFresh: false,
+
+      remoteLoading: false,
 
       scrollToError: false,
 
@@ -349,7 +353,7 @@ class Validator {
     this.form.addEventListener('submit', e => {
       e.preventDefault();
 
-      this.validAllFiles(callback, errorCallback);
+      this.validAllFields(callback, errorCallback);
 
       return false;
     });
@@ -359,38 +363,48 @@ class Validator {
    * @param {Function=} callback 
    * @param {Function=} errorCallback 
    */
-  validAllFiles(callback, errorCallback) {
+  validAllFields(callback, errorCallback) {
     const { validClass, shouldFresh } = this.settings;
     const self = this;
-    const items = this.form.querySelectorAll(validClass);
-    const nameArray = [];
+    const elements = this.form.querySelectorAll(validClass);
+    const fieldNameArray = [];
 
-    if (items) {
+    if (elements) {
       if (shouldFresh) {
         this.fields = {};
       }
 
-      this.addItems(items);
+      this.initFields(elements);
     }
 
-    this.validForm();
+    this.addResultToFields();
     
     this.valid = true;
 
     Object.keys(this.fields).every(key => {
-      nameArray.push(key);
-
-      let item = this.fields[key];
-
-      if (!item.valid) {
+      const { valid } = this.fields[key];
+      fieldNameArray.push(key);
+      if (!valid) {
         this.valid = false;
       }
 
-      return item.valid;
+      return valid;
     });
 
-    this.checkValid(0, nameArray, () => {
+    this.checkValidResult(0, fieldNameArray, () => {
       self.validCallback(callback, errorCallback);
+    });
+  }
+
+  /**
+   * add valid result to field item
+   */
+  addResultToFields() {
+    const { fields } = this;
+
+    Object.keys(fields).forEach(key => {
+      const field = fields[key];
+      this.validField(field, 'final');
     });
   }
 
@@ -399,7 +413,7 @@ class Validator {
    * @param {Array} arr 
    * @param {Function=} cb 
    */
-  checkValid(index, arr, cb) {
+  checkValidResult(index, arr, cb) {
     const { fields, settings } = this;
     const { fetchSuccess } = settings;
     const self = this;
@@ -415,7 +429,7 @@ class Validator {
     if (item.remote) {
       item.remote.then(res => {
         if (fetchSuccess(res)) {
-          self.checkValid(index + 1, arr, cb);
+          self.checkValidResult(index + 1, arr, cb);
         } else {
           self.valid = false;
           cb();
@@ -425,7 +439,7 @@ class Validator {
       self.valid = false;
       cb();
     } else {
-      self.checkValid(index + 1, arr, cb);
+      self.checkValidResult(index + 1, arr, cb);
     }
   }
 
@@ -465,7 +479,7 @@ class Validator {
   }
 
   /**
-   * @param {*} element 
+   * @param {HTMLInputElement|object} element 
    * @param {*} attr 
    * @returns {*} -
    */
@@ -487,7 +501,7 @@ class Validator {
   }
 
   /**
-   * @param {[{ name: string , rules: string, msgs: string}]} fields
+   * @param {[{name: string, rules: string, msgs: string, fn: *}]} fields
    * */
   addFields(fields) {
     const { validClass, realTime } = this.settings;
@@ -506,7 +520,7 @@ class Validator {
         /** @type {string} */
         type: element.length > 0 ? (element.type || element[0].type) : element.type,
         /** @type {object} */
-        rules: Validator.rulesToObject(_rules, msgs),
+        rules: this.rulesToObject(_rules, msgs),
         /** @type {HTMLElement} */
         tip: this.createErrorTip(element),
 
@@ -556,16 +570,14 @@ class Validator {
   }
 
   /**
-   * @function
-   * get rule and msg from element node
-   * @param  {NodeList} items nodeList of form item
-   * */
-  addItems(items) {
+   * @param {NodeList} elements
+   */
+  initFields(elements) {
     const fields = [];
 
-    [].slice.call(items).forEach(element => {
+    [].slice.call(elements).forEach(element => {
       if (!(element.name in this.fields)) {
-        /** @type {[{ name: string, rules: string, msgs: string }]} */
+        /** @type {[{name: string, rules: string, msgs: string }]} */
         const filed = this.addItem(element);
         if (filed) {
           fields.push(filed);
@@ -573,6 +585,7 @@ class Validator {
       }
     });
 
+    // @ts-ignore
     this.addFields(fields);
   }
 
@@ -605,13 +618,14 @@ class Validator {
    * @param {string} msgs  [error message]
    * @returns {object} result object
    * */
-  static rulesToObject(rules, msgs) {
-    const rulesArray = rules.split('|');
+  rulesToObject(rules, msgs) {
+    const { separator } = this.settings;
+    const rulesArray = rules.split(separator);
     const rulesObject = {};
-    const msgArray = msgs ? msgs.split('|') : '';
+    const msgArray = msgs ? msgs.split(separator) : '';
 
     rulesArray.forEach((item, index) => {
-      const r = item.match(regRule.rule);
+      const r = item.match(regRule._rule);
       let ruleName;
       let ruleValue;
       let ruleMsg;
@@ -634,7 +648,11 @@ class Validator {
     return rulesObject;
   }
 
-  // trigger verify when element loose focus
+  /**
+   * trigger verify when element loose focus
+   *
+   * @param {object} field 
+   */
   addBlurEvent(field) {
     if (!Validator.isRadioOrCheckbox(field.type)) {
       field.element.addEventListener('blur', () => {
@@ -643,7 +661,11 @@ class Validator {
     }
   }
 
-  // remove error class when element get focus
+  /**
+   * remove error class when element get focus
+   *
+   * @param {object} field 
+   */
   addFocusEvent(field) {
     const { element, tip, type } = field;
     if (Validator.isRadioOrCheckbox(type) && element.length > 1) {
@@ -653,6 +675,10 @@ class Validator {
     }
   }
 
+  /**
+   * @param {HTMLElement} element 
+   * @param {HTMLElement} tip 
+   */
   addFocus(element, tip) {
     const self = this;
     element.addEventListener('focus', function () {
@@ -669,10 +695,11 @@ class Validator {
   delegateFocus() {
     const { validClass } = this.settings;
     const form = this.form;
+
     Util.on(form, 'focusin change', validClass, e => {
       const target = e.target;
       const name = target.name;
-      // if (_.has(this.fields, name)) {
+
       if (name in this.fields) {
         const field = this.fields[name];
         this.removeErrorClass(target, field.tip);
@@ -680,10 +707,30 @@ class Validator {
     });
   }
 
+  delegateBlur() {
+    Util.on(this.form, 'focusout', this.settings.validClass, (e) => {
+      if (this.fields === null) return;
+
+      const target = e.target;
+      const name = target.name;
+
+      if (!(name in this.fields)) {
+        const item = this.addItem(target);
+        this.addFields([item]);
+      }
+
+      const field = this.fields[name];
+      
+      if (!Validator.isRadioOrCheckbox(field.type)) {
+        this.validField(field);
+      }
+    });
+  }
+
   /**
    * @function
    * remove error style class
-   * @param {HTMLElement} target - form element
+   * @param {HTMLElement} target - form control
    * @param {HTMLElement} tip - error tip element
    * */
   removeErrorClass(target, tip) {
@@ -692,6 +739,7 @@ class Validator {
 
     Util.removeClass(target, errorClass);
     Util.removeClass(tip, showClass);
+
     tipEle.innerText = '';
 
     if (target.closest && target.closest(wrapClass)) {
@@ -702,7 +750,7 @@ class Validator {
 
   /**
    * @function
-   * add loading class for remote item
+   * add loading class [remote]
    * @param {HTMLElement} target - form element
    * */
   addLoadClass(target) {
@@ -717,7 +765,7 @@ class Validator {
 
   /**
    * @function
-   * remove loading class for remote item
+   * remove loading class [remote]
    * @param {HTMLElement} target - form element
    * */
   removeLoadClass(target) {
@@ -730,68 +778,37 @@ class Validator {
     }
   }
 
-  // delegate focusout event
-  delegateBlur() {
-    Util.on(this.form, 'focusout', this.settings.validClass, (e) => {
-      if (this.fields === null) return;
-      const target = e.target;
-      const name = target.name;
-      if (!(name in this.fields)) {
-        const item = this.addItem(target);
-        this.addFields([item]);
-      }
-      const field = this.fields[name];
-      if (!Validator.isRadioOrCheckbox(field.type)) {
-        this.validField(field);
-      }
-    });
-  }
-
-  validForm() {
-    const arr = [];
-    for (let i in this.fields) {
-      if (Object.hasOwnProperty.call(this.fields, i)) {
-        arr.push(i);
-        const field = this.fields[i];
-        this.validField(field, 'final');
-      }
-    }
-  }
-
   /**
    * @function
-   * verify single filed
-   * @param {object} fieldItem
-   * @param {string} type
-   * {
-        element,
-        name,
-        type,
-        rules,
-        tip,
-        value,
-        checked,
-        remote,
-        remoteOk
-      }
+   * verify single filed [单个表单元素可能含有多个验证项]
+   * @param {{
+   *  element: HTMLInputElement|HTMLSelectElement|HTMLTextAreaElement,  
+   *  tip: HTMLElement,
+   *  rules: object, name: string, type: string, value: string|boolean, 
+   *  checked: boolean|string, remote: *, remoteOk: boolean, valid: boolean,
+   *  fn: *
+   * }} fieldItem
+   * @param {string=} state
    * */
-  validField(fieldItem, type = '') {
+  validField(fieldItem, state = '') {
     const field = fieldItem;
-    const { element, rules, tip } = field;
+    const { form, settings } = this;
+    const { element, rules, tip, type } = field;
+    const { remoteLoading, fetchSuccess } = settings;
 
-    // for 'checkbox' and 'radio'
     field.checked = Validator.getAttrChecked(element, 'checked');
-    field.value = Validator.isRadioOrCheckbox(field.type) ? field.checked : element.value;
+    field.value = Validator.isRadioOrCheckbox(type) ? field.checked : element.value;
+    let _value = field.value;
 
     Object.keys(rules).every((key) => {
       const rule = rules[key];
-      const value = field.value.trim ? field.value.trim() : field.value;
-
-      if ((key === 'remote') && (type === 'final') && (field.remote && field.remoteOk)) {
+      let value = typeof _value === 'string' ? _value.trim() : _value;
+      
+      if ((key === 'remote') && (state === 'final') && (field.remote && field.remoteOk)) {
         return false;
       }
 
-      const validResult = testReg[`is_${key}`]({ value, rule, key, field, form: this.form });
+      const validResult = testReg[`is_${key}`]({ value, rule, key, field, form });
 
       if (typeof validResult === 'boolean') {
         if (!validResult) {
@@ -800,16 +817,20 @@ class Validator {
           return false;
         }
       } else if (key === 'remote') {
-        // self.addLoadClass(element);
+        if (remoteLoading) {
+          this.addLoadClass(element);
+        }
 
         field.valid = true;
         field.remote = validResult;
         field.remoteOk = false;
 
         validResult.then(res => {
-          // self.removeLoadClass(element);
+          if (remoteLoading) {
+            this.removeLoadClass(element);
+          }
 
-          if (res.code === 200) {
+          if (fetchSuccess(res)) {
             field.valid = true;
             this.showSuccessTip(element);
           } else {
@@ -835,7 +856,7 @@ class Validator {
   /**
    * @function
    * show error tip element
-   * @param {HTMLFormElement} element - form element
+   * @param {HTMLElement} element - form element
    * @param {HTMLElement} tip - error tip element
    * @param {string} message - error message
    * */
@@ -861,6 +882,36 @@ class Validator {
   destroy() {
     this.form = null;
     this.fields = null;
+  }
+
+  /**
+   * @param {string} fieldName 
+   */
+  cleanTip(fieldName) {
+    const field = this.fields[fieldName];
+    if (field) {
+      let element = field.element;
+      if (element.length) {
+        element = field.element[0];
+      }
+      this.removeErrorClass(element, field.tip);
+    }
+  }
+
+  /**
+   * @param {string=} fieldName 
+   */
+  cleanTips(fieldName) {
+    const { fields } = this;
+
+    if (fieldName) {
+      this.cleanTip(fieldName);
+      return;
+    }
+    
+    Object.keys(fields).forEach(name => {
+      this.cleanTip(name);
+    });
   }
 }
 
