@@ -17,7 +17,6 @@ email
 * 4.右则部分可分为两部分，第一部分为邮件提供商域名地址，第二部分为域名后缀，现已知的最短为2位。最长的为6为。
 * 5.邮件提供商域可以包含特殊字符-、_、.
 
-checkbox/radio 的field value是不是要改成 checked && value值
+> checkbox/radio 的field value是不是要改成 checked && value值?
 
 
-对checkbox和radio类型的需要在每个input上加v-item，但是rules和msg只用写第一个上面

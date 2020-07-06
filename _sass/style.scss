@@ -91,6 +91,13 @@ body {
     border-radius: 50%;
     background: $color-bg-dark;
   }
+
+  h3 {
+    margin-top: 40px;
+    position: relative;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f2f3;
+  }
   
   h1,
   h2,
@@ -296,6 +303,7 @@ code.highlighter-rouge {
 
 table:not(.ui-table) {
   width: 100%;
+  margin-bottom: 20px;
 
   thead {
     th {
@@ -312,6 +320,27 @@ table:not(.ui-table) {
         right: 0;
       };
     }
+  }
+}
+
+.page-ul {
+  line-height: 2;
+
+  li {
+    padding-left: 16px;
+    position: relative;
+  }
+
+  li:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 11px;
+    height: 6px;
+    width: 6px;
+    border-radius: 50%;
+    background: $color-bg-light;
   }
 }
 

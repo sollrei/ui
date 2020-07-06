@@ -307,9 +307,8 @@ class Validator {
     }
 
     const options = {
-      wrapClass: '.ui-control-wrap',
-
-      validClass: '.v-item',
+      wrapSelector: '.ui-control-wrap',
+      validSelector: '.v-item',
 
       errorClass: 'error',
       successClass: 'success',
@@ -364,9 +363,9 @@ class Validator {
    * @param {Function=} errorCallback 
    */
   validAllFields(callback, errorCallback) {
-    const { validClass, shouldFresh } = this.settings;
+    const { validSelector, shouldFresh } = this.settings;
     const self = this;
-    const elements = this.form.querySelectorAll(validClass);
+    const elements = this.form.querySelectorAll(validSelector);
     const fieldNameArray = [];
 
     if (elements) {
@@ -504,7 +503,7 @@ class Validator {
    * @param {[{name: string, rules: string, msgs: string, fn: *}]} fields
    * */
   addFields(fields) {
-    const { validClass, realTime } = this.settings;
+    const { validSelector, realTime } = this.settings;
     const { form } = this;
 
     for (let i = 0, l = fields.length; i < l; i += 1) {
@@ -531,7 +530,7 @@ class Validator {
 
       this.fields[name] = fieldItem;
 
-      if (!Util.hasClass(element, validClass.replace('.', ''))) {
+      if (!Util.hasClass(element, validSelector.replace('.', ''))) {
         if (realTime) {
           this.addBlurEvent(fieldItem);
           this.addFocusEvent(fieldItem);
@@ -548,8 +547,8 @@ class Validator {
    * */
   createErrorTip(node) {
     let element = (node.length && node.length > 0) ? node[0] : node;
-    const { tipElement, wrapClass, tipClass } = this.settings;
-    const parent = element.closest(wrapClass);
+    const { tipElement, wrapSelector, tipClass } = this.settings;
+    const parent = element.closest(wrapSelector);
     const addedClass = element.id ? ` v-tip-${element.id}` : '';
     const dataTip = element.getAttribute('data-tip');
     let tip;
@@ -693,10 +692,10 @@ class Validator {
    * - change for hidden form elements
    * */
   delegateFocus() {
-    const { validClass } = this.settings;
+    const { validSelector } = this.settings;
     const form = this.form;
 
-    Util.on(form, 'focusin change', validClass, e => {
+    Util.on(form, 'focusin change', validSelector, e => {
       const target = e.target;
       const name = target.name;
 
@@ -708,7 +707,7 @@ class Validator {
   }
 
   delegateBlur() {
-    Util.on(this.form, 'focusout', this.settings.validClass, (e) => {
+    Util.on(this.form, 'focusout', this.settings.validSelector, (e) => {
       if (this.fields === null) return;
 
       const target = e.target;
@@ -734,7 +733,7 @@ class Validator {
    * @param {HTMLElement} tip - error tip element
    * */
   removeErrorClass(target, tip) {
-    const { showClass, errorClass, wrapClass, successClass } = this.settings;
+    const { showClass, errorClass, wrapSelector, successClass } = this.settings;
     const tipEle = tip;
 
     Util.removeClass(target, errorClass);
@@ -742,9 +741,9 @@ class Validator {
 
     tipEle.innerText = '';
 
-    if (target.closest && target.closest(wrapClass)) {
-      Util.removeClass(target.closest(wrapClass), errorClass);
-      Util.removeClass(target.closest(wrapClass), successClass);
+    if (target.closest && target.closest(wrapSelector)) {
+      Util.removeClass(target.closest(wrapSelector), errorClass);
+      Util.removeClass(target.closest(wrapSelector), successClass);
     }
   }
 
@@ -754,12 +753,12 @@ class Validator {
    * @param {HTMLElement} target - form element
    * */
   addLoadClass(target) {
-    const { loadClass, wrapClass } = this.settings;
+    const { loadClass, wrapSelector } = this.settings;
 
     Util.addClass(target, loadClass);
 
-    if (target.closest && target.closest(wrapClass)) {
-      Util.addClass(target.closest(wrapClass), loadClass);
+    if (target.closest && target.closest(wrapSelector)) {
+      Util.addClass(target.closest(wrapSelector), loadClass);
     }
   }
 
@@ -769,12 +768,12 @@ class Validator {
    * @param {HTMLElement} target - form element
    * */
   removeLoadClass(target) {
-    const { loadClass, wrapClass } = this.settings;
+    const { loadClass, wrapSelector } = this.settings;
 
     Util.removeClass(target, loadClass);
 
-    if (target.closest && target.closest(wrapClass)) {
-      Util.removeClass(target.closest(wrapClass), loadClass);
+    if (target.closest && target.closest(wrapSelector)) {
+      Util.removeClass(target.closest(wrapSelector), loadClass);
     }
   }
 
@@ -861,21 +860,21 @@ class Validator {
    * @param {string} message - error message
    * */
   showErrorTip(element, tip, message) {
-    const { errorClass, wrapClass } = this.settings;
+    const { errorClass, wrapSelector } = this.settings;
     const tipElement = tip;
     tipElement.innerHTML = message;
     Util.addClass(tipElement, 'show');
     Util.addClass(element, errorClass);
 
-    if (element.closest && element.closest(wrapClass)) {
-      Util.addClass(element.closest(wrapClass), errorClass);
+    if (element.closest && element.closest(wrapSelector)) {
+      Util.addClass(element.closest(wrapSelector), errorClass);
     }
   }
 
   showSuccessTip(element) {
-    const { successClass, wrapClass } = this.settings;
-    if (element.closest && element.closest(wrapClass)) {
-      Util.addClass(element.closest(wrapClass), successClass);
+    const { successClass, wrapSelector } = this.settings;
+    if (element.closest && element.closest(wrapSelector)) {
+      Util.addClass(element.closest(wrapSelector), successClass);
     }
   }
 
