@@ -135,6 +135,8 @@ $tab-small-font-size: 14px !default;
 $tab-border: $light !default;
 $tab-padding: 16px;
 
+$tab-color: $black !default;
+
 /* ------- Table ------- */
 
 $table-head-height: 40px !default;
@@ -211,5 +213,12 @@ $picker-radius: 8px !default;
 $upload-single-size: 126px !default;
 
 
+/* ------- Steps -------*/
+$steps-icon: '\eb1f' !default;
+$steps-icon-size: 20px !default;
 
+
+/* ------- Dropdown -------*/
+$drop-icon: '\eb3f' !default;
+$drop-icon-color: $gray !default;
 

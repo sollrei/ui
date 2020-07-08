@@ -6,7 +6,6 @@
 
   .drop-label {
     height: 24px;
-    // position: relative;
     padding-right: 20px;
     line-height: $line-height;
     cursor: pointer;
@@ -16,9 +15,9 @@
       right: 0;
       top: 4px;
       @include iconfont;
-      content: '\eb3f';
+      content: $drop-icon;
       transition: .2s;
-      color: $gray;
+      color: $drop-icon-color;
     }
 
     &.no-arrow {

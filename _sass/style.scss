@@ -9,7 +9,7 @@ $color-light: #f7f8fa;
 
 body {
   background: $bg;
-  min-width: 800px;
+  // min-width: 800px;
 }
 
 ::-moz-selection {
@@ -201,6 +201,14 @@ body {
   .page-code {
     padding-right: 60px;
     padding-left: 60px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  
+  .page-code {
+    padding-right: 20px;
+    padding-left: 40px;
   }
 }
 

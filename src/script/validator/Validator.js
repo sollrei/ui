@@ -43,6 +43,21 @@ const regRule = {
 };
 
 const testReg = {
+  is_or({ value, rule }) {
+    const rules = rule.value.split(',');
+    let valid = false;
+
+    if (value === '') return true;
+
+    rules.forEach(key => {
+      if (regRule[key] && regRule[key].test(value)) {
+        valid = true;
+      }
+    });
+
+    return valid;
+  },
+  
   is_email({ value }) {
     return value ? regRule.email.test(value) : true;
   },

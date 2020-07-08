@@ -76,13 +76,13 @@
 
   .pass {
     &:before {
-      content: '\eb1f';
+      content: $steps-icon;
       border: 0 none;
       color: $green;
       font-family: iconfont;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      font-size: 20px;
+      font-size: $steps-icon-size;
       line-height: 1;
     }
 
