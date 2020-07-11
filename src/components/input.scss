@@ -42,6 +42,15 @@
     border-color: $primary;
     box-shadow: $form-control-active-shadow;
   }
+
+  &.transparent {
+    border: 0 none;
+
+    &:focus-within,
+    &.active {
+      box-shadow: none;
+    }
+  }
   
   .ui-form-control {
     flex: 1;

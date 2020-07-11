@@ -52,6 +52,22 @@ $radius: 4px !default;
 $shadow: 0 2px 4px 0 rgba($dark, .1) !default;
 $transition-duration: .2s !default;
 
+$small-width: 568px;
+$middle-width: 768px;
+$normal-width: 1300px;
+
+@mixin phone {
+  @media screen and (max-width: $small-width) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: $middle-width) {
+    @content;
+  }
+}
+
 
 /* ============================
             Components
@@ -222,3 +238,10 @@ $steps-icon-size: 20px !default;
 $drop-icon: '\eb3f' !default;
 $drop-icon-color: $gray !default;
 
+/* ------- Modal -------*/
+$modal-radius: 8px !default;
+$modal-max-width: 95% !default;
+$modal-min-height: 200px !default;
+
+$modal-width: auto !default;
+$modal-close-icon: '\eb93' !default;

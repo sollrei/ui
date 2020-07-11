@@ -44,6 +44,21 @@ need_js: true
 </div>
 {% endexample %}
 
+## Transparent
+
+{% example html %}
+<div class="ui-control-wrap">
+  <input type="text" class="ui-form-control transparent" placeholder="enter">
+</div>
+{% endexample %}
+
+{% example html %}
+<div class="ui-icon-input transparent">
+  <span class="prefix"><i class="iconfont icon-search"></i></span>
+  <input type="text" class="ui-form-control">
+</div>
+{% endexample %}
+
 ## 字数限制
 
 > 需要有`maxlenth`属性

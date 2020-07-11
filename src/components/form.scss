@@ -8,6 +8,10 @@
     display: flex;
     flex-flow: row wrap;
     align-content: flex-start;
+
+    &.line {
+      border-bottom: 1px solid $color-border;
+    }
   }
 
   .form-label {
@@ -37,6 +41,16 @@
     .ui-radio,
     .ui-checkbox {
       line-height: $form-control-height;
+    }
+  }
+
+  .line {
+    .form-label {
+      text-align: left;
+    }
+
+    .form-con {
+      flex-grow: 1;
     }
   }
 
@@ -100,6 +114,15 @@
     outline: none;
     border-color: $primary;
     box-shadow: $form-control-active-shadow;
+  }
+
+  &.transparent {
+    border: 0 none;
+
+    &.active,
+    &:focus {
+      box-shadow: none;
+    }
   }
 
   &:disabled,

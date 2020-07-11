@@ -57,6 +57,16 @@ layout: default
 </label>
 {% endexample %}
 
+
+{% example html %}
+<div class="ui-radio-group">
+  <input type="radio" name="type" checked id="type1" value="1">
+  <label for="type1">选项1</label>
+  <input type="radio" name="type" id="type2" value="2">
+  <label for="type2">选项2</label>
+</div>
+{% endexample %}
+
 ## Switch
 
 {% example html %}

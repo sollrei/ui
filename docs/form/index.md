@@ -5,7 +5,29 @@ need_js: true
 
 # Form
 
-<form action="https://api.cooode.xyz/api2/star-success-demo" method="post" class="ui-form" autocomplete="off">
+<form class="ui-form" style="width: 500px">
+  <div class="form-group line">
+    <div class="form-label">email</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control transparent" placeholder="email">
+      </div>
+    </div>
+  </div>
+  <div class="form-group line">
+    <div class="form-label">name</div>
+    <div class="form-con">
+      <div class="ui-control-wrap">
+        <input type="text" class="ui-form-control transparent" placeholder="name">
+      </div>
+    </div>
+  </div>
+  
+</form>
+
+## Validator
+
+<form action="https://api.cooode.xyz/api2/star-success-demo" method="post" class="ui-form js-form" autocomplete="off">
   <div class="form-group">
     <div class="form-label">required：</div>
     <div class="form-con">
@@ -232,13 +254,13 @@ var Select = ui.Select;
 
 new Select('.js-select');
 
-new Validator('.ui-form', function () {
+new Validator('.js-form', function () {
   alert('success');
 });
 </script>
 {% endexample %}
 
-## Validator
+
 
 ```javascript
 new Validator(form, successCallback[, errorCallback]);

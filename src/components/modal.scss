@@ -2,14 +2,27 @@
 
 // need rewrite
 
-$padding: 30px;
-$h-icon: 50px;
-$svg-timing: .9s;
+/*
+  .ui-modal
+    .modal-box
+      .modal-close
+      .modal-title
+        .modal-head
+      .modal-content
+        .modal-main
+      .modal-footer
+*/
 
 .modal-open {
   height: 100vh;
   overflow-y: hidden;
   padding-right: 15px;
+}
+
+@include tablet {
+  .modal-open {
+    padding-right: 0;
+  }
 }
 
 .ui-modal {
@@ -29,13 +42,11 @@ $svg-timing: .9s;
   -webkit-overflow-scrolling: touch;
   transition: .3s;
   overflow-y: auto;
-  // display: none;
 
   &.modal-visible {
     z-index: 19000;
     opacity: 1;
     visibility: visible;
-    // display: block;
   }
 
   > * {
@@ -63,8 +74,7 @@ $svg-timing: .9s;
   }
 
   .modal-box {
-    // min-width: 440px;
-    min-height: 200px;
+    min-height: $modal-min-height;
   }
 
   .resize-trigger {
@@ -93,8 +103,8 @@ $svg-timing: .9s;
 
 .modal-box {
   position: relative;
-  max-width: 95%;
-  border-radius: 8px;
+  max-width: $modal-max-width;
+  border-radius: $modal-radius;
   background: $white;
   opacity: 0;
   visibility: hidden;
