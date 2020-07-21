@@ -161,6 +161,41 @@ const util = {
   },
 
   /**
+   * 
+   * @param {*} _date 
+   * @param {string} format 
+   * @returns {string} -
+   */
+  dateFormate(_date, format) {
+    const date = new Date(_date);
+    const year = date.getFullYear() + '';
+    const month = date.getMonth() + 1;
+
+    const _month = ('0' + month).slice(-2);
+    const _day = ('0' + date.getDate()).slice(-2);
+    const _hours = ('0' + date.getHours()).slice(-2);
+    const _minutes = ('0' + date.getMinutes()).slice(-2);
+    const _seconds = ('0' + date.getSeconds()).slice(-2);
+
+    let result;
+
+    if (format) {
+      result = format;
+      result.replace('YYYY', year)
+        .replace('MM', _month)
+        .replace('DD', _day)
+        .replace('hh', _hours)
+        .replace('mm', _minutes)
+        .replace('ss', _seconds);
+    } else {
+      // YYYY-MM-DD hh:mm:ss
+      result = `${year}-${_month}-${_day} ${_hours}:${_minutes}:${_seconds}`;
+    }
+
+    return result;
+  },
+
+  /**
    * @param {string} url - request url
    * @param {object} data - request data
    * @param {string} method  - request method
