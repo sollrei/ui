@@ -23,14 +23,9 @@ class SelectBase {
   }
 
   /**
-   * @function
-   * @param {object} selected  - selected status
-   * @param selected.selected
-   * @param selected.value
-   * @param selected.label
-   * @param selected.disabled
-   * @param option
-   * @returns {string}  new option html
+   * @param {*} param0
+   * @param {object=} option
+   * @returns {string} li
    */
   createOptionItem({ selected, value, label, disabled }, option) {
     const { selectedClass } = this.settings;

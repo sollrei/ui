@@ -44,11 +44,7 @@ class Select extends SelectBase {
   }
 
   /**
-   * @function
-   * @param ele
-   * @param {NodeList} element 
-   * 
-   * 
+   * @param {HTMLElement|HTMLSelectElement} ele 
    * this.data  [{label, value, selected[boolean]}]
    * this.cache {id: {label, value}}
    */
@@ -74,6 +70,7 @@ class Select extends SelectBase {
     this.clearable = clearable;
     this.enterable = enterable;
 
+    // @ts-ignore
     if (element.multiple || element.hasAttribute('data-multiple')) {
       this.multiple = true;
     }
@@ -120,7 +117,7 @@ class Select extends SelectBase {
 
   getDataFromSelect(element, parentId) {
     const elements = element.children;
-
+    
     return [].slice.call(elements).map(item => {
       const nodeName = item.nodeName.toLowerCase();
       if (nodeName === 'option') {
@@ -154,6 +151,10 @@ class Select extends SelectBase {
     });
   }
 
+  /**
+   * 
+   * @param {Array} data 
+   */
   createCacheFromData(data) {
     const { labelName, valueName } = this.settings;
 
@@ -204,6 +205,7 @@ class Select extends SelectBase {
    * @function
    * create new element to exchange select element
    * @param {HTMLElement} item
+   * @returns {object} -
    * */
   initSelect(item) {
     const element = item;
@@ -242,7 +244,7 @@ class Select extends SelectBase {
    * @function
    * create new select element
    * @param {HTMLElement} element
-   * @returns {object}
+   * @returns {object} -
    * */
   createSelectDom(element) {
     const { selectClass, emptyLabel } = this.settings;
@@ -310,13 +312,6 @@ class Select extends SelectBase {
     return wrap.appendChild(optionUI);
   }
 
-  /**
-   * @function 
-create new 'option'
-   * @param match
-   * @param {HTMLElement} element
-   * @returns {string}
-   */
   createDropdown(match) {
     let domString = '<div class="select-ul">';
     const { emptyLi } = this.settings;
@@ -330,22 +325,12 @@ create new 'option'
     this.select.option.innerHTML = domString + '</ul></div>';
   }
 
-  /**
-   * create main options list
-   *
-   * @param element {HTMLElement} origin select
-   * @param data
-   * @param data
-   * @param match {string|any} search content
-   * @param option
-   * @param option
-   */ 
-  createOptionContent(data, match, option) {
+  createOptionContent(data, match) {
     return data.reduce((str, item) => {
       if (item.type && item.type === 'optgroup') {
         return str + this.createOptionGroup(item, match);
       }
-      return str + this.createOptionSingle(item, match, option);
+      return str + this.createOptionSingle(item, match);
     }, '');
   }
 
@@ -472,6 +457,10 @@ create new 'option'
     }
   }
 
+  /**
+   * 
+   * @param {*} value 
+   */
   resetValue(value) {
     const self = this;
 
@@ -481,9 +470,10 @@ create new 'option'
       if (this.multiple) {
         this.changeMultiSelectValue(false, 'change');
       } else {
+        const _value = value[0];
         const select = self.select;
-        const label = self.cache[value].label;
-        self.changeSelectValue(select, value, label);
+        const label = self.cache[_value].label;
+        self.changeSelectValue(select, _value, label);
         self.changeMultiSelectedClass();
       }
     }
@@ -537,7 +527,7 @@ create new 'option'
 
       if (Array.isArray(value)) {
         u.forEach(options, item => {
-          item.selected = value.indexOf(item.value) > -1;
+          item.selected = value.indexOf(item.value) > -1; // eslint-disable-line
         });
       }
     }
@@ -704,10 +694,6 @@ create new 'option'
     }
   }
 
-  /**
-   * @function
-   * @param {object} select
-   * */
   bindEvent() {
     const select = this.select;
     const option = select.option;
@@ -768,8 +754,9 @@ create new 'option'
 }
 
 /**
- * @param selector
- * @param options
+ * @param {*} selector
+ * @param {*} options
+ * @returns {object} -
  */
 export default function (selector, options) {
   if (typeof selector === 'string') {

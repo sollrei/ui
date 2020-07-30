@@ -239,8 +239,7 @@ need_js: true
   <div class="form-group">
     <div class="form-label"></div>
     <div class="form-con ui-row">
-      <button class="ui-button primary mr-16" type="submit">保存</button>
-      <button class="ui-button" type="reset">重置</button>
+      <button class="ui-button primary" type="submit">保存</button>
     </div>
   </div>
 </form>

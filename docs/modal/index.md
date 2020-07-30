@@ -26,7 +26,7 @@ need_js: true
   document.querySelector('.js-modal-btn').addEventListener('click', function () {
     m.show({
       title: 'Modal',
-      content: '<div class="modal-main">Modal Content Text .... ... ....</div>'
+      content: '<div class="modal-main">Modal Content Text .... ...Modal Content Text ....</div>'
     });
   });
 </script>
