@@ -120,7 +120,7 @@ input.addEventListener('change', function () {
 | **beforeInit** | null | callback | 整个上传初始化之前，函数中调用callback(true)会继续上传流程，否则结束 |
 | **init** | null | this: uploadContext | 初始化上传文件数组，state变为0: init |
 | **start** | function(){ return true; } | this: uploadContext | 文件通过类型和大小的验证 |
-| **beforeUploadStart**  | null | callback | 文件上传开始前，函数中调用callback(true)会继续上传，否则结束|
+| **beforeUploadStart**  | null | uploadContexts, callback | 文件上传开始前，函数中调用callback(true)会继续上传，否则结束|
 | **beforeUpload** | null | this: uploadContext, uploadFileIndex, callback(next, data) | 单个文件上传开始前, 函数中调用callback(true)会继续上传，data会添加到当前文件上传的ajax请求中 |
 | **progress** | null | this: uploadContext, progress | 上传进度 |
 | **success** | null | this: uploadContext, responseData | ajax上传有返回数据 |

@@ -64,7 +64,11 @@ class Message {
 
       // return;
     } else {
-      msg.style.top = this.settings.top + 'px';
+      let top = this.settings.top;
+      if (typeof top === 'number') {
+        top = this.settings.top + 'px';
+      }
+      msg.style.top = this.settings.top;
     }
 
     // const top = this.settings.top + (this.count * 50) + 'px';

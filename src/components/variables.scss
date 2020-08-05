@@ -196,11 +196,18 @@ $switch-disable-btn-bg: $light !default;
 
 /* ------- Alert ------- */ 
 
+$alert-radius: 8px !default;
+$alert-color: $black !default;
+
 $alert-success-border-color: #a0e3d5 !default;
 $alert-success-bg: #ecfcf8 !default;
+$alert-success-icon: '\eb09' !default;
 
 $alert-warn-border-color: #ffd9ac !default;
 $alert-warn-bg: #fff7ed !default;
+$alert-warn-icon: '\eb1d' !default;
+
+/* ------- Notice ------- */ 
 
 $notice-border-color: #c9e2f6 !default;
 $notice-bg: #f2f9ff !default;
@@ -209,6 +216,8 @@ $notice-warn-border-color: #ffcfcf !default;
 $notice-warn-bg: #ffeded !default;
 
 $notice-radius: 8px !default;
+$notice-icon: '\eb1d' !default;
+$notice-error-icon: '\eb07' !default;
 
 /* ------- Transfer -------*/ 
 

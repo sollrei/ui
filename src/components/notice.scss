@@ -12,7 +12,7 @@
   background: $notice-bg;
 
   &:before {
-    content: '\eb1d';
+    content: $notice-icon;
     position: absolute;
     left: 12px;
     top: 12px;
@@ -59,7 +59,7 @@
     background-color: $notice-warn-bg;
 
     &:before {
-      content: '\eb07';
+      content: $notice-error-icon;
       color: $red;
     }
   }

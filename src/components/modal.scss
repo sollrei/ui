@@ -229,8 +229,9 @@
     padding: 8px 12px 8px 36px;
     border-width: 1px;
     border-style: solid;
-    border-radius: 8px;
+    border-radius: $alert-radius;
     box-shadow: $shadow;
+    color: $alert-color;
   }
 
   .alert-content:before {
@@ -247,7 +248,7 @@
 
     &:before {
       color: $green;
-      content: '\eb09';
+      content: $alert-success-icon;
       line-height: 1;
     }
   }
@@ -258,7 +259,7 @@
 
     &:before {
       color: $yellow;
-      content: '\eb1d';
+      content: $alert-warn-icon;
       line-height: 1;
     }
   }

@@ -8,12 +8,13 @@ class Layer {
     const defaults = {
       layer: null,
       title: null,
-      type: null, // alert, confirm
+      type: null, 
 
       confirmType: 'warn', // warn success
 
       close: '[data-layer-close]',
 
+      layerClass: 'ui-layer',
       showClass: 'layer-visible',
       width: 640,
 
@@ -40,13 +41,19 @@ class Layer {
   }
 
   createLayer() {
-    const { width } = this.settings;
+    const { width, layerClass } = this.settings;
+    let _width = width;
+
+    if (typeof width === 'number') {
+      _width = width + 'px';
+    }
+
     const closeIcon = '<span class="layer-close iconfont icon-times" data-layer-close></span>';
-    let htmlString = `<div class="layer-box" style="width: ${width}px">${closeIcon} 
+    let htmlString = `<div class="layer-box" style="width: ${_width}px">${closeIcon} 
       <div class="layer-head"></div>
       <div class="layer-content"></div>
     </div>`;
-    const div = u.createElement('div', { className: 'ui-layer' }, htmlString);
+    const div = u.createElement('div', { className: layerClass }, htmlString);
 
     return document.body.appendChild(div);
   }
