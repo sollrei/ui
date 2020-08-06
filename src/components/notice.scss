@@ -46,8 +46,8 @@
   }
 
   &.warn {
-    border-color: $alert-warn-border-color;
-    background: $alert-warn-bg;
+    border-color: $notice-warn-border-color;
+    background: $notice-warn-bg;
 
     &:before {
       color: $yellow;
@@ -55,8 +55,8 @@
   }
 
   &.error {
-    border: solid 1px $notice-warn-border-color;
-    background-color: $notice-warn-bg;
+    border: solid 1px $notice-error-border-color;
+    background-color: $notice-error-bg;
 
     &:before {
       content: $notice-error-icon;

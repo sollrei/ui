@@ -91,19 +91,10 @@
 
   .modal-footer {
     padding: 24px;
-    // height: 80px;
     border-top: 1px solid $color-border;
-
-    &:after {
-      content: '.';
-      visibility: hidden; 
-      display: block; 
-      height: 0; 
-      clear: both;
-    }
+    text-align: right;
 
     .ui-button {
-      float: right;
       margin-left: 16px;
     }
   }
@@ -118,7 +109,6 @@
   visibility: hidden;
   animation-duration: .4s;
   animation-fill-mode: both;
-  //overflow-y: auto;
 
   .modal-close {
     position: absolute;
@@ -293,4 +283,35 @@
   }
 }
 
+
+.modal-footer.handheld {
+  height: auto;
+  padding: 0;
+  display: flex;
+
+  .ui-button {
+    background: none;
+    width: 50%;
+    height: $modal-handheld-footer-height;
+    margin: 0;
+    text-align: center;
+    line-height: $modal-handheld-footer-height;
+    border: 0 none;
+    font-size: 16px;
+    color: $gray;
+    border-radius: 0;
+  
+    &:focus {
+      outline: none;
+    }
+
+    + .ui-button {
+      border-left: 1px solid $color-border;
+    }
+  }
+
+  .modal-ok {
+    font-weight: 500;
+  }
+}
 

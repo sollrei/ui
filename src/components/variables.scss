@@ -92,16 +92,18 @@ $form-control-padding-v: 4px !default;
 
 $form-placeholder-color: $light !default;
 
-$form-control-error-color: $red !default;
-
-$form-control-error-shadow: 0 0 0 3px rgba($red, .1) !default;
-$form-control-active-shadow: 0 0 0 3px rgba($primary, 0.1) !default;
-
 $form-control-border-color: $color-border !default;
 $form-control-border-disable-color: rgba($light, 0.6) !default;
-$form-control-disable-bg: $color-bg-disabled !default;
 
 $form-control-icon-color: $gray !default;
+
+$form-control-error-color: $red !default;
+$form-control-error-left: 0 !default;
+$form-control-error-shadow: 0 0 0 3px rgba($red, .1) !default;
+
+$form-control-active-shadow: 0 0 0 3px rgba($primary, 0.1) !default;
+
+$form-control-disable-bg: $color-bg-disabled !default;
 
 /* ------- Button ------- */
 
@@ -122,6 +124,14 @@ $button-border-type: solid !default;
 
 $button-hover: $color-bg-hover !default;
 $button-disable: $color-bg-disabled !default;
+
+/* ------- Checkbox ------- */
+$checkbox-icon: '\eb34' !default;
+$checkbox-checked-icon: '\eb35' !default;
+$checkbox-indeterminate-icon: '\eb33' !default;
+
+$radio-icon: '\eb0e' !default;
+$radio-checked-icon: '\eb11' !default;
 
 /* ------- Pagination ------- */
 
@@ -182,7 +192,8 @@ $list-small-padding: 4px !default;
 /* ------- Select ------- */
 
 $select-drop-height: 276px !default;
-
+$select-icon: '\eb3f' !default;
+$select-icon-size: 16px !default;
 
 /* ------- Switch ------- */
 
@@ -212,8 +223,11 @@ $alert-warn-icon: '\eb1d' !default;
 $notice-border-color: #c9e2f6 !default;
 $notice-bg: #f2f9ff !default;
 
-$notice-warn-border-color: #ffcfcf !default;
-$notice-warn-bg: #ffeded !default;
+$notice-warn-border-color: #ffd9ac !default;
+$notice-warn-bg: #fff7ed !default;
+
+$notice-error-border-color: #ffcfcf !default;
+$notice-error-bg: #ffeded !default;
 
 $notice-radius: 8px !default;
 $notice-icon: '\eb1d' !default;
@@ -254,3 +268,5 @@ $modal-min-height: 200px !default;
 
 $modal-width: auto !default;
 $modal-close-icon: '\eb93' !default;
+
+$modal-handheld-footer-height: 56px !default;

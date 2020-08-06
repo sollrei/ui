@@ -18,12 +18,12 @@ $icon-top: ($menu-height - 16px) / 2;
 
   // arrow
   &:before {
-    content: "\eb3f";
+    content: $select-icon;
     position: absolute;
     right: 10px;
     top: 0;
 
-    font-size: 16px;
+    font-size: $select-icon-size;
     font-family: "iconfont";
     color: $form-control-icon-color;
     line-height: $form-control-height - 2px;
@@ -132,7 +132,7 @@ select.ui-select {
 
 .ui-select-active {
   border-color: $primary;
-  box-shadow: 0 0 0 3px rgba($primary, .1);
+  box-shadow: $form-control-active-shadow;
 
   &:before {
     transform: rotate(180deg);

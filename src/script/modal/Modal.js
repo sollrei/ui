@@ -125,7 +125,7 @@ class Modal {
     }
 
     if (confirmBtn || cancelBtn) {
-      foot = `<div class="modal-footer">${confirmButton}${cancelButton}</div>`;
+      foot = `<div class="modal-footer">${cancelButton}${confirmButton}</div>`;
     }
 
     return foot;

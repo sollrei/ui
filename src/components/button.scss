@@ -108,6 +108,11 @@
     }
   }
 
+  &.border {
+    border: 1px solid $button-border-color;
+    background: $white;
+  }
+
   &.icon {
     display: inline-flex;
     align-items: center;

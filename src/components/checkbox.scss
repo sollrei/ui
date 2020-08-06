@@ -56,26 +56,26 @@
 
 .ui-checkbox {
   .iconfont:before {
-    content: '\eb34';
+    content: $checkbox-icon;
   }
 
   input:checked + .iconfont:before {
-    content: "\eb35";
+    content: $checkbox-checked-icon;
   }
 
   input:indeterminate + .iconfont:before {
-    content: '\eb33';
+    content: $checkbox-indeterminate-icon;
     color: $primary;
   }
 }
 
 .ui-radio {
   .iconfont:before {
-    content: '\eb0e';
+    content: $radio-icon;
   }
 
   input:checked + .iconfont:before {
-    content: "\eb11";
+    content: $radio-checked-icon;
   }
 }
 
