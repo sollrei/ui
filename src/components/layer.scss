@@ -25,16 +25,6 @@ html.layer-open {
   bottom: 0;
   transition: opacity .3s;
 
-  &.layer-visible {
-    z-index: 1900;
-    opacity: 1;
-    visibility: visible;
-
-    .layer-box {
-      transform: translate(0, 0);
-    }
-  }
-
   .layer-box {
     position: absolute;
     right: 0;
@@ -44,6 +34,23 @@ html.layer-open {
     bottom: 0;
     transform: translate(100%, 0);
     transition: .3s;
+  }
+
+  &.handheld {
+    .layer-box {
+      top: auto;
+      transform: translate(0, 100%);
+    }
+  }
+
+  &.layer-visible {
+    z-index: 1900;
+    opacity: 1;
+    visibility: visible;
+
+    .layer-box {
+      transform: translate(0, 0);
+    }
   }
 
   .layer-close {

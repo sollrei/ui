@@ -102,6 +102,7 @@
 
 .modal-box {
   position: relative;
+  width: $modal-width;
   max-width: $modal-max-width;
   border-radius: $modal-radius;
   background: $white;
@@ -122,6 +123,10 @@
     cursor: pointer;
     text-align: center;
     color: $gray;
+  }
+
+  .icon-times:after {
+    content: $modal-close-icon;
   }
 
   .modal-main {
@@ -283,7 +288,6 @@
   }
 }
 
-
 .modal-footer.handheld {
   height: auto;
   padding: 0;
@@ -314,4 +318,3 @@
     font-weight: 500;
   }
 }
-

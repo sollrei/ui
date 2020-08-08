@@ -15,8 +15,12 @@ a.ft-primary,
   }
 }
 
-.ft-link.ft-primary:hover .iconfont.ft-gray {
-  color: $primary;
+.ft-link {
+  cursor: pointer;
+
+  &.ft-primary:hover .iconfont.ft-gray {
+    color: $primary;
+  }
 }
 
 .ft-warn,
@@ -58,10 +62,6 @@ a.ft-primary,
   text-align: left;
 }
 
-.ft-link {
-  cursor: pointer;
-}
-
 .ft-middle {
   vertical-align: middle;
 }
@@ -69,8 +69,6 @@ a.ft-primary,
 .ft-rmb {
   font-family: arial, sans-serif;
 }
-
-
 
 .ft-12 {
   font-size: 12px; 

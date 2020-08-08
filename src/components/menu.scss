@@ -15,6 +15,7 @@
     align-items: center;
   
     /* states */ 
+    &.active,
     &:hover {
       color: $black;
       background-color: rgba($primary, .06);

@@ -826,7 +826,7 @@ class Validator {
 
       if (typeof validResult === 'boolean') {
         if (!validResult) {
-          this.showErrorTip(element, tip, rule.msg);
+          this.showErrorTip(element, rule.msg, tip);
           field.valid = false;
           return false;
         }
@@ -849,7 +849,7 @@ class Validator {
             this.showSuccessTip(element);
           } else {
             field.valid = false;
-            this.showErrorTip(element, tip, res.msg || rule.msg);
+            this.showErrorTip(element, res.msg || rule.msg, tip);
           }
           
           field.remoteOk = true;
@@ -871,18 +871,29 @@ class Validator {
    * @function
    * show error tip element
    * @param {HTMLElement} element - form element
-   * @param {HTMLElement} tip - error tip element
    * @param {string} message - error message
+   * @param {HTMLElement=} tip - error tip element
    * */
-  showErrorTip(element, tip, message) {
-    const { errorClass, wrapSelector } = this.settings;
-    const tipElement = tip;
+  showErrorTip(element, message, tip) {
+    const { errorClass, wrapSelector, tipClass } = this.settings;
+    let tipElement = tip;
+    let _ele = element;
+
+    if (typeof element === 'string') {
+      /** @type {HTMLElement} */
+      _ele = this.form[element];
+    }
+
+    if (!tip && _ele.closest) {
+      tipElement = _ele.closest(wrapSelector).querySelector('.' + tipClass);
+    }
+
     tipElement.innerHTML = message;
     Util.addClass(tipElement, 'show');
-    Util.addClass(element, errorClass);
+    Util.addClass(_ele, errorClass);
 
-    if (element.closest && element.closest(wrapSelector)) {
-      Util.addClass(element.closest(wrapSelector), errorClass);
+    if (_ele.closest && _ele.closest(wrapSelector)) {
+      Util.addClass(_ele.closest(wrapSelector), errorClass);
     }
   }
 
