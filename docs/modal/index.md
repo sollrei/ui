@@ -71,3 +71,31 @@ need_js: true
   });
 </script>
 {% endexample %}
+
+## Layer
+
+<button class="ui-button primary js-layer-btn">Layer</button>
+
+{% example html %}
+<script>
+  var Layer = ui.Layer;
+
+  l = new Layer({
+    position: 'bottom',  // default: right
+    width: '100%', // default: 640
+    onOpen() {
+      console.log('open')
+    },
+    onClose() {
+      console.log('close')
+    }
+  });
+
+  document.querySelector('.js-layer-btn').addEventListener('click', function () {
+    l.show({
+      title: 'Title',
+      content: '<div class="ui-column stretch"><div class="layer-main plr-24">content here</div><div class="layer-footer"><button class="ui-button primary mr-16" type="submit">保存</button><button class="ui-button" type="button" data-layer-close>取消</button></div></div>'
+    });
+  });
+</script>
+{% endexample %}

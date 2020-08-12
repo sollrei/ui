@@ -18,6 +18,8 @@ class Layer {
       showClass: 'layer-visible',
       width: 640,
 
+      position: 'right',
+
       onOpen: null,
       onClose: null
     };
@@ -41,7 +43,7 @@ class Layer {
   }
 
   createLayer() {
-    const { width, layerClass } = this.settings;
+    const { width, layerClass, position } = this.settings;
     let _width = width;
 
     if (typeof width === 'number') {
@@ -49,7 +51,7 @@ class Layer {
     }
 
     const closeIcon = '<span class="layer-close iconfont icon-times" data-layer-close></span>';
-    let htmlString = `<div class="layer-box" style="width: ${_width}px">${closeIcon} 
+    let htmlString = `<div class="layer-box layer-${position}" style="width: ${_width}">${closeIcon} 
       <div class="layer-head"></div>
       <div class="layer-content"></div>
     </div>`;
