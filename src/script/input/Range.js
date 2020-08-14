@@ -1,3 +1,5 @@
+import util from '../base/util.js';
+
 class Range {
   /**
    * @param {string|object} selector 
@@ -273,6 +275,34 @@ class Range {
         self.changeValue(this.value);
       }
     });
+  }
+
+  static simpleRange(selector, cl = '#577bf9', cr = '#edf1f4') {
+    const setValueStyle = (input, _cl, _cr) => {
+      const ele = input;
+      const max = Number(input.getAttribute('max'));
+      const min = Number(input.getAttribute('min'));
+      const percent = ((Number(input.value) - min) / (max - min)) * 100;
+    
+      ele.style.background = `linear-gradient(to right, ${_cl} 0%, ${_cl} ${percent}%, ${_cr} ${percent}%, ${_cr} 100%)`;
+    };
+    
+    if (!(!!window.ActiveXObject || 'ActiveXObject' in window)) {
+      let elements = selector;
+      if (typeof selector === 'string') {
+        elements = document.querySelectorAll(selector);
+      }
+
+      if (elements.length) {
+        [].slice.call(elements).forEach(item => {
+          item.addEventListener('input', function () {
+            setValueStyle(this, cl, cr);
+          });
+
+          setValueStyle(item, cl, cr);
+        });
+      }
+    }
   }
 }
 

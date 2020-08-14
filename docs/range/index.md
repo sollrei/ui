@@ -5,6 +5,7 @@ need_js: true
 
 # Range
 
+
 ## Normal
 
 {% example html %}
@@ -90,3 +91,16 @@ new Range(wrapElement, {
   onChange: null // change callback
 });
 ```
+
+## Simple
+> 主要是修改input的默认样式的实现方式
+
+{% example html %}
+<input id="input" class="ui-range" type="range" min="0" value="40" max="100">
+
+<script>
+  var Range = window.ui.Range;
+  
+  Range.simpleRange('.ui-range');
+</script>
+{% endexample %}
