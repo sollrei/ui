@@ -1,0 +1,82 @@
+@import "variables";
+
+// for input[type="rage"]
+.ui-range:focus {
+  outline: none;
+}
+
+/* chrome */
+@media screen and (-webkit-min-device-pixel-ratio:0) { 
+  .ui-range {
+    -webkit-appearance: none;
+    width: $range-width;
+    background: $color-bg;
+    height: $range-height;
+    border-radius: $range-height / 2;
+  }
+}
+
+.ui-range::-webkit-slider-runnable-track {
+  width: 100%;
+  height: $range-height;
+  border-radius: $range-height / 2;
+  cursor: pointer;
+}
+
+.ui-range::-webkit-slider-thumb {
+  border: 1px solid $color-border;
+  height: $range-btn-size;
+  width: $range-btn-size;
+  border-radius: 50%;
+  background: $white;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6px;
+}
+
+/* ff */
+.ui-range::-moz-range-track {
+  width: 100%;
+  height: $range-width;
+  cursor: pointer;
+  border-radius: $range-width / 2;
+}
+
+.ui-range::-moz-range-thumb {
+  border: 1px solid $color-border;
+  height: $range-btn-size;
+  width: $range-btn-size;
+  border-radius: 50%;
+  background: $white;
+  cursor: pointer;
+}
+
+/* ie 10 + */
+.ui-range::-ms-track {
+  width: 100%;
+  height: $range-height;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  border-width: 6px 0;
+  color: transparent;
+}
+
+.ui-range::-ms-fill-lower {
+  border-radius: 10px;
+  background: $primary;
+}
+
+.ui-range::-ms-fill-upper {
+  background: $color-bg;
+  border-radius: 10px;
+}
+
+.ui-range::-ms-thumb {
+  height: $range-btn-size - 2px;
+  width: $range-btn-size - 2px;
+  border-radius: 50%;
+  background: $white;
+  border: 1px solid $color-border;
+  cursor: pointer;
+}

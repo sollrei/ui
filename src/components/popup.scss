@@ -44,9 +44,9 @@
   }
 }
 
-.ui-title-tip[title] {
+.ui-title-tip[data-title] {
   &:after {
-    content: attr(title);
+    content: attr(data-title);
     max-width: 274px;
     width: auto;
 

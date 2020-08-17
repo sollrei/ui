@@ -5,11 +5,7 @@ need_js: true
 
 # Popup
 
-## Pure Css Title
 
-{% example html %}
-<a href="#" title="this is my title" class="ui-title-tip">text</a>
-{% endexample %}
 
 ## Popper
 
@@ -53,4 +49,10 @@ need_js: true
   var Tooltip = ui.Tooltip;
   new Tooltip('[data-tooltip]');
 </script>
+{% endexample %}
+
+## Pure Css Title
+
+{% example html %}
+<a href="#" data-title="this is my title" class="ui-title-tip">text</a>
 {% endexample %}
