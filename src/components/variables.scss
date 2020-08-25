@@ -73,6 +73,12 @@ $normal-width: 1300px;
             Components
    ============================ */
 
+$icon-info: '\eb1d' !default;
+$icon-warn: '\eb07' !default;
+$icon-success: '\eb09' !default;
+$icon-times: '\eb0b' !default;
+$icon-arrow-down: '\eb3f' !default;
+
 /* ------- Form ------- */
 
 /* Basic */ 
@@ -192,7 +198,7 @@ $list-small-padding: 4px !default;
 /* ------- Select ------- */
 
 $select-drop-height: 276px !default;
-$select-icon: '\eb3f' !default;
+$select-icon: $icon-arrow-down !default;
 $select-icon-size: 16px !default;
 
 /* ------- Switch ------- */
@@ -212,11 +218,11 @@ $alert-color: $black !default;
 
 $alert-success-border-color: #a0e3d5 !default;
 $alert-success-bg: #ecfcf8 !default;
-$alert-success-icon: '\eb09' !default;
+$alert-success-icon: $icon-success !default;
 
 $alert-warn-border-color: #ffd9ac !default;
 $alert-warn-bg: #fff7ed !default;
-$alert-warn-icon: '\eb1d' !default;
+$alert-warn-icon: $icon-info !default;
 
 /* ------- Notice ------- */ 
 
@@ -230,8 +236,8 @@ $notice-error-border-color: #ffcfcf !default;
 $notice-error-bg: #ffeded !default;
 
 $notice-radius: 8px !default;
-$notice-icon: '\eb1d' !default;
-$notice-error-icon: '\eb07' !default;
+$notice-icon: $icon-info !default;
+$notice-error-icon: $icon-warn !default;
 
 /* ------- Transfer -------*/ 
 
@@ -243,6 +249,9 @@ $range-height: 4px !default;
 $range-width: 180px !default;
 $range-btn-size: 16px !default;
 
+$section-range-height: 32px;
+$section-range-thumb-color: #3376ff;
+$section-range-value-color: #78a5ff;
 
 /* ------- Color Picker -------*/
 
@@ -258,7 +267,7 @@ $steps-icon-size: 20px !default;
 
 
 /* ------- Dropdown -------*/
-$drop-icon: '\eb3f' !default;
+$drop-icon: $icon-arrow-down !default;
 $drop-icon-color: $gray !default;
 
 /* ------- Modal -------*/
@@ -267,6 +276,15 @@ $modal-max-width: 95% !default;
 $modal-min-height: 200px !default;
 
 $modal-width: auto !default;
-$modal-close-icon: '\eb0b' !default;
+$modal-close-icon: $icon-times !default;
 
 $modal-handheld-footer-height: 56px !default;
+
+/* ------- Nav -------*/
+$nav-width: 164px !default;
+$nav-height: 630px !default;
+$nav-padding: 16px 8px !default;
+
+$nav-item-height: 40px !default;
+$nav-item-hover: #f2f9ff !default;
+

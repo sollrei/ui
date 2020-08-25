@@ -36,6 +36,18 @@ need_js: true
 </div>
 {% endexample %}
 
+## Line 
+{% example html %}
+<div class="ui-tab line">
+  <ul class="tab-list">
+    <li class="tab-itm active"><a href="#">Tab1</a></li>
+    <li class="tab-itm"><a href="#">Tab2</a></li>
+    <li class="tab-itm"><a href="#">Tab3</a></li>
+    <li class="tab-itm"><a href="#">Tab4</a></li>
+  </ul>
+</div>
+{% endexample %}
+
 ## JavaScript
 
 {% example html %}

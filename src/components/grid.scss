@@ -62,6 +62,10 @@
       width: calc((100% - #{($i - 1) * $grid-gap}) / #{$i});
       margin-right: $grid-gap;
     }
+
+    &:nth-child(#{$i}n) {
+      margin-right: 0;
+    }
   }
 
   [class*="col-1-"]:last-child {

@@ -1,0 +1,48 @@
+@import "variables";
+
+.ui-nav {
+  width: $nav-width;
+  padding: $nav-padding;
+  margin-right: 16px;
+  height: $nav-height;
+  border-radius: 8px;
+  background: $white;
+  align-self: flex-start;
+
+  .nav-item {
+    height: $nav-item-height;
+  }
+
+  .nav-a {
+    display: flex;
+    padding-left: 12px;
+    height: $nav-item-height;
+    border-radius: 4px;
+    transition: background .2s;
+    align-items: center;
+
+    .iconfont {
+      color: $gray;
+    }
+  }
+
+  .nav-a:hover {
+    color: $black;
+    background: rgba($primary, .06);
+  }
+
+  .current,
+  .current:hover {
+    color: $primary;
+    background: $nav-item-hover;
+
+    .iconfont {
+      color: $primary;
+    }
+  }
+
+  .iconfont {
+    margin-right: 9px;
+    line-height: 1;
+  }
+}

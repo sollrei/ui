@@ -1,0 +1,44 @@
+@import "variables";
+
+.ui-section-range {
+  position: relative;
+
+  .bar {
+    height: $section-range-height;
+    background: $color-bg;
+    text-align: center;
+    line-height: $section-range-height;
+    user-select: none;
+    border-radius: 4px;
+  }
+  
+  .range-section + .range-section {
+    border-left: 1px solid $white;
+  }
+  
+  .thumb {
+    height: 40px;
+    position: absolute;
+    left: 0;
+    top: -4px;
+    width: 16px;
+    background: $section-range-thumb-color;
+    cursor: pointer;
+    margin-left: -8px;
+  }
+  
+  .rate {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 0;
+    color: $white;
+    background: $section-range-value-color;
+    overflow: hidden;
+    height: $section-range-height;
+    line-height: $section-range-height;
+    text-align: center;
+    border-radius: 4px;
+  }
+}
+

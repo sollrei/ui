@@ -12,7 +12,6 @@ task('css', () => { return css(); });
 
 task('js', () => { return js(); });
 
-
 exports.build = series(['clean'], ['css', 'js']);
 
 exports.watch = series(

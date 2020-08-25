@@ -52,6 +52,11 @@
     font-size: $button-small-font-size;
   }
 
+  &.block {
+    width: 100%;
+    display: block;
+  }
+
   /* Types */
 
   &.primary {

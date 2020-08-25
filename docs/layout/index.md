@@ -53,9 +53,9 @@ layout: default
 
 {% example html %}
 <div class="ui-row between">
-  <div class="col-3"><div class="ui-mod">Main</div></div>
-  <div class="col-3"><div class="ui-mod">Main</div></div>
-  <div class="col-3"><div class="ui-mod">Main</div></div>
+  <div class="col-1-3"><div class="ui-mod">Main</div></div>
+  <div class="col-1-3"><div class="ui-mod">Main</div></div>
+  <div class="col-1-3"><div class="ui-mod">Main</div></div>
 </div>
 {% endexample %}
 
