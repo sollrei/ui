@@ -5,110 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1674032_ock2bes9o9.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/sollrei/ui-pages/dist/ui.css">
+  <link rel="stylesheet" href="../dist/ui.css">
+  <style>
+  </style>
 </head>
 <body style="padding: 100px;">
-  <form action="https://api.cooode.xyz/api2/star-success-demo" method="post" class="ui-form" autocomplete="off">
-    <div class="form-group">
-      <div class="form-label">fields：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <input type="text" class="ui-form-control" name="field" placeholder="field">
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-label">remote：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <input type="text" class="ui-form-control v-item" data-rules="remote(https://api.cooode.xyz/api2/star-success-demo)" name="remote" placeholder="remote">
-        </div>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="form-label">数字：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <input type="text" class="ui-form-control v-item" data-rules="number" name="number" placeholder="number">
-        </div>
-      </div>
-    </div>
-    
-    <div class="form-group">
-      <div class="form-label">price：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <input type="text" class="ui-form-control v-item" data-rules="price" data-msgs="" name="price" placeholder="price">
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-label">time：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <input type="text" class="ui-form-control v-item" data-rules="time" data-msgs="" name="time" placeholder="time">
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-label">not：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <input type="text" class="ui-form-control v-item" data-rules="not(1)" data-msgs="" name="not" placeholder="not(1)">
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-label">限制数量多选：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <label class="ui-checkbox"><input type="checkbox" name="checkmin" value="1" class="v-item" data-rules="min(2)" data-msgs="最少选两项"><i class="iconfont"></i><span>选项1</span></label>
-          <label class="ui-checkbox"><input type="checkbox" name="checkmin" value="2" class="v-item"><i class="iconfont"></i><span>选项2</span></label>
-          <label class="ui-checkbox"><input type="checkbox" name="checkmin" value="3" class="v-item"><i class="iconfont"></i><span>选项3</span></label>
-        </div>
-      </div>
-    </div>
-    <div class="form-group">
-      <div class="form-label">限制数量多选：</div>
-      <div class="form-con">
-        <div class="ui-control-wrap">
-          <label class="ui-checkbox"><input type="checkbox" name="check" value="1" class="v-item" data-rules="max(2)" data-msgs="最多选两项"><i class="iconfont"></i><span>选项1</span></label>
-          <label class="ui-checkbox"><input type="checkbox" name="check" value="2" class="v-item"><i class="iconfont"></i><span>选项2</span></label>
-          <label class="ui-checkbox"><input type="checkbox" name="check" value="3" class="v-item"><i class="iconfont"></i><span>选项3</span></label>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <div class="form-label"></div>
-      <div class="form-con ui-row">
-        <button class="ui-button primary mr-16" type="submit">保存</button>
-        <button class="ui-button js-reset" type="reset">重置</button>
-      </div>
-    </div>
-  </form>
+  
+  <div class="js"></div>
 
   <script type="module">
-    import Validator from './script/validator/Validator.js';
-    let valid = new Validator('.ui-form', [{
-        name: 'field',
-        rules: 'required|email',
-        msgs: 'required|email',
-        fn(a, field) {
-          console.log(field)
-        }
-      }], {
-      scrollToError: true,
-    }, function () {
-      alert('success');
-    }, function () {
-      console.log('error')
-    });
-
-    document.querySelector('.js-reset').addEventListener('click', function () {
-      valid.cleanTips();
-    })
+    import SectionRange from './script/input/SectionRange.js';
+    new SectionRange('.js');
   </script>
 
 </body>

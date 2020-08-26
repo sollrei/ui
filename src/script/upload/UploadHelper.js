@@ -57,6 +57,8 @@ class UploadHelper {
     const { wrap } = this;
     const trigger = wrap.querySelector('.trigger');
     const image = wrap.querySelector('.image');
+    const input = wrap.querySelector('.upload-value');
+
     const self = this;
 
     u.on(wrap, 'click', '.js-clean', function () {
@@ -64,6 +66,11 @@ class UploadHelper {
       u.addClass(image, 'hidden');
       image.innerHTML = '';
       self.input.value = '';
+
+      if (input) {
+        input.value = '';
+        input.trigger('focusout');
+      }
     });
 
     u.on(wrap, 'click', '.js-change', function () {
@@ -79,12 +86,22 @@ class UploadHelper {
     const { wrap } = this;
     const trigger = wrap.querySelector('.trigger');
     const image = wrap.querySelector('.image');
+    const input = wrap.querySelector('.upload-value');
+    let str = '';
 
-    image.innerHTML = `<input type="hidden" name="${name}" value="${url}"><img src="${url}" alt="">
+    if (input) {
+      input.value = url;
+      input.trigger('change');
+    } else {
+      str = `<input type="hidden" name="${name}" value="${url}"><img src="${url}">`;
+    }
+
+    str += `<img src="${url}">
     <div class="option">
       <a href="javascript:;" class="js-change">替换</a><a href="javascript:;" class="js-clean">清除</a>
-    </div>`;
-
+    </div>`
+    
+    image.innerHTML = str;
     u.removeClass(image, 'hidden');
     u.addClass(trigger, 'hidden');
   }

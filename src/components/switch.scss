@@ -7,6 +7,7 @@ $btn-size: $switch-height - ($switch-padding * 2);
 .ui-switch {
   display: inline-flex;
   align-items: center;
+  cursor: pointer;
 
   input {
     display: none;
@@ -31,10 +32,12 @@ $btn-size: $switch-height - ($switch-padding * 2);
   .open {
     padding-left: 8px;
     display: none;
+    user-select: none;
   }
 
   .close {
     padding-left: 8px;
+    user-select: none;
   }
 
   .switch:before {

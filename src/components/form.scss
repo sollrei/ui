@@ -135,6 +135,7 @@
   &.disabled:hover,
   &.disabled:focus {
     cursor: default;
+    color: $form-control-disable-color;
     background-color: $form-control-disable-bg;
     border: solid 1px $form-control-border-disable-color;
   }

@@ -1,5 +1,3 @@
-import util from '../base/util.js';
-
 class Range {
   /**
    * @param {string|object} selector 

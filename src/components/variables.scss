@@ -68,7 +68,6 @@ $normal-width: 1300px;
   }
 }
 
-
 /* ============================
             Components
    ============================ */
@@ -78,6 +77,7 @@ $icon-warn: '\eb07' !default;
 $icon-success: '\eb09' !default;
 $icon-times: '\eb0b' !default;
 $icon-arrow-down: '\eb3f' !default;
+$icon-arrow-up: '\ec18' !default;
 
 /* ------- Form ------- */
 
@@ -109,6 +109,7 @@ $form-control-error-shadow: 0 0 0 3px rgba($red, .1) !default;
 
 $form-control-active-shadow: 0 0 0 3px rgba($primary, 0.1) !default;
 
+$form-control-disable-color: $black !default;
 $form-control-disable-bg: $color-bg-disabled !default;
 
 /* ------- Button ------- */

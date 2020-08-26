@@ -126,4 +126,11 @@ input[type="radio"] {
     position: relative;
     color: $primary;
   }
+  
+  &.separate {
+    label {
+      border-radius: 4px;
+      margin-right: 24px;
+    }
+  }
 }

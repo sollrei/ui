@@ -146,6 +146,7 @@
   visibility: hidden;
   opacity: 0;
   position: fixed;
+  text-align: center;
 
   &.modal-visible {
     opacity: 1;
@@ -159,13 +160,24 @@
     z-index: 10;
   }
 
+  > * {
+    display: inline-block;
+    white-space: normal;
+    vertical-align: middle;
+    text-align: left;
+  }
+
+  &:before {
+    display: inline-block;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    vertical-align: middle;
+    content: "";
+  }
+
   .ui-confirm {
-    position: fixed;
     padding: 16px 48px 16px 40px;
-    // width: 480px;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     display: inline-block;
     box-shadow: $shadow;
     border: solid 1px $color-border;
@@ -178,15 +190,11 @@
 
   &:before {
     @include iconfont;
-    content: '\eb1d';
+    content: $icon-info;
     position: absolute;
     top: 20px;
     left: 16px;
     color: $yellow;
-  }
-
-  &.fadeInDown {
-    animation-name: alertFadeInDown;
   }
 
   .modal-footer {
@@ -215,9 +223,7 @@
   line-height: 24px;
   font-size: 12px;
   z-index: 19000;
-  animation-name: alertFadeInDown;
-  animation-duration: .4s;
-  animation-fill-mode: both;
+  animation: alertFadeInDown .4s forwards;
   transition: top .3s;
 
   .alert-content {
@@ -261,7 +267,7 @@
 }
 
 .fadeInDown {
-  animation-name: fadeInDown;
+  animation: fadeInDown .4s forwards;
 }
 
 @keyframes fadeInDown {

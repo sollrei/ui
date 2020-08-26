@@ -42,10 +42,15 @@
     border-color: $primary;
     box-shadow: $form-control-active-shadow;
   }
+
+  &.disabled,
+  &.disabled:hover {
+    border-color: $form-control-border-disable-color;
+  }
   
   .ui-form-control {
     flex: 1;
-    border: 0 none;
+    border: 0 none !important;
     min-height: $form-control-height - 2px;
     min-width: 10px;
 
@@ -66,6 +71,39 @@
 
   .iconfont {
     color: $form-control-icon-color;
+  }
+
+  .spin-button {
+    width: 32px;
+    height: $form-control-height - 2px;
+    display: inline-flex;
+    flex-direction: column;
+    border-left: 1px solid $form-control-border-color;
+  }
+
+  .step-up,
+  .step-down {
+    flex: 1;
+    line-height: 1;
+    text-align: center;
+    cursor: pointer;
+
+    &:hover {
+      color: $primary;
+    }
+
+    &:before {
+      content: $icon-arrow-down;
+      @include iconfont;
+    }
+  }
+
+  .step-up:before {
+    content: $icon-arrow-up;
+  }
+
+  .step-up {
+    border-bottom: 1px solid $form-control-border-color;
   }
 }
 

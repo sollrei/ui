@@ -39,7 +39,8 @@ const regRule = {
   price: /^-?(([1-9]+\d*)|([1-9]\d*.\d{0,2})|(0.\d{0,2})|(0))$/,
   password: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
   phone: /^((\+?[0-9]{1,4})|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[67]|17[0135678]|18[0-9]|19[189])\d{8}$/,
-  passport: /^((E|K)[0-9]{8})|(((SE)|(DE)|(PE)|(MA))[0-9]{7})$/
+  passport: /^((E|K)[0-9]{8})|(((SE)|(DE)|(PE)|(MA))[0-9]{7})$/,
+  ip: /^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$/
 };
 
 const testReg = {
@@ -180,6 +181,10 @@ const testReg = {
 
   is_phone({ value }) {
     return value ? regRule.phone.test(value) : true;
+  },
+
+  is_ip({ value }) {
+    return value ? regRule.ip.test(value) : true;
   },
 
   is_remote({ value, rule, field, form }) {

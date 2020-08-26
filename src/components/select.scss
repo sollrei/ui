@@ -5,6 +5,7 @@ $icon-top: ($menu-height - 16px) / 2;
 .ui-select {
   height: $form-control-height;
   position: relative;
+  padding-right: 20px;
   
   cursor: pointer;
   white-space: nowrap;

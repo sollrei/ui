@@ -4,6 +4,7 @@ class SectionRange {
       min: 0,
       max: 10240,
       width: 300,
+      decimal: 0,
 
       section: [{
         label: '500M',
@@ -16,7 +17,8 @@ class SectionRange {
         value: 10240
       }],
 
-      onSelect: null
+      onSelect: null,
+      onChange: null
     };
 
     this.settings = Object.assign({}, defaultSettings, options);
@@ -44,7 +46,7 @@ class SectionRange {
     const { section, width } = settings;
 
     const sectionStr = section.reduce((pre, cur) => {
-      return pre + `<div class="flex1 range-section">${cur.label}</div>`
+      return pre + `<div class="flex1 range-section">${cur.label}</div>`;
     }, '');
 
     const htmlString = `<div class="ui-section-range" style="width: ${width}px">
@@ -61,6 +63,7 @@ class SectionRange {
     this.rangeSlider = wrap.querySelector('.ui-section-range');
     this.elementRate = wrap.querySelector('.rate');
     this.elementThumb = wrap.querySelector('.thumb');
+    this.elementBar = wrap.querySelector('.bar');
   }
 
   moving(e) {
@@ -81,16 +84,17 @@ class SectionRange {
     }
 
     this.setPosition(deltaX);
+    this.countValue(deltaX);
+    this.setValue();
   }
 
   setPosition(width) {
     this.elementRate.style.width = width + 'px';
     this.elementThumb.style.left = width + 'px';
-    this.countValue(width);
   }
 
   countValue(_width) {
-    const { width, section } = this.settings;
+    const { width, section, decimal } = this.settings;
     const item = 1 / section.length;
     const rate = _width / width;
     let index = Math.floor(rate / item);
@@ -108,15 +112,59 @@ class SectionRange {
       value = prev + ((current - prev) * ((rate - (item * index)) / item));
     }
 
-    this.value = Math.floor(value);
+    if (decimal) {
+      this.value = value.toFixed(decimal);
+    } else {
+      this.value = Math.floor(value);
+    }
   }
 
-  setValue(value) {
+  valueToWidth(val) {
+    const { section, width, max, min } = this.settings;
+    const length = section.length;
+    
+    if (val >= max) {
+      this.setPosition(width);
+      return;
+    }
+
+    if (val <= min) {
+      this.setPosition(0);
+      return;
+    }
+
+    let _index = null;
+    let _value = 0;
+
+    section.every((item, index) => {
+      const { value } = item;
+      if (val <= value) {
+        _index = index; 
+        _value = value;
+        return false;
+      }
+      return true;
+    });
+
+    let percent;
+
+    if (typeof _index !== 'number') return;
+    
+    if (_index === 0) {
+      percent = (val / _value) * (1 / length);
+    } else {
+      const prev = section[_index - 1].value;
+      percent = (((val - prev) / (_value - prev)) * (1 / length)) + (_index / length);
+    }
+
+    this.setPosition(width * percent);
+  }
+
+  setValue() {
     const { onChange } = this.settings;
 
-    this.value = value;
     if (onChange && typeof onChange === 'function') {
-      onChange(value);
+      onChange(this.value);
     } 
   }
 
@@ -126,8 +174,8 @@ class SectionRange {
   }
 
   stopMove() {
-    this.setStopStatus();
     this.startDrag = false;
+    this.setStopStatus();
   }
 
   setStopStatus() {
@@ -139,7 +187,7 @@ class SectionRange {
   }
 
   events() {
-    const { elementThumb, rangeSlider } = this;
+    const { elementThumb, elementBar, elementRate } = this;
     const doc = document;
     let moving = this.moving;
 
@@ -149,13 +197,21 @@ class SectionRange {
     });
 
     doc.addEventListener('mouseup', () => {
+      if (!this.startDrag) return;
       this.stopMove();
       doc.removeEventListener('mousemove', moving);
     });
 
-    rangeSlider.addEventListener('click', (e) => {
+    elementBar.addEventListener('click', (e) => {
       this.startMove(e);
       this.moving(e);
+      this.stopMove();
+    });
+
+    elementRate.addEventListener('click', (e) => {
+      this.startMove(e);
+      this.moving(e);
+      this.stopMove();
     });
   }
 }
