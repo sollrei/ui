@@ -10,7 +10,8 @@
 
   line-height: $button-height - ($button-border-width * 2);
   font-size: $button-font-size;
-  color: $black;
+  color: $button-color;
+  font-weight: $button-font-weight;
   text-align: center;
   cursor: pointer;
 
@@ -27,7 +28,7 @@
   }
 
   &:hover {
-    color: $black;
+    color: $button-color;
     border-color: rgba($button-border-color, 0.6);
     background-color: $button-hover;
   }
@@ -35,7 +36,7 @@
   &.disabled,
   &.disabled:hover {
     cursor: not-allowed;
-    color: rgba($black, 0.3);
+    color: rgba($button-color, 0.3);
     border-color: rgba($button-border-color, 0.6);
     background-color: $button-disable;
   }

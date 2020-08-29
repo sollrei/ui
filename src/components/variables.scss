@@ -113,12 +113,14 @@ $form-control-disable-color: $black !default;
 $form-control-disable-bg: $color-bg-disabled !default;
 
 /* ------- Button ------- */
-
 $button-height: 34px !default;
 $button-padding: 24px !default;
 
 $button-small-height: 26px !default;
 $button-small-padding: 8px !default;
+
+$button-color: $black !default;
+$button-font-weight: 400 !default;
 
 $button-font-size: 14px !default;
 $button-small-font-size: 12px !default;
@@ -226,6 +228,7 @@ $alert-warn-bg: #fff7ed !default;
 $alert-warn-icon: $icon-info !default;
 
 /* ------- Notice ------- */ 
+$notice-font-size: 12px !default;
 
 $notice-border-color: #c9e2f6 !default;
 $notice-bg: #f2f9ff !default;
