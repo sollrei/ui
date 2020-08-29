@@ -50,6 +50,7 @@ class Popper extends Position {
     
     this.popper = dom;
     poppers.push(this);
+    this.events();
   }
 
   static hideOthers() {
@@ -70,6 +71,17 @@ class Popper extends Position {
     if (!this.popper) return;
     this.popper.parentNode.removeChild(this.popper);
     this.popper = null;
+  }
+
+  events() {
+    const self = this;
+
+    this.popper.addEventListener('click', function (e) {
+      // @ts-ignore
+      if (e.target.hasAttribute('data-popper-close')) {
+        self.destroy();
+      }
+    });
   }
 }
 

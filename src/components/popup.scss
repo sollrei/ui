@@ -24,6 +24,9 @@
   
   @extend %tip;
   @extend %tip-text;
+
+  padding: $tooltip-padding;
+  border-radius: $tooltip-radius;
   
   z-index: 9900;
   animation: fade-in-down $transition-duration both;
@@ -76,8 +79,29 @@
   }
 }
 
+.ui-popper.dark,
+.ui-tooltip.dark {
+  background: rgba($dark, .8);
+  border-radius: 4px;
+  box-shadow: 0 0 8px 0 rgba($dark, .2);
+  color: $white;
+}
+
 .ui-popper-wp {
   position: relative;
+
+  .ui-popper {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .2s;
+  }
+
+  &:hover {
+    .ui-popper {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
 }
 
 @keyframes tip {

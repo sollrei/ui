@@ -188,6 +188,19 @@
 .ui-confirm {
   padding-left: 40px - 18px;
 
+  &.center {
+    padding-left: 0;
+
+    .modal-footer {
+      text-align: center;
+
+      .ui-button {
+        margin-left: 4px;
+        margin-right: 4px;
+      }
+    }
+  }
+
   &:before {
     @include iconfont;
     content: $icon-info;

@@ -103,6 +103,12 @@ a.ft-primary,
   border-bottom: 1px solid $color-border;
 }
 
+.ft-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .ui-empty {
   padding-top: 16px;
   padding-bottom: 16px;
