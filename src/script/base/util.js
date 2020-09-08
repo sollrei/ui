@@ -24,9 +24,13 @@ const util = {
 
     if (!element.className) return false;
     
-    return className.match(/(\w|-)+/g).every(function (item) {
-      return element.classList.contains(item);
-    });
+    if (element.classList) {
+      return className.match(/(\w|-)+/g).every(function (item) {
+        return element.classList.contains(item);
+      });
+    }
+    
+    return !!element.className.match(new RegExp('(\\s|^)' + className + '(\\s|$)'));
   },
 
   /**
@@ -38,10 +42,14 @@ const util = {
   addClass(element, className) {
     if (!element || !className) return;
 
+    let ele = element;
+
     if (element.classList) {
       className.match(/(\w|-)+/g).forEach(item => {
         element.classList.add(item);
       });
+    } else if (!this.hasClass(element, className)) {
+      ele.className = element.className ? element.className.trim() + ' ' + className : className;
     }
   },
 
@@ -52,10 +60,14 @@ const util = {
   removeClass(element, className) {
     if (!element || !className) return;
 
+    const ele = element;
+
     if (element.classList) {
       className.match(/(\w|-)+/g).forEach(item => {
         element.classList.remove(item);
       });
+    } else {
+      ele.className = ele.className.replace(new RegExp(`(\\s|^)${className}(\\s|$)`), ' ');
     }
   },
 
@@ -70,6 +82,13 @@ const util = {
       className.match(/(\w|-)+/g).forEach(item => {
         element.classList.toggle(item);
       });
+      return;
+    }
+    
+    if (this.hasClass(element, className)) {
+      this.removeClass(element, className);
+    } else {
+      this.addClass(element, className);
     }
   },
 

@@ -314,20 +314,30 @@ new Validator(form, fields, option, successCallback[, errorCallback]);
 
 | Rule      | Description |
 | ----------- | ----------- |
+| **required** | 必填 |
 | **email**      | 邮箱       |
 | **chinese** | 中文 |
+| **english** | 英文 |
 | **url** | 地址 |
 | **mobile** | 手机号 |
 | **phone** | 手机号，建议用mobile |
-| **number** | 数字 |
+| **tel** | 座机 |
+| **qq** | qq |
+| **ip** | ip |
+| **idCard** | 身份证 |
+| **passport** | 护照 |
 | **not** | 非 |
+| **or** | 或,例or(email,mobile) |
+| **int** | 正整数 |
+| **number** | 数字 |
 | **remote(url, name[ajaxName])** | 远程验证 |
-| **same(name)** | 相同 |
+| **same(name)** | 相同，和表单中name字段相同值，例如重复密码 |
 | **reg(regRule)** | 正则，因为用了竖线做了分隔符，所以规则中不能用竖线 |
 | **gt(name)** | 大于指定字段值（数字） |
 | **gte(name)** | 大于等于指定字段值（数字） |
 | **gtnum(number)** | 大于number值 |
 | **gtenum(number)** | 大于等于number值 |
-
+| **ltnum(number)** | 小于number值 |
+| **ltenum(number)** | 小于等于number值 |
 
 

@@ -29,6 +29,7 @@ class Select extends SelectBase {
       data: null,
       selectFn: null,
       optionTemplate: null, // function 
+      labelTemplate: null, // function
       tagClass: null // function or string
     };
 
@@ -360,10 +361,6 @@ class Select extends SelectBase {
     const { optionTemplate } = this.settings;
 
     if (match && item.label.indexOf(match) === -1) return '';
-
-    if (this.checkable) {
-      return Select.createOptionWithCheckbox(item);
-    }
     
     if (optionTemplate) {
       const str = optionTemplate(item);
@@ -373,7 +370,16 @@ class Select extends SelectBase {
         tpl = str.tpl || '';
         className = str.className || '';
       }
+
+      if (this.checkable) {
+        return Select.createOptionWithCheckbox(item, { tpl, className });
+      }
+
       return this.createOptionItem(item, { tpl, className });
+    }
+
+    if (this.checkable) {
+      return Select.createOptionWithCheckbox(item);
     }
     
     return this.createOptionItem(item);
@@ -386,11 +392,14 @@ class Select extends SelectBase {
     return searchDom;
   }
 
-  static createOptionWithCheckbox({ selected, value, label, disabled }) {
+  static createOptionWithCheckbox({ selected, value, label, disabled }, option) {
     const checked = selected ? 'checked' : '';
     let className = disabled ? 'disabled' : '';
-    return `<li class="menu-item label-item ${className}" title="${label}" data-value="${value}">
-      <label class="ui-checkbox"><input type="checkbox" ${checked} value="${value}"/><i class="iconfont"></i>${label}</label>
+    let tpl = option ? option.tpl : '';
+    let addClass = option ? option.className : '';
+
+    return `<li class="menu-item label-item ${className} ${addClass}" title="${label}" data-value="${value}">
+      <label class="ui-checkbox"><input type="checkbox" ${checked} value="${value}"/><i class="iconfont"></i>${tpl}</label>
     </li>`;
   }
 
@@ -578,7 +587,7 @@ class Select extends SelectBase {
 
   createMultiTag() {
     const values = this.value;
-    const { tagClass } = this.settings;
+    const { tagClass, labelTemplate } = this.settings;
     let input = this.createEnterInput();
 
     if (!values.length) {
@@ -608,6 +617,10 @@ class Select extends SelectBase {
         if (typeof tagClass === 'function') {
           tagClassName = tagClass(data);
         }
+      }
+
+      if (labelTemplate) {
+        return result + labelTemplate(value, label);
       }
 
       return result + `<span class="ui-tag ${tagClassName} closeable" data-tooltip data-position="center top" data-title="${label}">${label} <i data-value="${value}" class="iconfont icon-times js-del-selected"></i></span>`;

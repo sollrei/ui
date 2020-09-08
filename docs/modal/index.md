@@ -83,10 +83,10 @@ need_js: true
   l = new Layer({
     position: 'bottom',  // default: right
     width: '100%', // default: 640
-    onOpen() {
+    onOpen: function () {
       console.log('open')
     },
-    onClose() {
+    onClose: function() {
       console.log('close')
     }
   });

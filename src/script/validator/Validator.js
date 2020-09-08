@@ -827,14 +827,22 @@ class Validator {
         return false;
       }
 
+      if (element.hasAttribute('disabled')) {
+        field.valid = true;
+        return false;
+      }
+
       const validResult = testReg[`is_${key}`]({ value, rule, key, field, form });
 
       if (typeof validResult === 'boolean') {
         if (!validResult) {
           this.showErrorTip(element, rule.msg, tip);
           field.valid = false;
+          this.removeSuccessTip(element);
           return false;
         }
+
+        this.showSuccessTip(element);
       } else if (key === 'remote') {
         if (remoteLoading) {
           this.addLoadClass(element);
@@ -906,6 +914,13 @@ class Validator {
     const { successClass, wrapSelector } = this.settings;
     if (element.closest && element.closest(wrapSelector)) {
       Util.addClass(element.closest(wrapSelector), successClass);
+    }
+  }
+
+  removeSuccessTip(element) {
+    const { successClass, wrapSelector } = this.settings;
+    if (element.closest && element.closest(wrapSelector)) {
+      Util.removeClass(element.closest(wrapSelector), successClass);
     }
   }
 

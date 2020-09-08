@@ -8,9 +8,20 @@
     <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
 
     <link rel="stylesheet" href="//at.alicdn.com/t/font_1674032_ock2bes9o9.css">
+
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.14/es5-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.14/es5-sham.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-sham.min.js"></script>
+    <![endif]-->
     
     <link rel="stylesheet" href="{{ "./dist/ui.css " | relative_url }}">
     <link rel="stylesheet" href="{{ "./css/page.css " | relative_url }}">
+
+    
+
     <script src="{{ "./dist/ui.js " | relative_url }}"></script>
 </head>
 

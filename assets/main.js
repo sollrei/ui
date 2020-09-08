@@ -19,7 +19,7 @@ window.onload = function () {
 
   // demo 
   demo = {
-    initTable() {
+    initTable: function () {
       if (document.querySelector('#js-table')) {
         fetch('https://api.cooode.xyz/api/ui-demo-table').then(res => res.json()).then(res => {
           if (res.code === 200) {

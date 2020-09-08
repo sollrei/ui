@@ -52,7 +52,3 @@ layout: default
 </div>
 {% endexample %}
 
-
-## JavaScript
-
-<div id="js-table"></div>

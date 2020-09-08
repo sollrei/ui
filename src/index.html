@@ -6,16 +6,30 @@
   <title>Document</title>
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1674032_ock2bes9o9.css">
   <link rel="stylesheet" href="../dist/ui.css">
-  <style>
-  </style>
 </head>
 <body style="padding: 100px;">
   
-  <div class="js"></div>
+<div class="ui-control-wrap">
+  <select name="name" class="js ui-select ui-form-control" multiple>
+    <option value="1">1</option>
+    <option value="2">2</option>
+    <option value="3">3</option>
+    <option value="4">4</option>
+  </select>
+</div>
 
   <script type="module">
-    import SectionRange from './script/input/SectionRange.js';
-    new SectionRange('.js');
+    import './script/base/polyfill.js';
+    import Select from './script/select/Select.js';
+    new Select('.js', {
+      checkable: true,
+      labelTemplate(value, label) {
+        return `${label}`
+      },
+      optionTemplate({ label, type }) {
+        return `<span data-tooltip data-position="center top" data-title="${label}" class="ui-tag ${type}">${label}</span>`;
+      }
+    });
   </script>
 
 </body>
