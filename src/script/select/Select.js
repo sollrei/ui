@@ -387,7 +387,7 @@ class Select extends SelectBase {
 
   static createSearch() {
     const searchDom = `<div class="select-search">
-      <input type="search" class="ui-form-control">
+      <input type="text" class="ui-form-control select-search-input">
     </div>`;
     return searchDom;
   }
@@ -742,7 +742,7 @@ class Select extends SelectBase {
       u.toggleClass(this, 'expend');
     });
 
-    u.on(option, 'change', 'input', function () {
+    u.on(option, 'change', 'input[type="checkbox"]', function () {
       self.changeCheck(this);
     });
 
@@ -762,6 +762,24 @@ class Select extends SelectBase {
 
         option.querySelector('.select-main').innerHTML = con;
       }, 200);
+    });
+
+    u.on(option, 'input', '.select-search-input', function () {
+      clearTimeout(self.inputTimer);
+
+      self.inputTimer = setTimeout(() => {
+        const val = this.value;
+        const main = self.createOptionContent(self.data, val);
+        let con = main || '<li class="li-empty">暂无搜索结果</li>';
+
+        option.querySelector('.select-main').innerHTML = con;
+      }, 200);
+    });
+
+    u.on(option, 'keydown', '.select-search-input', function (e) {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+      }
     });
   }
 }
