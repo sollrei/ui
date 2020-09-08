@@ -51,7 +51,7 @@
     }
 
     &:before {
-      content: '\eb36';
+      content: $icon-caret-right;
       color: $gray;
       @include iconfont;
       display: inline-block;

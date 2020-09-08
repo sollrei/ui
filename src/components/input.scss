@@ -93,13 +93,13 @@
     }
 
     &:before {
-      content: $icon-arrow-down;
+      content: $icon-angle-down;
       @include iconfont;
     }
   }
 
   .step-up:before {
-    content: $icon-arrow-up;
+    content: $icon-angle-up;
   }
 
   .step-up {

@@ -1,6 +1,6 @@
 @import "variables";
 
-$icon-top: ($menu-height - 16px) / 2;
+$icon-pos-top: ($menu-height - 16px) / 2;
 
 .ui-select {
   height: $form-control-height;
@@ -215,11 +215,11 @@ select.ui-select {
     }
 
     .selected:after {
-      content: '\eb31';
+      content: $icon-correct;
       position: absolute;
       @include iconfont;
       right: 12px;
-      top: $icon-top;
+      top: $icon-pos-top;
       color: $primary;
     }
 
@@ -325,11 +325,11 @@ select.ui-select {
     }
 
     .menu-item:after {
-      content: '\eb3d';
+      content: $icon-angle-right;
       @include iconfont;
       position: absolute;
       right: 12px;
-      top: $icon-top;
+      top: $icon-pos-top;
       color: $gray;
     }
 

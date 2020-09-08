@@ -76,8 +76,14 @@ $icon-info: '\eb1d' !default;
 $icon-warn: '\eb07' !default;
 $icon-success: '\eb09' !default;
 $icon-times: '\eb0b' !default;
-$icon-arrow-down: '\eb3f' !default;
-$icon-arrow-up: '\ec18' !default;
+$icon-angle-down: '\eb3f' !default;
+$icon-angle-up: '\ec18' !default;
+$icon-angle-right: '\eb3d' !default;
+
+$icon-caret-right: '\eb36' !default;
+$icon-caret-down: '\eb37' !default;
+
+$icon-correct: '\eb31' !default;
 
 /* ------- Form ------- */
 
@@ -205,7 +211,7 @@ $list-small-padding: 4px !default;
 /* ------- Select ------- */
 
 $select-drop-height: 276px !default;
-$select-icon: $icon-arrow-down !default;
+$select-icon: $icon-angle-down !default;
 $select-icon-size: 16px !default;
 
 /* ------- Switch ------- */
@@ -275,7 +281,7 @@ $steps-icon-size: 20px !default;
 
 
 /* ------- Dropdown -------*/
-$drop-icon: $icon-arrow-down !default;
+$drop-icon: $icon-angle-down !default;
 $drop-icon-color: $gray !default;
 
 /* ------- Modal -------*/

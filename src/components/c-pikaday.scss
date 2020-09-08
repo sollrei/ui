@@ -100,7 +100,7 @@
     }
 
     &.menu-item.selected:after {
-      content: '\eb31';
+      content: $icon-correct;
       position: absolute;
       @include iconfont;
       right: 12px;
@@ -118,7 +118,7 @@
     position: relative;
 
     &:after {
-      content: '\eb3d';
+      content: $icon-angle-right;
       @include iconfont;
       position: absolute;
       right: 12px;
