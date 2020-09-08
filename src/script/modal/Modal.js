@@ -195,7 +195,10 @@ class Modal {
     this.setTitle(title);
 
     this.toggleShowHide('show');
-    u.addClass(document.querySelector('html'), 'modal-open');
+    
+    if (document.body.scrollHeight > document.documentElement.clientHeight) {
+      u.addClass(document.querySelector('html'), 'modal-open');
+    }
   }
 
   /**
