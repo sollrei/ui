@@ -29,8 +29,8 @@ class Position {
     const pos = {
       targetHeight,
       targetWidth,
-      targetLeft: left + scrollX,
-      targetTop: top + scrollY,
+      targetLeft: left + (scrollX || document.documentElement.scrollLeft || 0),
+      targetTop: top + (scrollY || document.documentElement.scrollTop || 0),
       left,
       top,
       scrollX,
