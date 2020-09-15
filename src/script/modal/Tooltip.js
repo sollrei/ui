@@ -23,6 +23,8 @@ class Tooltip extends Position {
 
     super(settings);
 
+    this.settings = settings;
+
     this.init(selector);
   }
 
@@ -68,6 +70,7 @@ class Tooltip extends Position {
     const style = tooltip.style;
 
     style.display = 'block';
+    style.opacity = '0';
 
     if (width) {
       style.width = width + 'px';
@@ -78,17 +81,17 @@ class Tooltip extends Position {
       style.maxWidth = maxWidth + 'px';
     }
 
-    style.left = 0;
-    style.bottom = 0;
+    style.left = '0';
+    style.bottom = '0';
 
     ele.tooltip = tooltip;
 
     setTimeout(() => {
       style.left = 'auto';
       style.bottom = 'auto';
-
       self.setPosition(tooltip, element);
-    }, 2);
+      style.opacity = '1';
+    }, 0);
   }
 
   static destroyTooltip(tooltipElement, ele) {

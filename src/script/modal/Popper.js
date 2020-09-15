@@ -21,6 +21,8 @@ class Popper extends Position {
 
     super(settings);
 
+    this.settings = settings;
+
     this.init(element);
   }
 

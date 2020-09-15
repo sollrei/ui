@@ -1,0 +1,84 @@
+.ui-tab .tab-list:after,
+.ui-icon-input:after,
+.form-group:after,
+.ui-radio-group:after,
+.page-wrap:after,
+.ui-row:after {
+  visibility: hidden;
+  display: block;
+  font-size: 0;
+  content: '.';
+  clear: both;
+  height: 0;
+}
+
+.form-group,
+.ui-icon-input,
+.ui-radio-group,
+.page-wrap,
+.ui-row {
+  // zoom: 1;
+}
+
+.ui-row > * {
+  float: left;
+}
+
+.ui-row .right {
+  float: right;
+}
+
+.page-wrap {
+  display: block;
+}
+
+.page-side {
+  float: left;
+}
+
+.page-main {
+  margin-left: 150px;
+}
+
+.ui-radio-group {
+  label {
+    float: left;
+  }
+}
+
+.ui-icon-input {
+  .prefix {
+    float: left;
+    line-height: 30px;
+  }
+
+  .suffix {
+    float: right;
+    line-height: 30px;
+  }
+
+  .ui-form-control {
+    width: auto;
+    float: left;
+  }
+}
+
+.form-group {
+  .form-label {
+    float: left;
+  }
+}
+
+.ui-pagination {
+  .page {
+    text-align: center;
+  }
+}
+
+.ui-tab {
+  .tab-list {
+    .tab-itm {
+      float: left;
+    }
+  }
+}

@@ -8,9 +8,9 @@ need_js: true
 > 依赖 [TinyColor](https://github.com/bgrins/TinyColor)，参考：[https://codepen.io/dariocorsi/pen/WwOWPE](https://codepen.io/dariocorsi/pen/WwOWPE)
 
 {% example html %}
-<button class="ui-color-trigger" id="color-trigger" type="button" data-color="#000000" style="background-color: #000">
+<div class="ui-color-trigger" id="color-trigger" data-color="#000000" style="background-color: #000">
   <input type="hidden" name="color" value="#000000" />
-</button>
+</div>
 {% endexample %}
 
 <script src="{{ "./assets/tinycolor.js " | relative_url }}"></script>

@@ -196,16 +196,23 @@ const util = {
     const _minutes = ('0' + date.getMinutes()).slice(-2);
     const _seconds = ('0' + date.getSeconds()).slice(-2);
 
+    const opt = {
+      YY: year,
+      MM: _month,
+      DD: _day,
+      hh: _hours,
+      mm: _minutes,
+      ss: _seconds 
+    };
+
     let result;
 
     if (format) {
       result = format;
-      result.replace('YYYY', year)
-        .replace('MM', _month)
-        .replace('DD', _day)
-        .replace('hh', _hours)
-        .replace('mm', _minutes)
-        .replace('ss', _seconds);
+
+      Object.keys(opt).forEach(key => {
+        result = result.replace(key, opt[key]);
+      });
     } else {
       // YYYY-MM-DD hh:mm:ss
       result = `${year}-${_month}-${_day} ${_hours}:${_minutes}:${_seconds}`;

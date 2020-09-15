@@ -117,7 +117,9 @@ need_js: true
 {% example html %}
 <script>
   var Select = ui.Select;
-  new Select('.js-select');
+  window.onload = function () {
+    new Select('.js-select');
+  }
 </script>
 {% endexample %}
 

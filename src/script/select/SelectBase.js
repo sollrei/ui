@@ -61,6 +61,7 @@ class SelectBase {
       className = selectedClass;
     }
 
+
     return `<li class="menu-item ${className} ${addClassName}" data-value="${value}" data-level="${level}" ${last}>${str}</li>`;
   }
 

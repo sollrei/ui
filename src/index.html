@@ -6,31 +6,86 @@
   <title>Document</title>
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1674032_ock2bes9o9.css">
   <link rel="stylesheet" href="../dist/ui.css">
+
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.14/es5-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.14/es5-sham.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-sham.min.js"></script>
+    <![endif]-->
+
+  <!--[if lt IE 10]>
+
+    <style type="text/css">
+      .page-wrap:after,
+      .ui-row:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: '.';
+        clear: both;
+        height: 0;
+      }
+
+      .page-wrap,
+      .ui-row {
+        zoom: 1;
+      }
+
+      .ui-row > * {
+        float: left;
+      }
+
+      .ui-row .right {
+        float: right;
+      }
+
+      .page-wrap {
+        display: block;
+      }
+
+      .page-side {
+        float: left;
+      }
+
+      .page-wrap {
+        margin-left: 150px;
+      }
+    </style>
+    <![endif]-->
+
 </head>
 <body style="padding: 100px;">
   
-<div class="ui-control-wrap">
-  <select name="name" class="js ui-select ui-form-control" multiple>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-  </select>
+<div class="ui-row middle">
+  <div>name</div>
+  <div class="ft-green">green</div>
+  <div class="ft-h1">hello</div>
+  <div class="right">hello</div>
+</div>
+<div class="clf">
+  <div class="fl">name</div>
+  <div class="fl ft-green">green</div>
+  <div class="fl ft-h1">hello</div>
+  <div class="fr right">hello</div>
 </div>
 
-  <script type="module">
-    import './script/base/polyfill.js';
-    import Select from './script/select/Select.js';
-    new Select('.js', {
-      checkable: true,
-      labelTemplate(value, label) {
-        return `${label}`
-      },
-      optionTemplate({ label, type }) {
-        return `<span data-tooltip data-position="center top" data-title="${label}" class="ui-tag ${type}">${label}</span>`;
-      }
-    });
-  </script>
+  <!-- <script type="module">
+    // import './script/base/polyfill.js';
+    // import Select from './script/select/Select.js';
+    // new Select('.js', {
+    //   checkable: true,
+    //   labelTemplate(value, label) {
+    //     return `${label}`
+    //   },
+    //   optionTemplate({ label, type }) {
+    //     return `<span data-tooltip data-position="center top" data-title="${label}" class="ui-tag ${type}">${label}</span>`;
+    //   }
+    // });
+    import util from './script/global/global.js';
+    window.util = util;
+  </script> -->
 
 </body>
 </html>

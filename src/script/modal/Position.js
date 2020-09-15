@@ -33,8 +33,8 @@ class Position {
       targetTop: top + (scrollY || document.documentElement.scrollTop || 0),
       left,
       top,
-      scrollX,
-      scrollY,
+      scrollX: scrollX || document.documentElement.scrollLeft || 0,
+      scrollY: scrollY || document.documentElement.scrollTop || 0,
       elementHeight,
       elementWidth
     };

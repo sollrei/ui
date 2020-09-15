@@ -3,7 +3,12 @@ import SelectBase from './SelectBase.js';
 
 class Select extends SelectBase {
   constructor(elementSelector, options) {
+    
     const defaultSettings = {
+      selectElement: 'div',
+      selectShowClass: 'ui-select-active',
+      bottomMargin: 0,
+
       selectedClass: 'selected',
 
       showClass: 'show',
@@ -40,6 +45,7 @@ class Select extends SelectBase {
     }
 
     super(settings);
+    this.settings = settings;
 
     this.init(elementSelector);
   }
@@ -61,7 +67,6 @@ class Select extends SelectBase {
     this.nodeType = nodeName;
 
     const { data, group, max, search, checkable, clearable, enterable, multiple } = this.settings;
-
     this.data = data;
     this.multiple = multiple;
     this.max = max;
@@ -123,7 +128,11 @@ class Select extends SelectBase {
       const nodeName = item.nodeName.toLowerCase();
       if (nodeName === 'option') {
         const { label, value, selected, disabled } = item;
-        const _data = { label, value, disabled }; // 去掉了selected
+        let _label = label;
+        if (!label) {
+          _label = item.textContent;
+        }
+        const _data = { label: _label, value, disabled }; // 去掉了selected
 
         if (selected) {
           this.value.push(item.value);
@@ -139,11 +148,16 @@ class Select extends SelectBase {
         const id = u.createId();
         const child = [].slice.call(item.children).map(itm => itm.value);
         this.cache[id] = child;
-
+        const { label } = item;
+        let _label = label;
+        if (!label) {
+          _label = item.textContent;
+        }
+        
         return {
           id,
           child, // children id array
-          label: item.label,
+          label: _label,
           options: this.getDataFromSelect(item, id),
           type: 'optgroup'
         };

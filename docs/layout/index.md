@@ -65,11 +65,6 @@ layout: default
 </div>
 {% endexample %}
 
-{% example html %}
-<div class="ui-row right">
-  <div class="ui-mod">Main</div>
-</div>
-{% endexample %}
 
 {% example html %}
 <div class="ui-row nowrap middle">

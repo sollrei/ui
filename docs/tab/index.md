@@ -77,7 +77,7 @@ need_js: true
     conActive: 'show',
     // 以上是默认配置
 
-    onChange(index, cb) {
+    onChange: function(index, cb) {
       console.log(index)
       cb();
     }

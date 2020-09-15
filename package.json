@@ -3,7 +3,7 @@
   "version": "0.0.3",
   "description": "ui",
   "scripts": {
-    "start": "bundle exec jekyll serve & gulp watch"
+    "start": "bundle exec jekyll serve --host 0.0.0.0 & gulp watch"
   },
   "author": "sollrei",
   "devDependencies": {
