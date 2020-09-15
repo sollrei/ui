@@ -78,3 +78,22 @@ need_js: true
   new InputCount('.ui-enter-count');
 </script>
 {% endexample %}
+
+## Input Number
+
+{% example html %}
+<div class="ui-icon-input w320 js-number">
+  <input type="number" step="10" value="10" min="0" max="100" class="ui-form-control" name="num" placeholder="请输入">
+  <div class="spin-button"><div class="step-up"></div><div class="step-down"></div></div>
+</div>
+
+<script>
+var InputNumber = ui.InputNumber;
+var item = document.querySelector('.js-number');
+new InputNumber(item, {
+  callback: function(val) {
+    console.log(val)
+  }
+});
+</script>
+{% endexample %}

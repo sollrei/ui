@@ -1,4 +1,4 @@
-import util from '../base/util.js';
+import Util from '../base/util.js';
 
 class InputNumber {
   constructor(selector, options) {
@@ -39,14 +39,14 @@ class InputNumber {
       ? Number(input.getAttribute('step'))
       : step;
 
-    util.on(container, 'click', '.step-up', function () {
-      if (!util.hasClass(this, disableClass)) {
+    Util.on(container, 'click', '.step-up', function () {
+      if (!Util.hasClass(this, disableClass)) {
         self.stepUp(input, _step, up, down);
       }
     });
 
-    util.on(container, 'click', '.step-down', function () {
-      if (!util.hasClass(this, disableClass)) {
+    Util.on(container, 'click', '.step-down', function () {
+      if (!Util.hasClass(this, disableClass)) {
         self.stepDown(input, _step, up, down);
       }
     });
@@ -57,12 +57,13 @@ class InputNumber {
     const _max = input.getAttribute('max')
       ? Number(input.getAttribute('max'))
       : max;
+    this.max = _max;
 
-    if (input.stepUp && typeof input.stepUp === 'function' && input.getAttribute('step')) {
-      input.stepUp();
-    } else {
-      InputNumber.changeInputValue(input, step);
-    }
+    // if (input.stepUp && typeof input.stepUp === 'function' && input.getAttribute('step')) {
+    //   input.stepUp();
+    // } else {
+    this.changeInputValue(input, step);
+    // }
 
     this.checkValue('plus', _max, Number(input.value), up, down);
     this.triggerCallback(input);
@@ -73,21 +74,22 @@ class InputNumber {
     const _min = input.getAttribute('min')
       ? Number(input.getAttribute('min'))
       : min;
+    this.min = _min;
 
-    if (input.stepDown && typeof input.stepDown === 'function') {
-      input.stepDown();
-    } else {
-      InputNumber.changeInputValue(input, -step);
-    }
+    // if (input.stepDown && typeof input.stepDown === 'function') {
+    //   input.stepDown();
+    // } else {
+    this.changeInputValue(input, -step);
+    // }
 
     this.checkValue('minus', _min, Number(input.value), up, down);
     this.triggerCallback(input);
   }
 
-  static changeInputValue(input, step) {
+  changeInputValue(input, step) {
     const ele = input;
     const value = Number(ele.value);
-
+    if (value + step < this.min || value + step > this.max) return;
     ele.value = value + step;
   }
 
@@ -96,20 +98,20 @@ class InputNumber {
 
     if (type === 'plus') {
       if (typeof total === 'number' && (result >= total)) {
-        util.addClass(up, disableClass);
+        Util.addClass(up, disableClass);
       } else {
-        util.removeClass(up, disableClass);
+        Util.removeClass(up, disableClass);
       }
-      util.removeClass(down, disableClass);
+      Util.removeClass(down, disableClass);
     }
 
     if (type === 'minus') {
       if (typeof total === 'number' && (result <= total)) {
-        util.addClass(down, disableClass);
+        Util.addClass(down, disableClass);
       } else {
-        util.removeClass(down, disableClass);
+        Util.removeClass(down, disableClass);
       }
-      util.removeClass(up, disableClass);
+      Util.removeClass(up, disableClass);
     }
   }
 
@@ -122,4 +124,4 @@ class InputNumber {
   }
 }
 
-module.exports = InputNumber;
+export default InputNumber;

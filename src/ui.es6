@@ -18,6 +18,8 @@ import SectionRange from './script/input/SectionRange.js';
 
 import InputCount from './script/input/InputCount.js';
 
+import InputNumber from './script/input/InputNumber.js';
+
 
 import Select from './script/select/Select.js';
 
@@ -75,6 +77,7 @@ const ui = {
   UploadHelper,
   Transfer,
   Position,
+  InputNumber,
 
   Pagination,
   Table,
