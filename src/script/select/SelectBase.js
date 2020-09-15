@@ -36,8 +36,8 @@ class SelectBase {
     let str = label;
     let addClassName = '';
     if (opt.level) {
-      last = level === this.max ? 'data-last' : '';
       level = opt.level;
+      last = level === this.max ? 'data-last' : '';
     }
 
     if (opt.tpl) {
@@ -151,6 +151,8 @@ class SelectBase {
     const { selectShowClass, showClass, bottomMargin } = this.settings;
     const element = select;
     const option = select.option;
+
+    console.log(select, option, option.children[0])
     
     option.style.zIndex = '100';
 

@@ -31,6 +31,8 @@ class Cascader extends SelectBase {
 
     super(defaultSettings);
 
+    this.settings = defaultSettings;
+
     let element = elementSelector;
     
     if (typeof elementSelector === 'string') {

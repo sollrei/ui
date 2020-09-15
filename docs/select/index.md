@@ -145,4 +145,24 @@ new Select(selector, {
 });
 ```
 
-> 可能会重构，或者整个重写，目前逻辑比较混乱
+## Cascader
+
+{% example html %}
+<div class="ui-control-wrap">
+  <input type="hidden" id="select-input" class="v-item" data-rules="required" data-msgs="请选择省市区" name="abc">
+  <div id="area-select" class="ui-select ui-form-control" data-ajax="https://api.cooode.xyz/api2/koto/c-c1,https://api.cooode.xyz/api2/koto/c-c2,https://api.cooode.xyz/api2/koto/c-c3" data-level="3" data-input="#select-input">请选择省\市\区(县)</div>
+  <input type="hidden" name="city" value="" class="js-city-input">
+</div>
+
+<script>
+var Cascader = ui.Cascader;
+
+new Cascader('#area-select', {
+  selectFinalFn: function(values) {
+    console.log(values)
+  }
+});
+</script>
+{% endexample %}
+
+> Select模块可能会重构，或者整个重写，目前逻辑比较混乱

@@ -305,7 +305,7 @@ select.ui-select {
       width: 160px;
       border: 0 none;
       border-radius: 0;
-      border-right: 1px solid $color-border;
+      border-left: 1px solid $color-border;
     }
 
     ul:first-child {
@@ -315,7 +315,6 @@ select.ui-select {
     }
 
     ul:last-child {
-      border-right-color: $white;
       border-top-right-radius: $menu-wrap-radius;
       border-bottom-right-radius: $menu-wrap-radius;
     }
