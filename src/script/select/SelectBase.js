@@ -152,8 +152,6 @@ class SelectBase {
     const element = select;
     const option = select.option;
 
-    console.log(select, option, option.children[0])
-    
     option.style.zIndex = '100';
 
     u.addClass(option, showClass);
