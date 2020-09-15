@@ -14,6 +14,8 @@ import Transfer from './script/form/Transfer.js';
 
 import Range from './script/input/Range.js';
 
+import SectionRange from './script/input/SectionRange.js';
+
 import InputCount from './script/input/InputCount.js';
 
 
@@ -78,6 +80,7 @@ const ui = {
   Table,
   Tab,
   Range,
+  SectionRange,
   ColorPicker,
   Tree
 };

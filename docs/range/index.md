@@ -104,3 +104,38 @@ new Range(wrapElement, {
   Range.simpleRange('.ui-range');
 </script>
 {% endexample %}
+
+## Section Range
+
+{% example html %}
+<div class="js-section-range" style="width: 480px"></div>
+<script>
+  var SectionRange = window.ui.SectionRange;
+   new SectionRange(document.querySelector('.js-section-range'), {
+    width: 480,
+    max: 500,
+    section: [{
+      label: '10',
+      value: 10
+    },{
+      label: '50',
+      value: 50
+    },{
+      label: '100',
+      value: 100
+    },{
+      label: '200',
+      value: 200
+    },{
+      label: '500',
+      value: 500
+    }],
+    onSelect: function(val) {
+      console.log('select', val)
+    },
+    onChange: function(val) {
+      // console.log('change', val);
+    }
+  });
+</script>
+{% endexample %}

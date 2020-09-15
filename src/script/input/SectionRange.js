@@ -2,20 +2,11 @@ class SectionRange {
   constructor(selector, options) {
     const defaultSettings = {
       min: 0,
-      max: 10240,
-      width: 300,
+      max: 0,
+      width: 480,
       decimal: 0,
 
-      section: [{
-        label: '500M',
-        value: 500
-      }, {
-        label: '1G',
-        value: 1024
-      }, {
-        label: '10G',
-        value: 10240
-      }],
+      section: [],
 
       onSelect: null,
       onChange: null
@@ -44,9 +35,9 @@ class SectionRange {
   createDom() {
     const { settings, wrap } = this;
     const { section, width } = settings;
-
+    const style = `width: calc(${100 / section.length}% - 1px)`;
     const sectionStr = section.reduce((pre, cur) => {
-      return pre + `<div class="flex1 range-section">${cur.label}</div>`;
+      return pre + `<div class="range-section" style="${style}">${cur.label}</div>`;
     }, '');
 
     const htmlString = `<div class="ui-section-range" style="width: ${width}px">
@@ -75,7 +66,7 @@ class SectionRange {
 
     let deltaX = x - left;
 
-    if (deltaX > width) {
+    if (deltaX >= width) {
       deltaX = width;
     }
 
@@ -106,6 +97,8 @@ class SectionRange {
 
     if (index === 0) {
       value = section[0].value * (rate / item);
+    } else if (_width >= width) {
+      value = section[section.length - 1].value;
     } else {
       let prev = section[index - 1].value;
       let current = section[index].value;
@@ -119,7 +112,8 @@ class SectionRange {
     }
   }
 
-  valueToWidth(val) {
+  valueToWidth(_val) {
+    const val = Number(_val) || 0;
     const { section, width, max, min } = this.settings;
     const length = section.length;
     
