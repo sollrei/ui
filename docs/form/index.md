@@ -305,7 +305,7 @@ new Validator(form, fields, option, successCallback[, errorCallback]);
 <ul class="page-ul">
   <li>data-rules上有remote(远程验证)时需要把remote放在最后</li>
   <li>对checkbox和radio类型的需要在每个input上加v-item，但是rules和msg只用写第一个上面</li>
-  <li>name值为form中指定字段名称</li>
+  <li>远程验证inputName值为form中指定字段的name，远程验证会带上该字段的值，请求中的name为ajaxName</li>
 </ul>
 
 ```html
@@ -330,7 +330,7 @@ new Validator(form, fields, option, successCallback[, errorCallback]);
 | **or** | 或,例or(email,mobile) |
 | **int** | 正整数 |
 | **number** | 数字 |
-| **remote(url, name[ajaxName])** | 远程验证 |
+| **remote(url, ajaxName[inputName])** | 远程验证 `remote(xxxx?xx=xx, mobile[newmobile])` |
 | **same(name)** | 相同，和表单中name字段相同值，例如重复密码 |
 | **reg(regRule)** | 正则，因为用了竖线做了分隔符，所以规则中不能用竖线 |
 | **gt(name)** | 大于指定字段值（数字） |

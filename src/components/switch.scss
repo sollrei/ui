@@ -8,6 +8,7 @@ $btn-size: $switch-height - ($switch-padding * 2);
   display: inline-flex;
   align-items: center;
   cursor: pointer;
+  user-select: none;
 
   input {
     display: none;
