@@ -66,7 +66,7 @@ class SectionRange {
 
     let deltaX = x - left;
 
-    if (deltaX >= width) {
+    if (deltaX > width) {
       deltaX = width;
     }
 

@@ -5,6 +5,7 @@ class InputNumber {
     const defaultSettings = {
       disableClass: 'disabled',
 
+      decimal: 2,
       step: 1,
       min: null,
       max: null,
@@ -90,7 +91,14 @@ class InputNumber {
     const ele = input;
     const value = Number(ele.value);
     if (value + step < this.min || value + step > this.max) return;
-    ele.value = value + step;
+    
+    let val = value + step;
+    if (this.settings.decimal) {
+      let n = Math.pow(10, this.settings.decimal);
+
+      val = Math.round(val * n) / n; 
+    }
+    ele.value = val;
   }
 
   checkValue(type, total, result, up, down) {
