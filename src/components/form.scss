@@ -17,8 +17,8 @@
   }
 
   .form-label {
-    width: $form-label-width - $form-label-margin;
-    margin-right: $form-label-margin;
+    width: $form-label-width;
+    padding-right: $form-label-margin;
 
     line-height: $form-control-height;
     text-align: right;
@@ -181,6 +181,7 @@ textarea.ui-form-control {
   }
 }
 
+.v-success-tip,
 .v-error-tip {
   position: absolute;
   left: $form-control-error-left;
@@ -200,4 +201,11 @@ textarea.ui-form-control {
   }
 }
 
+.v-success-tip {
+  color: $green;
+}
 
+.show-valid-success.success .v-success-tip {
+  visibility: visible;
+  opacity: 1;
+}

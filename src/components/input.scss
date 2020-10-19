@@ -46,6 +46,7 @@
   &.disabled,
   &.disabled:hover {
     border-color: $form-control-border-disable-color;
+    background-color: $form-control-disable-bg;
   }
   
   .ui-form-control {
@@ -84,9 +85,10 @@
   .step-up,
   .step-down {
     flex: 1;
-    line-height: 1;
+    line-height: ($form-control-height - 2px) / 2;
     text-align: center;
     cursor: pointer;
+    color: $form-control-border-color;
 
     &:hover {
       color: $primary;
@@ -100,6 +102,11 @@
 
   .step-up:before {
     content: $icon-angle-up;
+  }
+
+  .step-up:before,
+  .step-down:before {
+    line-height: ($form-control-height - 2px) / 2;
   }
 
   .step-up {

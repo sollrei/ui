@@ -50,7 +50,7 @@
 .ui-title-tip[data-title] {
   &:after {
     content: attr(data-title);
-    max-width: 274px;
+    max-width: $tooltip-max-width;
     width: auto;
 
     @extend %tip;

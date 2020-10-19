@@ -165,6 +165,9 @@ $menu-wrap-radius: 8px !default;
 $menu-height: 32px !default;
 $menu-padding: 16px !default;
 
+$menu-border: 1px solid $color-border !default;
+$menu-shadow: $shadow !default;
+
 /* ------- Tab ------- */
 
 $tab-height: 24px !default;
@@ -197,11 +200,13 @@ $tag-font-size: 12px !default;
 
 /* ------- popup ------- */
 
-$popup-radius: 8px;
-$popup-padding: 16px;
+$popup-radius: 8px !default;
+$popup-padding: 16px !default;
 
 $tooltip-radius: 8px !default;
 $tooltip-padding: 16px !default;
+
+$tooltip-max-width: 274px !default;
 
 /* ------- List ------- */
 
