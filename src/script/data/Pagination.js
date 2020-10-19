@@ -1,4 +1,6 @@
 import u from '../base/util.js';
+import Select from '../select/Select.js';
+
 
 class Pagination {
   /**
@@ -12,14 +14,19 @@ class Pagination {
       size: 5, // page size
       pages: 5, // page button
 
+      limits: [10, 20, 30],
+
       prevIcon: 'iconfont icon-arrow-left',
       nextIcon: 'iconfont icon-arrow-right',
       pageClass: 'ui-pagination',
-      pageInput: false,
+      pageInput: true,
+      pageSelect: true,
 
+      onChangeLimit: null,
       onChangePage: null // callback
     };
 
+    this.createPageButton = this.createPageButton.bind(this);
     this.settings = Object.assign({}, defaultSettings, options);
     this.initPage(selector);
   }
@@ -69,30 +76,45 @@ class Pagination {
     this.total = total;
     this.size = size;
     this.pages = pages;
-    this.pageWrapper.innerHTML = this.createPageDom(page);
+
+    this.changePageDom(page);
     this.events();
+  }
+
+  changePage({ page, total, size, pages }) {
+    const { total: _total, size: _size, pages: _pages } = this.settings;
+    
+    this.total = typeof total === 'undefined' ? _total : total;
+    this.size = typeof size === 'undefined' ? _size : size;
+    this.pages = typeof pages === 'undefined' ? _pages : pages;
+    this.changePageBtn(page);
   }
 
   /**
    * @param {number} page - current page number
+   * @param {boolean=} onlyBtn
    * @returns {string} - pagination html
    */
-  createPageDom(page) {
-    const { total, size } = this;
+  createPageDom(page, onlyBtn = false) {
+    const { total } = this;
     const { pageClass } = this.settings;
     this.page = page;
 
-    if (total <= size) {
-      return '';
+    const pageArr = this.createPageArray();
+    const pageHtml = pageArr.reduce(this.createPageButton, '');
+    const prevButton = this.createPageNavDom('prev');
+    const nextButton = this.createPageNavDom('next');
+    const input = this.createInputDom();
+    const select = this.createSelectDom();
+
+    if (onlyBtn) {
+      return `<span class="ft-gray mr-24">共${total}条</span>` 
+      + prevButton + pageHtml + nextButton;
     }
 
-    const pageArr = this.createPageArray();
-    const pageHtml = pageArr.reduce(this.createPageButton.bind(this), '');
-    const prevButton = this.createPageNav('prev');
-    const nextButton = this.createPageNav('next');
-    const input = this.createInput();
-
-    return `<div class="${pageClass}">` + prevButton + pageHtml + nextButton + input + '</div>';
+    return `<div class="${pageClass}"><div class="ui-row middle pagination-box"><span class="ft-gray mr-24">共${total}条</span>` 
+      + prevButton + pageHtml + nextButton + '</div>'
+      + select + input + '</div>';
   }
 
   createPageArray() {
@@ -121,7 +143,7 @@ class Pagination {
    * @param {string} type
    * @returns {string} - prev or next button html
    */
-  createPageNav(type) {
+  createPageNavDom(type) {
     const { page, max, settings } = this;
     const icon = settings[`${type}Icon`];
     const pageNumber = (type === 'prev') ? page - 1 : page + 1;
@@ -150,15 +172,33 @@ class Pagination {
   }
 
   /**
+   * @returns {string} - select html
+   */
+  createSelectDom() {
+    const { pageSelect, limits } = this.settings;
+    if (!pageSelect) return '';
+    
+    const option = limits.reduce((pre, cur) => { 
+      return pre + `<option value="${cur}" ${cur === this.size ? 'selected' : ''}>${cur}条/页</option>`;
+    }, '');
+
+    return `<div class="ui-control-wrap">
+      <select class="ui-select ui-form-control page-select w94">
+        ${option}
+      </select>
+    </div>`;
+  }
+
+  /**
    * @returns {string} - input html
    */
-  createInput() {
+  createInputDom() {
     if (this.settings.pageInput) {
       return `<span class="text">跳至</span>
-        <input class="ui-form-control js-jump-page" type="number" name="page" autocomplete="off">
+        <input class="ui-form-control page-input" type="number" name="page" autocomplete="off">
       <span class="text">页</span>`;
     }
-    
+
     return '';
   }
 
@@ -167,36 +207,64 @@ class Pagination {
    */
   changePageDom(page) {
     this.pageWrapper.innerHTML = this.createPageDom(page);
+    // @ts-ignore
+    new Select(this.pageWrapper.querySelector('.page-select'));
+  }
+
+  changePageBtn(page) {
+    this.pageWrapper.querySelector('.pagination-box').innerHTML = this.createPageDom(page, true);
   }
 
   /**
    * @param {HTMLElement} element
    */
   handleChangePage(element) {
-    const { onChangePage } = this.settings;
-
     if (u.hasClass(element, 'disabled') || u.hasClass(element, 'active')) return;
 
     const page = element.getAttribute('data-page');
     const _page = Number(page);
     
+    this.changePageNumber(_page);
+  }
+
+  changePageNumber(pageNumber) {
+    const { onChangePage } = this.settings;
     if (onChangePage && typeof onChangePage === 'function') {
-      onChangePage(page, (next) => {
+      onChangePage(pageNumber, (next) => {
         if (next) {
-          this.changePageDom(_page);
+          this.changePageBtn(pageNumber);
         }
       });
     } else {
-      this.changePageDom(_page);
+      this.changePageBtn(pageNumber);
     }
+  }
+
+  handleInputPage(input) {
+    const page = Pagination.limitRange(1, this.max, Number(input.value));
+    this.changePageNumber(page);
   }
 
   events() {
     const self = this;
     const { pageWrapper } = self;
+    const { onChangeLimit } = this.settings;
 
     u.on(pageWrapper, 'click', '.page', function () {
       self.handleChangePage(this);
+    });
+
+    u.on(pageWrapper, 'keydown', '.page-input', function (e) {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        self.handleInputPage(this);
+      }
+    });
+
+    u.on(pageWrapper, 'change', '.page-select', function () {
+      if (onChangeLimit) {
+        onChangeLimit(Number(this.value));
+      }
     });
   }
 }
