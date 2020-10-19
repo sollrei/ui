@@ -61,6 +61,7 @@
 
   &.small {
     font-size: $tab-small-font-size;  
+    font-weight: 400;
 
     .tab-list {
       display: inline-flex;
@@ -75,8 +76,8 @@
 
     .itm {
       display: block;
-      padding-left: $tab-padding;
-      padding-right: $tab-padding;
+      padding-left: $tab-small-padding;
+      padding-right: $tab-small-padding;
     }
 
     .tab-itm:first-child {

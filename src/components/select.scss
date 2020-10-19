@@ -153,7 +153,7 @@ select.ui-select {
   transform-origin: center top;
   transition: transform $transition-duration, opacity $transition-duration, visibility $transition-duration;
   
-  border: solid 1px $color-border;
+  border: $menu-border;
   background: $white;
 
   // states
@@ -171,7 +171,7 @@ select.ui-select {
     visibility: visible;
     transform: translateY(0);
     height: auto;
-    box-shadow: $shadow;
+    box-shadow: $menu-shadow;
   }
 
   // dropdown content
@@ -295,7 +295,7 @@ select.ui-select {
   &.menu-group {
     width: auto !important;
     border-radius: $radius;
-    border: 1px solid $color-border;
+    border: $menu-border;
     background: $white;
     display: flex;
 
@@ -383,6 +383,10 @@ select.ui-select {
 
   .ui-control-wrap + .ui-control-wrap {
     margin-left: -1px;
+  }
+
+  .ui-form-control {
+    width: 100%;
   }
 
   .ui-select-active {

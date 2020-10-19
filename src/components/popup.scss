@@ -20,7 +20,7 @@
 
 .ui-tooltip {
   display: inline-block;
-  max-width: 274px;
+  max-width: $tooltip-max-width;
   
   @extend %tip;
   @extend %tip-text;
@@ -76,6 +76,12 @@
 
   &:focus {
     outline: none;
+  }
+
+  &.small {
+    padding: 4px 8px;
+    font-size: 12px;
+    white-space: nowrap;
   }
 }
 

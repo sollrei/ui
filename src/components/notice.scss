@@ -1,7 +1,7 @@
 @import "variables";
 
 .ui-notice {
-  padding: 8px 184px 8px 36px;
+  padding: 7px 36px;
   position: relative;
 
   font-size: $notice-font-size;
@@ -15,7 +15,7 @@
     content: $notice-icon;
     position: absolute;
     left: 12px;
-    top: 12px;
+    top: 11px;
     @include iconfont;
     color: $primary;
   }
@@ -33,15 +33,14 @@
   }
 
   &.line {
-    padding-top: 8px;
-    padding-bottom: 8px;
+    padding: 8px 16px 8px 48px;
     line-height: 16px;
-    padding-right: 16px;
     border-radius: 0;
     border: 0 none;
 
     &:before {
       top: 8px;
+      left: 24px;
     }
   }
 
@@ -61,6 +60,17 @@
     &:before {
       content: $notice-error-icon;
       color: $red;
+    }
+  }
+
+  &.transparent {
+    padding-top: 0;
+    padding-bottom: 0;
+    background: transparent;
+    border: 0 none;
+
+    &:before {
+      top: 4px;
     }
   }
 
