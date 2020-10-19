@@ -40,7 +40,8 @@ const regRule = {
   password: /^(?![0-9]+$)(?![a-zA-Z]+$)[0-9A-Za-z]{6,16}$/,
   phone: /^((\+?[0-9]{1,4})|(\(\+86\)))?(13[0-9]|14[579]|15[0-3,5-9]|16[67]|17[0135678]|18[0-9]|19[189])\d{8}$/,
   passport: /^((E|K)[0-9]{8})|(((SE)|(DE)|(PE)|(MA))[0-9]{7})$/,
-  ip: /^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$/
+  ip: /^((2[0-4]\d|25[0-5]|[01]?\d\d?)\.){3}(2[0-4]\d|25[0-5]|[01]?\d\d?)$/,
+  domain: /^[\w-_\u0391-\uFFE5]+$/
 };
 
 const testReg = {
@@ -185,6 +186,10 @@ const testReg = {
 
   is_ip({ value }) {
     return value ? regRule.ip.test(value) : true;
+  },
+
+  is_domain({ value }) {
+    return value ? regRule.domain.test(value) : true;
   },
 
   is_remote({ value, rule, field, form }) {
@@ -477,17 +482,17 @@ class Validator {
       }
     } else {
       if (scrollToError) {
-        // !!!!!!!!! need rewrite
         const tipElement = doc.querySelector('.' + tipClass + '.' + showClass);
 
         if (tipElement) {
           const top = (tipElement.getBoundingClientRect().top - 80)
-            + (docEle.scrollTop + (document.body.scrollTop || document.documentElement.scrollTop));
-          const left = docEle.scrollLeft
-            + (document.body.scrollLeft || document.documentElement.scrollLeft);
+            + (window.pageYOffset 
+              || document.documentElement.scrollTop 
+              || document.body.scrollTop 
+              || 0);
 
           // scroll to error tip position
-          window.scrollTo(left, top);
+          window.scrollTo(0, top);
         }
       }
 
@@ -897,8 +902,18 @@ class Validator {
       _ele = this.form[element];
     }
 
+    if (!_ele) return;
+
     if (!tip && _ele.closest) {
-      tipElement = _ele.closest(wrapSelector).querySelector('.' + tipClass);
+      const parent = _ele.closest(wrapSelector);
+      tipElement = parent.querySelector('.' + tipClass);
+
+      if (!tipElement) {
+        const div = document.createElement('div');
+        div.className = tipClass;
+        const _newTipElement = parent.appendChild(div);
+        tipElement = _newTipElement;
+      }
     }
 
     tipElement.innerHTML = message;
