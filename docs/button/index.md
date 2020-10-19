@@ -8,6 +8,7 @@ layout: default
 <button class="ui-button">按钮</button> 
 <button class="ui-button primary">按钮</button>
 <button class="ui-button warn">按钮</button>
+<button class="ui-button link">按钮</button>
 {% endexample %}
 
 

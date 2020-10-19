@@ -81,8 +81,8 @@ need_js: true
   var Layer = ui.Layer;
 
   l = new Layer({
-    position: 'bottom',  // default: right
-    width: '100%', // default: 640
+    position: 'right',  //  right | bottom
+    width: 600, // default: 640
     onOpen: function () {
       console.log('open')
     },

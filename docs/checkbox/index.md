@@ -57,6 +57,7 @@ layout: default
 </label>
 {% endexample %}
 
+### Group
 
 {% example html %}
 <div class="ui-radio-group">
@@ -64,6 +65,17 @@ layout: default
   <label for="type1">选项1</label>
   <input type="radio" name="type" id="type2" value="2">
   <label for="type2">选项2</label>
+  <input type="radio" name="type" id="type3" value="3">
+  <label for="type3">选项3</label>
+</div>
+{% endexample %}
+
+{% example html %}
+<div class="ui-radio-group separate">
+  <input type="radio" name="separate" checked id="type11" value="1">
+  <label for="type11">选项1</label>
+  <input type="radio" name="separate" id="type12" value="2">
+  <label for="type12">选项2</label>
 </div>
 {% endexample %}
 

@@ -4,7 +4,7 @@ layout: default
 
 # Layout
 
-> ui-mod不是必须样式
+> 使用flex，兼容性IE 10 +
 
 ## Margin
 
@@ -46,25 +46,33 @@ layout: default
 
 {% example html %}
 <div class="ui-row">
-  <div class="ui-mod flex1 mr-12">Main</div>
+  <div class="ui-mod flex1 mr-12">Content</div>
   <div class="ui-mod right">Right</div>
 </div>
 {% endexample %}
 
 {% example html %}
-<div class="ui-row between">
-  <div class="col-1-3"><div class="ui-mod">Main</div></div>
-  <div class="col-1-3"><div class="ui-mod">Main</div></div>
-  <div class="col-1-3"><div class="ui-mod">Main</div></div>
+<div class="ui-row center">
+  <div class="ui-mod">Content</div>
 </div>
 {% endexample %}
 
 {% example html %}
-<div class="ui-row center">
-  <div class="ui-mod">Main</div>
+<div class="ui-row between">
+  <div class="col-1-2"><div class="ui-mod">Content</div></div>
+  <div class="col-1-4"><div class="ui-mod">Content</div></div>
+  <div class="col-1-4"><div class="ui-mod">Content</div></div>
 </div>
 {% endexample %}
 
+{% example html %}
+<div class="ui-row">
+  <div class="col-1-3"><div class="ui-mod">content</div></div>
+  <div class="col-1-6"><div class="ui-mod">content</div></div>
+  <div class="col-1-6"><div class="ui-mod">content</div></div>
+  <div class="col-1-3"><div class="ui-mod">content</div></div>
+</div>
+{% endexample %}
 
 {% example html %}
 <div class="ui-row nowrap middle">
@@ -78,15 +86,6 @@ layout: default
   <div class="ui-control-wrap flex1 col">
     <input class="ui-form-control" placeholder="Last Name"/>
   </div>
-</div>
-{% endexample %}
-
-{% example html %}
-<div class="ui-row">
-  <div class="col-1-3 bg-light">content</div>
-  <div class="col-1-6 bg-light">content</div>
-  <div class="col-1-6 bg-light">content</div>
-  <div class="col-1-3 bg-light">content</div>
 </div>
 {% endexample %}
 

@@ -11,6 +11,7 @@ layout: default
 <span class="ui-tag violet">紫色</span>
 <span class="ui-tag green">绿色</span>
 <span class="ui-tag yellow">黄色</span>
+<span class="ui-tag red">红色</span>
 {% endexample %}
 
 ## Border
