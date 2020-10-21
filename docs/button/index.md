@@ -11,6 +11,12 @@ layout: default
 <button class="ui-button link">按钮</button>
 {% endexample %}
 
+{% example html %}
+<button class="ui-button circle"><i class="iconfont icon-plus"></i></button>
+<button class="ui-button primary circle"><i class="iconfont icon-plus"></i></button>
+<button class="ui-button warn circle"><i class="iconfont icon-plus"></i></button>
+{% endexample %}
+
 
 ## Disable
 
@@ -26,6 +32,12 @@ layout: default
 <button class="ui-button small">按钮</button>
 <button class="ui-button primary small">按钮</button>
 <button class="ui-button warn small">按钮</button>
+{% endexample %}
+
+{% example html %}
+<button class="ui-button small circle"><i class="iconfont icon-plus"></i></button>
+<button class="ui-button primary small circle"><i class="iconfont icon-plus"></i></button>
+<button class="ui-button warn small circle"><i class="iconfont icon-plus"></i></button>
 {% endexample %}
 
 ## Icon

@@ -43,6 +43,14 @@
 
   /* Sizes */
 
+  &.circle {
+    width: $button-height;
+    padding-left: 0;
+    padding-right: 0;
+    border-radius: 50%;
+    text-align: center;
+  }
+
   &.small {
     height: $button-small-height;
     padding-left: $button-small-padding;
@@ -51,6 +59,13 @@
     line-height: $button-small-height - ($button-border-width * 2);
     border-radius: $radius;
     font-size: $button-small-font-size;
+
+    &.circle {
+      width: $button-small-height;
+      padding-left: 0;
+      padding-right: 0;
+      border-radius: 50%;
+    }
   }
 
   /* Types */
