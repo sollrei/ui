@@ -394,3 +394,35 @@ select.ui-select {
   }
 }
 
+.ui-autocomplete {
+  .ui-select-dropdown {
+    width: 100%;
+  }
+
+  .ui-icon-input {
+    display: flex;
+  }
+  
+  .iconfont:before {
+    content: '\eb3f';
+  }
+  
+  .ui-select-active .iconfont:before {
+    content: '\eb0f';
+  }
+  
+  .loading .iconfont:before {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    margin-top: -7px;
+    box-sizing: border-box;
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
+    border: 2px solid rgba($gray, .4);
+    border-top-color: $white;
+    animation: rotate .5s linear infinite;
+  }
+}

@@ -1,3 +1,5 @@
+import './polyfill.js';
+
 const util = {
   IEVersion() {
     const agent = window.navigator.userAgent;

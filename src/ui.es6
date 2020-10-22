@@ -25,6 +25,8 @@ import Select from './script/select/Select.js';
 
 import Cascader from './script/select/Cascader.js';
 
+import Autocomplete from './script/select/Autocomplete.js';
+
 
 import Modal from './script/modal/Modal.js';
 
@@ -59,10 +61,12 @@ import ColorPicker from './script/color/ColorPicker.js';
 
 import Tree from './script/tree/Tree.js';
 
+
 const ui = {
   util,
   Select,
   Cascader,
+  Autocomplete,
   CheckAll,
   Modal,
   Message,

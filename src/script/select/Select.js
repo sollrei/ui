@@ -3,7 +3,6 @@ import SelectBase from './SelectBase.js';
 
 class Select extends SelectBase {
   constructor(elementSelector, options) {
-    
     const defaultSettings = {
       selectElement: 'div',
       selectShowClass: 'ui-select-active',

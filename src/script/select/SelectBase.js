@@ -31,13 +31,14 @@ class SelectBase {
     const { selectedClass } = this.settings;
     let className = selected ? selectedClass : '';
     let opt = option || {};
-    let last;
+    let last = '';
     let level = '';
     let str = label;
     let addClassName = '';
+
     if (opt.level) {
       level = opt.level;
-      last = level === this.max ? 'data-last' : '';
+      last = (level === this.max) ? 'data-last' : '';
     }
 
     if (opt.tpl) {
@@ -57,10 +58,14 @@ class SelectBase {
     }
 
     const { value: v } = this;
-    if (v && (v.indexOf(value + '') > -1 || v.indexOf(value) > -1)) {
-      className = selectedClass;
-    }
 
+    if (v) {
+      if (Array.isArray(v) && (v.indexOf(value + '') > -1 || v.indexOf(value) > -1)) {
+        className = selectedClass;
+      } else if (typeof v === 'string' && (value === v || value + '' === v)) {
+        className = selectedClass;
+      }
+    }
 
     return `<li class="menu-item ${className} ${addClassName}" data-value="${value}" data-level="${level}" ${last}>${str}</li>`;
   }

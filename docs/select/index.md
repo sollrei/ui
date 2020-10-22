@@ -165,4 +165,21 @@ new Cascader('#area-select', {
 </script>
 {% endexample %}
 
-> Select模块可能会重构，或者整个重写，目前逻辑比较混乱
+## Autocomplete
+
+### Ajax
+
+{% example html %}
+<div class="ui-control-wrap w320">
+  <input type="hidden" class="auto" name="abc" data-url="https://api.cooode.xyz/api/koto/c-auto">
+</div>
+
+<script>
+var Autocomplete = ui.Autocomplete;
+
+new Autocomplete('.auto', {
+  queryKey: 'label',
+});
+</script>
+{% endexample %}
+
