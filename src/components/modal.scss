@@ -289,6 +289,26 @@
       line-height: 1;
     }
   }
+
+  .alert-closeable {
+    padding-right: 40px;
+  }
+
+  .alert-close {
+    position: absolute;
+    right: 12px;
+    cursor: pointer;
+    color: $gray;
+
+    &:hover {
+      color: $primary;
+    }    
+
+    &:before {
+      @include iconfont;
+      content: $icon-times;
+    }
+  }
 }
 
 .fadeInDown {

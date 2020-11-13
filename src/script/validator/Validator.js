@@ -1,7 +1,6 @@
 import Util from '../base/util.js';
 
 const doc = document;
-const docEle = doc.documentElement;
 
 const defaultMsgs = {
   chinese: '请填写中文',

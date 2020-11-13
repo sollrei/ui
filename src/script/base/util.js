@@ -223,6 +223,20 @@ const util = {
     return result;
   },
 
+  getPageScrollTop() {
+    return (window.pageYOffset 
+      || document.documentElement.scrollTop 
+      || document.body.scrollTop 
+      || 0);
+  },
+
+  getPageScrollLeft() {
+    return (window.pageXOffset 
+      || document.documentElement.scrollLeft 
+      || document.body.scrollLeft
+      || 0);
+  },
+
   /**
    * @param {string} url - request url
    * @param {object} data - request data

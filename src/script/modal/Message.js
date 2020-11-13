@@ -27,28 +27,32 @@ class Message {
   /**
    * @param {string} message - message content
    * @param {'top'|'center'} position 
+   * @param {object=} option
    */
-  success(message, position) {
-    this.show(message, true, position);
+  success(message, position, option) {
+    this.show(message, true, position, option);
   }
 
   /**
    * @param {string} message - message content
    * @param {'top'|'center'} position 
+   * @param {object=} option
    */
-  warn(message, position) {
-    this.show(message, false, position);
+  warn(message, position, option) {
+    this.show(message, false, position, option);
   }
 
   /**
    * @param {string} message - message content
    * @param {boolean} type 
    * @param {'top'|'center'} position
+   * @param {object=} option
    */
-  show(message, type, position) {
-    const content = Message.createAlert(message, type);
+  show(message, type, position, option) {
+    const content = Message.createAlert(message, type, option);
 
     const alert = document.querySelector('.ui-alert');
+
     if (alert) {
       alert.parentNode.removeChild(alert);
     }
@@ -78,13 +82,21 @@ class Message {
     // this.count += 1;
       
     // this.messages.push(msg);
+
+    msg.querySelector('.alert-close').addEventListener('click', function () {
+      Message.hide(msg);
+    });
     
     setTimeout(() => {
       // this.hide(msg);
-      if (msg && msg.parentNode) {
-        msg.parentNode.removeChild(msg);
-      }
+      Message.hide(msg);
     }, this.settings.duration);
+  }
+
+  static hide(msg) {
+    if (msg && msg.parentNode) {
+      msg.parentNode.removeChild(msg);
+    }
   }
 
   // hide() {
@@ -106,23 +118,27 @@ class Message {
    * 
    * @param {string} content 
    * @param {boolean} type 
+   * @param {object=} option
    * @returns {HTMLElement} - ui-alert element
    */
-  static createAlert(content, type) {
+  static createAlert(content, type, option) {
     let _type = 'success';
     if (typeof type === 'boolean' && !type) {
       _type = 'warn';
     }
     const className = 'alert-' + _type;
 
-    const domString = Message.createDomString(content, className);
+    const domString = Message.createDomString(content, className, option);
     const div = u.createElement('div', { className: 'ui-alert' }, domString);
 
     return div;
   }
 
-  static createDomString(content, className) {
-    return `<div class="alert-content ${className}">${content}</div>`;
+  static createDomString(content, className, option) {
+    const { closeable } = option;
+    const icon = closeable ? '<span class="alert-close iconfont"></span>' : '';
+
+    return `<div class="alert-content ${className} ${closeable ? 'alert-closeable' : ''}">${content}${icon}</div>`;
   }
 }
 
