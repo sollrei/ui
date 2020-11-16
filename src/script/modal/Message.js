@@ -83,9 +83,11 @@ class Message {
       
     // this.messages.push(msg);
 
-    msg.querySelector('.alert-close').addEventListener('click', function () {
-      Message.hide(msg);
-    });
+    if (msg.querySelector('.alert-close')) {
+      msg.querySelector('.alert-close').addEventListener('click', function () {
+        Message.hide(msg);
+      });
+    }
     
     setTimeout(() => {
       // this.hide(msg);
@@ -134,7 +136,7 @@ class Message {
     return div;
   }
 
-  static createDomString(content, className, option) {
+  static createDomString(content, className, option = {}) {
     const { closeable } = option;
     const icon = closeable ? '<span class="alert-close iconfont"></span>' : '';
 
