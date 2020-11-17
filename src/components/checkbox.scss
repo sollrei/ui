@@ -126,6 +126,13 @@ input[type="radio"] {
     position: relative;
     color: $primary;
   }
+
+  :disabled + label {
+    cursor: default;
+    color: $form-control-disable-color;
+    background-color: $form-control-disable-bg;
+    border: solid 1px $form-control-border-disable-color;
+  }
   
   &.separate {
     label {

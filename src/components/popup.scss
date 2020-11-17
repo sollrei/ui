@@ -8,6 +8,8 @@
   border-radius: $popup-radius;
   box-shadow: $shadow;
   background-color: $white;
+
+  z-index: 100;
 }
 
 %tip-text {
@@ -91,6 +93,7 @@
   border-radius: 4px;
   box-shadow: 0 0 8px 0 rgba($dark, .2);
   color: $white;
+  border: 0 none;
 }
 
 .ui-popper-wp {
