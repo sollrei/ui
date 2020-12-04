@@ -6,28 +6,86 @@
   <title>Document</title>
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1674032_ock2bes9o9.css">
   <link rel="stylesheet" href="../dist/ui.css">
+  <style>
+    .ui-anchor-menu {
+      position: absolute;
+      opacity: 0;
+      animation: fadeIn .2s forwards;
+    }
 
+    @keyframes faddIn {
+      to {
+        opacity: 1;
+      }
+    }
+    .ui-anchor-menu svg {
+      position: absolute;
+      left: 0;
+      top: 0;
+      pointer-events: none;
+    }
+    .ui-anchor-menu path {
+      pointer-events: auto;
+    }
+  </style>
 </head>
-<body style="padding: 100px;">
-  
-<div class="ui-control-wrap">
-  <select name="name" class="ui-select ui-form-control" data-enterable>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-  </select>
-</div>
+<body>
+  <!-- <svg>
+    <path d="M 0 0 h 100 0 v 0 100 z"></path>
+  </svg> -->
+<!-- <div style="padding: 100px;">
+  <button class="ui-button primary js-trigger">Trigger Button</button>
+  <div class="mb-12"></div>
+  <button class="ui-button primary js-trigger2">Trigger Button</button>
+</div> -->
 
+  <!-- <script type="module">
+    import Menu from './script/menu/Menu.js';
+    const data = [{
+        title: 'OneOne',
+        desc: 'hello world',
+        href: 'https://www.baidu.com'
+      },{
+        title: 'TwoOne',
+        desc: 'hello world',
+        href: 'https://www.baidu.com'
+      },{
+        title: 'ThreeOne',
+        desc: 'hello world',
+        href: 'https://www.baidu.com'
+      }];
+    new Menu('.js-trigger', {
+      data
+    })
+    new Menu('.js-trigger2', {
+      data
+    })
+  </script> -->
+
+  <style>
+    .alert-close {
+      position: absolute;
+      right: 12px;
+      cursor: pointer;
+      color: #8c8c8c;
+    }
+    .alert-close:hover {
+      color: #3376ff;
+    }
+    .alert-close:before {
+      content: '\eb0b';
+    }
+    .ui-alert .alert-closeable {
+      padding-right: 40px;
+    }
+  </style>
+  <button class="ui-button primary">trigger</button>
   <script type="module">
-    import './script/base/polyfill.js';
-    import Select from './script/select/Auto.js';
-    new Select('.ui-select', {
-      
-    });
-    
-  </script>
+    import Message from './script/modal/Message.js'
 
+    new Message({
+      duration: 115000
+    }).success('asdfasdfasdf', 'top', { closeable: true })
+  </script>
 </body>
 </html>

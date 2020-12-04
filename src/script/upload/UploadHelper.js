@@ -93,13 +93,13 @@ class UploadHelper {
       input.value = url;
       input.trigger('change');
     } else {
-      str = `<input type="hidden" name="${name}" value="${url}"><img src="${url}">`;
+      str = `<input type="hidden" name="${name}" value="${url}">`;
     }
 
     str += `<img src="${url}">
     <div class="option">
       <a href="javascript:;" class="js-change">替换</a><a href="javascript:;" class="js-clean">清除</a>
-    </div>`
+    </div>`;
     
     image.innerHTML = str;
     u.removeClass(image, 'hidden');

@@ -2,3 +2,4 @@ node_modules
 .cache
 _site
 .sass-cache
+src/index.html
