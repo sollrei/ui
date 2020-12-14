@@ -195,6 +195,7 @@ const testReg = {
     let url = rule.value;
     let urlArr = url.split(',');
     let data = {};
+    let method = 'GET';
 
     if (urlArr.length > 1) {
       url = urlArr.shift();
@@ -215,13 +216,18 @@ const testReg = {
     
     const last = url.charAt(url.length - 1);
 
+    if (url.indexOf('post:') === 0) {
+      method = 'POST';
+      url = url.slice(5);
+    }
+
     if (value) {
       if (last === '=') {
-        return Util.fetchData(url + value, data);
+        return Util.fetchData(url + value, data, method);
       }
       return Util.fetchData(url, Object.assign({}, data, {
         [field.element.name]: value
-      }));
+      }), method);
     }
     return false;
   },

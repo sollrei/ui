@@ -63,7 +63,7 @@ class Tooltip extends Position {
   showTooltip(element) {
     const self = this;
     const ele = element;
-    const { width, maxWidth } = this.settings;
+    const { width, maxWidth, delay } = this.settings;
     if (ele.noTooltip) return;
 
     const title = ele.getAttribute('data-title');
@@ -97,7 +97,7 @@ class Tooltip extends Position {
 
     ele.tooltip = tooltip;
 
-    if (ele.getAttribute('data-delay')) {
+    if (ele.getAttribute('data-delay') || delay) {
       ele.tooltip.addEventListener('mouseenter', function () {
         clearTimeout(ele.clearTimer);
       });
