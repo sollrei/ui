@@ -13,6 +13,7 @@ class Tooltip extends Position {
       maxWidth: '',
 
       gap: 4,
+      delay: 0,
       
       showEvent: 'mouseover',
       hideEvent: 'mouseout',
@@ -30,7 +31,7 @@ class Tooltip extends Position {
 
   init(selector) {
     const self = this;
-    const { showEvent, hideEvent } = this.settings;
+    const { showEvent, hideEvent, delay } = this.settings;
 
 
     u.on(doc, showEvent, selector, function (e) {
@@ -41,11 +42,21 @@ class Tooltip extends Position {
       }
     });
 
-    u.on(doc, hideEvent, selector, function (e) {
+    u.on(doc, hideEvent, selector, function () {
       if (this.timer) {
         clearTimeout(this.timer);
       }
-      Tooltip.destroyTooltip(this.tooltip, this);
+
+      if (this.tooltip) {
+        if (this.clearTimer) {
+          clearTimeout(this.clearTimer);
+        }
+        const _delay = +(this.getAttribute('data-delay') || delay);
+
+        this.clearTimer = setTimeout(() => {
+          Tooltip.destroyTooltip(this.tooltip, this);
+        }, _delay);
+      }
     });
   }
 
@@ -58,7 +69,7 @@ class Tooltip extends Position {
     const title = ele.getAttribute('data-title');
     
     if (title) {
-      if (ele.scrollWidth <= ele.offsetWidth) {
+      if ((ele.scrollWidth <= ele.offsetWidth) && (ele.scrollHeight <= ele.offsetHeight)) {
         ele.noTooltip = true;
         return;
       }
@@ -86,12 +97,22 @@ class Tooltip extends Position {
 
     ele.tooltip = tooltip;
 
+    if (ele.getAttribute('data-delay')) {
+      ele.tooltip.addEventListener('mouseenter', function () {
+        clearTimeout(ele.clearTimer);
+      });
+  
+      ele.tooltip.addEventListener('mouseleave', function () {
+        Tooltip.destroyTooltip(ele.tooltip, ele);
+      });
+    }
+
     setTimeout(() => {
       style.left = 'auto';
       style.bottom = 'auto';
       self.setPosition(tooltip, element);
       style.opacity = '1';
-    }, 0);
+    }, 2);
   }
 
   static destroyTooltip(tooltipElement, ele) {
