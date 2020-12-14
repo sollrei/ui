@@ -42,6 +42,14 @@ need_js: true
 <a class="iconfont icon-info ft-gray ft-link" data-tooltip data-position="right top" data-text="内容"></a>
 ```
 
+### can hover
+
+{% example html %}
+<span class="iconfont icon-info ft-gray ft-link" data-tooltip data-position="center top" data-delay="300">
+  <span class="data-tip hidden">content ... content ... <a href="#" class="ft-primary">link</a></span>
+</span>
+{% endexample %}
+
 #### JavaScript
 
 {% example html %}
