@@ -90,4 +90,27 @@
       background: $green;
     }
   }
+
+  &.auto {
+    .step {
+      flex-grow: 1;
+      padding-right: 0;
+      text-align: left;
+    }
+
+    .step:last-child {
+      flex-grow: 0;
+    }
+
+    .step:after {
+      width: auto;
+      left: 50px;
+    }
+
+    .step-text {
+      position: relative;
+      z-index: 1;
+      background: $white;
+    }
+  }
 }
