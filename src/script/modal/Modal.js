@@ -40,7 +40,8 @@ class Modal {
       // button
       btnOkClass: 'ui-button primary',
       btnCancelClass: 'ui-button',
-      btnType: '' // '' 'center'
+      btnType: '', // '' 'center'
+      zIndex: 19000
     };
 
     if (settings && settings.type === 'confirm') {
@@ -85,6 +86,7 @@ class Modal {
    * @returns {Node} - ui-modal element
    */
   createModalHtml(type) {
+    const { zIndex } = this.settings;
     let str = '';
     let className = 'ui-modal';
 
@@ -99,6 +101,8 @@ class Modal {
     }
 
     const div = u.createElement('div', { className }, str);
+
+    div.style.zIndex = zIndex;
 
     return document.body.appendChild(div);
   }
@@ -163,9 +167,13 @@ class Modal {
    * @returns {string} confirm html
    * */
   static createConfirmHtml(option) {
-    const { content, desc } = option;
+    const { content, desc, dom } = option;
     const titHtml = content ? `<div class="warn">${content}</div>` : '';
     const descHtml = desc ? `<div class="desc">${desc}</div>` : '';
+
+    if (dom) {
+      return dom;
+    }
 
     return `${titHtml}${descHtml}`;
   }
@@ -219,7 +227,9 @@ class Modal {
       this.modalTitle.innerHTML = '';
     }
 
-    u.removeClass(document.querySelector('html'), 'modal-open');
+    if (!document.querySelector('.modal-visible')) {
+      u.removeClass(document.querySelector('html'), 'modal-open');
+    }
   }
 
   /**
