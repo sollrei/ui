@@ -326,11 +326,13 @@ new Validator(form, fields, option, successCallback[, errorCallback]);
 | **ip** | ip |
 | **idCard** | 身份证 |
 | **passport** | 护照 |
-| **not** | 非 |
-| **or** | 或,例or(email,mobile) |
 | **int** | 正整数 |
 | **number** | 数字 |
-| **remote(url, ajaxName[inputName])** | 远程验证 `remote(xxxx?xx=xx, mobile[newmobile])` |
+| **not** | 非 |
+| **or** | 或,例or(email,mobile) |
+| **max** | 对复选框是最多选中个数，其他类似maxlength |
+| **min** | 对复选框是最少选中个数，其他类似minlength |
+| **remote(url, ajaxName[inputName])** | 远程验证 `remote(post:xxxx?xx=xx, mobile[newmobile])`，不写`post:`默认使用get方法 |
 | **same(name)** | 相同，和表单中name字段相同值，例如重复密码 |
 | **reg(regRule)** | 正则，因为用了竖线做了分隔符，所以规则中不能用竖线 |
 | **gt(name)** | 大于指定字段值（数字） |
