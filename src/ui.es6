@@ -6,7 +6,6 @@ import './script/base/polyfill.js';
 import util from './script/base/util.js';
 
 
-import PikaEx from './script/form/PikaEx.js';
 
 import CheckAll from './script/form/CheckAll.js';
 
@@ -77,7 +76,6 @@ const ui = {
   Upload,
   Popper,
   Layer,
-  PikaEx,
   UploadHelper,
   Transfer,
   Position,

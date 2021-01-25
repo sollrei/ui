@@ -1,0 +1,44 @@
+.ui-scroller {
+  position: relative;
+  overflow: hidden;
+}
+
+.viewport {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-right: 50px;
+  right: -50px;
+  left: 0;
+  background: #fafafa;
+}
+
+.scrollbar {
+  opacity: 0;
+  right: 0;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  user-select: none;
+  width: 10px;
+  transition: opacity .2s;
+}
+
+.ui-scroller:hover .scrollbar,
+.scrollbar.scrollbar--dragging {
+  opacity: 1;
+}
+
+.scroll_thumb {
+  left: 0;
+  position: absolute;
+  width: 8px;
+  top: 0;
+  height: 75px;
+  user-select: none;
+  border-radius: 20px;
+  background: #ddd;
+}

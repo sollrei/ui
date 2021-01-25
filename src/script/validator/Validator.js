@@ -203,7 +203,7 @@ const testReg = {
       urlArr.forEach(item => {
         const [itm, itemName, inputName] = item.replace(' ', '').match(/^(\S*)\[(\S*)\]$/);
         const _value = form.querySelector(`[name="${inputName}"]`).value;
-        data[itemName] = _value;
+        data[itemName] = encodeURIComponent(_value);
         if (!_value.length) {
           hasValue = false;
         }
@@ -222,12 +222,28 @@ const testReg = {
     }
 
     if (value) {
+      let _data = data;
+
       if (last === '=') {
-        return Util.fetchData(url + value, data, method);
+        url += value;
+        // return Util.fetchData(url + value, data, method);
+      } else {
+        _data = Object.assign({}, data, {
+          [field.element.name]: value
+        });
       }
-      return Util.fetchData(url, Object.assign({}, data, {
-        [field.element.name]: value
-      }), method);
+
+      if (method === 'POST') {
+        if (window.jQuery) {
+          return new Promise((resolve) => {
+            window.jQuery.post(url, _data, res => {
+              resolve(res);
+            }, 'json');
+          });
+        }
+      }
+
+      return Util.fetchData(url, _data, method);
     }
     return false;
   },
