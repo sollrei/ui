@@ -4,15 +4,148 @@ $color-base: #fafbfc;
 
 /* ------- form ------- */
 
-$form-control-height: 34px;
+// $form-control-height: 34px;
 
 /* ------- Button ------- */
 
-$button-height: 34px;
-$button-border-width: 0;
+// $button-height: 34px;
+// $button-border-width: 0;
 
 /* ------- Tag ------- */
 
-$tag-height: 22px;
+// $tag-height: 22px;
 
 $primary: #577bf9;
+
+
+// scss-lint:disable all
+
+$icon-info: '\ec54';
+$icon-warn: '\eb07';
+$icon-success: '\ec4e';
+$icon-times: '\ec4a';
+$icon-angle-up: '\ec18';
+$icon-angle-down: '\ec13';
+$icon-angle-right: '\ec1a';
+$icon-correct: '\ec22';
+$steps-icon: '\ec35';
+$radio-icon: '\ec4b';
+$radio-checked-icon: '\ec4c';
+$checkbox-icon: '\ec65';
+$checkbox-checked-icon: '\ec26';
+$checkbox-indeterminate-icon: '\ec24';
+
+$button-border-width: 0;
+$button-small-height: 24px;
+$button-small-padding: 16px;
+$button-height: 32px;
+$button-font-weight: 500;
+$button-color: #3376ff;
+
+$form-control-border-color: #ccc;
+
+$color-border: #ededed;
+
+
+$notice-radius: 4px;
+$notice-font-size: 14px;
+
+$upload-single-size: 120px;
+
+// $primary: #3376ff;
+
+$page-height: 32px;
+
+$tab-font-weight: 600;
+
+$popup-padding: 16px 24px;
+$form-gap: 24px;
+
+$menu-border: 0 none;
+$menu-shadow: 0 0 4px 0 rgba(0, 0, 0, .2);
+
+$modal-head-padding: 16px 24px;
+$modal-head-height: 56px;
+$modal-head-line-height: 24px;
+$modal-close-top: 16px;
+
+$tooltip-max-width: 'auto';
+
+
+@mixin scroll() {
+  &::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+    background-color: #fafafa;
+  }
+  
+  &::-webkit-scrollbar-button {
+    background-color: #fafafa;
+  }
+  
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(#000, 0.3);
+    background-color: #fbfbfb;
+  }
+  
+  &::-webkit-scrollbar-track-piece {
+    background: #fff;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: #ededed;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-corner {
+    background: #f3f3f3;
+  }
+
+  scrollbar-base-color: #fff;
+  scrollbar-face-color: #f3f3f3;
+  scrollbar-3dlight-color: #fff;
+  scrollbar-highlight-color: #fff;
+  scrollbar-track-color: #fff;
+  scrollbar-arrow-color: #000; 
+  scrollbar-shadow-color: #fff;
+  scrollbar-dark-shadow-color: #fff;
+}
+
+@mixin scrollDark() {
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  &::-webkit-scrollbar-button {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+  
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(#000, 0.3);
+    background-color: transparent;
+  }
+  
+  &::-webkit-scrollbar-track-piece {
+    background: rgba(0, 0, 0, 0.8);
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(#fff, 0.4);
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-corner {
+    background: #f3f3f3;
+  }
+
+  scrollbar-base-color: #fff;
+  scrollbar-face-color: #f3f3f3;
+  scrollbar-3dlight-color: #fff;
+  scrollbar-highlight-color: #fff;
+  scrollbar-track-color: #fff;
+  scrollbar-arrow-color: #000; 
+  scrollbar-shadow-color: #fff;
+  scrollbar-dark-shadow-color: #fff;
+}
