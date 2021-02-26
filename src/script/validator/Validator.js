@@ -853,7 +853,7 @@ class Validator {
         return false;
       }
 
-      if (element.hasAttribute('disabled')) {
+      if (element.hasAttribute && element.hasAttribute('disabled')) {
         field.valid = true;
         return false;
       }
