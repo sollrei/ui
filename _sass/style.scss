@@ -185,6 +185,10 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 5px 0 rgba(#e8edf6, .45);
   background-color: #fff;
+
+  p {
+    line-height: 2;
+  }
 }
 
 @media screen and (max-width: 1300px) {

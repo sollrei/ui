@@ -21,6 +21,28 @@ const util = {
             (typeof value === 'string' && value.trim().length === 0);
   },
 
+  getUrlParameter(name) {
+    if (typeof window.URLSearchParams === 'function') {
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get(name);
+    }
+  
+    const _name = name.replace(/[\[\]]/g, '\\$&');
+    const regex = new RegExp('[?&]' + _name + '(=([^&#]*)|&|#|$)');
+    const results = regex.exec(decodeURIComponent(location.href));
+
+    if (!results) return null;
+    if (!results[2]) return '';
+
+    return results[2];
+
+    // const regex = new RegExp('[?&]' + _name + '(=([^&#]*)|&|#|$)', 'g');
+    // let result;
+    // while ((result = regex.exec(url)) != null) {
+    //   console.log(result)
+    // }
+  },
+
   hasClass(element, className) {
     if (!element) return false;
 
@@ -244,13 +266,20 @@ const util = {
    * @param {object} header -
    * @returns {Promise} - 
    * */
-  fetchData(url, data = {}, method = 'GET', header = { 'Content-Type': 'application/x-www-form-urlencoded' }) {
+  fetchData(
+    url, 
+    data = {}, 
+    method = 'GET', 
+    header = { 
+      Accept: 'application/json, text/javascript, */*; q=0.01',
+      'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' 
+    }) {
     let dataArr = [];
     let dataStr = '';
 
     for (let i in data) {
       if (Object.prototype.hasOwnProperty.call(data, i)) {
-        dataArr.push(`${i}=${data[i]}`);
+        dataArr.push(`${i}=${encodeURIComponent(data[i])}`);
       }
     }
 

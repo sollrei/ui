@@ -5,7 +5,7 @@ layout: default
 
 
 兼容性 IE10 +,
-低版本可能需要[GitHub - es-shims/es5-shim: ECMAScript 5 compatibility shims for legacy (and modern) JavaScript engines](https://github.com/es-shims/es5-shim)以及一部分样式的调整（麻烦...
+低版本可能需要[GitHub - es-shims/es5-shim: ECMAScript 5 compatibility shims for legacy (and modern) JavaScript engines](https://github.com/es-shims/es5-shim)以及一部分样式的调整（比较麻烦...
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.14/es5-shim.min.js"></script>

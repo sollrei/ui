@@ -1,21 +1,35 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <meta charset="utf-8">
-    <title>example</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="shortcut icon" href="{{ "./assets/favicon.ico " | relative_url }}"/>
+    <title>{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}</title>
 
-    <link href="https://fonts.googleapis.com/css?family=Muli|Lato|Karla" rel="stylesheet">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_2020678_qrr2g24en09.css">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-min.css">
-
-    <link rel="stylesheet" href="{{ "./assets/styles.css " | relative_url }}">
-
+    <!--[if lte IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.14/es5-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es5-shim/4.5.14/es5-sham.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/json3/3.3.2/json3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-shim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-shim/0.35.5/es6-sham.min.js"></script>
+    <![endif]-->
+    
     <link rel="stylesheet" href="{{ "./dist/ui.css " | relative_url }}">
+    <link rel="stylesheet" href="{{ "./dist/style.css " | relative_url }}">
 
+    <!--[if lt IE 10]>
+    <link rel="stylesheet" href="{{ "./css/ie.css" | relative_url }}">
+    <![endif]-->
 
+    <script src="{{ "./dist/ui.js " | relative_url }}"></script>
 </head>
+
+
 <body>
 
 {{content}}

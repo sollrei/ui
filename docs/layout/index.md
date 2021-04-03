@@ -6,7 +6,15 @@ layout: default
 
 > 使用flex，兼容性IE 10 +
 
-## Margin
+## Page
+
+[demo](/ui-pages/docs/pages/)
+
+## Gap
+
+通常元素之间的间距为4的倍数，例如4像素，8像素，12像素等
+
+### Margin
 
 > 4 8 12 16 20 24 28
 
@@ -21,7 +29,7 @@ layout: default
 <div class="ml-4"></div>
 ```
 
-## Padding
+### Padding
 
 * `pl-` padding-left
 * `pr-` padding-right
@@ -58,19 +66,26 @@ layout: default
 {% endexample %}
 
 {% example html %}
-<div class="ui-row between">
-  <div class="col-1-2"><div class="ui-mod">Content</div></div>
-  <div class="col-1-4"><div class="ui-mod">Content</div></div>
-  <div class="col-1-4"><div class="ui-mod">Content</div></div>
+<div class="ui-row">
+  <div class="col-1-2"><div class="ui-mod">content</div></div>
+  <div class="col-1-2"><div class="ui-mod">content</div></div>
 </div>
 {% endexample %}
 
 {% example html %}
 <div class="ui-row">
   <div class="col-1-3"><div class="ui-mod">content</div></div>
-  <div class="col-1-6"><div class="ui-mod">content</div></div>
-  <div class="col-1-6"><div class="ui-mod">content</div></div>
   <div class="col-1-3"><div class="ui-mod">content</div></div>
+  <div class="col-1-3"><div class="ui-mod">content</div></div>
+</div>
+{% endexample %}
+
+{% example html %}
+<div class="ui-row between">
+  <div class="col-1-4"><div class="ui-mod">Content</div></div>
+  <div class="col-1-4"><div class="ui-mod">Content</div></div>
+  <div class="col-1-4"><div class="ui-mod">Content</div></div>
+  <div class="col-1-4"><div class="ui-mod">Content</div></div>
 </div>
 {% endexample %}
 

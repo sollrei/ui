@@ -44,7 +44,6 @@ layout: default
 
 {% example html %}
 <button class="ui-button icon"><i class="iconfont icon-filter-normal"></i></button>
-<button class="ui-button icon active"><i class="iconfont icon-filter-normal"></i></button>
 {% endexample %}
 
 ## Line
