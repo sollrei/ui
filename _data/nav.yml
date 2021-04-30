@@ -81,6 +81,9 @@
     - title: 气泡提示
       name: Popup
       url: /docs/popup/
+    - title: 弹窗
+      name: Toast
+      url: /docs/toast
 
 
 

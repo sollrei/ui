@@ -35,6 +35,8 @@ import Tooltip from './script/modal/Tooltip.js';
 
 import Popper from './script/modal/Popper.js';
 
+import Toast from './script/modal/Toast.js';
+
 import Layer from './script/modal/Layer.js';
 
 import Position from './script/modal/Position.js';
@@ -75,6 +77,7 @@ const ui = {
   Validator,
   Upload,
   Popper,
+  Toast,
   Layer,
   UploadHelper,
   Transfer,

@@ -55,12 +55,12 @@ class Toast {
       icon = '<i class="iconfont icon-success-fill"></i>';
     }
 
-    return `<div class="toast-content ${className}">${icon}${content}</div>`;
+    return `<div class="ui-toast"><div class="toast-content ${className}">${icon}${content}</div></div>`;
   }
 
   static createAlert(content, type, position) {
     const domString = Toast.createDomString(content, type);
-    const div = u.createElement('div', { className: `ui-toast ${position}` }, domString);
+    const div = u.createElement('div', { className: `ui-toast-wrap ${position}` }, domString);
 
     return div;
   }
