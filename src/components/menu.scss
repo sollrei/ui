@@ -77,3 +77,26 @@
     color: $primary;
   }
 }
+
+.ui-anchor-menu {
+  position: absolute;
+  opacity: 0;
+  animation: fadeIn .2s forwards;
+
+  svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    pointer-events: none;
+  }
+
+  path {
+    pointer-events: auto;
+  }
+}
+
+@keyframes faddIn {
+  to {
+    opacity: 1;
+  }
+}
