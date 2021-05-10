@@ -855,6 +855,7 @@ class Validator {
 
       if (element.hasAttribute && element.hasAttribute('disabled')) {
         field.valid = true;
+        field.validRule = undefined;
         return false;
       }
 
@@ -864,6 +865,7 @@ class Validator {
         if (!validResult) {
           this.showErrorTip(element, rule.msg, tip);
           field.valid = false;
+          field.validRule = rule;
           this.removeSuccessTip(element);
           return false;
         }
@@ -885,9 +887,11 @@ class Validator {
 
           if (fetchSuccess(res)) {
             field.valid = true;
+            field.validRule = undefined;
             this.showSuccessTip(element);
           } else {
             field.valid = false;
+            field.validRule = rule;
             this.showErrorTip(element, res.msg || rule.msg, tip);
           }
           

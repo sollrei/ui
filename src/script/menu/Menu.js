@@ -51,7 +51,7 @@ class Menu {
 
     svg.setAttribute('style', `width: ${anchor.width}px;height: ${menu.height}px;left: -${anchor.width}px`);
 
-    svg.innerHTML = `<path fill="rgba(235,235,235,.8)" d="M ${anchor.x} ${anchor.y}
+    svg.innerHTML = `<path fill="rgba(235,235,235,0)" d="M ${anchor.x} ${anchor.y}
     Q ${menu.x} ${anchor.y}, ${menu.x} ${menu.y}
     v ${menu.height}
     Q ${menu.x} ${anchor.y + anchor.height}, ${anchor.x} ${anchor.y + anchor.height}
