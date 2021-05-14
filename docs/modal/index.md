@@ -99,3 +99,29 @@ need_js: true
   });
 </script>
 {% endexample %}
+
+<button class="ui-button primary js-layer-bottom-btn">Layer Bottom</button>
+
+{% example html %}
+<script>
+  var Layer = ui.Layer;
+
+  l = new Layer({
+    position: 'bottom',
+    width: '100vw',
+    onOpen: function () {
+      console.log('open')
+    },
+    onClose: function() {
+      console.log('close')
+    }
+  });
+
+  document.querySelector('.js-layer-bottom-btn').addEventListener('click', function () {
+    l.show({
+      title: 'Title',
+      content: 'hello world'
+    });
+  });
+</script>
+{% endexample %}

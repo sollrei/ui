@@ -93,6 +93,12 @@ html.layer-open {
     width: 100%;
   }
 
+  .layer-bottom {
+    .layer-content {
+      position: static;
+    }
+  }
+
   .layer-main {
     flex: 1;
     overflow-y: auto;

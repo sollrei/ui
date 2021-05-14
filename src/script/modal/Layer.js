@@ -7,18 +7,15 @@ class Layer {
   constructor(settings) {
     const defaults = {
       layer: null,
-      title: null,
-      type: null, 
-
-      confirmType: 'warn', // warn success
 
       close: '[data-layer-close]',
-
       layerClass: 'ui-layer',
       showClass: 'layer-visible',
+      position: 'right',
+
       width: 640,
 
-      position: 'right',
+      closeBtn: true,
 
       onOpen: null,
       onClose: null
@@ -43,15 +40,15 @@ class Layer {
   }
 
   createLayer() {
-    const { width, layerClass, position } = this.settings;
+    const { width, layerClass, position, closeBtn } = this.settings;
     let _width = width;
 
     if (typeof width === 'number') {
       _width = width + 'px';
     }
 
-    const closeIcon = '<span class="layer-close iconfont icon-times" data-layer-close></span>';
-    let htmlString = `<div class="layer-box layer-${position}" style="width: ${_width}">${closeIcon} 
+    const closeIcon = closeBtn ? '<span class="layer-close iconfont icon-times" data-layer-close></span>' : '';
+    let htmlString = `<div class="layer-box layer-${position}" style="width: ${_width};min-width: ${_width}">${closeIcon} 
       <div class="layer-head"></div>
       <div class="layer-content"></div>
     </div>`;
@@ -71,7 +68,9 @@ class Layer {
    * @param {string} str - title
    */
   setTitle(str) {
-    this.layerHead.innerHTML = `<div class="layer-title">${str}</div>`;
+    if (str) {
+      this.layerHead.innerHTML = `<div class="layer-title">${str}</div>`;
+    }
   }
 
   show(option) {
@@ -85,6 +84,13 @@ class Layer {
     if (onOpen) {
       onOpen(this);
     }
+  }
+
+  simpleShow() {
+    const { layer } = this;
+    const { showClass } = this.settings;
+    u.addClass(document.querySelector('html'), 'layer-open');
+    u.addClass(layer, showClass);
   }
 
   hide() {
