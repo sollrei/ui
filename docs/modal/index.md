@@ -80,7 +80,7 @@ need_js: true
 <script>
   var Layer = ui.Layer;
 
-  l = new Layer({
+  lay = new Layer({
     position: 'right',  //  right | bottom
     width: 600, // default: 640
     onOpen: function () {
@@ -92,7 +92,7 @@ need_js: true
   });
 
   document.querySelector('.js-layer-btn').addEventListener('click', function () {
-    l.show({
+    lay.show({
       title: 'Title',
       content: '<div class="ui-column stretch"><div class="layer-main plr-24">content here</div><div class="layer-footer"><button class="ui-button primary mr-16" type="submit">保存</button><button class="ui-button" type="button" data-layer-close>取消</button></div></div>'
     });
