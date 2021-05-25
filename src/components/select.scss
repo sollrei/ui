@@ -206,6 +206,13 @@ select.ui-select {
   .select-ul {
     padding-top: $menu-wrap-padding;
     padding-bottom: $menu-wrap-padding;
+
+    .menu-item-text {
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
   }
 
   // multiple select

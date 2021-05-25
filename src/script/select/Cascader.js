@@ -195,12 +195,14 @@ class Cascader extends SelectBase {
       if (trigger && !type) {
         selected = item[valueName] == this.defaultValue[level - 1]; // eslint-disable-line
       }
+
+      const tpl = `<div class="menu-item-text" title="${item[labelName]}">${item[labelName]}</div>`;
  
       domString += this.createOptionItem({
         selected, 
         value: item[valueName], 
         label: item[labelName]
-      }, { level });
+      }, { level, tpl });
     });
 
     const optionUI = select.option.appendChild(Util.createElement('ul', { className: 'select-main' }, domString));

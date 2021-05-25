@@ -1,4 +1,4 @@
-import Util from '../base/util.js';
+import u from '../base/util.js';
 
 class InputNumber {
   constructor(selector, options) {
@@ -40,14 +40,14 @@ class InputNumber {
       ? Number(input.getAttribute('step'))
       : step;
 
-    Util.on(container, 'click', '.step-up', function () {
-      if (!Util.hasClass(this, disableClass)) {
+    u.on(container, 'click', '.step-up', function () {
+      if (!u.hasClass(this, disableClass)) {
         self.stepUp(input, _step, up, down);
       }
     });
 
-    Util.on(container, 'click', '.step-down', function () {
-      if (!Util.hasClass(this, disableClass)) {
+    u.on(container, 'click', '.step-down', function () {
+      if (!u.hasClass(this, disableClass)) {
         self.stepDown(input, _step, up, down);
       }
     });
@@ -60,11 +60,7 @@ class InputNumber {
       : max;
     this.max = _max;
 
-    // if (input.stepUp && typeof input.stepUp === 'function' && input.getAttribute('step')) {
-    //   input.stepUp();
-    // } else {
     this.changeInputValue(input, step);
-    // }
 
     this.checkValue('plus', _max, Number(input.value), up, down);
     this.triggerCallback(input);
@@ -77,11 +73,7 @@ class InputNumber {
       : min;
     this.min = _min;
 
-    // if (input.stepDown && typeof input.stepDown === 'function') {
-    //   input.stepDown();
-    // } else {
     this.changeInputValue(input, -step);
-    // }
 
     this.checkValue('minus', _min, Number(input.value), up, down);
     this.triggerCallback(input);
@@ -106,20 +98,20 @@ class InputNumber {
 
     if (type === 'plus') {
       if (typeof total === 'number' && (result >= total)) {
-        Util.addClass(up, disableClass);
+        u.addClass(up, disableClass);
       } else {
-        Util.removeClass(up, disableClass);
+        u.removeClass(up, disableClass);
       }
-      Util.removeClass(down, disableClass);
+      u.removeClass(down, disableClass);
     }
 
     if (type === 'minus') {
       if (typeof total === 'number' && (result <= total)) {
-        Util.addClass(down, disableClass);
+        u.addClass(down, disableClass);
       } else {
-        Util.removeClass(down, disableClass);
+        u.removeClass(down, disableClass);
       }
-      Util.removeClass(up, disableClass);
+      u.removeClass(up, disableClass);
     }
   }
 

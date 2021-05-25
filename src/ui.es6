@@ -57,6 +57,7 @@ import Table from './script/data/Table';
 
 
 import Tab from './script/menu/Tab.js';
+import Menu from './script/menu/Menu.js';
 
 import ColorPicker from './script/color/ColorPicker.js';
 
@@ -86,7 +87,10 @@ const ui = {
 
   Pagination,
   Table,
+
   Tab,
+  Menu,
+  
   Range,
   SectionRange,
   ColorPicker,
