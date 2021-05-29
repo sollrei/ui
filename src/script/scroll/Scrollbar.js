@@ -1,3 +1,5 @@
+// 参考： https://www.bennadel.com/blog/3864-copying-slacks-brilliant-virtual-scrollbar-and-overflow-container-in-angular-9-1-12.htm
+
 class Scrollbar {
   constructor(element) {
     this.contentHeight = 0;
@@ -150,3 +152,5 @@ class Scrollbar {
 }
 
 export default Scrollbar;
+
+

@@ -5,8 +5,6 @@ import './polyfill/array.js';
 import './script/base/polyfill.js';
 import util from './script/base/util.js';
 
-
-
 import CheckAll from './script/form/CheckAll.js';
 
 import Transfer from './script/form/Transfer.js';

@@ -6,7 +6,7 @@
   <title>Document</title>
   <link rel="stylesheet" href="//at.alicdn.com/t/font_1674032_ock2bes9o9.css">
   <link rel="stylesheet" href="../dist/ui.css">
-  <style>
+  <!-- <style>
     .ui-anchor-menu {
       position: absolute;
       opacity: 0;
@@ -27,7 +27,7 @@
     .ui-anchor-menu path {
       pointer-events: auto;
     }
-  </style>
+  </style> -->
 </head>
 <body>
   <!-- <svg>
@@ -62,7 +62,7 @@
     })
   </script> -->
 
-  <style>
+  <!-- <style>
     .alert-close {
       position: absolute;
       right: 12px;
@@ -78,14 +78,127 @@
     .ui-alert .alert-closeable {
       padding-right: 40px;
     }
-  </style>
-  <button class="ui-button primary">trigger</button>
-  <script type="module">
-    import Message from './script/modal/Message.js'
+  </style> -->
+  <!-- <button class="ui-button primary">trigger</button> -->
+  <style>
+    .ui-scroller {
+  position: relative;
+  overflow: hidden;
+}
 
-    new Message({
-      duration: 115000
-    }).success('asdfasdfasdf', 'top', { closeable: true })
+.viewport {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: scroll;
+  padding-right: 50px;
+  right: -50px;
+  left: 0;
+  background: #fafafa;
+}
+
+.scrollbar {
+  opacity: 0;
+  right: 0;
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  user-select: none;
+  width: 10px;
+  transition: opacity .2s;
+}
+
+.ui-scroller:hover .scrollbar,
+.scrollbar.scrollbar--dragging {
+  opacity: 1;
+}
+
+.scroll_thumb {
+  left: 0;
+  position: absolute;
+  width: 8px;
+  top: 0;
+  height: 75px;
+  user-select: none;
+  border-radius: 20px;
+  background: #ddd;
+}
+
+  </style>
+  <div class="ui-scroller" style="height: 200px;width: 500px">
+    <div class="viewport">
+      <div class="content">
+        <div style="height: 1000px">content</div>
+      </div>
+    </div>
+    <div class="scrollbar">
+      <div class="scroll_thumb"></div>
+    </div>
+  </div>
+
+  
+
+   <style>
+     .ui-input-number {
+       position: relative;
+     }
+     .ui-input-number input {
+       padding-left: 35px;
+       padding-right: 32px;
+     }
+     .step-down,
+     .step-up {
+       position: absolute;
+       left: 1px;
+       top: 1px;
+       height: 32px;
+       width: 32px;
+       text-align: center;
+       line-height: 32px;
+       background-color: #eee;
+     }
+     .step-down {
+       right: 1px;
+       left: auto;
+     }
+   </style>
+
+    <div class="ui-input-number w160">
+      <span class="step-up">-</span>
+      <input type="number" class="ui-form-control">
+      <span class="step-down">+</span>
+    </div>
+
+    <style>
+      p:before {
+          content:attr(data-foo) " ";
+      }
+      p {
+        height: attr(data-size em, 20);
+      }
+
+      .menu-item-text {
+        display: block;
+        width: 100%;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    </style>
+
+    <p data-foo="hello" data-size="1">world</p>
+    
+  <script type="module">
+    // import Upload from './script/upload/Upload.js';
+    // import UploadHelper from './script/upload/UploadHelper.js';
+    import Scrollbar from './script/scroll/Scrollbar.js';
+
+    new Scrollbar(document.querySelector('.ui-scroller'))
+    // import Tag from './script/tag/Tag.js';
+
+    
   </script>
 </body>
 </html>

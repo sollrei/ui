@@ -64,7 +64,7 @@ need_js: true
 </script>
 {% endexample %}
 
-## Input Number
+## Input Number 
 
 {% example html %}
 <div class="ui-icon-input w320 js-number">
@@ -81,6 +81,7 @@ new InputNumber(item, {
   }
 });
 </script>
+
 {% endexample %}
 
 
