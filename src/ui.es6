@@ -61,6 +61,7 @@ import ColorPicker from './script/color/ColorPicker.js';
 
 import Tree from './script/tree/Tree.js';
 
+import Lightbox from './script/lightbox/Lightbox.js';
 
 const ui = {
   util,
@@ -92,7 +93,8 @@ const ui = {
   Range,
   SectionRange,
   ColorPicker,
-  Tree
+  Tree,
+  Lightbox
 };
 
 // @ts-ignore

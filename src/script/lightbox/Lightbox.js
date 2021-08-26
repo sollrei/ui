@@ -20,9 +20,10 @@ class Lightbox {
     const box = document.body.appendChild(eleString);
 
     this.box = box;
-    this.img = box.querySelector('.lb-img');
+    this.img = box.querySelector('.lb-con');
     this.prev = box.querySelector('.lb-prev');
     this.next = box.querySelector('.lb-next');
+    this.loading = box.querySelector('.lb-loading');
 
     this.bindEvent();
   }
@@ -30,7 +31,10 @@ class Lightbox {
   static createTemplate() {
     const tmp = `<div class="lb-close">&times;</div>
       <div class="lb-main">
-        <img src="" alt="" class="lb-img">
+        <div class="lb-con">
+          <img src="" alt="" class="lb-img">
+        </div>
+        <div class="lb-loading"></div>
         <a href="javascript:;" class="lb-prev"><i class="iconfont icon-arrow-left"></i></a>
         <a href="javascript:;" class="lb-next"><i class="iconfont icon-arrow-right"></i></a>
       </div>`;
@@ -49,9 +53,23 @@ class Lightbox {
     }
 
     if (src) {
-      this.img.setAttribute('src', '');
-      this.img.setAttribute('src', src);
+      this.showLoading();
+      this.img.innerHTML = `<img src="${src}" alt="" class="lb-img">`;
+
+      let image = new Image();
+      image.src = src;
+      image.onload = () => {
+        this.hideLoading();
+      };
     }
+  }
+
+  showLoading() {
+    this.loading.classList.add('show');
+  }
+
+  hideLoading() {
+    this.loading.classList.remove('show');
   }
 
   showBox(ele) {

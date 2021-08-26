@@ -83,7 +83,10 @@
       url: /docs/popup/
     - title: 弹窗
       name: Toast
-      url: /docs/toast
+      url: /docs/toast/
+    - title: lightbox
+      name: Lightbox
+      url: /docs/lightbox/
 
 
 
