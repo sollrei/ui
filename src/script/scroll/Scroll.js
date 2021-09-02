@@ -6,7 +6,6 @@ class Scroll {
     };
 
     this.settings = Object.assign({}, defaultSettings, option);
-
     this.init(selector);
   }
 
@@ -22,9 +21,9 @@ class Scroll {
 
     this.rowHeight = Scroll.getRowHeight(row);
     this.fullHeight = element.offsetHeight;
-    this.element = element;
     this.parent = element.parentNode;
     this.cloneElement = this.createCloneNode(element);
+    
     this.parent.style.transition = `transform ${this.settings.speed}s`;
     this.top = 0;
 
@@ -47,11 +46,11 @@ class Scroll {
     const clientHeight = parent.parentNode.clientHeight;
     const num = Math.ceil(clientHeight / rowHeight);
     const copyNode = element.cloneNode();
-
     const range = new Range();
     range.selectNodeContents(element);
+
     let fragment = range.cloneContents();
-    let newFrag = document.createDocumentFragment();
+    const newFrag = document.createDocumentFragment();
 
     for (let i = num - 1; i >= 0; i -= 1) {
       newFrag.insertBefore(fragment.children[i], newFrag.children[0]);
@@ -59,8 +58,7 @@ class Scroll {
 
     copyNode.appendChild(newFrag);
     copyNode.classList.add('ele--copy');
-    const node = element.parentNode.appendChild(copyNode);
-    return node;
+    return element.parentNode.appendChild(copyNode);
   }
 
   scroll() {
@@ -85,7 +83,6 @@ class Scroll {
   events() {
     const { parent } = this;
 
-    // ie 10 +
     parent.addEventListener('transitionend', () => {
       if (this.top === 0) {
         parent.style.transition = 'none';
