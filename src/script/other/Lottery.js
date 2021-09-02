@@ -5,7 +5,8 @@ class Lottery {
       round: 6,
       delay: 1400,
       ajaxFn: null,
-      callbackFn: null,
+      onRotateEnd: null,
+      callback: null,
       itemSelector: '.item',
       activeClass: 'active'
     };
@@ -74,6 +75,8 @@ class Lottery {
     const { itemSelector, activeClass } = this.settings;
     const { element, index } = this;
 
+    if (!activeClass) return;
+
     const item = element.querySelectorAll(itemSelector)[index];
 
     if (item) {
@@ -84,6 +87,8 @@ class Lottery {
   removeHighlight() {
     const { activeClass } = this.settings;
     const { element } = this;
+
+    if (!activeClass) return;
 
     const item = element.querySelector('.' + activeClass);
 
@@ -101,14 +106,18 @@ class Lottery {
 
   events() {
     const { element } = this;
-    const { delay, callbackFn } = this.settings;
+    const { delay, callback, onRotateEnd } = this.settings;
 
     element.addEventListener('transitionend', () => {
       this.changeHighlight();
 
+      if (typeof onRotateEnd === 'function') {
+        onRotateEnd(this.result);
+      }
+
       setTimeout(() => {
-        if (typeof callbackFn === 'function') {
-          callbackFn(this.result);
+        if (typeof callback === 'function') {
+          callback(this.result);
           this.reset();
         }
       }, delay);

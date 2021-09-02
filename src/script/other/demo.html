@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .canvas,
+    canvas {
+      height: 20rem;
+      width: 20rem;
+    }
+
+    .canvas.animation {
+      transition: transform 5s cubic-bezier(.54, .21, .35, .74);
+    }
+
+    html {
+      font-size: 3vw;
+    }
+
+    * {
+      padding: 0;
+      margin: 0;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="canvas">
+    <canvas id="canvas"></canvas>
+  </div>
+  <script type="module">
+    import l from './drawLottery.js';
+    import L from './Lottery.js';
+
+    const canvas = document.querySelector('#canvas');
+
+    const part = 'https://img-i.westarcloud.com/2021/0902/noru800lr4dcmmx7021928.png';
+    const item = 'https://img-i.westarcloud.com/2021/0902/ugoqppki22nlf32q021928.png';
+    const activeSrc = 'https://img-i.westarcloud.com/2021/0902/wksmz6y51mgm1soy014231.png';
+    const pointer = 'https://img-i.westarcloud.com/2021/0902/lt6dp7l0ufja6bfu021928.png';
+
+    const data = new Array(6).fill(6).map((i, ind) => {
+      return { title: ind + 1 + '等奖', num: '50', desc: '满200使用'}
+    });
+
+    l.init(canvas, {
+      size: 550, 
+      bgImg: part, 
+      coverImg: item, 
+      activeImg: activeSrc, 
+      pointerImg: pointer, 
+      ratio: 1
+    }, data);
+    
+    const a = new L('.canvas', {
+      items: data.map((item, index) => index),
+      ajaxFn(cb) {
+        cb(3);
+      },
+      onRotateEnd() {
+        l.draw(data, 3);
+      },
+      callback() {
+        l.draw(data);
+      }
+    });
+
+    a.start();
+  </script>
+</body>
+
+</html>
