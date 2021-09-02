@@ -1,7 +1,7 @@
 class Lottery {
   constructor(selector, options) {
     const defaultSettings = {
-      items: 6,
+      items: [],
       round: 6,
       delay: 1400,
       ajaxFn: null,
@@ -37,18 +37,21 @@ class Lottery {
     
     if (typeof ajaxFn === 'function') {
       this.fetching = true;
-      ajaxFn(index => {
+      ajaxFn(result => {
         this.fetching = false;
-        this.index = index;
-        this.rotate(index);
+        this.result = result;
+        this.rotate(result);
       });
     }
   }
 
-  rotate(index) {
+  rotate(result) {
     const { element } = this;
+    const { items } = this.settings;
+    const index = items.indexOf(result);
     const target = this.getDeg(index);
-    
+
+    this.index = index;
     this.moving = true;
 
     element.classList.add('animation');
@@ -57,9 +60,10 @@ class Lottery {
 
   getDeg(result) {
     const { items, round } = this.settings;
+    const total = items.length;
     const circle = 360 * round;
-    const single = 360 / items;
-    const realIndex = items - result - 1;
+    const single = 360 / total;
+    const realIndex = total - result - 1;
     const half = single * 0.5;
 
     const target = ((single * realIndex) + half) + circle;
@@ -104,7 +108,7 @@ class Lottery {
 
       setTimeout(() => {
         if (typeof callbackFn === 'function') {
-          callbackFn(this.index);
+          callbackFn(this.result);
           this.reset();
         }
       }, delay);
