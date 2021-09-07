@@ -4,13 +4,24 @@ export class Dispatcher {
   }
 
   dispatch(type, properties) {
-    let event = new Event(type);
-
-    for (let name in properties) {
-      if (Object.prototype.hasOwnProperty.call(properties, name)) {
-        event[name] = properties[name];
-      }
+    if (window.Event) {
+      this.eventDispatch(type, properties);
+    } else if (window.CustomEvent) {
+      this.customEventDispatch(type, properties);
     }
+  }
+
+  eventDispatch(type, properties) {
+    let event = new Event(type);
+    event.detail = properties;
+
+    this.element.dispatchEvent(event);
+  }
+
+  customEventDispatch(type, properties) {
+    let event = new CustomEvent(type, {
+      detail: properties
+    });
 
     this.element.dispatchEvent(event);
   }
