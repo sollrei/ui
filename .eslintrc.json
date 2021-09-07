@@ -16,7 +16,8 @@
       "error",
       "never"
     ],
-
+    "no-bitwise": "off",
+    "no-param-reassign": "off",
     "jsdoc/require-param-description": 0
 
   },

@@ -84,9 +84,9 @@
     - title: 弹窗
       name: Toast
       url: /docs/toast/
-    - title: lightbox
-      name: Lightbox
-      url: /docs/lightbox/
+    - title: other
+      name: Other
+      url: /docs/other/
 
 
 

@@ -63,6 +63,8 @@ import Tree from './script/tree/Tree.js';
 
 import Lightbox from './script/lightbox/Lightbox.js';
 
+import Scroll from './script/scroll/Scroll.js';
+
 const ui = {
   util,
   Select,
@@ -94,7 +96,8 @@ const ui = {
   SectionRange,
   ColorPicker,
   Tree,
-  Lightbox
+  Lightbox,
+  Scroll
 };
 
 // @ts-ignore

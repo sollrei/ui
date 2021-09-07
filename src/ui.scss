@@ -37,12 +37,15 @@
 @import "components/list";
 @import "components/timeline";
 
-@import "components/color-picker";
-
 @import "components/toast";
 
+// plugins
 @import "components/lightbox";
-    
+
+@import "components/color-picker";
+
+
+
 .w160 {
   width: 160px !important;
 }
