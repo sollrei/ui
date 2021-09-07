@@ -7,7 +7,9 @@ export class Dispatcher {
     let event = new Event(type);
 
     for (let name in properties) {
-      event[name] = properties[name]
+      if (Object.prototype.hasOwnProperty.call(properties, name)) {
+        event[name] = properties[name];
+      }
     }
 
     this.element.dispatchEvent(event);
@@ -19,18 +21,17 @@ export class Listener {
     let isListeningMouse = false;
     let contexts = new Map();
 
+    // e.button 0 left 1 middle 2 right
     element.addEventListener('mousedown', e => {
       let context = Object.create(null);
-      contexts.set('mouse' + (1 << e.button), context);
+      contexts.set('mouse' + (1 << e.button), context); // 0,1,2 -> 1,2,4
       recognize.start(e, context);
     
-      let mousemove = e => {
-        // 掩码
+      let mousemove = event => {
+        // e.buttons 1 left 2 right 4 middle
         let button = 1;
-        while (button <= e.buttons) {
-          if (button & e.buttons) {
-    
-            // !!!!
+        while (button <= event.buttons) {
+          if (button & event.buttons) {
             let key;
             if (button === 2) {
               key = 4;
@@ -40,26 +41,26 @@ export class Listener {
               key = button;
             }
     
-            let context = contexts.get('mouse' + key);
-    
-            recognize.move(e, context);
+            let _context = contexts.get('mouse' + key);
+            recognize.move(event, _context);
           }
           
-          button = button << 1;
+          button <<= 1; // 1 2 4
         }
-      }
+      };
+
+      let mouseup = event => {
+        let _context = contexts.get('mouse' + (1 << event.button));
+        recognize.end(event, _context);
+
+        contexts.delete(contexts.get('mouse' + (1 << event.button)));
     
-      let mouseup = e => {
-        let context = contexts.get('mouse' + (1 << e.button));
-        recognize.end(e, context);
-        contexts.delete(contexts.get('mouse' + (1 << e.button)));
-    
-        if (e.buttons === 0) {
+        if (event.buttons === 0) {
           document.removeEventListener('mousemove', mousemove);
           document.removeEventListener('mouseup', mouseup);
           isListeningMouse = false;
         }
-      }
+      };
     
       if (!isListeningMouse) {
         document.addEventListener('mousemove', mousemove);
@@ -70,7 +71,7 @@ export class Listener {
 
 
     element.addEventListener('touchstart', e => {
-      for (let touch of e.changeTouches) {
+      for (let touch of e.changedTouches) {
         let context = Object.create(null);
         contexts.set(touch.identifier, context);
         recognize.start(touch, context);
@@ -78,14 +79,14 @@ export class Listener {
     });
 
     element.addEventListener('touchmove', e => {
-      for (let touch of e.changeTouches) {
+      for (let touch of e.changedTouches) {
         const context = contexts.get(touch.identifier);
         recognize.move(touch, context);
       }
     });
 
     element.addEventListener('touchend', e=> {
-      for (let touch of e.changeTouches) {
+      for (let touch of e.changedTouches) {
         const context = contexts.get(touch.identifier);
         recognize.end(touch, context);
         contexts.delete(touch.identifier);
@@ -94,7 +95,7 @@ export class Listener {
 
     // 比如alert打断
     element.addEventListener('touchcancel', e => {
-      for (let touch of e.changeTouches) {
+      for (let touch of e.changedTouches) {
         const context = contexts.get(touch.identifier);
         recognize.cancel(touch, context);
         contexts.delete(touch.identifier);
@@ -141,9 +142,10 @@ export class Recognizer {
   }
   
   move(point, context) {
-    let dx = point.clientX - context.startX, dy = point.clientY - context.startY;
+    let dx = point.clientX - context.startX;
+    let dy = point.clientY - context.startY;
   
-    if (!context.isPan && (dx ** 2 + dy ** 2 > 100)) {
+    if (!context.isPan && (((dx ** 2) + (dy ** 2)) > 100)) {
       context.isTap = false;
       context.isPan = true;
       context.isPress = false;
@@ -171,7 +173,7 @@ export class Recognizer {
       });
     }
   
-    context.points = context.points.filter(point => Date.now() - point.t < 500)
+    context.points = context.points.filter(item => Date.now() - item.t < 500);
   
     context.points.push({
       t: Date.now(),
@@ -189,14 +191,16 @@ export class Recognizer {
       this.dispatcher.dispatch('pressend', {});
     }
     
-    context.points = context.points.filter(point => Date.now() - point.t < 500);
+    context.points = context.points.filter(item => Date.now() - item.t < 500);
   
-    let d, v;
+    let d;
+    let v;
   
     if (!context.points.length) {
       v = 0;
     } else {
-      d = Math.sqrt((point.clientX - context.points[0].x) ** 2 + (point.clientY - context.points[0].y) ** 2)
+      d = (Math.sqrt((point.clientX - context.points[0].x) ** 2) 
+        + ((point.clientY - context.points[0].y) ** 2));
       v = d / (Date.now() - context.points[0].t);
     }
   
@@ -215,7 +219,7 @@ export class Recognizer {
         isVertical: context.isVertical,
         isFlick: context.isFlick,
         velocity: v
-      })
+      });
     }
 
     if (context.isPan) {
@@ -242,11 +246,11 @@ export class Recognizer {
   }
   
   cancel(point, context) {
-    clearTimeout(context.handler)
-    this.dispatcher.dispatch('cancel', {})
+    clearTimeout(context.handler);
+    this.dispatcher.dispatch('cancel', {});
   }
 }
 
-export function enableGesture (element) {
-  new Listener(element, new Recognizer(new Dispatcher(element)))
-}
+export const enableGesture = (element) => {
+  new Listener(element, new Recognizer(new Dispatcher(element)));
+};
