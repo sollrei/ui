@@ -1,0 +1,147 @@
+@import './variables';
+
+.link-hover1 {
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  transition: color .4s;
+  
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: $primary;
+    bottom: -2px;
+    right: 0;
+    transform-origin: 100% 50%;
+    transform: scaleX(0);
+    transition: transform .4s;
+  }
+
+  &:hover:after {
+    transform: scaleX(1);
+    transform-origin: 0 50%;
+  }
+}
+
+.link-hover2 {
+  position: relative;
+  transition: color .4s;
+
+  &:hover:after {
+    transform: scaleX(1);
+    transform-origin: 50% 50%;
+    }
+  
+  &:after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background-color: $primary;
+    bottom: 0;
+    right: 0;
+    transform: scaleX(0);
+    transition: transform .4s;
+  }
+}
+
+.link-hover3 {
+  position: relative;
+  border-radius: 0;
+  transition: color .4s;
+
+  &::before {
+    right: 0;
+    top: 0;
+  }
+  
+  &::after {
+    left: 0;
+    bottom: 0;
+  }
+  
+  .inner-box::before {
+    left: 0;
+    top: 0;
+  }
+  
+  .inner-box::after {
+    right: 0;
+    bottom: 0;
+  }
+
+  &.btn-line {
+    overflow: visible;
+
+    &::before {
+      right: -1px;
+      top: -1px;
+    }
+    
+    &::after {
+      left: -1px;
+      bottom: -1px;
+    }
+    
+    .inner-box::before {
+      left: -1px;
+      top: -1px;
+    }
+    
+    .inner-box::after {
+      right: -1px;
+      bottom: -1px;
+    }
+  }
+
+  &:before,
+  &:after {
+    content: "";
+    width: 0;
+    height: 1px;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: $primary;
+    transition-delay: .2s;
+  }
+
+  .inner-box:before,
+  .inner-box:after {
+    content: "";
+    width: 1px;
+    height: 0;
+    position: absolute;
+    transition: all 0.2s linear;
+    background: $primary;
+  }
+}
+
+.link-hover3:hover {
+  &:before,
+  &:after {
+    content: "";
+    width: 100%;
+  }
+
+  .inner-box:before,
+  .inner-box:after {
+    content: "";
+    height: 100%;
+  }
+}
+
+.link-hover4 {
+  overflow: hidden;
+  background-image: linear-gradient(to right, $primary, $primary 50%, $dark 50%);
+  background-size: 200% 100%;
+  background-position: 100% 0;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  transition: background .5s;
+
+  &:hover {
+    background-position: 0 0;
+  }
+}
