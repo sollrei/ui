@@ -1,11 +1,46 @@
 .ui-editor {
   border: 1px solid #e6e6e6;
+}
+
+.toolbar {
+  padding: 4px;
+  background: #fafafb;
+}
+
+.editor-content {
+  height: 100%;
+  box-sizing: border-box;
   padding: 10px;
+}
+
+.editor-content:focus {
+  outline: none;
 }
 
 .btn {
   display: inline-block;
-  padding: 10px;
+  padding: 4px;
   background: #f1f2f3;
   cursor: pointer;
+  border: 0 none;
+  border-radius: 2px;
+  margin-right: 4px;
+  line-height: 1;
+}
+
+.editor-content ul,
+.editor-content ol {
+  padding-left: 20px;
+}
+
+.editor-content ol {
+  list-style: decimal;
+}
+
+.editor-content ul {
+  list-style: disc;
+}
+
+.editor-content a {
+  color: blue;
 }

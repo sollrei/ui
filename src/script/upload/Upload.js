@@ -31,6 +31,8 @@ class Upload {
       dataType: 'json',
 
       maxUploads: 1000, // 假定系统能支持的上传数量
+
+      chunkSize: 0,
       
       beforeInit: null,
       init: null,
@@ -337,7 +339,7 @@ class Upload {
   }
 
   uploadNext() {
-    const { maxUploads, beforeUpload, data } = this.settings;
+    const { maxUploads, beforeUpload, data, chunkSize } = this.settings;
     const self = this;
     
     if (this.uploads.length && (this.activeUploads < maxUploads)) {
@@ -351,11 +353,17 @@ class Upload {
       if (beforeUpload) {
         beforeUpload.call(this.uploadContexts[uploadNum], uploadNum, (next, _data) => {
           if (next) {
-            self.uploadFile(uploadNum, _data || data);
+            if (chunkSize) {
+              self.dealChunk(uploadNum, _data || data);
+            } else {
+              self.uploadFile(uploadNum, _data || data);
+            }
           }
         });
+      } else if (chunkSize) {
+        self.dealChunk(uploadNum, data);
       } else {
-        this.uploadFile(uploadNum, data);
+        self.uploadFile(uploadNum, data);
       }
 
       if (this.uploads.length) {
@@ -377,6 +385,86 @@ class Upload {
         formData.append(k, item.toString());
       }
     });
+  }
+
+  dealChunk(num, data) {
+    const { chunkSize } = this.settings;
+    const file = this.files[num];
+    const self = this;
+
+    if (chunkSize) {
+      const BYTES_PER_CHUNK = chunkSize;
+      const SIZE = file.size;
+
+      let start = 0;
+      let end = BYTES_PER_CHUNK;
+      let chunk = 0;
+      let chunks = Math.ceil(SIZE / BYTES_PER_CHUNK);
+
+      const chunkUpload = (_res) => {
+        if (start < SIZE) {
+          let blobFile = file.slice(start, end);
+          // let blobFile = blob.webkitSlice(start, end);
+          this.fileXhr(blobFile, data, {
+            num,
+            chunk,
+            chunks
+          }, (res) => {
+            chunkUpload(res);
+          });
+
+          start = end;
+          chunk += 1;
+          end = start + BYTES_PER_CHUNK;
+        } else {
+          self._uploadData[num].xhr = null;
+
+          self.progress(num, 100);
+          self.success(num, _res);
+        }
+      };
+
+      chunkUpload();
+    }
+  }
+
+  fileXhr(blobFile, data, { chunk, chunks, num }, cb) {
+    // data: chunk, chunks
+    const _xhr = new XMLHttpRequest();
+    const self = this;
+    const { fileName } = this;
+    const part = (chunk / chunks) * 100;
+
+    let formData = new FormData();
+    data.chunk = chunk;
+    data.chunks = chunks;
+
+    this.objectToFormData(formData, data);
+    formData.append(fileName, blobFile);
+
+    _xhr.addEventListener('error', function (xhr) {
+      self._uploadData[num].xhr = null;
+      self.error(num, {
+        name: 'RequestError',
+        message: errorMessage.RequestError,
+        xhr: xhr
+      });
+    }, false);
+
+    _xhr.upload.addEventListener('progress', function (e) {
+      if (e.lengthComputable) {
+        self.progress(num, part + (((e.loaded / e.total) * 100) / chunks));
+      }
+    }, false);
+
+    _xhr.addEventListener('load', function () {
+      if (_xhr.status === 200) {
+        cb(_xhr.responseText);
+      }
+    }, false);
+
+    _xhr.open('POST', this.ajaxUrl, true);
+    _xhr.send(formData);
   }
 
   uploadFile(num, data) {

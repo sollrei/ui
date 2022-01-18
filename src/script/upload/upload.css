@@ -1,0 +1,35 @@
+.ui-upload-img .opt {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+.ui-upload-img .pro {
+  color: #fff;
+  font-size: 12px;
+  display: none;
+}
+.ui-upload-img .del {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 20px;
+  line-height: 1;
+  padding: 0 5px;
+  background: #bac8d6;
+  color: #fff;
+  cursor: pointer;
+}
+.ui-upload-img .uploading .opt {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0,0,0,.23);
+}
+.ui-upload-img .uploading .pro {
+  display: block;
+}
+.ui-upload-img .uploading .del {
+  display: none;
+}

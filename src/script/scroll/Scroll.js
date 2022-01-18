@@ -98,6 +98,11 @@ class Scroll {
       this.scroll();
     });
   }
+
+  destroy() {
+    clearInterval(this.timer);
+    this.parent = null;
+  }
 }
 
 export default Scroll;

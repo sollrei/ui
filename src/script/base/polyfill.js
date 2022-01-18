@@ -1,9 +1,10 @@
 // @ts-nocheck
 // https://developer.mozilla.org/zh-CN/docs/Web/API/Element/closest
 if (!Element.prototype.matches) {
-  Element.prototype.matches = Element.prototype.msMatchesSelector
-    || Element.prototype.webkitMatchesSelector
-    || Element.prototype.mozMatchesSelector;
+  Element.prototype.matches =
+    Element.prototype.msMatchesSelector ||
+    Element.prototype.webkitMatchesSelector ||
+    Element.prototype.mozMatchesSelector;
 }
 
 if (!Element.prototype.closest) {
@@ -21,18 +22,22 @@ if (!Element.prototype.closest) {
   };
 }
 
-if (typeof Object.assign !== 'function') { // for IE
+if (typeof Object.assign !== 'function') {
+  // for IE
   // Must be writable: true, enumerable: false, configurable: true
   Object.defineProperty(Object, 'assign', {
-    /* eslint-disable-next-line */ 
-    value: function assign(target, varArgs) { // .length of function is 2 
-      if (target == null) { // TypeError if undefined or null
+    /* eslint-disable-next-line */
+    value: function assign(target, varArgs) {
+      // .length of function is 2
+      if (target == null) {
+        // TypeError if undefined or null
         throw new TypeError('Cannot convert undefined or null to object');
       }
       let to = Object(target);
       for (let index = 1; index < arguments.length; index += 1) {
         let nextSource = arguments[index];
-        if (nextSource != null) { // Skip over if undefined or null
+        if (nextSource != null) {
+          // Skip over if undefined or null
           for (let nextKey in nextSource) {
             // Avoid bugs when hasOwnProperty is shadowed
             if (Object.prototype.hasOwnProperty.call(nextSource, nextKey)) {
@@ -68,7 +73,7 @@ window.requestAnimFrame = (function () {
       window.setTimeout(callback, 1000 / 60);
     }
   );
-}());
+})();
 
 window.cancelAnimFrame = (function () {
   return (
@@ -81,4 +86,32 @@ window.cancelAnimFrame = (function () {
       window.clearTimeout(id);
     }
   );
-}());
+})();
+
+// https://developer.mozilla.org/zh-CN/docs/Web/API/CustomEvent/CustomEvent polyfill
+try {
+  new window.CustomEvent('T');
+} catch (e) {
+  let CustomEvent = function (event, params) {
+    params = params || {
+      bubbles: false,
+      cancelable: false,
+      detail: undefined
+    };
+
+    let evt = document.createEvent('CustomEvent');
+
+    evt.initCustomEvent(
+      event,
+      params.bubbles,
+      params.cancelable,
+      params.detail
+    );
+
+    return evt;
+  };
+
+  CustomEvent.prototype = window.Event.prototype;
+  window.CustomEvent = CustomEvent;
+}
+

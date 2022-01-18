@@ -19,6 +19,8 @@ class Pagination {
       prevIcon: 'iconfont icon-arrow-left',
       nextIcon: 'iconfont icon-arrow-right',
       pageClass: 'ui-pagination',
+
+      pageTotal: true,
       pageInput: true,
       pageSelect: true,
 
@@ -97,7 +99,7 @@ class Pagination {
    */
   createPageDom(page, onlyBtn = false) {
     const { total } = this;
-    const { pageClass } = this.settings;
+    const { pageClass, pageTotal } = this.settings;
     this.page = page;
 
     const pageArr = this.createPageArray();
@@ -106,13 +108,14 @@ class Pagination {
     const nextButton = this.createPageNavDom('next');
     const input = this.createInputDom();
     const select = this.createSelectDom();
+    const totalDom = pageTotal ? `<span class="ft-gray mr-24">共${total}条</span>` : '';
 
     if (onlyBtn) {
-      return `<span class="ft-gray mr-24">共${total}条</span>` 
-      + prevButton + pageHtml + nextButton;
+      return totalDom + prevButton + pageHtml + nextButton;
     }
 
-    return `<div class="${pageClass}"><div class="ui-row middle pagination-box"><span class="ft-gray mr-24">共${total}条</span>` 
+    return `<div class="${pageClass}"><div class="ui-row middle pagination-box">`
+      + totalDom 
       + prevButton + pageHtml + nextButton + '</div>'
       + select + input + '</div>';
   }
