@@ -24,8 +24,8 @@ class Linkage extends SelectBase {
       dataName: 'id',
       data: {},
 
-      selectFn: null,
-      selectFinalFn: null,
+      onSelect: null,
+      onSelectFinal: null
     };
 
     const settings = Object.assign({}, defaultSettings, options);
@@ -60,6 +60,7 @@ class Linkage extends SelectBase {
 
   initAjaxSelect() {
     const { ajaxUrl } = this.settings;
+    const valueString = this.select.getAttribute('data-default');
 
     if (!ajaxUrl) return;
 
@@ -73,7 +74,15 @@ class Linkage extends SelectBase {
       });
     }
 
-    this.selectClickEvent(this.select);
+    if (valueString) {
+      this.defaultValue = valueString.splice(',');
+    }
+
+    this.selectClickEvent(this.select, () => {
+      if (!this.complete) {
+        this.resetData();
+      }
+    });
 
     this.optionClickEvent();
   }
@@ -146,11 +155,7 @@ class Linkage extends SelectBase {
     u.on(select.option, 'click', '.menu-item', function (e) {
       e.preventDefault();
       e.stopPropagation();
-
-      const ul = this.parentNode;
-      self.changeSelectedClass(ul, this);
-
-      self.triggerNewItem(this, select, 'click');
+      self.triggerNewItem(this, 'click');
     });
 
     select.option.addEventListener('click', e => {
@@ -158,36 +163,80 @@ class Linkage extends SelectBase {
     });
   }
 
-  triggerNewItem(element, select, type) {
+  triggerNewItem(element, type) {
+    const { select } = this;
+    const { onSelect, onSelectFinal } = this.settings; 
     const value = element.getAttribute('data-value');
     const data = this.cacheData[value];
-    const { onSelect } = this.settings; 
+    const ul = element.parentNode;
 
-    if (data) {
-      Linkage.removeSiblings(element.parentElement);
-      this.createOption(data);
-    } else {
-      this.complete = true;
-      this.setValue(false);
-    }
+    this.changeSelectedClass(ul, element);
+    Linkage.removeSiblings(element.parentElement);
 
     if (type === 'click' && typeof onSelect === 'function') {
       onSelect(element, select, type);
+    }
+
+    if (data) {
+      this.complete = false;
+      this.createOption(data);
+    } else {
+      this.complete = true;
+      this.setValue(!type);
+
+      if (type === 'click' && typeof onSelectFinal === 'function') {
+        onSelectFinal(this.values);
+      }
     }
   }
 
   setValue(show) {
     const select = this.select;
+    const elements = select.option.querySelectorAll('.selected');
 
     let valueAll = [];
     let labelAll = [];
+    this.values = [];
 
-    this.values.forEach((item) => {
-      valueAll.push(item.value);
-      labelAll.push(item.label);
+    [].slice.call(elements).forEach((item) => {
+      const value = item.getAttribute('data-value');
+      const label = item.getAttribute('data-label');
+
+      valueAll.push(value);
+      labelAll.push(label);
+      this.values.push({ label, value });
     });
 
     this.changeSelectValue(select, valueAll.join(','), labelAll.join(' / '), show);
+  }
+
+  resetData() {
+    const { defaultValue, values } = this;
+    let data = values || defaultValue;
+
+    if (data && data.length) {
+      const ul = this.select.option;
+      
+      data = data.map(item => {
+        if (typeof item === 'object') {
+          return item.value;
+        }
+        return item;
+      });
+
+      data.forEach((item) => {
+        let li = ul.querySelector(`[data-value="${item}"]`);
+        this.triggerNewItem(li);
+        Linkage.resetMenuPosition(li);
+      });
+    }
+  }
+
+  static resetMenuPosition(element) {
+    const offsetTop = element.offsetTop;
+    const parentNode = element.parentElement;
+
+    parentNode.scrollTop = offsetTop - 8;
   }
 
   static removeSiblings(element) {

@@ -67,7 +67,7 @@ class SelectBase {
       }
     }
 
-    return `<li class="menu-item ${className} ${addClassName}" data-value="${value}" data-level="${level}" ${last}>${str}</li>`;
+    return `<li class="menu-item ${className} ${addClassName}" data-label="${label}" data-value="${value}" data-level="${level}" ${last}>${str}</li>`;
   }
 
   /**
